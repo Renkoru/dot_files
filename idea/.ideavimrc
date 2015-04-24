@@ -12,12 +12,15 @@ nnoremap cor :set relativenumber! <CR>
 nnoremap tg gT
 inoremap jk <esc>
 
-nnoremap <Space>r :source ~/.ideavimrc<CR>
 nnoremap <Space>w :w<CR>
-" vnoremap <Space>y <C-C>
+nnoremap <Space>q :q<CR>
+" vnoremap y :action Copy<CR>
 " nnoremap <Space>p <C-P><CR>
+nnoremap [<Space> O<ESC>j 0 w
+nnoremap ]<Space> o<ESC>k 0 w
 
 
+nnoremap <C-r> :source ~/.ideavimrc<CR>
 nnoremap <C-l> <C-W>l
 nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
@@ -26,7 +29,6 @@ nnoremap <C-h> <C-W>h
 " forward/back history navigation
 nnoremap <C-O> :action Back<CR>
 nnoremap <C-I> :action Forward<CR>
-nnoremap ,l :action FileStructurePopup<CR>
 
 " nmap /f :action Find<CR> " Not working
 nnoremap /f :action FindInPath<CR>
@@ -36,11 +38,18 @@ nnoremap N :action FindPrevious<CR>
 nnoremap gr :action RecentFiles<CR>
 nnoremap gc :action GotoClass<CR>
 nnoremap gf :action GotoFile<CR>
-" nnoremap gs :action GotoSymbol<CR>
+nnoremap gs :action GotoSymbol<CR>
+nnoremap gl :action FileStructurePopup<CR>
+
+nnoremap za :action CollapseSelection<CR>
+
+
+nnoremap <Space>s :action AceJumpAction<CR>
+" vnoremap gs :action GotoSymbol<CR>
 " Not working
-vnoremap gs :action GotoSymbol<CR> 
 
 
+nnoremap <Space>r :action RenameElement<CR>
 nnoremap <Space>8 :action HighlightUsagesInFile<CR>
 nnoremap <Space>` :nohlsearch<CR>
 nnoremap <Space>d :action GotoDeclaration<CR>
