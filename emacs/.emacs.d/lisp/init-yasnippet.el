@@ -1,6 +1,5 @@
 ; init-yasnippet.el
-
-(require-package 'yasnippet)
+(require 'yasnippet)
 (yas-global-mode 1)
 
 ; snippets dir

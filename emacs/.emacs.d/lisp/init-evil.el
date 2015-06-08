@@ -3,10 +3,9 @@
 (require 'elscreen)
 (require 'neotree)
 (require 'evil-surround)
-(require 'evil-matchit)
+; (require 'evil-matchit)
 (require 'evil-leader)
 (require 'evil-tabs)
-(require 'evil-easymotion)
 (require 'evil)
 
 (require 'rainbow-delimiters)
@@ -15,7 +14,7 @@
 ; (global-rainbow-delimiters-mode)
 
 (global-evil-surround-mode 1)
-(global-evil-matchit-mode 1)
+; (global-evil-matchit-mode 1)
 (global-evil-leader-mode 1)
 (global-evil-tabs-mode t)
 
@@ -52,13 +51,11 @@
 (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
 (define-key evil-normal-state-map (kbd "gl") 'helm-occur)
 (define-key evil-normal-state-map (kbd "gr") 'helm-mini)
+(define-key evil-normal-state-map (kbd "gb") 'helm-projectile-recentf)
 
 (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
 (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
 
-;; Easymotion mappings
-;; (evilem-default-keybindings ",")
-(evilem-default-keybindings "SPC")
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
@@ -68,6 +65,7 @@
   "j" 'avy-goto-line
   "s" 'avy-goto-char-2
   "l" 'avy-goto-char-in-line
+  "g" 'helm-projectile-ag
 )
 
 ; (define-key evil-normal-state-map "c" nil)

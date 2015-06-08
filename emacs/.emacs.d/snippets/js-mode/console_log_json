@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: json
+# binding: M-c k
+# --
+console.log('--- > $0: %s', JSON.stringify(`yas/selected-text`, null, 2));

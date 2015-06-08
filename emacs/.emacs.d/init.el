@@ -27,30 +27,35 @@
                             ;; evil-easymotion ; replaced with avy
                             avy
                             neotree
-                            helm
                             projectile
+                            helm
+                            helm-projectile
+                            helm-ag
                             powerline
                             ;; visual ones
                             highlight-symbol
                             ;; multiple-cursors ; dont work with evil
                             rainbow-delimiters
                             rainbow-mode
-                            ;; js2-mode
                             ac-slime
                             auto-complete
                             flycheck
                             magit ; Learn how to use it
                             git-gutter ; Setup plugin
                             ;; git-timemachine ; investigate this plugin later
+                            js2-mode
+                            js2-refactor
+                            tern
+                            tern-auto-complete
+                            json-mode
+                            org
                             markdown-mode
                             nodejs-repl
                             rvm
                             solarized-theme
                             zenburn-theme
                             web-mode
-                            tern
-                            tern-auto-complete
-                            org
+                            jade-mode
                             puppet-mode
                             marmalade
                             restclient
@@ -73,11 +78,18 @@
 ; (require 'evil)
 ; (evil-mode 1)
 
+(setq backup-directory-alist `(("." . "~/.saves")))
 (require 'init-evil) ; -------------------------------------------------------------
+(require 'init-yasnippet)
 (require 'drag-stuff)
+(require 'flycheck)
+(add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
 
-(require 'multiple-cursors)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(require 'jade-mode)
+
+;;; yasnippet
+;;; should be loaded before auto complete so that they can work together
 
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
@@ -107,6 +119,8 @@ Jump to one of the current isearch candidates.
 
 ; (require 'projectile)
 (projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 ; (setq projectile-completion-system 'helm)
 ; (require 'helm-projectile)
 ; (helm-projectile-on)
@@ -128,21 +142,6 @@ Jump to one of the current isearch candidates.
 ;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
 (show-paren-mode t)
 
-; Key bindings
-;; (global-set-key (kbd "RET") 'newline-and-indent)
-;; (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
-;; (global-set-key (kbd "M-/") 'hippie-expand)
-;; (global-set-key (kbd "C-+") 'text-scale-increase)
-;; (global-set-key (kbd "C--") 'text-scale-decrease)
-;; (global-set-key (kbd "C-c C-k") 'compile)
-;; (global-set-key (kbd "C-x g") 'magit-status)
-
-
-(require 'autopair)
-
-;; (ido-mode t)
-;; (setq ido-enable-flex-matching t
-;;       ido-use-virtual-buffers t)
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -153,13 +152,32 @@ Jump to one of the current isearch candidates.
 (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
 
+;; JS -----------------------------------------------------------------
+(add-hook 'js-mode-hook 'js2-minor-mode)
 (defun js-custom ()
   "js-mode-hook"
   (setq js-indent-level 2))
 
 (add-hook 'js-mode-hook 'js-custom)
+;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(custom-set-variables
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p t)
+)
 
 
+;; Add this to your .emacs to initialize tern and tern-auto-complete
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
+
+(setq js2-highlight-level 3)
+
+
+
+; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook
@@ -167,14 +185,6 @@ Jump to one of the current isearch candidates.
             (visual-line-mode t)
             (flyspell-mode t)))
 (setq markdown-command "pandoc --smart -f markdown -t html")
-; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
-
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
-
 ; Themes load
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
@@ -188,8 +198,6 @@ Jump to one of the current isearch candidates.
 ; (require 'ido)
 ; (ido-mode t)
 ; (require 'init-yasnippet)
-; (require-package 'autopair)
-; (autopair-global-mode)
 
 ; package
 ; (when (>= emacs-major-version 24)
@@ -220,7 +228,6 @@ Jump to one of the current isearch candidates.
 ;         ; emms
 ;         ; dired-sort
 ;         ; auto-dictionnary
-;         ; autopair
 ;         ; color-theme
 ;         ; dired+
 ;         ; google-maps
@@ -288,5 +295,9 @@ Jump to one of the current isearch candidates.
 ; ; Themes load
 ; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ; (setq-default custom-enabled-themes '(github))
+
+
+(set-face-attribute 'default nil :font "Source Code Pro")
+(set-frame-font "Source Code Pro" nil t)
 
 (provide 'init)
