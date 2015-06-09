@@ -21,11 +21,6 @@
 
 (evil-mode 1)
 
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-M-x-fuzzy-match        t)
-(setq helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match    t)
 
 ;; Evil settings
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -42,16 +37,12 @@
 (define-key evil-normal-state-map (kbd "[ SPC") (kbd "ko <escape> j"))
 (define-key evil-normal-state-map (kbd "] SPC") (kbd "o <escape> k"))
 
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "M-x") 'helm-M-x)
 (define-key evil-normal-state-map (kbd "[ SPC") (kbd "ko <escape> j"))
 (define-key evil-normal-state-map (kbd "] SPC") (kbd "o <escape> k"))
 
 (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
 (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
 (define-key evil-normal-state-map (kbd "gl") 'helm-occur)
-(define-key evil-normal-state-map (kbd "gr") 'helm-mini)
-(define-key evil-normal-state-map (kbd "gb") 'helm-projectile-recentf)
 
 (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
 (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
@@ -65,14 +56,13 @@
   "j" 'avy-goto-line
   "s" 'avy-goto-char-2
   "l" 'avy-goto-char-in-line
-  "g" 'helm-projectile-ag
 )
 
 ; (define-key evil-normal-state-map "c" nil)
 ; (define-key evil-motion-state-map "cu" 'universal-argument)
 
 (global-set-key [f3] 'neotree-toggle)
-(setq neo-theme 'nerd) 
+(setq neo-theme 'nerd)
 (add-hook 'neotree-mode-hook
         (lambda ()
           (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)

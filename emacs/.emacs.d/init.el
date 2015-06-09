@@ -26,6 +26,7 @@
                             evil-nerd-commenter
                             ;; evil-easymotion ; replaced with avy
                             avy
+                            ace-window
                             neotree
                             projectile
                             helm
@@ -80,6 +81,7 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (require 'init-evil) ; -------------------------------------------------------------
+(global-set-key (kbd "M-p") 'ace-window)
 (require 'init-yasnippet)
 (require 'drag-stuff)
 (require 'flycheck)
@@ -115,6 +117,16 @@ Jump to one of the current isearch candidates.
 (avy-setup-default)
 
 (require 'helm-config)
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t
+      helm-M-x-fuzzy-match        t)
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
+(global-set-key (kbd "M-r") 'helm-mini)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-b") 'helm-projectile-recentf)
+(global-set-key (kbd "M-g") 'helm-projectile-ag)
+
 (helm-mode 1)
 
 ; (require 'projectile)
