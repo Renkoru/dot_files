@@ -81,7 +81,7 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (require 'init-evil) ; -------------------------------------------------------------
-(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "M-w") 'ace-window)
 (require 'init-yasnippet)
 (require 'drag-stuff)
 (require 'flycheck)
@@ -89,6 +89,21 @@
           (lambda () (flycheck-mode t)))
 
 (require 'jade-mode)
+
+;; Customize ediff --------------------- <
+
+;; Don't use the weird setup with the control panel in a separate frame.
+;; I can manage windows in Emacs much better than my desktop (Unity or Gnome Shell) can manage the Emacs frames.
+;; (custom-set-variables ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; (defun ora-ediff-hook ()
+;;   (ediff-setup-keymap)
+;;   (define-key ediff-mode-map "k" 'ediff-previous-difference)
+;;   (define-key ediff-mode-map "j" 'ediff-next-difference))
+
+;; (add-hook 'ediff-mode-hook 'ora-ediff-hook)
 
 ;;; yasnippet
 ;;; should be loaded before auto complete so that they can work together
@@ -119,13 +134,12 @@ Jump to one of the current isearch candidates.
 (require 'helm-config)
 (setq helm-buffers-fuzzy-matching t
       helm-recentf-fuzzy-match    t
-      helm-M-x-fuzzy-match        t)
-(setq helm-semantic-fuzzy-match t
-      helm-imenu-fuzzy-match    t)
-(global-set-key (kbd "M-r") 'helm-mini)
+      helm-M-x-fuzzy-match        t
+      helm-semantic-fuzzy-match   t
+      helm-imenu-fuzzy-match      t)
+
+(global-set-key (kbd "C-q") 'helm-mini)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-b") 'helm-projectile-recentf)
-(global-set-key (kbd "M-g") 'helm-projectile-ag)
 
 (helm-mode 1)
 

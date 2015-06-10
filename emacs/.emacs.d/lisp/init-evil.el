@@ -47,6 +47,8 @@
 (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
 (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
 
+;; (global-set-key (kbd "M-b") 'helm-projectile-recentf)
+;; (global-set-key (kbd "M-g") 'helm-projectile-ag)
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
@@ -56,6 +58,10 @@
   "j" 'avy-goto-line
   "s" 'avy-goto-char-2
   "l" 'avy-goto-char-in-line
+  "g" 'magit-status
+  "r" 'helm-projectile-recentf
+  "a" 'helm-projectile-ag
+
 )
 
 ; (define-key evil-normal-state-map "c" nil)
