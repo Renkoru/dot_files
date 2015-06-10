@@ -1,51 +1,86 @@
-! black
-URxvt.color0  : #2E2E34343636
-URxvt.color8  : #555557575353
-! red
-URxvt.color1  : #CCCC00000000
-URxvt.color9  : #EFEF29292929
-! green
-URxvt.color2  : #4E4E9A9A0606
-URxvt.color10 : #8A8AE2E23434
-! yellow
-URxvt.color3  : #C4C4A0A00000
-URxvt.color11 : #FCFCE9E94F4F
-! blue
-URxvt.color4  : #34346565A4A4
-URxvt.color12 : #72729F9FCFCF
-! magenta
-URxvt.color5  : #757550507B7B
-URxvt.color13 : #ADAD7F7FA8A8
-! cyan
-URxvt.color6  : #060698209A9A
-URxvt.color14 : #3434E2E2E2E2
-! white
-URxvt.color7  : #D3D3D7D7CFCF
-URxvt.color15 : #EEEEEEEEECEC
+/* Couleurs Tango */
+URxvt.foreground: #C8C8C8
+URxvt.background: #323232
+URxvt.color0:     #2E3436
+URxvt.color1:     #CC0000
+URxvt.color2:     #4E9A06
+URxvt.color3:     #C4A000
+URxvt.color4:     #3465A4
+URxvt.color5:     #75507B
+URxvt.color6:     #06989A
+URxvt.color7:     #D3D7CF
+URxvt.color8:     #555753
+URxvt.color9:     #EF2929
+URxvt.color10:    #8AE234
+URxvt.color11:    #FCE94F
+URxvt.color12:    #729FCF
+URxvt.color13:    #AD7FA8
+URxvt.color14:    #34E2E2
+URxvt.color15:    #EEEEEC
 
 URxvt*foreground:White
 URxvt*background:Black
 
+urxvt*cursorUnderline: 1 ! cursor position
+urxvt*letterspace: -5    ! space between letters
+urxvt*cursorBlink: true
+urxvt*scrollBar: false
+urxvt*depth: 32
+urxvt*internalBorder: 5
+
+URxvt.transparent: true
+URxvt.shading:     10
+URxvt.fading:      40
+!urxvt*fadeColor: #000000 ! цвет тени
+
+!Общие настройки xft
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+!используемые расширения
+URxvt.perl-ext-common: default,selection-to-clipboard,matcher,tabbed
+
+URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
+URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true
+
+URxvt*saveLines: 12000
+URxvt*color4: RoyalBlue
+URxvt*color12: RoyalBlue
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+
+Emacs.font: Terminus:size=11:antialise:true
+Emacs.FontBackend: xft
+
+/* !при помощи xdg-open и левой кнопки мыши открываются ссылки */
+/* URxvt.url-launcher: /usr/bin/xdg-open */
+/* URxvt.matcher.button: 1 */
+
+!изменение размера шрифта &laquo;на лету&raquo;
+/* URxvt.font-size.step: 4                      ! задать шаг */
+/* URxvt.keysym.C-0: perl:font-size:increase    ! увеличить размер по Ctrl+0 */
+/* URxvt.keysym.C-9: perl:font-size:decrease    ! уменьшить размер по Ctrl+9 */
 
 ! fonts
 ! run "fc-list" for a list of available fonts
 /* URxvt*font: xft:Monospace:pixelsize=13 */
 /* URxvt*font: xft:Ubuntu Mono:pixelsize=13 */
-URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
-URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true
 /* URxvt*font: xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true */
 /* URxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=13:antialias=true:hinting=true */
 
-/* URxvt*scrollBar: False */
-URxvt*scrollBar: true
-URxvt*scrollTtyOutput: False
-URxvt*scrollTtyKeypress: True
-URxvt*secondaryScroll: True
-URxvt*saveLines: 12000
-URxvt*color4: RoyalBlue
-URxvt*color12: RoyalBlue
-URxvt*scrollBar_right: false
-URxvt*scrollstyle: rxvt
+/* URxvt*scrollTtyOutput: False */
+/* URxvt*scrollTtyKeypress: True */
+/* URxvt*secondaryScroll: True */
+/* URxvt*scrollBar_right: false */
+/* URxvt*scrollstyle: rxvt */
 /* URxvt*transparent: true */
 /* URxvt*tintColor: Blue */
 /* URxvt*shading: 40 */
@@ -59,8 +94,3 @@ URxvt*scrollstyle: rxvt
 /* URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1 */
 /* URxvt*boldFont:-*-courier-bold-r-normal-*-14-*-*-*-*-*-iso8859-1 */
 
-URxvt.perl-ext-common: ...,keyboard-select,clipboard
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
