@@ -1,5 +1,6 @@
 /* Couleurs Tango */
-URxvt.foreground: #C8C8C8
+URxvt.foreground: #EEEEEC
+! URxvt.foreground: #C8C8C8
 URxvt.background: #323232
 URxvt.color0:     #2E3436
 URxvt.color1:     #CC0000

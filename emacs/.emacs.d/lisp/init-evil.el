@@ -59,9 +59,10 @@
   "s" 'avy-goto-char-2
   "l" 'avy-goto-char-in-line
   "g" 'magit-status
+  "f" 'helm-projectile-find-file
   "r" 'helm-projectile-recentf
   "a" 'helm-projectile-ag
-
+  "h" 'helm-swoop
 )
 
 ; (define-key evil-normal-state-map "c" nil)

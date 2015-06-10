@@ -32,6 +32,7 @@
                             helm
                             helm-projectile
                             helm-ag
+                            helm-swoop
                             powerline
                             ;; visual ones
                             highlight-symbol
@@ -43,7 +44,7 @@
                             flycheck
                             magit ; Learn how to use it
                             git-gutter ; Setup plugin
-                            ;; git-timemachine ; investigate this plugin later
+                            git-timemachine ; investigate this plugin later
                             js2-mode
                             js2-refactor
                             tern
@@ -80,6 +81,23 @@
 ; (evil-mode 1)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+(require 'helm-config)
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t
+      helm-M-x-fuzzy-match        t
+      helm-semantic-fuzzy-match   t
+      helm-imenu-fuzzy-match      t)
+
+(global-set-key (kbd "C-q") 'helm-mini)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+(helm-mode 1)
+(require 'helm-swoop)
+
 (require 'init-evil) ; -------------------------------------------------------------
 (global-set-key (kbd "M-w") 'ace-window)
 (require 'init-yasnippet)
@@ -111,10 +129,6 @@
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
 
-(autoload 'avy-isearch "avy" "\
-Jump to one of the current isearch candidates.
-\(fn)" t nil)
-
 (require 'highlight-symbol)
 (global-set-key [(control f12)] 'highlight-symbol)
 (global-set-key [f12] 'highlight-symbol-next)
@@ -131,17 +145,12 @@ Jump to one of the current isearch candidates.
 ;; Bind key for isearch C-' to activate avy
 (avy-setup-default)
 
-(require 'helm-config)
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-M-x-fuzzy-match        t
-      helm-semantic-fuzzy-match   t
-      helm-imenu-fuzzy-match      t)
+(autoload 'avy-isearch "avy" "\
+Jump to one of the current isearch candidates.
+\(fn)" t nil)
 
-(global-set-key (kbd "C-q") 'helm-mini)
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-(helm-mode 1)
+(setq avy-style 'at-full)
+;; (setq avy-background t)
 
 ; (require 'projectile)
 (projectile-global-mode)
@@ -162,8 +171,9 @@ Jump to one of the current isearch candidates.
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
-; Disable backup files
+; Disable backup and autosave files
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 ;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
 (show-paren-mode t)
