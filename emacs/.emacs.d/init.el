@@ -57,6 +57,7 @@
                             solarized-theme
                             zenburn-theme
                             web-mode
+                            scss-mode
                             jade-mode
                             puppet-mode
                             marmalade
@@ -81,6 +82,7 @@
 ; (evil-mode 1)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
+(toggle-truncate-lines t)
 
 
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -105,6 +107,11 @@
 (require 'flycheck)
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
+
+
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-mode-scss-indent-offset 2)
 
 (require 'jade-mode)
 
@@ -230,10 +237,18 @@ Jump to one of the current isearch candidates.
 ; (color-theme-solarized)
 ; (setq-default custom-enabled-themes '(github))
 
- ;
-; (require 'ido)
-; (ido-mode t)
-; (require 'init-yasnippet)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+(setq web-mode-css-indent-offset 2)
+
+(setq web-mode-ac-sources-alist
+      '(("css" . (ac-source-css-property))
+        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+
 
 ; package
 ; (when (>= emacs-major-version 24)
