@@ -114,10 +114,6 @@ if ! shopt -oq posix; then
 fi
 
 
-# Change keyboard layout. en, ru
-setxkbmap -layout "us,ru"
-setxkbmap -option "grp:caps_toggle,grp_led:scroll,compose:ralt"
-
 # User specific aliases and functions:
 alias ls="ls -h --color=auto"
 export PS1='\[\033[01;32m\]┌ \u \[\033[00;93m\][ \w ] \n\[\033[01;32m\]└─> \[\033[00;31m\]\W \[\033[01;32m\]> \[\033[00m\]'
