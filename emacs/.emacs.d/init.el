@@ -18,7 +18,7 @@
 
 (defvar mrurenko/packages '(smartparens ; add settings
                             drag-stuff
-                            ;; expand-region ; investigate this package later
+                            expand-region ; investigate this package later
                             evil
                             evil-leader
                             evil-surround
@@ -36,7 +36,7 @@
                             powerline
                             ;; visual ones
                             highlight-symbol
-                            ;; multiple-cursors ; dont work with evil
+                            multiple-cursors ; dont work with evil
                             rainbow-delimiters
                             rainbow-mode
                             ac-slime
@@ -99,6 +99,15 @@
 
 (helm-mode 1)
 (require 'helm-swoop)
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (require 'init-evil) ; -------------------------------------------------------------
 (global-set-key (kbd "M-w") 'ace-window)
