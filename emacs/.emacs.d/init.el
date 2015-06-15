@@ -9,12 +9,19 @@
 (require 'package)
 (require 'cl) ; for loop
 
-;;; loads packages and activates them
-(package-initialize)
 
 ;;; here there's a variable named package-archives, and we are adding the MELPA repository to it
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+; (add-to-list
+;   'package-archives
+;   '("marmalade" . "https://marmalade-repo.org/packages/")
+;   )
+(add-to-list
+  'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/")
+  t)
+
+;;; loads packages and activates them
+(package-initialize)
 
 (defvar mrurenko/packages '(smartparens ; add settings
                             drag-stuff
@@ -50,6 +57,12 @@
                             tern
                             tern-auto-complete
                             json-mode
+                            ;; Python packages
+                            ctable
+                            deferred
+                            epc
+                            python-environment
+                            jedi
                             org
                             markdown-mode
                             nodejs-repl
@@ -111,7 +124,7 @@
 
 (require 'init-evil) ; -------------------------------------------------------------
 (global-set-key (kbd "M-w") 'ace-window)
-(require 'init-yasnippet)
+(require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'drag-stuff)
 (require 'flycheck)
 (add-hook 'js-mode-hook
@@ -197,6 +210,11 @@ Jump to one of the current isearch candidates.
 
 (require 'auto-complete-config)
 (ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
 
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
@@ -313,6 +331,12 @@ Jump to one of the current isearch candidates.
           (lambda ()
             (setq tab-width 4)
             ))
+
+
+;; Python
+(add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
+(setq jedi:complete-on-dot t)                 ; optional
 
 ; ;;; Web-mode
 ; (require-package 'web-mode)
