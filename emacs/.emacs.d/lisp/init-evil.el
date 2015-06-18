@@ -49,20 +49,24 @@
 
 ;; (global-set-key (kbd "M-b") 'helm-projectile-recentf)
 ;; (global-set-key (kbd "M-g") 'helm-projectile-ag)
+(define-key evil-normal-state-map (kbd "SPC ss") 'avy-goto-char-2)
+(define-key evil-normal-state-map (kbd "SPC sh") 'helm-swoop)
+
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
   "w" 'save-buffer
   "q" 'kill-buffer-and-window
   "=" (kbd "C-w =")
+  "y" 'helm-show-kill-ring
   "j" 'avy-goto-line
-  "s" 'avy-goto-char-2
+  "k" 'avy-goto-line
   "l" 'avy-goto-char-in-line
+  "h" 'avy-goto-char-in-line
   "g" 'magit-status
   "f" 'helm-projectile-find-file
   "r" 'helm-projectile-recentf
   "a" 'helm-projectile-ag
-  "h" 'helm-swoop
 )
 
 ; (define-key evil-normal-state-map "c" nil)

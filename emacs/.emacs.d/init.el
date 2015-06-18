@@ -95,9 +95,10 @@
 ; (evil-mode 1)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
-(toggle-truncate-lines t)
+(set-default 'truncate-lines t)
 
 
+(setq x-select-enable-clipboard t)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 (require 'helm-config)
@@ -331,6 +332,9 @@ Jump to one of the current isearch candidates.
           (lambda ()
             (setq tab-width 4)
             ))
+
+;; make return key also do indent, globally
+(electric-indent-mode 1)
 
 
 ;; Python

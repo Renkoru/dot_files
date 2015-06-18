@@ -44,7 +44,7 @@ Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
 !используемые расширения
-URxvt.perl-ext-common: default,selection-to-clipboard,matcher,tabbed
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,matcher,tabbed,keyboard-select
 
 URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
 URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true
