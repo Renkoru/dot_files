@@ -3,6 +3,7 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;;; this loads the package manager
@@ -96,6 +97,11 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (set-default 'truncate-lines t)
+
+
+; Map escape to cancel (like C-g)...
+(define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
+(global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
 
 
 (setq x-select-enable-clipboard t)
