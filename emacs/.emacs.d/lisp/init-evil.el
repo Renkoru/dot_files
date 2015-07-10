@@ -42,15 +42,17 @@
 
 (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
 (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
-(define-key evil-normal-state-map (kbd "gl") 'helm-occur)
+;; (define-key evil-normal-state-map (kbd "gl") 'helm-occur)
+(define-key evil-normal-state-map (kbd "gl") 'helm-swoop)
 
 (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
 (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
 
 ;; (global-set-key (kbd "M-b") 'helm-projectile-recentf)
 ;; (global-set-key (kbd "M-g") 'helm-projectile-ag)
-(define-key evil-normal-state-map (kbd "SPC ss") 'avy-goto-char-2)
-(define-key evil-normal-state-map (kbd "SPC sh") 'helm-swoop)
+(define-key evil-normal-state-map (kbd "SPC s") 'avy-goto-char-2)
+;; (define-key evil-normal-state-map (kbd "SPC ss") 'avy-goto-char-2)
+;; (define-key evil-normal-state-map (kbd "SPC sh") 'helm-swoop)
 
 
 (evil-leader/set-leader "<SPC>")

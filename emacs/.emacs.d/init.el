@@ -49,6 +49,7 @@
                             rainbow-mode
                             ac-slime
                             auto-complete
+                            fuzzy ; Do not work, remove?
                             flycheck
                             magit ; Learn how to use it
                             git-gutter ; Setup plugin
@@ -217,6 +218,7 @@ Jump to one of the current isearch candidates.
 
 (require 'auto-complete-config)
 (ac-config-default)
+(add-to-list 'ac-modes 'scss-mode)
 ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;;; activate, otherwise, auto-complete will
