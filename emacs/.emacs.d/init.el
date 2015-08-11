@@ -66,11 +66,16 @@
                             python-environment
                             jedi
                             org
+                            ;; Other
                             markdown-mode
                             nodejs-repl
                             rvm
+                            ;; Color themes
                             solarized-theme
                             zenburn-theme
+                            leuven-theme
+                            color-theme-sanityinc-tomorrow
+                            ;;
                             web-mode
                             scss-mode
                             jade-mode
@@ -120,6 +125,7 @@
 
 (helm-mode 1)
 (require 'helm-swoop)
+
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -203,6 +209,14 @@ Jump to one of the current isearch candidates.
 ; (powerline-default-theme)
 (powerline-center-evil-theme)
 
+;; Make smooth scroll {{
+;; scrolling to always be a line at a time
+(setq scroll-margin 4)
+(setq linum-delay t) ;; Delay updates to give Emacs a chance for other changes
+(setq scroll-conservatively 10000)
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+;; }}
+
 ; Hide elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -240,9 +254,21 @@ Jump to one of the current isearch candidates.
 (add-hook 'js-mode-hook 'js-custom)
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
+ '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
+ '(fci-rule-color "#383838")
  '(js2-basic-offset 2)
  '(js2-bounce-indent-p t)
-)
+ '(safe-local-variable-values (quote ((require-final-newline))))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map (quote ((20 . "#BC8383") (40 . "#CC9393") (60 . "#DFAF8F") (80 . "#D0BF8F") (100 . "#E0CF9F") (120 . "#F0DFAF") (140 . "#5F7F5F") (160 . "#7F9F7F") (180 . "#8FB28F") (200 . "#9FC59F") (220 . "#AFD8AF") (240 . "#BFEBBF") (260 . "#93E0E3") (280 . "#6CA0A3") (300 . "#7CB8BB") (320 . "#8CD0D3") (340 . "#94BFF3") (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 
 
 ;; Add this to your .emacs to initialize tern and tern-auto-complete
@@ -267,8 +293,13 @@ Jump to one of the current isearch candidates.
 ; Themes load
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
+
+;; Color themes
+(require 'color-theme-sanityinc-tomorrow)
 ;; (load-theme 'solarized t)
-(load-theme 'zenburn t)
+;; (load-theme 'zenburn t)
+;; (load-theme 'leuven t)
+
 ; (require 'color-theme-solarized)
 ; (color-theme-solarized)
 ; (setq-default custom-enabled-themes '(github))
@@ -397,3 +428,9 @@ Jump to one of the current isearch candidates.
 (set-frame-font "Source Code Pro" nil t)
 
 (provide 'init)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
