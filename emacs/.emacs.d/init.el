@@ -104,6 +104,8 @@
 (setq backup-directory-alist `(("." . "~/.saves")))
 (set-default 'truncate-lines t)
 
+(global-hl-line-mode 1)
+
 
 ; Map escape to cancel (like C-g)...
 (define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
@@ -173,9 +175,14 @@
 (global-whitespace-mode 1)
 
 (require 'highlight-symbol)
+(global-set-key [M-f12] 'highlight-symbol-mode)
 (global-set-key [(control f12)] 'highlight-symbol)
 (global-set-key [f12] 'highlight-symbol-next)
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
+
+(add-hook 'highlight-symbol-mode-hook
+          (lambda () (highlight-symbol-nav-mode t)))
+
 
 ;; (require 'paredit)
 (require 'smartparens-config)
