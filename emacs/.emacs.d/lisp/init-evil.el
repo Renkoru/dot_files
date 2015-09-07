@@ -89,3 +89,69 @@
 
 
 (provide 'init-evil)
+
+
+;; TODO: to know what is going on here
+;; Auto mark config.
+(when (require 'auto-mark nil t)
+  (setq auto-mark-command-class-alist
+        '((anything . anything)
+          (goto-line . jump)
+          (indent-for-tab-command . ignore)
+          (undo . ignore)))
+  (setq auto-mark-command-classifiers
+        (list (lambda (command)
+                (if (and (eq command 'self-insert-command)
+                         (eq last-command-char ? ))
+                    'ignore))))
+  (global-auto-mark-mode 1))
+
+;; get if from
+;; http://stackoverflow.com/questions/3393834/how-to-move-forward-and-backward-in-emacs-mark-ring
+;; oposite to pop-to-mark-command
+(defun unpop-to-mark-command ()
+       "Unpop off mark ring. Does nothing if mark ring is empty."
+       (interactive)
+       (when mark-ring
+         (let ((pos (marker-position (car (last mark-ring)))))
+           (if (not (= (point) pos))
+               (goto-char pos)
+             (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+             (set-marker (mark-marker) pos)
+             (setq mark-ring (nbutlast mark-ring))
+             (goto-char (marker-position (car (last mark-ring))))))))
+;; (defun unpop-to-mark-command ()
+;;   "Unpop off mark ring. Does nothing if mark ring is empty."
+;;   (interactive)
+;;       (when mark-ring
+;;         (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+;;         (set-marker (mark-marker) (car (last mark-ring)) (current-buffer))
+;;         (when (null (mark t)) (ding))
+;;         (setq mark-ring (nbutlast mark-ring))
+;;         (goto-char (marker-position (car (last mark-ring))))))
+
+
+;; Added from
+;; https://www.masteringemacs.org/article/fixing-mark-commands-transient-mark-mode
+;; And modified.
+;; TODO: What is going on here ????
+
+(defun push-mark-no-activate ()
+  "Pushes `point' to `mark-ring' and does not activate the region
+   Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
+  (interactive)
+  (push-mark (point) t nil)
+  (message "Pushed mark to ring"))
+
+(defun jump-to-mark ()
+  "Jumps to the local mark, respecting the `mark-ring' order.
+  This is the same as using \\[set-mark-command] with the prefix argument."
+  (interactive)
+  (push-mark-no-activate)
+  (set-mark-command 1)
+  (set-mark-command 1))
+
+
+;; TODO: Find another mapings?
+(define-key evil-normal-state-map (kbd "C-i") 'unpop-to-mark-command)
+(define-key evil-normal-state-map (kbd "C-o") 'jump-to-mark)

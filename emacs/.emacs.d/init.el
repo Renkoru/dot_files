@@ -101,10 +101,28 @@
 ; (require 'evil)
 ; (evil-mode 1)
 
+;; Core emacs settings
+; 'y' instead of 'yes', 'n' instead of 'no'
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+; Show current pointed function arguments
+(eldoc-mode 1)
+
+; Hide elements
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
+(show-paren-mode t)
+
+
+; Disable backup and autosave files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
 (setq backup-directory-alist `(("." . "~/.saves")))
 (set-default 'truncate-lines t)
-
-(global-hl-line-mode 1)
 
 
 ; Map escape to cancel (like C-g)...
@@ -223,18 +241,6 @@ Jump to one of the current isearch candidates.
 (setq scroll-conservatively 10000)
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 ;; }}
-
-; Hide elements
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-; Disable backup and autosave files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
-;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
-(show-paren-mode t)
 
 
 (require 'auto-complete-config)
