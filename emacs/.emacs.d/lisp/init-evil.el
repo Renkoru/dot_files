@@ -151,7 +151,11 @@
   (set-mark-command 1)
   (set-mark-command 1))
 
-
 ;; TODO: Find another mapings?
 (define-key evil-normal-state-map (kbd "C-i") 'unpop-to-mark-command)
 (define-key evil-normal-state-map (kbd "C-o") 'jump-to-mark)
+
+;; When i visual select some region last mark is resetting.
+;; Emacs lost it and i can't jump back to it.  (C-i)
+;; This hook add some sacrifice mark to reset it.
+(add-hook 'activate-mark-hook 'push-mark-no-activate)
