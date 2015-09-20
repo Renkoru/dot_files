@@ -24,67 +24,92 @@
 ;;; loads packages and activates them
 (package-initialize)
 
-(defvar mrurenko/packages '(smartparens ; add settings
+(defvar mrurenko/packages '(;; Editor sugar
+                            smartparens ; add settings
                             drag-stuff
                             expand-region ; investigate this package later
+                            ;; "evil-easymotion" replaced by avy
+                            avy
+                            ace-window
+                            highlight-symbol
+                            multiple-cursors ; dont work with evil
+                            ;; ----------------------
+                            ;; Evil plugins
                             evil
                             evil-leader
                             evil-surround
                             evil-tabs
                             evil-nerd-commenter
-                            ;; evil-easymotion ; replaced with avy
-                            avy
-                            ace-window
+                            ;; ----------------------
+                            ;; Project navigation
                             neotree
                             projectile
                             helm
                             helm-projectile
                             helm-ag
                             helm-swoop
-                            powerline
-                            ;; visual ones
-                            highlight-symbol
-                            multiple-cursors ; dont work with evil
-                            rainbow-delimiters
-                            rainbow-mode
-                            ac-slime
-                            auto-complete
-                            fuzzy ; Do not work, remove?
+                            ;; ----------------------
+                            ;; Autocomplete
+                            ;; ac-slime
+                            ;; auto-complete
+                            ;; tern-auto-complete
+                            ;; Check Complition "Company"
+                            company
+                            company-anaconda
+                            company-tern
+                            ;; ----------------------
+                            ;; Syntax analyser
                             flycheck
+                            ;; ----------------------
+                            ;; Git plugins
                             magit ; Learn how to use it
                             git-gutter ; Setup plugin
                             git-timemachine ; investigate this plugin later
+                            ;; ----------------------
+                            ;; JS packages
+                            tern
+                            jquery-doc
                             js2-mode
                             js2-refactor
-                            tern
-                            tern-auto-complete
-                            json-mode
-                            ;; Python packages
-                            ctable
-                            deferred
-                            epc
-                            python-environment
-                            jedi
-                            org
-                            ;; Other
-                            markdown-mode
                             nodejs-repl
-                            rvm
-                            ;; Color themes
+                            ;; ----------------------
+                            ;; Python packages
+                            anaconda-mode
+                            pyenv-mode
+                            ;; ctable
+                            ;; python-environment
+                            ;; deferred
+                            ;; epc
+                            ;; jedi
+                            ;; ----------------------
+                            ;; Syntax modes
+                            web-mode
+                            markdown-mode
+                            json-mode
+                            scss-mode
+                            jade-mode
+                            puppet-mode
+                            yaml-mode
+                            ;; ----------------------
+                            ;; Color modes
+                            powerline
+                            rainbow-delimiters
+                            rainbow-mode
                             solarized-theme
                             zenburn-theme
                             leuven-theme
                             color-theme-sanityinc-tomorrow
-                            ;;
-                            web-mode
-                            scss-mode
-                            jade-mode
-                            puppet-mode
+                            ;; ----------------------
+                            ;; Plugins to test
                             marmalade
                             restclient
-                            yaml-mode)
+                            fuzzy ; Do not work, remove?
+                            org
+                            rvm
+                            )
 
   "Default packages")
+
 
 (defun mrurenko/packages-installed-p ()
   (loop for pkg in mrurenko/packages
@@ -243,14 +268,23 @@ Jump to one of the current isearch candidates.
 ;; }}
 
 
-(require 'auto-complete-config)
-(ac-config-default)
-(add-to-list 'ac-modes 'scss-mode)
+;; Company-mode settings
+(eval-after-load "company"
+  '(progn
+     (add-to-list 'company-backends 'company-anaconda)
+     (add-to-list 'company-backends 'company-tern)
+     ))
+
+
+
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (add-to-list 'ac-modes 'scss-mode)
 ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;;; activate, otherwise, auto-complete will
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
+;; (ac-set-trigger-key "TAB")
+;; (ac-set-trigger-key "<tab>")
 
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
@@ -263,6 +297,8 @@ Jump to one of the current isearch candidates.
 (defun js-custom ()
   "js-mode-hook"
   (setq js-indent-level 2))
+(require 'jquery-doc)
+(add-hook 'js2-mode-hook 'jquery-doc-setup)
 
 (add-hook 'js-mode-hook 'js-custom)
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -324,9 +360,9 @@ Jump to one of the current isearch candidates.
 ;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 (setq web-mode-css-indent-offset 2)
 
-(setq web-mode-ac-sources-alist
-      '(("css" . (ac-source-css-property))
-        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+;; (setq web-mode-ac-sources-alist
+;;       '(("css" . (ac-source-css-property))
+;;         ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 
 
 
@@ -388,11 +424,22 @@ Jump to one of the current isearch candidates.
 ;; make return key also do indent, globally
 (electric-indent-mode 1)
 
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Python
-(add-hook 'python-mode-hook 'jedi:setup)
+(pyenv-mode)
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name.
+Version must be already installed."
+  (pyenv-mode-set (projectile-project-name)))
+
+(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
+
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'eldoc-mode)
+;; (add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)
-(setq jedi:complete-on-dot t)                 ; optional
+;; (setq jedi:complete-on-dot t)                 ; optional
 
 ; ;;; Web-mode
 ; (require-package 'web-mode)
@@ -437,8 +484,8 @@ Jump to one of the current isearch candidates.
 ; (setq-default custom-enabled-themes '(github))
 
 
-(set-face-attribute 'default nil :font "Source Code Pro")
-(set-frame-font "Source Code Pro" nil t)
+;; (set-face-attribute 'default nil :font "Source Code Pro")
+;; (set-frame-font "Source Code Pro" nil t)
 
 (provide 'init)
 (custom-set-faces
