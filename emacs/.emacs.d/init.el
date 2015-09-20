@@ -107,7 +107,6 @@
                             org
                             rvm
                             )
-
   "Default packages")
 
 
@@ -123,8 +122,6 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-; (require 'evil)
-; (evil-mode 1)
 
 ;; Core emacs settings
 ; 'y' instead of 'yes', 'n' instead of 'no'
@@ -147,6 +144,7 @@
 (setq auto-save-default nil)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
+;; TODO: what is that?
 (set-default 'truncate-lines t)
 
 
@@ -154,7 +152,7 @@
 (define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
 (global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
 
-
+;; TODO: what is that?
 (setq x-select-enable-clipboard t)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
@@ -165,6 +163,8 @@
       helm-semantic-fuzzy-match   t
       helm-imenu-fuzzy-match      t)
 
+;; TODO: Move all mappings to separete dir.
+;; TODO: Separate all other packages settings
 (global-set-key (kbd "C-q") 'helm-mini)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
@@ -321,11 +321,11 @@ Jump to one of the current isearch candidates.
 
 
 ;; Add this to your .emacs to initialize tern and tern-auto-complete
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
+;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+;; (eval-after-load 'tern
+;;    '(progn
+;;       (require 'tern-auto-complete)
+;;       (tern-ac-setup)))
 
 (setq js2-highlight-level 3)
 
@@ -488,9 +488,3 @@ Version must be already installed."
 ;; (set-frame-font "Source Code Pro" nil t)
 
 (provide 'init)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
