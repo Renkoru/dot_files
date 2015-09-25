@@ -49,7 +49,7 @@
                             helm-ag
                             helm-swoop
                             ;; ----------------------
-                            ;; Autocomplete
+                            ;; Check Complition "Auto complete"
                             ;; ac-slime
                             ;; auto-complete
                             ;; tern-auto-complete
@@ -321,7 +321,7 @@ Jump to one of the current isearch candidates.
 
 
 ;; Add this to your .emacs to initialize tern and tern-auto-complete
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
 ;; (eval-after-load 'tern
 ;;    '(progn
 ;;       (require 'tern-auto-complete)
@@ -469,15 +469,6 @@ Version must be already installed."
 ; (require-package 'js2-mode)
 ; (require-package 'ac-js2)
 ; (require-package 'coffee-mode)
-
-; (require-package 'tern)
-; (require-package 'tern-auto-complete)
-
-; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-; (eval-after-load 'tern
-;    '(progn
-;       (require 'tern-auto-complete)
-;       (tern-ac-setup)))
 
 ; ; Themes load
 ; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
