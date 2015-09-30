@@ -204,3 +204,9 @@ bar {
     # Using custom i3status.conf
     status_command i3status -c ~/.i3/i3status.conf
 }
+
+
+# Save some commands
+# Multy monitors
+# xrandr --output VGA-1 --auto --left-of VGA-0
+# xrandr --output VGA-1 --auto --same-as VGA-0

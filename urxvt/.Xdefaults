@@ -1,3 +1,6 @@
+! Urxvt -------------
+! for clipboard working - install xsel on ubuntu
+
 /* Couleurs Tango */
 URxvt.foreground: #EEEEEC
 ! URxvt.foreground: #C8C8C8
@@ -58,7 +61,7 @@ URxvt.clipboard.autocopy: true
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 
-Emacs.font: Terminus:size=11:antialise:true
+Emacs.font: Terminus:size=14:antialise:true
 Emacs.FontBackend: xft
 
 /* !при помощи xdg-open и левой кнопки мыши открываются ссылки */

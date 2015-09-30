@@ -3,6 +3,9 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
+;; Enable X11 Copy & Paste to/from Emacs. Primary
+(setq x-select-enable-primary t)
+
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -25,6 +28,7 @@
 (package-initialize)
 
 (defvar mrurenko/packages '(;; Editor sugar
+                            ;; guide-key ; think about this
                             smartparens ; add settings
                             drag-stuff
                             expand-region ; investigate this package later
@@ -268,13 +272,8 @@ Jump to one of the current isearch candidates.
 ;; }}
 
 
-;; Company-mode settings
-(eval-after-load "company"
-  '(progn
-     (add-to-list 'company-backends 'company-anaconda)
-     (add-to-list 'company-backends 'company-tern)
-     ))
 
+(require 'init-company) ; -------------------------------------------------------------
 
 
 ;; (require 'auto-complete-config)
@@ -424,7 +423,6 @@ Jump to one of the current isearch candidates.
 ;; make return key also do indent, globally
 (electric-indent-mode 1)
 
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Python
 (pyenv-mode)
@@ -477,5 +475,13 @@ Version must be already installed."
 
 ;; (set-face-attribute 'default nil :font "Source Code Pro")
 ;; (set-frame-font "Source Code Pro" nil t)
+
+;; Think abount this ----------------------------------------------------------------------
+
+;; Tool to show all possible emacs combinations as C-x ....
+;; Do I need it?
+;; (require 'guide-key)
+;; (setq guide-key/guide-key-sequence t)
+;; (guide-key-mode 1)
 
 (provide 'init)

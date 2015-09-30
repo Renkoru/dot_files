@@ -88,7 +88,6 @@
           (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-vertical-split)))
 
 
-(provide 'init-evil)
 
 
 ;; TODO: to know what is going on here
@@ -159,3 +158,6 @@
 ;; Emacs lost it and i can't jump back to it.  (C-i)
 ;; This hook add some sacrifice mark to reset it.
 (add-hook 'activate-mark-hook 'push-mark-no-activate)
+
+
+(provide 'init-evil)
