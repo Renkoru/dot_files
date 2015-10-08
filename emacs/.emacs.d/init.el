@@ -160,6 +160,10 @@
 (setq x-select-enable-clipboard t)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
+
+(helm-mode 1)
+(require 'helm-swoop)
+
 (require 'helm-config)
 (setq helm-buffers-fuzzy-matching t
       helm-recentf-fuzzy-match    t
@@ -172,8 +176,13 @@
 (global-set-key (kbd "C-q") 'helm-mini)
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(helm-mode 1)
-(require 'helm-swoop)
+; (require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+; (require 'helm-projectile)
+
+(setq helm-ag-use-agignore t)
 
 
 (require 'expand-region)
@@ -189,6 +198,8 @@
 (global-set-key (kbd "M-w") 'ace-window)
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'drag-stuff)
+
+; You need to install jshint 'npm install -g jshint'
 (require 'flycheck)
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
@@ -249,13 +260,6 @@ Jump to one of the current isearch candidates.
 (setq avy-style 'at-full)
 ;; (setq avy-background t)
 
-; (require 'projectile)
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
-; (setq projectile-completion-system 'helm)
-; (require 'helm-projectile)
-; (helm-projectile-on)
 
 (require 'powerline)
 ; (require 'powerline-evil)
