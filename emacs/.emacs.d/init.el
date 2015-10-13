@@ -195,8 +195,8 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (require 'init-evil) ; -------------------------------------------------------------
-(global-set-key (kbd "M-w") 'ace-window)
 (require 'init-yasnippet) ; should be initializes before auto-complete
+(global-set-key (kbd "M-q") 'ace-window)
 (require 'drag-stuff)
 
 ; You need to install jshint 'npm install -g jshint'
