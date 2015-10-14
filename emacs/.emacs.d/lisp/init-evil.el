@@ -4,6 +4,8 @@
 (require 'neotree)
 (require 'evil-surround)
 ; (require 'evil-matchit)
+(require 'evil-visualstar)
+(require 'evil-jumper)
 (require 'evil-leader)
 (require 'evil-tabs)
 (require 'evil)
@@ -13,6 +15,8 @@
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
 ; (global-rainbow-delimiters-mode)
 
+(global-evil-visualstar-mode t)
+(global-evil-jumper-mode t)
 (global-evil-surround-mode 1)
 ; (global-evil-matchit-mode 1)
 (global-evil-leader-mode 1)

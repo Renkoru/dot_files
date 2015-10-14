@@ -44,6 +44,8 @@
                             evil-surround
                             evil-tabs
                             evil-nerd-commenter
+                            evil-visualstar ; improve of * for v, V
+                            evil-jumper ; imporve C-I C-O
                             ;; ----------------------
                             ;; Project navigation
                             neotree
@@ -162,6 +164,7 @@
 
 
 (helm-mode 1)
+(helm-autoresize-mode t)
 (require 'helm-swoop)
 
 (require 'helm-config)
