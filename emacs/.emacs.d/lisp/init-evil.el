@@ -1,4 +1,5 @@
 ; init-evil.el
+; init after helm init
 
 (require 'elscreen)
 (require 'neotree)

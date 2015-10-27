@@ -209,4 +209,5 @@ bar {
 # Save some commands
 # Multy monitors
 # xrandr --output VGA-1 --auto --left-of VGA-0
+# xrandr --output VGA-1 --auto --right-of VGA-0
 # xrandr --output VGA-1 --auto --same-as VGA-0

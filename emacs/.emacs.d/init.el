@@ -1,4 +1,4 @@
- ; init.el
+; init.el
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
@@ -163,30 +163,6 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 
-(helm-mode 1)
-(helm-autoresize-mode t)
-(require 'helm-swoop)
-
-(require 'helm-config)
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-M-x-fuzzy-match        t
-      helm-semantic-fuzzy-match   t
-      helm-imenu-fuzzy-match      t)
-
-;; TODO: Move all mappings to separete dir.
-;; TODO: Separate all other packages settings
-(global-set-key (kbd "C-q") 'helm-mini)
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-; (require 'projectile)
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
-; (require 'helm-projectile)
-
-(setq helm-ag-use-agignore t)
-
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -197,10 +173,18 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(require 'init-helm) ; -------------------------------------------------------------
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (global-set-key (kbd "M-q") 'ace-window)
 (require 'drag-stuff)
+
+; Add this after helm init
+; (require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+; (require 'helm-projectile)
 
 ; You need to install jshint 'npm install -g jshint'
 (require 'flycheck)
