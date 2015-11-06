@@ -14,8 +14,7 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t
       helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-ag-use-agignore t
-      helm-buffer-max-length 5)
+      helm-ag-use-agignore t)
 
 
 ;; TODO: Move all mappings to separete dir.

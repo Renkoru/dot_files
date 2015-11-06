@@ -107,6 +107,7 @@
                             color-theme-sanityinc-tomorrow
                             ;; ----------------------
                             ;; Plugins to test
+                            emmet-mode
                             marmalade
                             restclient
                             fuzzy ; Do not work, remove?
@@ -143,6 +144,9 @@
 
 ;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
 (show-paren-mode t)
+
+;; Automatically reload files was modified by external program
+(global-auto-revert-mode 1)
 
 
 ; Disable backup and autosave files
@@ -264,6 +268,7 @@ Jump to one of the current isearch candidates.
 
 
 
+(require 'init-emmet) ; -------------------------------------------------------------
 (require 'init-company) ; -------------------------------------------------------------
 
 
