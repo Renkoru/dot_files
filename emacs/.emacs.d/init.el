@@ -1,4 +1,4 @@
-; init.el
+;; init.el
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
@@ -15,14 +15,14 @@
 
 
 ;;; here there's a variable named package-archives, and we are adding the MELPA repository to it
-; (add-to-list
-;   'package-archives
-;   '("marmalade" . "https://marmalade-repo.org/packages/")
-;   )
 (add-to-list
   'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/")
   t)
+(add-to-list
+   'package-archives
+   '("marmalade" . "https://marmalade-repo.org/packages/")
+   )
 
 ;;; loads packages and activates them
 (package-initialize)
@@ -87,6 +87,11 @@
                             ;; deferred
                             ;; epc
                             ;; jedi
+                            ;; ----------------------
+                            ;; PHP packages
+                            php-mode
+                            php-extras
+                            ;;
                             ;; ----------------------
                             ;; Syntax modes
                             web-mode
@@ -268,8 +273,10 @@ Jump to one of the current isearch candidates.
 
 
 
+(require 'init-flycheck) ; -------------------------------------------------------------
 (require 'init-emmet) ; -------------------------------------------------------------
 (require 'init-company) ; -------------------------------------------------------------
+(require 'init-php) ; -------------------------------------------------------------
 
 
 ;; (require 'auto-complete-config)
