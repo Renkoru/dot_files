@@ -26,6 +26,10 @@
 
 (evil-mode 1)
 
+;; Unbind evil key maps to enable using Emacs
+(define-key evil-insert-state-map (kbd "C-e") nil)
+(define-key evil-insert-state-map (kbd "C-a") nil)
+
 
 ;; Evil settings
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -162,7 +166,8 @@
 ;; When i visual select some region last mark is resetting.
 ;; Emacs lost it and i can't jump back to it.  (C-i)
 ;; This hook add some sacrifice mark to reset it.
-(add-hook 'activate-mark-hook 'push-mark-no-activate)
+;; Temporary disabled be cause of bug: Visual Vim select at the end and at the start of buffer
+;; (add-hook 'activate-mark-hook 'push-mark-no-activate)
 
 
 (provide 'init-evil)

@@ -90,7 +90,6 @@
                             ;; ----------------------
                             ;; PHP packages
                             php-mode
-                            php-extras
                             ;;
                             ;; ----------------------
                             ;; Syntax modes
@@ -189,11 +188,9 @@
 (require 'drag-stuff)
 
 ; Add this after helm init
-; (require 'projectile)
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-; (require 'helm-projectile)
 
 ; You need to install jshint 'npm install -g jshint'
 (require 'flycheck)
@@ -215,16 +212,8 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
-;; (defun ora-ediff-hook ()
-;;   (ediff-setup-keymap)
-;;   (define-key ediff-mode-map "k" 'ediff-previous-difference)
-;;   (define-key ediff-mode-map "j" 'ediff-next-difference))
-
-;; (add-hook 'ediff-mode-hook 'ora-ediff-hook)
-
-;;; yasnippet
-;;; should be loaded before auto complete so that they can work together
-
+;; yasnippet
+;; should be loaded before auto complete so that they can work together
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
 
@@ -238,7 +227,6 @@
           (lambda () (highlight-symbol-nav-mode t)))
 
 
-;; (require 'paredit)
 (require 'smartparens-config)
 (package-initialize)
 (smartparens-global-mode t)
@@ -254,13 +242,9 @@ Jump to one of the current isearch candidates.
 \(fn)" t nil)
 
 (setq avy-style 'at-full)
-;; (setq avy-background t)
 
 
 (require 'powerline)
-; (require 'powerline-evil)
-; (powerline-evil-theme)
-; (powerline-default-theme)
 (powerline-center-evil-theme)
 
 ;; Make smooth scroll {{
@@ -279,15 +263,6 @@ Jump to one of the current isearch candidates.
 (require 'init-php) ; -------------------------------------------------------------
 
 
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; (add-to-list 'ac-modes 'scss-mode)
-;;; set the trigger key so that it can work together with yasnippet on tab key,
-;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
-;;; activate, otherwise, auto-complete will
-;; (ac-set-trigger-key "TAB")
-;; (ac-set-trigger-key "<tab>")
-
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
@@ -303,7 +278,6 @@ Jump to one of the current isearch candidates.
 (add-hook 'js2-mode-hook 'jquery-doc-setup)
 
 (add-hook 'js-mode-hook 'js-custom)
-;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -324,11 +298,6 @@ Jump to one of the current isearch candidates.
 
 ;; Add this to your .emacs to initialize tern and tern-auto-complete
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-;; (eval-after-load 'tern
-;;    '(progn
-;;       (require 'tern-auto-complete)
-;;       (tern-ac-setup)))
-
 (setq js2-highlight-level 3)
 
 
@@ -351,63 +320,12 @@ Jump to one of the current isearch candidates.
 ;; (load-theme 'zenburn t)
 ;; (load-theme 'leuven t)
 
-; (require 'color-theme-solarized)
-; (color-theme-solarized)
-; (setq-default custom-enabled-themes '(github))
-
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
 (setq web-mode-css-indent-offset 2)
 
-;; (setq web-mode-ac-sources-alist
-;;       '(("css" . (ac-source-css-property))
-;;         ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-
-
-
-; package
-; (when (>= emacs-major-version 24)
-;   (require 'package)
-;   (package-initialize)
-;   (push '("marmalade" . "http://marmalade-repo.org/packages/")
-;         package-archives )
-;   (push '("melpa" . "http://melpa.milkbox.net/packages/")
-;         package-archives)
-;   ; (package-initialize)
-
-;   )
-
-; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-; (unless (require 'el-get nil t)
-;   (url-retrieve
-;    "https://raw.github.com/dimitri/el-get/master/el-get-install.el"
-;    (lambda (s)
-;      (end-of-buffer)
-;      (eval-print-last-sexp))))
-
-; (setq my:el-get-packages
-;       '(yasnippet
-;         evil
-;         ; org-mode
-;         ; anything
-;         ; emms
-;         ; dired-sort
-;         ; auto-dictionnary
-;         ; color-theme
-;         ; dired+
-;         ; google-maps
-;         ; org2blog
-;         ; rainbow-mode
-;         ; switch-window
-;         ; sr-speedbar
-;         ; typopunct
-;         ))
-
-; (el-get 'sync my:el-get-packages)
 
 ;;--------------------
 ;; Indentation setup
@@ -438,53 +356,5 @@ Version must be already installed."
 
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'eldoc-mode)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (add-hook 'python-mode-hook 'jedi:ac-setup)
-;; (setq jedi:complete-on-dot t)                 ; optional
-
-; ;;; Web-mode
-; (require-package 'web-mode)
-
-; ; с какими файлами ассоциировать web-mode
-; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-; (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-
-; ; настройка отступов
-; (setq web-mode-markup-indent-offset 2)
-; (setq web-mode-css-indent-offset 2)
-; (setq web-mode-code-indent-offset 2)
-
-; ; сниппеты и автозакрытие парных скобок
-; (setq web-mode-extra-snippets '(("erb" . (("name" . ("beg" . "end"))))
-;                                 ))
-; (setq web-mode-extra-auto-pairs '(("erb" . (("open" "close")))
-;                                   ))
-
-; ; подсвечивать текущий элемент
-; (setq web-mode-enable-current-element-highlight t)
-
-; ;;; JS
-
-; (require-package 'json-mode)
-; (require-package 'js2-mode)
-; (require-package 'ac-js2)
-; (require-package 'coffee-mode)
-
-; ; Themes load
-; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-; (setq-default custom-enabled-themes '(github))
-
-
-;; (set-face-attribute 'default nil :font "Source Code Pro")
-;; (set-frame-font "Source Code Pro" nil t)
-
-;; Think abount this ----------------------------------------------------------------------
-
-;; Tool to show all possible emacs combinations as C-x ....
-;; Do I need it?
-;; (require 'guide-key)
-;; (setq guide-key/guide-key-sequence t)
-;; (guide-key-mode 1)
 
 (provide 'init)
