@@ -17,5 +17,7 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 
 (add-hook 'php-mode-hook 'php-enable-drupal-coding-style)
 
+(add-to-list 'auto-mode-alist '("\\.module$" . php-mode))
+
 
 (provide 'init-php)
