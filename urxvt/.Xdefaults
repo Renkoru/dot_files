@@ -29,6 +29,8 @@ urxvt*cursorUnderline: 1 ! cursor position
 urxvt*letterspace: -5    ! space between letters
 urxvt*cursorBlink: true
 urxvt*scrollBar: true
+! scrollbar style - rxvt (default), plain (most compact), next, or xterm
+URxvt.scrollstyle: plain
 urxvt*depth: 32
 urxvt*internalBorder: 5
 
@@ -46,8 +48,12 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
+
+! tabbedex is not provided by default (Debian/Ubuntu)
+! put it in ~/.urxvt/ext
+
 !используемые расширения
-URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,matcher,keyboard-select
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,keyboard-select,tabbedex
 
 URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
 URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true
@@ -64,37 +70,20 @@ URxvt.keysym.M-v: perl:clipboard:paste
 Emacs.font: Terminus:size=14:antialise:true
 Emacs.FontBackend: xft
 
-/* !при помощи xdg-open и левой кнопки мыши открываются ссылки */
-/* URxvt.url-launcher: /usr/bin/xdg-open */
-/* URxvt.matcher.button: 1 */
+url-select instead of matcher
+URxvt.perl-ext: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+URxvt.colorUL: #4682B4
 
-!изменение размера шрифта &laquo;на лету&raquo;
-/* URxvt.font-size.step: 4                      ! задать шаг */
-/* URxvt.keysym.C-0: perl:font-size:increase    ! увеличить размер по Ctrl+0 */
-/* URxvt.keysym.C-9: perl:font-size:decrease    ! уменьшить размер по Ctrl+9 */
-
-! fonts
-! run "fc-list" for a list of available fonts
-/* URxvt*font: xft:Monospace:pixelsize=13 */
-/* URxvt*font: xft:Ubuntu Mono:pixelsize=13 */
-/* URxvt*font: xft:DejaVu Sans Mono:pixelsize=13:antialias=true:hinting=true */
-/* URxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=13:antialias=true:hinting=true */
-
-/* URxvt*scrollTtyOutput: False */
-/* URxvt*scrollTtyKeypress: True */
-/* URxvt*secondaryScroll: True */
-/* URxvt*scrollBar_right: false */
-/* URxvt*scrollstyle: rxvt */
-/* URxvt*transparent: true */
-/* URxvt*tintColor: Blue */
-/* URxvt*shading: 40 */
-
-/* URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12:antialias=true:hinting=true */
-/* URxvt*boldFont: xft:Bitstream Vera Sans Mono:bold:pixelsize=12:antialias=true:hinting=true */
-/* URxvt*font: xft:Liberation Mono:pixelsize=13:antialias=true:hinting=true */
-/* URxvt*boldFont: xft:Liberation Mono:bold:pixelsize=13:antialias=true:hinting=true */
-/* URxvt*font: xft:terminus:pixelsize=15 */
-/* URxvt*boldFont: xft:terminus:bold:pixelsize=15 */
-/* URxvt*font:-*-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1 */
-/* URxvt*boldFont:-*-courier-bold-r-normal-*-14-*-*-*-*-*-iso8859-1 */
-
+! https://wiki.archlinux.org/index.php/Rxvt-unicode
+URxvt.tabbed.autohide: true
+! Display the title of terminal next to tabs list
+URxvt.tabbed.title: false
+! Tabs: gray background, ~white text
+! and the opposite for the currently focused tab
+URxvt.tabbed.tabbar-fg: 7
+URxvt.tabbed.tabbar-bg: 8
+URxvt.tabbed.tab-fg: 8
+URxvt.tabbed.tab-bg: 7
