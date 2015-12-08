@@ -46,6 +46,7 @@
 
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
+  eval "$(rbenv init -)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
@@ -53,7 +54,7 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm bower command-not-found history vi-mode virtualenvwrapper)
+plugins=(git npm bower command-not-found history vi-mode)
 # virtualenvwrapper plugin
 # vi-mode
 
@@ -114,3 +115,4 @@ MODE_INDICATOR="%{$fg_bold[magenta]%}<%{$reset_color%}%{$fg[magenta]%}<<%{$reset
 # TODO use 265 colors
 #MODE_INDICATOR="$FX[bold]$FG[020]<$FX[no_bold]%{$fg[blue]%}<<%{$reset_color%}"
 # TODO use two lines if git
+

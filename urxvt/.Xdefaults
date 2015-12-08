@@ -28,7 +28,7 @@ URxvt*background:Black
 urxvt*cursorUnderline: 1 ! cursor position
 urxvt*letterspace: -5    ! space between letters
 urxvt*cursorBlink: true
-urxvt*scrollBar: false
+urxvt*scrollBar: true
 urxvt*depth: 32
 urxvt*internalBorder: 5
 
@@ -47,7 +47,7 @@ Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
 !используемые расширения
-URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,matcher,tabbed,keyboard-select
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,matcher,keyboard-select
 
 URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
 URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true

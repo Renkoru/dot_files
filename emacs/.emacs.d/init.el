@@ -362,6 +362,7 @@ Jump to one of the current isearch candidates.
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 (setq web-mode-css-indent-offset 2)
+(setq web-mode-markup-indent-offset 2)
 
 
 ;;--------------------

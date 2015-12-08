@@ -8,3 +8,8 @@
   export WORKON_HOME=~/Envs
   export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 
+
+# Setup rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
