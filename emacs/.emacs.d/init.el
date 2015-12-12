@@ -32,6 +32,7 @@
                             smartparens ; add settings
                             drag-stuff
                             expand-region ; investigate this package later
+                            diminish ; Remove unused minor mode indicators from modeline
                             ;; "evil-easymotion" replaced by avy
                             avy
                             ace-window
@@ -181,6 +182,13 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 
+;; Remove minor mode indicators form modeline (powerline)
+(require 'diminish)
+(eval-after-load "company" '(diminish 'company-mode))
+(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
+(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
+
+
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -271,13 +279,12 @@ Jump to one of the current isearch candidates.
 (require 'init-emmet) ; -------------------------------------------------------------
 (require 'init-company) ; -------------------------------------------------------------
 (require 'init-php) ; -------------------------------------------------------------
+(require 'init-web) ; -------------------------------------------------------------
 
 
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
 
 ;; JS -----------------------------------------------------------------
 (add-hook 'js-mode-hook 'js2-minor-mode)
@@ -357,14 +364,6 @@ Jump to one of the current isearch candidates.
 ;; (load-theme 'zenburn t)
 ;; (load-theme 'leuven t)
 
-
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-markup-indent-offset 2)
-
-
 ;;--------------------
 ;; Indentation setup
 ;;-------------------
@@ -396,9 +395,3 @@ Version must be already installed."
 (add-hook 'python-mode-hook 'eldoc-mode)
 
 (provide 'init)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
