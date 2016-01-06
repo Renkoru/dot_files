@@ -210,11 +210,7 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-; You need to install jshint 'npm install -g jshint'
 (require 'flycheck)
-(add-hook 'js-mode-hook
-          (lambda () (flycheck-mode t)))
-
 
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
@@ -279,6 +275,7 @@ Jump to one of the current isearch candidates.
 (require 'init-emmet) ; -------------------------------------------------------------
 (require 'init-company) ; -------------------------------------------------------------
 (require 'init-php) ; -------------------------------------------------------------
+(require 'init-javascript) ; -------------------------------------------------------------
 (require 'init-web) ; -------------------------------------------------------------
 
 
@@ -286,15 +283,7 @@ Jump to one of the current isearch candidates.
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
 
-;; JS -----------------------------------------------------------------
-(add-hook 'js-mode-hook 'js2-minor-mode)
-(defun js-custom ()
-  "js-mode-hook"
-  (setq js-indent-level 2))
-(require 'jquery-doc)
-(add-hook 'js2-mode-hook 'jquery-doc-setup)
 
-(add-hook 'js-mode-hook 'js-custom)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -307,7 +296,7 @@ Jump to one of the current isearch candidates.
  '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
  '(custom-safe-themes
    (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
+    ("11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
  '(fci-rule-color "#383838")
  '(js2-basic-offset 2)
  '(js2-bounce-indent-p t)
@@ -340,12 +329,6 @@ Jump to one of the current isearch candidates.
  '(vc-annotate-very-old-color "#DC8CC3"))
 
 
-;; Add this to your .emacs to initialize tern and tern-auto-complete
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(setq js2-highlight-level 3)
-
-
-
 ; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
@@ -371,7 +354,6 @@ Jump to one of the current isearch candidates.
 (setq-default indent-tabs-mode nil) ; never use tab characters for indentation
 (setq tab-width 2 ; set tab-width
       c-default-style "stroustrup" ; indent style in CC mode
-      js-indent-level 2 ; indentation level in JS mode
       css-indent-offset 2) ; indentation level in CSS mode
 (add-hook 'python-mode-hook
           (lambda ()
