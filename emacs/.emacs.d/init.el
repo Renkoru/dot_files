@@ -43,10 +43,8 @@
                             evil
                             evil-leader
                             evil-surround
-                            evil-tabs
                             evil-nerd-commenter
                             evil-visualstar ; improve of * for v, V
-                            evil-jumper ; imporve C-I C-O
                             ;; ----------------------
                             ;; Project navigation
                             neotree
@@ -377,3 +375,11 @@ Version must be already installed."
 (add-hook 'python-mode-hook 'eldoc-mode)
 
 (provide 'init)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(helm-selection-line ((t (:inherit highlight :distant-foreground "khaki"))))
+ '(highlight ((t (:background "khaki" :inverse-video nil))))
+ '(region ((t (:background "light goldenrod yellow" :inverse-video nil)))))

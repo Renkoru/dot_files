@@ -1,6 +1,8 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: simple console log
-# key: scl
+# name: in object function
+# key: ofn
 # binding: direct-keybinding
 # --
-console.log($1);$0
+$1: function ($2) {
+  $0
+},
