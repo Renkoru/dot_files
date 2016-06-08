@@ -1,3 +1,6 @@
+(use-package flycheck
+  :diminish flycheck-mode)
+
 (flycheck-define-checker my-php
   "A PHP syntax checker using the PHP command line interpreter.
 

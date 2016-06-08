@@ -27,12 +27,12 @@
 ;;; loads packages and activates them
 (package-initialize)
 
-(defvar mrurenko/packages '(;; Editor sugar
+(defvar mrurenko/packages '(;; Base emacs tools
+                            use-package
+                            ;; Editor sugar
                             ;; guide-key ; think about this
                             smartparens ; add settings
-                            drag-stuff
                             expand-region ; investigate this package later
-                            diminish ; Remove unused minor mode indicators from modeline
                             ;; "evil-easymotion" replaced by avy
                             avy
                             ace-window
@@ -49,10 +49,6 @@
                             ;; Project navigation
                             neotree
                             projectile
-                            helm
-                            helm-projectile
-                            helm-ag
-                            helm-swoop
                             ;; ----------------------
                             ;; Check Complition "Auto complete"
                             ;; ac-slime
@@ -61,10 +57,8 @@
                             ;; Check Complition "Company"
                             company
                             company-anaconda
-                            company-tern
                             ;; ----------------------
                             ;; Syntax analyser
-                            flycheck
                             ;; ----------------------
                             ;; Git plugins
                             magit ; Learn how to use it
@@ -72,9 +66,7 @@
                             git-timemachine ; investigate this plugin later
                             ;; ----------------------
                             ;; JS packages
-                            tern
                             jquery-doc
-                            js2-mode
                             js2-refactor
                             nodejs-repl
                             ;; ----------------------
@@ -180,12 +172,28 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 
+;; ---------------------------------------------------------------------------------------------
+;; Use ensure for all packages
+(setq use-package-always-ensure t)
+
 ;; Remove minor mode indicators form modeline (powerline)
-(require 'diminish)
-(eval-after-load "company" '(diminish 'company-mode))
+(use-package diminish
+  :ensure t)
+
+;; use-package.el is no longer needed at runtime
+;; This means you should put the following at the top of your Emacs, to further reduce load time:
+(eval-when-compile
+  (require 'use-package))
+
+;; (require 'diminish)
+
+(setq whitespace-style '(face tabs trailing tab-mark))
+(global-whitespace-mode 1)
+;; (require 'bind-key)
+
 (eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
 (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
-
+(eval-after-load "whitespace" '(diminish 'global-whitespace-mode))
 
 
 (require 'expand-region)
@@ -201,14 +209,13 @@
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (global-set-key (kbd "M-q") 'ace-window)
-(require 'drag-stuff)
 
-; Add this after helm init
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
+(use-package drag-stuff)
 
-(require 'flycheck)
+;; ; Add this after helm init
+;; (projectile-global-mode)
+;; (setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
 
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
@@ -224,10 +231,6 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
-;; yasnippet
-;; should be loaded before auto complete so that they can work together
-(setq whitespace-style '(face tabs trailing tab-mark))
-(global-whitespace-mode 1)
 
 (require 'highlight-symbol)
 (global-set-key [M-f12] 'highlight-symbol-mode)
@@ -239,10 +242,16 @@
           (lambda () (highlight-symbol-nav-mode t)))
 
 
-(require 'smartparens-config)
+(use-package smartparens
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)
+    (sp-pair "'" "'")))
+
+
 (package-initialize)
-(smartparens-global-mode t)
-(sp-pair "'" "'")
 
 
 (require 'avy)
