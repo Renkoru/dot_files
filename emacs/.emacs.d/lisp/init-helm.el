@@ -29,8 +29,6 @@
           helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
           helm-ag-use-agignore t)
     (helm-mode)
-    (projectile-global-mode)
-    (setq projectile-completion-system 'helm)
     (helm-projectile-on))
   :bind (("C-q" . helm-mini)
          ("M-x" . helm-M-x))

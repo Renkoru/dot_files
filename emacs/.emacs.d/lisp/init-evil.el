@@ -33,12 +33,6 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
-(define-key evil-normal-state-map (kbd "M-k") 'drag-stuff-up)
-(define-key evil-normal-state-map (kbd "M-j") 'drag-stuff-down)
-
-(define-key evil-normal-state-map (kbd "M-l") 'drag-stuff-right)
-(define-key evil-normal-state-map (kbd "M-h") 'drag-stuff-left)
-
 (define-key evil-normal-state-map (kbd "[ SPC") (kbd "ko <escape> j"))
 (define-key evil-normal-state-map (kbd "] SPC") (kbd "o <escape> k"))
 

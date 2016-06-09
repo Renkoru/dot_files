@@ -1,5 +1,6 @@
 ;; init.el
 
+
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
@@ -27,6 +28,10 @@
 ;;; loads packages and activates them
 (package-initialize)
 
+
+;; Packages to check:
+;; https://github.com/jacktasia/dumb-jump      Go to definition package
+
 (defvar mrurenko/packages '(;; Base emacs tools
                             use-package
                             ;; Editor sugar
@@ -37,7 +42,6 @@
                             avy
                             ace-window
                             highlight-symbol
-                            multiple-cursors ; dont work with evil
                             ;; ----------------------
                             ;; Evil plugins
                             evil
@@ -93,13 +97,11 @@
                             yaml-mode
                             ;; ----------------------
                             ;; Color modes
-                            powerline
                             rainbow-delimiters
                             rainbow-mode
                             solarized-theme
                             zenburn-theme
                             leuven-theme
-                            color-theme-sanityinc-tomorrow
                             ;; ----------------------
                             ;; Plugins to test
                             emmet-mode
@@ -126,6 +128,58 @@
   (dolist (pkg mrurenko/packages)
     (when (not (package-installed-p pkg))
       (package-install pkg))))
+
+
+;; Color themes
+(use-package color-theme-sanityinc-tomorrow)
+;; (load-theme 'solarized t)
+;; (load-theme 'zenburn t)
+;; (load-theme 'leuven t)
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
+ '(custom-safe-themes
+   (quote
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
+ '(fci-rule-color "#383838")
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p t)
+ '(safe-local-variable-values
+   (quote
+    ((checkdoc-minor-mode . t)
+     (mangle-whitespace . t)
+     (require-final-newline))))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 
 
 ;; Plugin: exec-path-from-shell. Setting
@@ -176,7 +230,7 @@
 ;; Use ensure for all packages
 (setq use-package-always-ensure t)
 
-;; Remove minor mode indicators form modeline (powerline)
+;; Remove minor mode indicators form modeline
 (use-package diminish
   :ensure t)
 
@@ -196,21 +250,42 @@
 (eval-after-load "whitespace" '(diminish 'global-whitespace-mode))
 
 
+(use-package evil-mc
+  :diminish evil-mc-mode
+  :config (global-evil-mc-mode 1))
+
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (global-set-key (kbd "M-q") 'ace-window)
 
-(use-package drag-stuff)
+(use-package smart-mode-line
+  :config
+  (progn
+    (setq sml/theme 'light)
+    (sml/setup)))
+
+(use-package drag-stuff
+  :diminish drag-stuff-mode
+  :init
+  (drag-stuff-global-mode 1)
+  :bind (:map evil-normal-state-map
+              ("M-k" . drag-stuff-up)
+              ("M-j" . drag-stuff-down)
+              ("M-l" . drag-stuff-right)
+              ("M-h" . drag-stuff-left)))
+
+
+(use-package projectile
+  :diminish projectile-mode
+  :ensure helm
+  :init (progn (setq projectile-completion-system 'helm))
+  :config (projectile-global-mode t)
+  )
 
 ;; ; Add this after helm init
 ;; (projectile-global-mode)
@@ -265,9 +340,6 @@ Jump to one of the current isearch candidates.
 (setq avy-style 'at-full)
 
 
-(require 'powerline)
-(powerline-center-evil-theme)
-
 ;; Make smooth scroll {{
 ;; scrolling to always be a line at a time
 (setq scroll-margin 4)
@@ -290,52 +362,6 @@ Jump to one of the current isearch candidates.
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
- '(custom-safe-themes
-   (quote
-    ("11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
- '(fci-rule-color "#383838")
- '(js2-basic-offset 2)
- '(js2-bounce-indent-p t)
- '(safe-local-variable-values
-   (quote
-    ((checkdoc-minor-mode . t)
-     (mangle-whitespace . t)
-     (require-final-newline))))
- '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
-     (40 . "#CC9393")
-     (60 . "#DFAF8F")
-     (80 . "#D0BF8F")
-     (100 . "#E0CF9F")
-     (120 . "#F0DFAF")
-     (140 . "#5F7F5F")
-     (160 . "#7F9F7F")
-     (180 . "#8FB28F")
-     (200 . "#9FC59F")
-     (220 . "#AFD8AF")
-     (240 . "#BFEBBF")
-     (260 . "#93E0E3")
-     (280 . "#6CA0A3")
-     (300 . "#7CB8BB")
-     (320 . "#8CD0D3")
-     (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
-
-
 ; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
@@ -347,12 +373,6 @@ Jump to one of the current isearch candidates.
 ; Themes load
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
-
-;; Color themes
-(require 'color-theme-sanityinc-tomorrow)
-;; (load-theme 'solarized t)
-;; (load-theme 'zenburn t)
-;; (load-theme 'leuven t)
 
 ;;--------------------
 ;; Indentation setup
