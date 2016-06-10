@@ -261,6 +261,7 @@
 (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
+(require 'init-custom-functions)
 (global-set-key (kbd "M-q") 'ace-window)
 
 (use-package smart-mode-line
@@ -268,6 +269,9 @@
   (progn
     (setq sml/theme 'light)
     (sml/setup)))
+
+(use-package nyan-mode
+  :init (nyan-mode))
 
 (use-package drag-stuff
   :diminish drag-stuff-mode
