@@ -264,14 +264,15 @@
 (require 'init-custom-functions)
 (global-set-key (kbd "M-q") 'ace-window)
 
+(use-package vimish-fold)
+
 (use-package smart-mode-line
   :config
   (progn
     (setq sml/theme 'light)
     (sml/setup)))
 
-(use-package nyan-mode
-  :init (nyan-mode))
+(use-package nyan-mode)
 
 (use-package drag-stuff
   :diminish drag-stuff-mode
