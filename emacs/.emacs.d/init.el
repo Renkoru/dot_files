@@ -89,7 +89,6 @@
                             leuven-theme
                             ;; ----------------------
                             ;; Plugins to test
-                            emmet-mode
                             marmalade
                             restclient
                             fuzzy ; Do not work, remove?

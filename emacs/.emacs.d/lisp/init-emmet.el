@@ -1,9 +1,12 @@
-(require 'emmet-mode)
+(use-package emmet-mode
+  :bind
+  ("C-j" . emmet-expand-line)
 
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-
-
-(global-set-key (kbd "C-j") 'emmet-expand-line)
+  :init
+  ;; Auto-start on any markup modes
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  ;; enable Emmet's css abbreviation.
+  (add-hook 'css-mode-hook  'emmet-mode)
+  )
 
 (provide 'init-emmet)
