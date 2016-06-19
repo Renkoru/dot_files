@@ -28,8 +28,6 @@
                             ;; Editor sugar
                             smartparens ; add settings
                             avy
-                            ace-window
-                            highlight-symbol
                             ;; ----------------------
                             ;; Evil plugins
                             evil
@@ -206,7 +204,9 @@
 (require 'init-custom-functions)
 
 
-(global-set-key (kbd "M-q") 'ace-window)
+(use-package ace-window
+  :bind
+  ("M-q" . ace-window))
 
 (use-package vimish-fold
   :bind (:map evil-visual-state-map ("zf" . vimish-fold)
@@ -270,14 +270,13 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 
 
-(require 'highlight-symbol)
-(global-set-key [M-f12] 'highlight-symbol-mode)
-(global-set-key [(control f12)] 'highlight-symbol)
-(global-set-key [f12] 'highlight-symbol-next)
-(global-set-key [(shift f12)] 'highlight-symbol-prev)
-
-(add-hook 'highlight-symbol-mode-hook
-          (lambda () (highlight-symbol-nav-mode t)))
+(use-package highlight-symbol
+  :bind
+  ("M-<f12>" . highlight-symbol-mode)
+  ("C-<f12>" . highlight-symbol)
+  ("<f12>" . highlight-symbol-next)
+  ("S-<f12>" . highlight-symbol-prev)
+  )
 
 
 (use-package smartparens
