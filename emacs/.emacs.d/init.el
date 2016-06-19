@@ -194,7 +194,6 @@
 (global-whitespace-mode 1)
 ;; (require 'bind-key)
 
-(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
 (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
 (eval-after-load "whitespace" '(diminish 'global-whitespace-mode))
 

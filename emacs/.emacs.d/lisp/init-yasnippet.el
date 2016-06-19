@@ -1,13 +1,18 @@
 ; init-yasnippet.el
-(require 'yasnippet)
-(yas-global-mode 1)
 
-; snippets dir
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets" ))
+(use-package yasnippet
+  :diminish yas-minor-mode
 
-(define-key yas-minor-mode-map (kbd "C-<return>") 'yas-expand)
-;; (global-set-key (kbd "C-<return>") 'yas-expand)
-;; (global-set-key (kbd "C-y") 'yas-expand)
+  :config
+  (add-hook 'after-save-hook
+            (lambda ()
+              (when (eql major-mode 'snippet-mode)
+                (yas-reload-all))))
+  (setq yas/snippet-dirs
+        (list (concat user-emacs-directory "snippets")))
+  (bind-key "C-<return>" 'yas-expand)
+  (yas-global-mode 1)
+  )
+
 
 (provide 'init-yasnippet)
