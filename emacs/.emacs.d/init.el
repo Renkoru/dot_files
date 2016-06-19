@@ -1,19 +1,10 @@
 ;; init.el
 
-
-;; No splash screen please ... jeez
-(setq inhibit-startup-message t)
-
-;; Enable X11 Copy & Paste to/from Emacs. Primary
-(setq x-select-enable-primary t)
-
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;;; this loads the package manager
+;; package manager
 (require 'package)
 (require 'cl) ; for loop
-
 
 ;;; here there's a variable named package-archives, and we are adding the MELPA repository to it
 (add-to-list
@@ -28,14 +19,13 @@
 ;;; loads packages and activates them
 (package-initialize)
 
-
 ;; Packages to check:
 ;; https://github.com/jacktasia/dumb-jump      Go to definition package
 
 (defvar mrurenko/packages '(;; Base emacs tools
+                            diminish
                             use-package
                             ;; Editor sugar
-                            ;; guide-key ; think about this
                             smartparens ; add settings
                             expand-region ; investigate this package later
                             ;; "evil-easymotion" replaced by avy
@@ -65,7 +55,6 @@
                             ;; Syntax analyser
                             ;; ----------------------
                             ;; Git plugins
-                            magit ; Learn how to use it
                             git-gutter ; Setup plugin
                             git-timemachine ; investigate this plugin later
                             ;; ----------------------
@@ -130,11 +119,22 @@
       (package-install pkg))))
 
 
-;; Color themes
+;; *** use-package settings
+
+;; use-package.el is no longer needed at runtime
+;; This means you should put the following at the top of your Emacs, to further reduce load time:
+(eval-when-compile
+  (require 'use-package))
+
+;; Use ensure for all packages
+(setq use-package-always-ensure t)
+
+
+;; other good themes:
+;; solarized
+;; zenburn
+;; leuven
 (use-package color-theme-sanityinc-tomorrow)
-;; (load-theme 'solarized t)
-;; (load-theme 'zenburn t)
-;; (load-theme 'leuven t)
 
 
 (custom-set-variables
@@ -181,7 +181,6 @@
      (360 . "#DC8CC3"))))
  '(vc-annotate-very-old-color "#DC8CC3"))
 
-
 ;; Plugin: exec-path-from-shell. Setting
 ;; Wrap to hide pyenv-mode warning. Don't know why it happends
 (setq warning-minimum-level :emergency)
@@ -189,57 +188,7 @@
 (setq warning-minimum-level :warning)
 
 
-;; Core emacs settings
-; 'y' instead of 'yes', 'n' instead of 'no'
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-; Show current pointed function arguments
-(eldoc-mode 1)
-
-; Hide elements
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
-;; If you want to show the matching parenthesis, brace or bracket automatically, add this option
-(show-paren-mode t)
-
-;; Automatically reload files was modified by external program
-(global-auto-revert-mode 1)
-
-
-; Disable backup and autosave files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
-(setq backup-directory-alist `(("." . "~/.saves")))
-;; TODO: what is that?
-(set-default 'truncate-lines t)
-
-
-; Map escape to cancel (like C-g)...
-(define-key isearch-mode-map [escape] 'isearch-abort)   ;; isearch
-(global-set-key [escape] 'keyboard-escape-quit)         ;; everywhere else
-
-;; TODO: what is that?
-(setq x-select-enable-clipboard t)
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-
 ;; ---------------------------------------------------------------------------------------------
-;; Use ensure for all packages
-(setq use-package-always-ensure t)
-
-;; Remove minor mode indicators form modeline
-(use-package diminish
-  :ensure t)
-
-;; use-package.el is no longer needed at runtime
-;; This means you should put the following at the top of your Emacs, to further reduce load time:
-(eval-when-compile
-  (require 'use-package))
-
-;; (require 'diminish)
 
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
@@ -258,10 +207,13 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 
+(require 'init-emacs)
 (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
+
+
 (global-set-key (kbd "M-q") 'ace-window)
 
 (use-package vimish-fold
@@ -276,6 +228,9 @@
               ("zO" . vimish-fold-unfold-all)
               ("zc" . vimish-fold-refold)
               ("zC" . vimish-fold-refold-all)))
+
+
+(use-package magit)
 
 (use-package smart-mode-line
   :config
