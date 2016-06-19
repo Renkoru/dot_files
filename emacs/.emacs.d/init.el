@@ -278,7 +278,6 @@
   ("S-<f12>" . highlight-symbol-prev)
   )
 
-
 (use-package smartparens
   :diminish smartparens-mode
   :config
@@ -286,9 +285,6 @@
     (require 'smartparens-config)
     (smartparens-global-mode 1)
     (sp-pair "'" "'")))
-
-
-(package-initialize)
 
 
 (require 'avy)
@@ -302,22 +298,12 @@ Jump to one of the current isearch candidates.
 (setq avy-style 'at-full)
 
 
-;; Make smooth scroll {{
-;; scrolling to always be a line at a time
-(setq scroll-margin 4)
-(setq linum-delay t) ;; Delay updates to give Emacs a chance for other changes
-(setq scroll-conservatively 10000)
-(setq scroll-step 1) ;; keyboard scroll one line at a time
-;; }}
-
-
-
-(require 'init-flycheck) ; -------------------------------------------------------------
-(require 'init-emmet) ; -------------------------------------------------------------
-(require 'init-company) ; -------------------------------------------------------------
-(require 'init-php) ; -------------------------------------------------------------
-(require 'init-javascript) ; -------------------------------------------------------------
-(require 'init-web) ; -------------------------------------------------------------
+(require 'init-flycheck) ; -------
+(require 'init-emmet) ; ---------
+(require 'init-company) ; ------
+;; (require 'init-php) ; ------
+(require 'init-javascript) ; -----
+(require 'init-web) ; -----------
 
 
 ; Enable modes
@@ -331,10 +317,8 @@ Jump to one of the current isearch candidates.
           (lambda ()
             (visual-line-mode t)
             (flyspell-mode t)))
+
 (setq markdown-command "pandoc --smart -f markdown -t html")
-; Themes load
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized/")
 
 ;;--------------------
 ;; Indentation setup
