@@ -27,8 +27,6 @@
                             use-package
                             ;; Editor sugar
                             smartparens ; add settings
-                            expand-region ; investigate this package later
-                            ;; "evil-easymotion" replaced by avy
                             avy
                             ace-window
                             highlight-symbol
@@ -192,7 +190,6 @@
 
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
-;; (require 'bind-key)
 
 (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
 (eval-after-load "whitespace" '(diminish 'global-whitespace-mode))
@@ -201,10 +198,6 @@
 (use-package evil-mc
   :diminish evil-mc-mode
   :config (global-evil-mc-mode 1))
-
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
 
 (require 'init-emacs)
 (require 'init-helm) ; -------------------------------------------------------------
