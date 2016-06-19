@@ -264,7 +264,18 @@
 (require 'init-custom-functions)
 (global-set-key (kbd "M-q") 'ace-window)
 
-(use-package vimish-fold)
+(use-package vimish-fold
+  :bind (:map evil-visual-state-map ("zf" . vimish-fold)
+
+              :map evil-normal-state-map
+              ("zd" . vimish-fold-delete)
+              ("zD" . vimish-fold-delete-all)
+              ("za" . vimish-fold-toggle)
+              ("zA" . vimish-fold-toggle-all)
+              ("zo" . vimish-fold-unfold)
+              ("zO" . vimish-fold-unfold-all)
+              ("zc" . vimish-fold-refold)
+              ("zC" . vimish-fold-refold-all)))
 
 (use-package smart-mode-line
   :config
