@@ -8,6 +8,18 @@
 (require 'evil-leader)
 (require 'evil)
 
+(use-package evil
+  :bind (("C-u" . evil-scroll-up)
+
+         :map evil-insert-state-map
+         ;; Unbind evil key maps to enable using Emacs
+         ("C-e" . nil)
+         ("C-a" . nil)
+         )
+
+  :config
+  (evil-mode 1))
+
 (require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
@@ -17,13 +29,6 @@
 (global-evil-surround-mode 1)
 ; (global-evil-matchit-mode 1)
 (global-evil-leader-mode 1)
-
-
-(evil-mode 1)
-
-;; Unbind evil key maps to enable using Emacs
-(define-key evil-insert-state-map (kbd "C-e") nil)
-(define-key evil-insert-state-map (kbd "C-a") nil)
 
 
 ;; Evil settings

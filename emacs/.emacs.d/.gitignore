@@ -1,2 +1,5 @@
 anaconda-mode/
+vimish-fold/
 elpa/
+
+.mc-lists.el

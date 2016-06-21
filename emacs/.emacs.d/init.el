@@ -30,7 +30,6 @@
                             avy
                             ;; ----------------------
                             ;; Evil plugins
-                            evil
                             evil-leader
                             evil-surround
                             evil-nerd-commenter
