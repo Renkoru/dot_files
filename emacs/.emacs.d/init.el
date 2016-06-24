@@ -19,9 +19,6 @@
 ;;; loads packages and activates them
 (package-initialize)
 
-;; Packages to check:
-;; https://github.com/jacktasia/dumb-jump      Go to definition package
-
 (defvar mrurenko/packages '(;; Base emacs tools
                             diminish
                             use-package
@@ -222,6 +219,11 @@
 
 
 (use-package magit)
+
+(use-package dumb-jump
+  :bind (("M-d" . dumb-jump-go)
+         ("M-D" . dumb-jump-back))
+  )
 
 (use-package smart-mode-line
   :config
