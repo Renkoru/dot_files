@@ -222,6 +222,13 @@
 
 (use-package magit)
 
+
+(use-package dumb-jump
+  :bind
+  ("M-d" . dumb-jump-go)
+  ("M-D" . dumb-jump-back)
+  )
+
 (use-package smart-mode-line
   :config
   (progn

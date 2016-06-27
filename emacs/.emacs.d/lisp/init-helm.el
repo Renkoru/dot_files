@@ -31,6 +31,7 @@
     (helm-mode)
     (helm-projectile-on))
   :bind (("C-q" . helm-mini)
+         ("M-f" . helm-find-files)
          ("M-x" . helm-M-x))
   )
 
