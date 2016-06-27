@@ -10,7 +10,8 @@
                 (yas-reload-all))))
   (setq yas/snippet-dirs
         (list (concat user-emacs-directory "snippets")))
-  (bind-key "C-<return>" 'yas-expand)
+  (bind-keys :map yas-minor-mode-map
+             ("C-<return>" . yas-expand))
   (yas-global-mode 1)
   )
 
