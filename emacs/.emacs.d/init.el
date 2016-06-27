@@ -23,7 +23,6 @@
                             diminish
                             use-package
                             ;; Editor sugar
-                            smartparens ; add settings
                             avy
                             ;; ----------------------
                             ;; Evil plugins
@@ -278,13 +277,21 @@
   ("S-<f12>" . highlight-symbol-prev)
   )
 
-(use-package smartparens
-  :diminish smartparens-mode
-  :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)
-    (sp-pair "'" "'")))
+;; make return key also do indent, globally
+(electric-indent-mode 1)
+(electric-pair-mode 1)
+
+;; (use-package smartparens
+;;   :diminish smartparens-mode)
+
+;; (use-package smartparens-config
+;;     :ensure smartparens
+;;     :config
+;;     (progn
+;;       (show-smartparens-global-mode t)))
+
+;; (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+;; (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
 
 (require 'avy)
@@ -332,9 +339,6 @@ Jump to one of the current isearch candidates.
           (lambda ()
             (setq tab-width 4)
             ))
-
-;; make return key also do indent, globally
-(electric-indent-mode 1)
 
 
 ;; Python
