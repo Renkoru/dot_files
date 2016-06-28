@@ -268,6 +268,17 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+(use-package beacon
+  :init
+  (beacon-mode 1)
+  :config
+  (setq beacon-size 100
+        beacon-push-mark 35
+        beacon-color "#ADFFB2"
+        beacon-blink-when-buffer-changes t
+        beacon-blink-when-point-moves t
+        beacon-blink-when-window-scrolls t))
+
 
 (use-package highlight-symbol
   :bind
@@ -362,3 +373,7 @@ Version must be already installed."
  '(helm-selection-line ((t (:inherit highlight :distant-foreground "khaki"))))
  '(highlight ((t (:background "khaki" :inverse-video nil))))
  '(region ((t (:background "light goldenrod yellow" :inverse-video nil)))))
+
+
+;; Packages that can be usefull
+;; https://github.com/abo-abo/hydra  ; for key mappings
