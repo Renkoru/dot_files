@@ -21,7 +21,9 @@
 
 (defun js-custom ()
   "js-mode-hook"
-  (setq js-indent-level 2))
+  (setq js-indent-level 2)
+  (setq tab-width 2)
+  )
 
 (require 'jquery-doc)
 (add-hook 'js2-mode-hook 'jquery-doc-setup)
@@ -29,9 +31,6 @@
 (add-hook 'js-mode-hook 'js-custom)
 
 (setq js2-highlight-level 3)
-
-(setq tab-width 2 ; set tab-width
-      js-indent-level 2) ; indentation level in JS mode
 
 ;; jshint does not warn about this now for some reason
 ;; (setq-default js2-strict-trailing-comma-warning nil)
