@@ -17,11 +17,6 @@
 (use-package js2-mode
   :diminish js2-minor-mode)
 
-; You need to install jshint 'npm install -g jshint'
-(require 'flycheck)
-(add-hook 'js-mode-hook
-          (lambda () (flycheck-mode t)))
-
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 (defun js-custom ()

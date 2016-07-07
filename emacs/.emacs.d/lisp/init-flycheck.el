@@ -1,5 +1,29 @@
+;; init-flycheck.el
+;;
+;; You need to install eslint 'npm install -g eslint'
+
 (use-package flycheck
-  :diminish flycheck-mode)
+  :diminish flycheck-mode
+  :config
+  (global-flycheck-mode)
+
+  (setq-default flycheck-disabled-checkers
+                ;; disable jshint since we prefer eslint checking
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  (setq-default flycheck-disabled-checkers
+                ;; disable jscs since we prefer eslint checking
+                (append flycheck-disabled-checkers
+                        '(javascript-jscs)))
+
+  ;; (setq flycheck-checkers '(javascript-eslint))
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(json-jsonlist))))
+
+;; (add-hook 'js-mode-hook
+;;           (lambda () (flycheck-mode t)))
 
 (flycheck-define-checker my-php
   "A PHP syntax checker using the PHP command line interpreter.
