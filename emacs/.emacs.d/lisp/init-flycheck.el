@@ -25,6 +25,18 @@
 ;; (add-hook 'js-mode-hook
 ;;           (lambda () (flycheck-mode t)))
 
+;; next eslint hook I copy from 
+;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
+(add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
+
+(defun mjs/setup-local-eslint ()
+    "If ESLint found in node_modules directory - use that for flycheck.
+Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
+    (interactive)
+    (let ((local-eslint (expand-file-name "./node_modules/.bin/eslint")))
+      (setq flycheck-javascript-eslint-executable
+            (and (file-exists-p local-eslint) local-eslint))))
+
 (flycheck-define-checker my-php
   "A PHP syntax checker using the PHP command line interpreter.
 
