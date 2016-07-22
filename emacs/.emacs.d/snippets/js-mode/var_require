@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: var require
+# key: vreq
+# --
+var $1 = require('$0');

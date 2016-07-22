@@ -3,10 +3,8 @@
 
 (require 'neotree)
 (require 'evil-surround)
-; (require 'evil-matchit)
 (require 'evil-visualstar)
 (require 'evil-leader)
-(require 'evil)
 
 (use-package evil
   :bind (("C-u" . evil-scroll-up)
@@ -20,6 +18,11 @@
   :config
   (evil-mode 1))
 
+(use-package evil-matchit
+  :config
+  (global-evil-matchit-mode 1))
+
+
 (require 'rainbow-delimiters)
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
@@ -27,7 +30,6 @@
 
 (global-evil-visualstar-mode t)
 (global-evil-surround-mode 1)
-; (global-evil-matchit-mode 1)
 (global-evil-leader-mode 1)
 
 
