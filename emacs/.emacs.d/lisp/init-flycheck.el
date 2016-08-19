@@ -1,6 +1,10 @@
-;; init-flycheck.el
-;;
-;; You need to install eslint 'npm install -g eslint'
+;;; package --- init-flycheck.el
+
+;;; Commentary:
+;; You need to install:
+;;   eslint 'npm install -g eslint'
+
+;;; Code:
 
 (use-package flycheck
   :diminish flycheck-mode
@@ -25,7 +29,7 @@
 ;; (add-hook 'js-mode-hook
 ;;           (lambda () (flycheck-mode t)))
 
-;; next eslint hook I copy from 
+;; next eslint hook I copy from
 ;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
 (add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
 
@@ -49,5 +53,5 @@ See URL `http://php.net/manual/en/features.commandline.php'."
   :modes (php-mode php+-mode web-mode))
 
 
-
 (provide 'init-flycheck)
+;;; init-flycheck ends here
