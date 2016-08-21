@@ -1,4 +1,6 @@
-; init-helm.el
+;;; package --- init-helm.el
+;;; Commentary:
+;;; Code:
 
 (use-package helm-projectile)
 (use-package helm-ag)
@@ -19,6 +21,7 @@
           helm-M-x-requires-pattern nil
           helm-ff-skip-boring-files t
           helm-buffers-fuzzy-matching t
+          helm-buffer-max-length 40
           helm-recentf-fuzzy-match    t
           helm-M-x-fuzzy-match        t
           helm-semantic-fuzzy-match   t
@@ -37,3 +40,4 @@
 
 
 (provide 'init-helm)
+;;; init-helm.el ends here
