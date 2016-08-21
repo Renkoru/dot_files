@@ -52,6 +52,14 @@ See URL `http://php.net/manual/en/features.commandline.php'."
           (message) " in " (file-name) " on line " line line-end))
   :modes (php-mode php+-mode web-mode))
 
+;; Copyed from:
+;; https://gist.github.com/ustun/73321bfcb01a8657e5b8
+(defun eslint-fix-file ()
+  (interactive)
+  (message "eslint --fixing the file" (buffer-file-name))
+  (shell-command (concat "eslint --fix " (buffer-file-name)))
+  (revert-buffer t t))
+
 
 (provide 'init-flycheck)
 ;;; init-flycheck ends here
