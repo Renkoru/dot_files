@@ -25,6 +25,18 @@ set sidescroll=1
 
 nnoremap tg gT
 
+
+" System clipboard support in IdeaVim
+" https://gist.github.com/RobertAudi/11ffa90f4952e5923ce7
+nnoremap yy "+yy
+vnoremap y "+y
+
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+
+
 nnoremap <Space>w :w<CR>
 nnoremap <Space>q :q<CR>
 nnoremap [<Space> O<ESC>j 0 w
@@ -37,6 +49,7 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-h> <C-W>h
 
 
+nnoremap <C-x> :action GotoAction<CR>
 nnoremap <C-s> :action Find<CR>
 nnoremap n :action FindNext<CR>
 nnoremap N :action FindPrevious<CR>

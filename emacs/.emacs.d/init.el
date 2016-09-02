@@ -1,4 +1,7 @@
-;; init.el
+;;; init.el --- Main file of Emacs settings
+;;; Commentary:
+;;
+;;; Code:
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -50,17 +53,8 @@
                             js2-refactor
                             nodejs-repl
                             ;; ----------------------
-                            ;; Python packages
-                            anaconda-mode
-                            pyenv-mode
-                            ;; ctable
-                            ;; python-environment
-                            ;; deferred
-                            ;; epc
-                            ;; jedi
-                            ;; ----------------------
                             ;; PHP packages
-                            php-mode
+                            ;; php-mode
                             ;;
                             ;; ----------------------
                             ;; Syntax modes
@@ -317,6 +311,7 @@ Jump to one of the current isearch candidates.
 (require 'init-company) ; ------
 ;; (require 'init-php) ; ------
 (require 'init-javascript) ; -----
+(require 'init-python) ; -----
 (require 'init-web) ; -----------
 
 
@@ -342,23 +337,7 @@ Jump to one of the current isearch candidates.
 (setq tab-width 2 ; set tab-width
       c-default-style "stroustrup" ; indent style in CC mode
       css-indent-offset 2) ; indentation level in CSS mode
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq tab-width 4)
-            ))
 
-
-;; Python
-(pyenv-mode)
-(defun projectile-pyenv-mode-set ()
-  "Set pyenv version matching project name.
-Version must be already installed."
-  (pyenv-mode-set (projectile-project-name)))
-
-(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
-
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'eldoc-mode)
 
 (provide 'init)
 (custom-set-faces
