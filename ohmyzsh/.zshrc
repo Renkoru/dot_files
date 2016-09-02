@@ -44,9 +44,9 @@
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  eval "$(rbenv init -)"
+#  eval "$(pyenv init -)"
+#  eval "$(pyenv virtualenv-init -)"
+#  eval "$(rbenv init -)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
