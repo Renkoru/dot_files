@@ -44,11 +44,12 @@
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-#  eval "$(pyenv init -)"
-#  eval "$(pyenv virtualenv-init -)"
-#  eval "$(rbenv init -)"
-# export MANPATH="/usr/local/man:$MANPATH"
+## Pyenv rbenv setup
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# eval "$(rbenv init -)"
 
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/

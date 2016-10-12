@@ -53,7 +53,8 @@ Xft.rgba: rgb
 ! put it in ~/.urxvt/ext
 
 !используемые расширения
-URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,keyboard-select,tabbedex
+URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex
+
 
 URxvt*font: xft:Terminus:pixelsize=14:antialias=true:hinting=true
 URxvt*boldFont: xft:Terminus:bold:pixelsize=14:antialias=true:hinting=true
@@ -63,9 +64,6 @@ URxvt*color4: RoyalBlue
 URxvt*color12: RoyalBlue
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
 
 Emacs.font: Terminus:size=14:antialise:true
 Emacs.FontBackend: xft

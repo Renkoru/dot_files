@@ -28,13 +28,16 @@ nnoremap tg gT
 
 " System clipboard support in IdeaVim
 " https://gist.github.com/RobertAudi/11ffa90f4952e5923ce7
-nnoremap yy "+yy
-vnoremap y "+y
+" nnoremap yy "+yy
+" vnoremap y "+y
 
-nnoremap p "+p
-vnoremap p "+p
-nnoremap P "+P
-vnoremap P "+P
+" nnoremap p "+p
+" vnoremap p "+p
+" nnoremap P "+P
+" vnoremap P "+P
+
+
+set clipboard=unnamedplus
 
 
 nnoremap <Space>w :w<CR>
@@ -43,10 +46,24 @@ nnoremap [<Space> O<ESC>j 0 w
 nnoremap ]<Space> o<ESC>k 0 w
 
 
+nnoremap <Space>s :action emacsIDEAs.AceJumpWord<CR>
+nnoremap <Space>cw :action emacsIDEAs.AceJumpCopy.Word<CR>
+
+nnoremap <Space>r :action RenameElement<CR>
+nnoremap <Space>d :action GotoDeclaration<CR>
+nnoremap <Space>i :action GotoImplementation<CR>
+
+
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+
 nnoremap <C-l> <C-W>l
 nnoremap <C-k> <C-W>k
 nnoremap <C-j> <C-W>j
 nnoremap <C-h> <C-W>h
+
+nnoremap <C-w>m :action MoveEditorToOppositeTabGroup<CR>
+
 
 
 nnoremap <C-x> :action GotoAction<CR>
@@ -64,13 +81,7 @@ nnoremap gl :action FileStructurePopup<CR>
 nnoremap za :action CollapseSelection<CR>
 
 
-nnoremap <Space>s :action emacsIDEAs.AceJumpWord<CR>
-
 nnoremap <C-t> :action HighlightUsagesInFile<CR>
-
-nnoremap <Space>r :action RenameElement<CR>
-nnoremap <Space>d :action GotoDeclaration<CR>
-nnoremap <Space>i :action GotoImplementation<CR>
 
 
 nnoremap [[ :action MethodUp<CR>
