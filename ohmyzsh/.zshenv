@@ -1,6 +1,6 @@
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/mrurenko/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 ## User configuration
 ## Enable Pyenv on zsh start: Added '$HOME/.pyenv/bin'
