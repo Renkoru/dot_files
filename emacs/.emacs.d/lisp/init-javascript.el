@@ -1,4 +1,10 @@
-;; init-javascript -----------------------------------------------------------------
+;;; init-javascript.el --- javascript
+;;; Commentary:
+;;; Code:
+
+
+;; JS packages
+;; use-package nodejs-repl ?
 
 (use-package tern
   :diminish tern-mode
@@ -17,10 +23,14 @@
 (use-package js2-mode
   :diminish js2-minor-mode)
 
+(use-package js2-refactor
+  :config
+  (add-hook 'js2-mode-hook #'js2-refactor-mode))
+
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 (defun js-custom ()
-  "js-mode-hook"
+  "JavaScript-mode-hook."
   (setq js-indent-level 2)
   (setq tab-width 2)
   )
@@ -38,3 +48,4 @@
 (setq js2-strict-trailing-comma-warning nil)
 
 (provide 'init-javascript)
+;;; init-javascript.el ends here

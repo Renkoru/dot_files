@@ -48,10 +48,6 @@
                             git-gutter ; Setup plugin
                             git-timemachine ; investigate this plugin later
                             ;; ----------------------
-                            ;; JS packages
-                            jquery-doc
-                            js2-refactor
-                            nodejs-repl
                             ;; ----------------------
                             ;; PHP packages
                             ;; php-mode
@@ -69,9 +65,6 @@
                             ;; Color modes
                             rainbow-delimiters
                             rainbow-mode
-                            solarized-theme
-                            zenburn-theme
-                            leuven-theme
                             ;; ----------------------
                             ;; Plugins to test
                             marmalade
@@ -109,13 +102,7 @@
 ;; Use ensure for all packages
 (setq use-package-always-ensure t)
 
-
-;; other good themes:
-;; solarized
-;; zenburn
-;; leuven
-(use-package color-theme-sanityinc-tomorrow)
-
+(require 'init-appearance)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -126,13 +113,15 @@
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
  '(fci-rule-color "#383838")
- '(js2-basic-offset 2)
+ '(js-indent-level 2)
  '(js2-bounce-indent-p t)
+ '(package-selected-packages
+   (quote
+    (py-yapf sphinx-doc pyenv-mode company-statistics company-quickhelp company-tern company-web emmet-mode flycheck highlight-symbol beacon drag-stuff nyan-mode smart-mode-line dumb-jump magit vimish-fold ace-window evil-matchit helm-swoop helm-ag helm-projectile evil-mc color-theme-sanityinc-tomorrow exec-path-from-shell rvm fuzzy restclient marmalade leuven-theme zenburn-theme solarized-theme rainbow-mode rainbow-delimiters yaml-mode puppet-mode jade-mode scss-mode json-mode markdown-mode web-mode nodejs-repl js2-refactor jquery-doc git-timemachine git-gutter company-anaconda company projectile neotree evil-visualstar evil-nerd-commenter evil-surround evil-leader avy use-package diminish)))
  '(safe-local-variable-values
    (quote
     ((checkdoc-minor-mode . t)
