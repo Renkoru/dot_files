@@ -7,7 +7,6 @@
 ;; use-package nodejs-repl ?
 
 (use-package tern
-  :diminish tern-mode
   :mode ("\\.js\\'" . js-mode)
   :interpreter ("javascript" . js-mode))
 
@@ -20,8 +19,7 @@
   (add-hook 'js-mode-hook (lambda () (tern-mode t))))
 
 
-(use-package js2-mode
-  :diminish js2-minor-mode)
+(use-package js2-mode)
 
 (use-package js2-refactor
   :config
@@ -34,9 +32,6 @@
   (setq js-indent-level 2)
   (setq tab-width 2)
   )
-
-(require 'jquery-doc)
-(add-hook 'js2-mode-hook 'jquery-doc-setup)
 
 (add-hook 'js-mode-hook 'js-custom)
 

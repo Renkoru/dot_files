@@ -26,6 +26,18 @@
 (add-to-list 'default-frame-alist
              '(font . "Source Code Pro-10"))
 
+
+;; smart-mode-line uses rich-minority-mode
+(use-package rich-minority)
+(use-package smart-mode-line
+  :config
+  (progn
+    (setq sml/theme 'light)
+    (setq rm-whitelist '(" Helm"))
+    (sml/setup)))
+
+
+
 (provide 'init-appearance)
 
 ;;; init-appearance.el ends here

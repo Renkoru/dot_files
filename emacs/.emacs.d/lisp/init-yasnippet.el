@@ -1,8 +1,6 @@
 ; init-yasnippet.el
 
 (use-package yasnippet
-  :diminish yas-minor-mode
-
   :config
   (add-hook 'after-save-hook
             (lambda ()

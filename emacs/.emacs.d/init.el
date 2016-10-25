@@ -3,6 +3,16 @@
 ;;
 ;;; Code:
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+ )
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; package manager
@@ -19,7 +29,6 @@
 (package-initialize)
 
 (defvar mrurenko/packages '(;; Base emacs tools
-                            diminish
                             use-package
                             ;; Editor sugar
                             avy
@@ -76,7 +85,7 @@
                             ;; CHECK THIS plugin and add it to cre of my emacs setting
                             exec-path-from-shell
                             )
-  "Default packages")
+  "Default packages.")
 
 
 (defun mrurenko/packages-installed-p ()
@@ -102,53 +111,6 @@
 ;; Use ensure for all packages
 (setq use-package-always-ensure t)
 
-(require 'init-appearance)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(custom-safe-themes
-   (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
- '(fci-rule-color "#383838")
- '(js-indent-level 2)
- '(js2-bounce-indent-p t)
- '(package-selected-packages
-   (quote
-    (py-yapf sphinx-doc pyenv-mode company-statistics company-quickhelp company-tern company-web emmet-mode flycheck highlight-symbol beacon drag-stuff nyan-mode smart-mode-line dumb-jump magit vimish-fold ace-window evil-matchit helm-swoop helm-ag helm-projectile evil-mc color-theme-sanityinc-tomorrow exec-path-from-shell rvm fuzzy restclient marmalade leuven-theme zenburn-theme solarized-theme rainbow-mode rainbow-delimiters yaml-mode puppet-mode jade-mode scss-mode json-mode markdown-mode web-mode nodejs-repl js2-refactor jquery-doc git-timemachine git-gutter company-anaconda company projectile neotree evil-visualstar evil-nerd-commenter evil-surround evil-leader avy use-package diminish)))
- '(safe-local-variable-values
-   (quote
-    ((checkdoc-minor-mode . t)
-     (mangle-whitespace . t)
-     (require-final-newline))))
- '(vc-annotate-background "#2B2B2B")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
-     (40 . "#CC9393")
-     (60 . "#DFAF8F")
-     (80 . "#D0BF8F")
-     (100 . "#E0CF9F")
-     (120 . "#F0DFAF")
-     (140 . "#5F7F5F")
-     (160 . "#7F9F7F")
-     (180 . "#8FB28F")
-     (200 . "#9FC59F")
-     (220 . "#AFD8AF")
-     (240 . "#BFEBBF")
-     (260 . "#93E0E3")
-     (280 . "#6CA0A3")
-     (300 . "#7CB8BB")
-     (320 . "#8CD0D3")
-     (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
 
 ;; Plugin: exec-path-from-shell. Setting
 ;; Wrap to hide pyenv-mode warning. Don't know why it happends
@@ -158,16 +120,10 @@
 
 
 ;; ---------------------------------------------------------------------------------------------
-
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
 
-(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
-(eval-after-load "whitespace" '(diminish 'global-whitespace-mode))
-
-
 (use-package evil-mc
-  :diminish evil-mc-mode
   :config (global-evil-mc-mode 1))
 
 (require 'init-emacs)
@@ -175,6 +131,7 @@
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
+(require 'init-appearance)
 
 
 (use-package ace-window
@@ -202,16 +159,9 @@
          ("M-D" . dumb-jump-back))
   )
 
-(use-package smart-mode-line
-  :config
-  (progn
-    (setq sml/theme 'light)
-    (sml/setup)))
-
 (use-package nyan-mode)
 
 (use-package drag-stuff
-  :diminish drag-stuff-mode
   :init
   (drag-stuff-global-mode 1)
   :bind (:map evil-normal-state-map
@@ -222,7 +172,6 @@
 
 
 (use-package projectile
-  :diminish projectile-mode
   :ensure helm
   :init (progn (setq projectile-completion-system 'helm))
   :config (projectile-global-mode t)
@@ -243,7 +192,6 @@
 
 ;; Don't use the weird setup with the control panel in a separate frame.
 ;; I can manage windows in Emacs much better than my desktop (Unity or Gnome Shell) can manage the Emacs frames.
-;; (custom-set-variables ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
@@ -329,15 +277,6 @@ Jump to one of the current isearch candidates.
 
 
 (provide 'init)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-selection-line ((t (:inherit highlight :distant-foreground "khaki"))))
- '(highlight ((t (:background "khaki" :inverse-video nil))))
- '(region ((t (:background "light goldenrod yellow" :inverse-video nil)))))
-
 
 ;; Packages that can be usefull
 ;; https://github.com/abo-abo/hydra  ; for key mappings

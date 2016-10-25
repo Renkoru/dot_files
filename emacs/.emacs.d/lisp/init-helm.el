@@ -7,7 +7,6 @@
 (use-package helm-swoop)
 
 (use-package helm
-  :diminish helm-mode
   :init
   (progn
     (require 'helm-config)
