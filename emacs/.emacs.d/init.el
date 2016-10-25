@@ -33,12 +33,6 @@
                             ;; Editor sugar
                             avy
                             ;; ----------------------
-                            ;; Evil plugins
-                            evil-leader
-                            evil-surround
-                            evil-nerd-commenter
-                            evil-visualstar ; improve of * for v, V
-                            ;; ----------------------
                             ;; Project navigation
                             neotree
                             projectile
@@ -118,13 +112,9 @@
 (exec-path-from-shell-initialize)
 (setq warning-minimum-level :warning)
 
-
 ;; ---------------------------------------------------------------------------------------------
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
-
-(use-package evil-mc
-  :config (global-evil-mc-mode 1))
 
 (require 'init-emacs)
 (require 'init-helm) ; -------------------------------------------------------------
@@ -138,18 +128,6 @@
   :bind
   ("M-q" . ace-window))
 
-(use-package vimish-fold
-  :bind (:map evil-visual-state-map ("zf" . vimish-fold)
-
-              :map evil-normal-state-map
-              ("zd" . vimish-fold-delete)
-              ("zD" . vimish-fold-delete-all)
-              ("za" . vimish-fold-toggle)
-              ("zA" . vimish-fold-toggle-all)
-              ("zo" . vimish-fold-unfold)
-              ("zO" . vimish-fold-unfold-all)
-              ("zc" . vimish-fold-refold)
-              ("zC" . vimish-fold-refold-all)))
 
 
 (use-package magit)
@@ -161,14 +139,6 @@
 
 (use-package nyan-mode)
 
-(use-package drag-stuff
-  :init
-  (drag-stuff-global-mode 1)
-  :bind (:map evil-normal-state-map
-              ("M-k" . drag-stuff-up)
-              ("M-j" . drag-stuff-down)
-              ("M-l" . drag-stuff-right)
-              ("M-h" . drag-stuff-left)))
 
 
 (use-package projectile
