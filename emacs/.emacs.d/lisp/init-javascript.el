@@ -19,13 +19,14 @@
   (add-hook 'js-mode-hook (lambda () (tern-mode t))))
 
 
-(use-package js2-mode)
+(use-package js2-mode
+  :mode "\\.js\\'")
 
 (use-package js2-refactor
   :config
   (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
-(add-hook 'js-mode-hook 'js2-minor-mode)
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
 
 (defun js-custom ()
   "JavaScript-mode-hook."

@@ -59,7 +59,6 @@
                             ;; Syntax modes
                             web-mode
                             markdown-mode
-                            json-mode
                             scss-mode
                             jade-mode
                             puppet-mode
@@ -115,6 +114,10 @@
 ;; ---------------------------------------------------------------------------------------------
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
+
+
+(use-package json-mode)
+
 
 (require 'init-emacs)
 (require 'init-helm) ; -------------------------------------------------------------
