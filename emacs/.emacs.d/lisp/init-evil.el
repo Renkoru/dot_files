@@ -161,7 +161,7 @@
   (define-key evil-normal-state-map (kbd "C-i") 'unpop-to-mark-command)
   (define-key evil-normal-state-map (kbd "C-o") 'jump-to-mark)
 
-  ;; (use-package evil-nerd-commenter)
+  (use-package evil-nerd-commenter)
 
   ;; Evil settings
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
