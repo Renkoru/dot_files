@@ -32,7 +32,7 @@
 (use-package smart-mode-line
   :config
   (progn
-    (setq sml/theme 'light)
+    (setq sml/theme 'dark)
     (setq rm-whitelist '(" Helm"))
     (sml/setup)))
 
