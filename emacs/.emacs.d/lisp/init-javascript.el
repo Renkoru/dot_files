@@ -18,9 +18,13 @@
   ;; Add this to your .emacs to initialize tern and tern-auto-complete
   (add-hook 'js-mode-hook (lambda () (tern-mode t))))
 
-
 (use-package js2-mode
-  :mode "\\.js\\'")
+  :mode ("\\.js\\'" . js2-mode))
+
+(add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
 
 (use-package js2-refactor
   :config

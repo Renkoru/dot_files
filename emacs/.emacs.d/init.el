@@ -1,6 +1,9 @@
 ;;; init.el --- Main file of Emacs settings
 ;;; Commentary:
 ;;
+;; To test:
+;; 1. writeroom-mode
+;;
 ;;; Code:
 
 (custom-set-variables
@@ -115,8 +118,8 @@
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
 
-
 (use-package json-mode)
+(use-package writeroom-mode)
 
 
 (require 'init-emacs)
@@ -125,6 +128,7 @@
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
 (require 'init-appearance)
+(require 'init-flyspell)
 
 
 (use-package ace-window
