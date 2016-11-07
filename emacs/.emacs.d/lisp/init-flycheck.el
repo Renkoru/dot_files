@@ -8,22 +8,26 @@
 
 (use-package flycheck
   :config
-  (global-flycheck-mode)
+  (progn
+    (global-flycheck-mode)
 
-  (setq-default flycheck-disabled-checkers
-                ;; disable jshint since we prefer eslint checking
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
+    (setq-default flycheck-disabled-checkers
+                  ;; disable jshint since we prefer eslint checking
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint)))
 
-  (setq-default flycheck-disabled-checkers
-                ;; disable jscs since we prefer eslint checking
-                (append flycheck-disabled-checkers
-                        '(javascript-jscs)))
+    (setq-default flycheck-disabled-checkers
+                  ;; disable jscs since we prefer eslint checking
+                  (append flycheck-disabled-checkers
+                          '(javascript-jscs)))
 
-  ;; (setq flycheck-checkers '(javascript-eslint))
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(json-jsonlist))))
+    ;; (setq flycheck-checkers '(javascript-eslint))
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(json-jsonlist)))
+
+    (add-hook 'flycheck-mode-hook #'flycheck-cask-setup)
+    ))
 
 ;; (add-hook 'js-mode-hook
 ;;           (lambda () (flycheck-mode t)))

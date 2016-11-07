@@ -1,8 +1,11 @@
 ;;; init.el --- Main file of Emacs settings
 ;;; Commentary:
-;;
+
 ;; To test:
 ;; 1. writeroom-mode
+
+;; To look at:
+;; ecukes (https://github.com/ecukes/ecukes)
 
 ;; You need to install Cask (http://cask.readthedocs.io/) on your system
 ;; And do: cask install
