@@ -2,3 +2,4 @@
 /emacs/.emacs.d/recentf
 /emacs/.emacs.d/eshell/history
 /emacs/.emacs.d/company-statistics-cache.el
+.cask/

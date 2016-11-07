@@ -3,7 +3,10 @@
 ;;
 ;; To test:
 ;; 1. writeroom-mode
-;;
+
+;; You need to install Cask (http://cask.readthedocs.io/) on your system
+;; And do: cask install
+
 ;;; Code:
 
 (custom-set-variables
@@ -18,6 +21,9 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;; package manager
 (require 'package)
 (require 'cl) ; for loop
@@ -31,72 +37,6 @@
 ;;; loads packages and activates them
 (package-initialize)
 
-(defvar mrurenko/packages '(;; Base emacs tools
-                            use-package
-                            ;; Editor sugar
-                            avy
-                            ;; ----------------------
-                            ;; Project navigation
-                            neotree
-                            projectile
-                            ;; ----------------------
-                            ;; Check Complition "Auto complete"
-                            ;; ac-slime
-                            ;; auto-complete
-                            ;; tern-auto-complete
-                            ;; Check Complition "Company"
-                            company
-                            company-anaconda
-                            ;; ----------------------
-                            ;; Syntax analyser
-                            ;; ----------------------
-                            ;; Git plugins
-                            git-gutter ; Setup plugin
-                            git-timemachine ; investigate this plugin later
-                            ;; ----------------------
-                            ;; ----------------------
-                            ;; PHP packages
-                            ;; php-mode
-                            ;;
-                            ;; ----------------------
-                            ;; Syntax modes
-                            web-mode
-                            markdown-mode
-                            scss-mode
-                            jade-mode
-                            puppet-mode
-                            yaml-mode
-                            ;; ----------------------
-                            ;; Color modes
-                            rainbow-delimiters
-                            rainbow-mode
-                            ;; ----------------------
-                            ;; Plugins to test
-                            marmalade
-                            restclient
-                            fuzzy ; Do not work, remove?
-                            org
-                            rvm
-                            ;; -----------------------
-                            ;; CHECK THIS plugin and add it to cre of my emacs setting
-                            exec-path-from-shell
-                            )
-  "Default packages.")
-
-
-(defun mrurenko/packages-installed-p ()
-  (loop for pkg in mrurenko/packages
-        when (not (package-installed-p pkg)) do (return nil)
-        finally (return t)))
-
-(unless (mrurenko/packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg mrurenko/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
-
-
 ;; *** use-package settings
 
 ;; use-package.el is no longer needed at runtime
@@ -105,7 +45,8 @@
   (require 'use-package))
 
 ;; Use ensure for all packages
-(setq use-package-always-ensure t)
+;; Now we have cask!
+;; (setq use-package-always-ensure t)
 
 
 ;; Plugin: exec-path-from-shell. Setting
@@ -163,8 +104,6 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-mode-scss-indent-offset 2)
 
-(require 'jade-mode)
-
 ;; Customize ediff --------------------- <
 
 ;; Don't use the weird setup with the control panel in a separate frame.
@@ -195,18 +134,6 @@
 ;; make return key also do indent, globally
 (electric-indent-mode 1)
 (electric-pair-mode 1)
-
-;; (use-package smartparens
-;;   :diminish smartparens-mode)
-
-;; (use-package smartparens-config
-;;     :ensure smartparens
-;;     :config
-;;     (progn
-;;       (show-smartparens-global-mode t)))
-
-;; (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-;; (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
 
 (require 'avy)

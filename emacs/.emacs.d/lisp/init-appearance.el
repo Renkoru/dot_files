@@ -19,9 +19,9 @@
 ;;
 ;;; Code:
 
-(use-package zenburn-theme
+(use-package leuven-theme
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'leuven t))
 
 (add-to-list 'default-frame-alist
              '(font . "Source Code Pro-10"))
@@ -32,7 +32,7 @@
 (use-package smart-mode-line
   :config
   (progn
-    (setq sml/theme 'dark)
+    (setq sml/theme 'light)
     (setq rm-whitelist '(" Helm"))
     (sml/setup)))
 
