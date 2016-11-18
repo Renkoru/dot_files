@@ -6,6 +6,10 @@
 
 ;; To look at:
 ;; ecukes (https://github.com/ecukes/ecukes)
+;; 'wgrep' for refactoring  (https://github.com/mhayashi1120/Emacs-wgrep)
+
+;; TODO:
+;; Use other suggestor for https://github.com/jacktasia/dumb-jump or use ivy (contribute?)
 
 ;; You need to install Cask (http://cask.readthedocs.io/) on your system
 ;; And do: cask install
@@ -128,7 +132,7 @@
 
 (use-package highlight-symbol
   :bind
-  ("M-<f12>" . highlight-symbol-mode)
+  ("M-<f12>" . highlight-symbol-mode) ;; highlight symbol under a crusor
   ("C-<f12>" . highlight-symbol)
   ("<f12>" . highlight-symbol-next)
   ("S-<f12>" . highlight-symbol-prev)
