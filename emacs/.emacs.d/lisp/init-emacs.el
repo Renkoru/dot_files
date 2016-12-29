@@ -45,4 +45,7 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 ;; }}
 
+;; ssh-agent socket settings
+(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+
 (provide 'init-emacs)
