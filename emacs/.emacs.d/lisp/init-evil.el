@@ -161,7 +161,13 @@
   (define-key evil-normal-state-map (kbd "C-i") 'unpop-to-mark-command)
   (define-key evil-normal-state-map (kbd "C-o") 'jump-to-mark)
 
-  (use-package evil-nerd-commenter)
+  (use-package evil-nerd-commenter
+    :ensure t ;; for some reason cask resolvs this dependency bad
+
+    :bind (:map evil-normal-state-map
+                ("gcc" . evilnc-comment-or-uncomment-lines)
+                )
+    )
 
   ;; Evil settings
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -175,7 +181,7 @@
   (define-key evil-normal-state-map (kbd "[ SPC") (kbd "ko <escape> j"))
   (define-key evil-normal-state-map (kbd "] SPC") (kbd "o <escape> k"))
 
-  (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
+  ;; (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
   (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
   ;; (define-key evil-normal-state-map (kbd "gl") 'helm-occur)
   (define-key evil-normal-state-map (kbd "gl") 'helm-swoop)
@@ -188,6 +194,10 @@
   (define-key evil-normal-state-map (kbd "SPC s") 'avy-goto-char-2)
   ;; (define-key evil-normal-state-map (kbd "SPC ss") 'avy-goto-char-2)
   ;; (define-key evil-normal-state-map (kbd "SPC sh") 'helm-swoop)
+
+
+  (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
+  (define-key evil-insert-state-map (kbd "C-a") 'beginning-of-line)
 
   )
 

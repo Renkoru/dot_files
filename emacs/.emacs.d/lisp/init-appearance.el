@@ -37,6 +37,10 @@
     (sml/setup)))
 
 
+;; set font height
+(set-face-attribute 'default nil :height 100)
+
+
 
 (provide 'init-appearance)
 

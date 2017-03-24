@@ -29,12 +29,15 @@
     (add-hook 'flycheck-mode-hook #'flycheck-cask-setup)
     ))
 
+
 ;; (add-hook 'js-mode-hook
 ;;           (lambda () (flycheck-mode t)))
 
 ;; next eslint hook I copy from
 ;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
-(add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
+;; (add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
+;; (add-hook 'projectile-after-switch-project-hook 'lunaryorn-use-js-executables-from-node-modules)
+(add-hook 'js-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
 
 (defun mjs/setup-local-eslint ()
     "If ESLint found in node_modules directory - use that for flycheck.
@@ -43,6 +46,24 @@ Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
     (let ((local-eslint (expand-file-name "./node_modules/.bin/eslint")))
       (setq flycheck-javascript-eslint-executable
             (and (file-exists-p local-eslint) local-eslint))))
+
+;; Do not know what it does, really
+;; https://github.com/lunaryorn/.emacs.d/blob/master/lisp/lunaryorn-flycheck.el#L62
+(defun lunaryorn-use-js-executables-from-node-modules ()
+  "Set executables of JS checkers from local node modules."
+  (-when-let* ((file-name (buffer-file-name))
+               (root (locate-dominating-file file-name "node_modules"))
+               (module-directory (expand-file-name "node_modules" root)))
+    (pcase-dolist (`(,checker . ,module) '((javascript-jshint . "jshint")
+                                           (javascript-eslint . "eslint")
+                                           (javascript-jscs   . "jscs")))
+      (let ((package-directory (expand-file-name module module-directory))
+            (executable-var (flycheck-checker-executable-variable checker)))
+        (when (file-directory-p package-directory)
+          (set (make-local-variable executable-var)
+               (expand-file-name (concat "bin/" module ".js")
+                                 package-directory)))))))
+
 
 (flycheck-define-checker my-php
   "A PHP syntax checker using the PHP command line interpreter.

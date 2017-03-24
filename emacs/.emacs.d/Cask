@@ -14,6 +14,7 @@
 (depends-on "yasnippet")
 (depends-on "ace-window")
 (depends-on "dumb-jump")
+(depends-on "editorconfig")
 
 (depends-on "helm")
 (depends-on "helm-ag")
@@ -27,10 +28,11 @@
 (depends-on "flycheck-cask")
 
 (depends-on "company")
-(depends-on "company-web")
-(depends-on "company-tern")
+(depends-on "company-flx")
 (depends-on "company-quickhelp")
 (depends-on "company-statistics")
+(depends-on "company-web")
+(depends-on "company-tern")
 (depends-on "company-anaconda")
 
 (depends-on "magit")
@@ -58,10 +60,10 @@
 (depends-on "evil-nerd-commenter")
 
 (depends-on "python-mode")
-(depends-on "anaconda-mode")
+(depends-on "pyenv-mode")
+(depends-on "elpy")
 (depends-on "sphinx-doc")
 (depends-on "py-yapf")
-(depends-on "pyenv-mode")
 
 (depends-on "tern")
 (depends-on "js2-mode")

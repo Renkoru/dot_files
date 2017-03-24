@@ -86,6 +86,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias dc="docker-compose"
 
 # RPS1='$(vi_mode_prompt_info) ${return_code}'
 
@@ -103,8 +104,8 @@ local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
 # PROMPT='%m%{${fg_bold[magenta]}%} :: %{$reset_color%}%{${fg[green]}%}%3~ $(git_prompt_info)%{${fg_bold[$CARETCOLOR]}%}%#%{${reset_color}%} '
-PROMPT="╭─${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
-╰─%B$%b "
+PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
+> %B$%b "
 
 RPS1='$(vi_mode_prompt_info) ${return_code}'
 

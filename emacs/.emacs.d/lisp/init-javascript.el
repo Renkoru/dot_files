@@ -24,6 +24,8 @@
 (add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.react\\.js$" . js2-jsx-mode))
 
 
 (use-package js2-refactor
@@ -34,11 +36,15 @@
 
 (defun js-custom ()
   "JavaScript-mode-hook."
-  (setq js-indent-level 2)
-  (setq tab-width 2)
+  (setq js-indent-level 4)
+  (setq tab-width 4)
+
   )
 
+(setq-default js2-global-externs '("describe" "expect" "it" "jest" ))
+
 (add-hook 'js-mode-hook 'js-custom)
+
 
 (setq js2-highlight-level 3)
 

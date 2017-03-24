@@ -7,6 +7,7 @@
 ;; To look at:
 ;; ecukes (https://github.com/ecukes/ecukes)
 ;; 'wgrep' for refactoring  (https://github.com/mhayashi1120/Emacs-wgrep)
+;; 'indent-tools' for working with indent based formats (https://gitlab.com/emacs-stuff/indent-tools)
 
 ;; TODO:
 ;; Use other suggestor for https://github.com/jacktasia/dumb-jump or use ivy (contribute?)
@@ -24,7 +25,14 @@
  '(custom-safe-themes
    (quote
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
- )
+ '(package-selected-packages
+   (quote
+    (yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+ '(safe-local-variable-values
+   (quote
+    ((defun js-custom nil "JavaScript-mode-hook."
+            (setq js-indent-level 4)
+            (setq tab-width 4))))))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
@@ -185,6 +193,12 @@ Jump to one of the current isearch candidates.
 (setq tab-width 2 ; set tab-width
       c-default-style "stroustrup" ; indent style in CC mode
       css-indent-offset 2) ; indentation level in CSS mode
+
+
+;; Keep same configs for all team (all editors)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 
 (provide 'init)
