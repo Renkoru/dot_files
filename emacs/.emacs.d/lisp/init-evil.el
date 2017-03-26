@@ -22,7 +22,7 @@
 ;; http://stackoverflow.com/questions/3393834/how-to-move-forward-and-backward-in-emacs-mark-ring
 ;; oposite to pop-to-mark-command
 (defun unpop-to-mark-command ()
-       "Unpop off mark ring. Does nothing if mark ring is empty."
+       "Unpop off mark ring.  Does nothing if mark ring is empty."
        (interactive)
        (when mark-ring
          (let ((pos (marker-position (car (last mark-ring)))))
@@ -168,6 +168,8 @@
                 ("gcc" . evilnc-comment-or-uncomment-lines)
                 )
     )
+
+  (use-package evil-anzu)
 
   ;; Evil settings
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)

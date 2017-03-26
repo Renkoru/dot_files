@@ -58,6 +58,7 @@
 (depends-on "evil-matchit")
 (depends-on "vimish-fold")
 (depends-on "evil-nerd-commenter")
+(depends-on "evil-anzu") ;; displays current match and total matches.
 
 (depends-on "python-mode")
 (depends-on "pyenv-mode")
@@ -71,6 +72,7 @@
 (depends-on "js-doc")
 
 (depends-on "leuven-theme")
+(depends-on "ample-theme")
 (depends-on "rich-minority")
 (depends-on "smart-mode-line")
 (depends-on "nyan-mode")

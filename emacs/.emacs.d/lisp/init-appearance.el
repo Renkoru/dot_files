@@ -19,9 +19,16 @@
 ;;
 ;;; Code:
 
-(use-package leuven-theme
-  :config
-  (load-theme 'leuven t))
+;; (use-package leuven-theme
+;;   :config
+;;   (load-theme 'leuven t))
+
+(use-package ample-theme
+  :init (progn (load-theme 'ample t t)
+               (load-theme 'ample-flat t t)
+               (load-theme 'ample-light t t)
+               (enable-theme 'ample-light))
+  :defer t)
 
 (add-to-list 'default-frame-alist
              '(font . "Source Code Pro-10"))

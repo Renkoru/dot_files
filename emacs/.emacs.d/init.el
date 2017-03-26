@@ -27,7 +27,7 @@
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+    (evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
     ((defun js-custom nil "JavaScript-mode-hook."
