@@ -1,5 +1,10 @@
 ;;; init-appearance.el --- Appearance settings
 ;;; Commentary:
+
+;; Themes with good github repositories:
+;; - https://github.com/n3mo/cyberpunk-theme.el
+;; - https://github.com/greduan/emacs-theme-gruvbox
+
 ;;
 ;;  Good themes:
 ;;  - leuven-theme
@@ -20,15 +25,32 @@
 ;;; Code:
 
 ;; (use-package leuven-theme
-;;   :config
-;;   (load-theme 'leuven t))
+;;   :init (load-theme 'leuven t t)
+;;   :defer t)
 
-(use-package ample-theme
-  :init (progn (load-theme 'ample t t)
-               (load-theme 'ample-flat t t)
-               (load-theme 'ample-light t t)
-               (enable-theme 'ample-light))
+;; (use-package ample-theme
+;;   :init (progn (load-theme 'ample t t)
+;;                (load-theme 'ample-flat t t)
+;;                (load-theme 'ample-light t t))
+;;   :defer t)
+
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :defer t)
+
+;; (use-package solarized-theme
+;;   :defer t)
+
+(use-package material-theme
+  :init (progn
+          (load-theme 'material-light t))
+  :config
   :defer t)
+
+;; (enable-theme 'leuven t)
+;; (enable-theme 'ample-light)
+(progn
+  (enable-theme 'material-light)
+  (set-face-attribute 'region nil :background "gold"))
 
 (add-to-list 'default-frame-alist
              '(font . "Source Code Pro-10"))

@@ -24,8 +24,12 @@
 (add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
-(add-to-list 'auto-mode-alist '("\\.react\\.js$" . js2-jsx-mode))
+
+(use-package rjsx-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.react\\.js$" . rjsx-mode))
+  )
 
 
 (use-package js2-refactor
