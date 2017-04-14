@@ -30,7 +30,7 @@
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(package-selected-packages
    (quote
-    (rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+    (ivy-bibtex flyspell-correct-ivy swiper rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
     ((defun js-custom nil "JavaScript-mode-hook."
@@ -47,7 +47,7 @@
 (require 'cl) ; for loop
 
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/"))
 
 (add-to-list 'package-archives
              '("marmalade" . "https://marmalade-repo.org/packages/"))
@@ -82,8 +82,9 @@
 
 
 (require 'init-emacs)
-(require 'init-helm) ; -------------------------------------------------------------
 (require 'init-evil) ; -------------------------------------------------------------
+(require 'init-counse -------------------------------------------------------------
+;; (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
 (require 'init-appearance)
@@ -108,8 +109,8 @@
 
 
 (use-package projectile
-  :ensure helm
-  :init (progn (setq projectile-completion-system 'helm))
+  ;; :init (progn (setq projectile-completion-system 'helm))
+  :init (progn (setq projectile-completion-system 'ivy))
   :config (projectile-global-mode t)
   )
 

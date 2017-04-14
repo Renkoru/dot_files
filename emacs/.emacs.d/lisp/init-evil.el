@@ -92,9 +92,6 @@
       "l" 'avy-goto-char-in-line
       "h" 'avy-goto-char-in-line
       "g" 'magit-status
-      "f" 'helm-projectile-find-file
-      "r" 'helm-projectile-recentf
-      "a" 'helm-projectile-ag
       )
     )
 
@@ -162,7 +159,7 @@
   (define-key evil-normal-state-map (kbd "C-o") 'jump-to-mark)
 
   (use-package evil-nerd-commenter
-    :ensure t ;; for some reason cask resolvs this dependency bad
+    ;; :ensure t ;; for some reason cask resolvs this dependency bad
 
     :bind (:map evil-normal-state-map
                 ("gcc" . evilnc-comment-or-uncomment-lines)
@@ -186,7 +183,7 @@
   ;; (define-key evil-normal-state-map (kbd "gcc") 'evilnc-comment-or-uncomment-lines)
   (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
   ;; (define-key evil-normal-state-map (kbd "gl") 'helm-occur)
-  (define-key evil-normal-state-map (kbd "gl") 'helm-swoop)
+  ;; (define-key evil-normal-state-map (kbd "gl") 'helm-swoop)
 
   (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
   (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
