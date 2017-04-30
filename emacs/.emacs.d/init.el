@@ -83,12 +83,16 @@
 
 (require 'init-emacs)
 (require 'init-evil) ; -------------------------------------------------------------
-(require 'init-counse -------------------------------------------------------------
+(require 'init-counsel) ; -------------------------------------------------------------
 ;; (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
 (require 'init-appearance)
 (require 'init-flyspell)
+
+(use-package magit
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read))
 
 
 (use-package ace-window
@@ -96,12 +100,10 @@
   ("M-q" . ace-window))
 
 
-
-(use-package magit)
-
 (use-package dumb-jump
   :bind (("M-d" . dumb-jump-go)
          ("M-D" . dumb-jump-back))
+  :config (setq dumb-jump-selector 'ivy)
   )
 
 (use-package nyan-mode)

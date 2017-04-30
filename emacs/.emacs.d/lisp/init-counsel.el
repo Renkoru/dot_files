@@ -28,19 +28,40 @@
   ;;         helm-ag-use-agignore t)
   ;;   (helm-mode)
   ;;   (helm-projectile-on))
+  :init
+  (progn
+    (setq ivy-switch-buffer-faces-alist
+          '((emacs-lisp-mode . swiper-match-face-1)
+            (dired-mode . ivy-subdir)
+            (org-mode . org-level-4)
+            (rjsx-mode . rjsx-tag))))
+
   :config
   (progn
     (ivy-mode 1)
+    (setq counsel-yank-pop-separator (concat "\n" (make-string 70 ?-) "\n"))
     (setq ivy-use-virtual-buffers t)
     (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-re-builders-alist
+          ;; allow input not in order
+          '((t   . ivy--regex-ignore-order)))
+
+    (use-package counsel-projectile
+      :config
+      (counsel-projectile-on)
+
+      (evil-leader/set-key
+        "f" 'counsel-projectile-find-file
+        "a" 'counsel-projectile-rg
+        )
+      )
 ;; C-c p f counsel-projectile-find-file: find a project file,
 ;; C-c p d counsel-projectile-find-dir: find a project directory,
 ;; C-c p b counsel-projectile-switch-to-buffer: switch to a project buffer,
 ;; C-c p s s counsel-projectile-ag: search project files with ag,
 ;; C-c p p counsel-projectile-switch-project: switch to another project (see above).
     (evil-leader/set-key
-      "f" 'counsel-projectile-find-file
-      "a" 'counsel-projectile-ag
+      "y" 'counsel-yank-pop
       )
     )
   :bind (

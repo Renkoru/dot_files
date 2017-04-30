@@ -21,12 +21,13 @@
 (depends-on "helm-swoop")
 (depends-on "helm-projectile")
 
+(depends-on "smex") ;; ranking and remembering M-x
 (depends-on "counsel")
 (depends-on "counsel-projectile")
 
 (depends-on "flyspell")
-(depends-on "flyspell-correct-helm")
 (depends-on "flyspell-correct")
+(depends-on "flyspell-correct-ivy")
 (depends-on "flycheck")
 (depends-on "flycheck-cask")
 
@@ -96,4 +97,3 @@
 (depends-on "popwin")
 (depends-on "prodigy")
 (depends-on "s")
-(depends-on "smex")
