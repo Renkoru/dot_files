@@ -40,6 +40,10 @@
 ;; (use-package solarized-theme
 ;;   :defer t)
 
+;; be sure that you have '~/.local/share/fonts' folder before install
+;; after install setup fonts: M-x all-the-icons-install-fonts
+(use-package all-the-icons)
+
 (use-package material-theme
   :init (progn
           (load-theme 'material-light t))

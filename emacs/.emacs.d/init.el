@@ -30,7 +30,7 @@
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(package-selected-packages
    (quote
-    (ivy-bibtex flyspell-correct-ivy swiper rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+    (all-the-icons all-the-icons-dired unicode-fonts ivy-bibtex flyspell-correct-ivy swiper rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
     ((defun js-custom nil "JavaScript-mode-hook."
@@ -80,7 +80,6 @@
 (use-package json-mode)
 (use-package writeroom-mode)
 
-
 (require 'init-emacs)
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-counsel) ; -------------------------------------------------------------
@@ -89,6 +88,8 @@
 (require 'init-custom-functions)
 (require 'init-appearance)
 (require 'init-flyspell)
+
+(require 'init-neotree)
 
 (use-package magit
   :config
@@ -156,18 +157,7 @@
 (electric-indent-mode 1)
 (electric-pair-mode 1)
 
-
-(require 'avy)
-;; Bind key for isearch C-' to activate avy
-(avy-setup-default)
-
-(autoload 'avy-isearch "avy" "\
-Jump to one of the current isearch candidates.
-\(fn)" t nil)
-
-(setq avy-style 'at-full)
-
-
+(require 'init-avy) ; -------
 (require 'init-flycheck) ; -------
 (require 'init-emmet) ; ---------
 (require 'init-company) ; ------

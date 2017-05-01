@@ -7,6 +7,7 @@
 
 (depends-on "use-package")
 (depends-on "avy")
+(depends-on "all-the-icons")
 (depends-on "neotree")
 (depends-on "projectile")
 (depends-on "drag-stuff")
