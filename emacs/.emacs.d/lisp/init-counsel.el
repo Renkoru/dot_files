@@ -45,6 +45,7 @@
 
          :map evil-normal-state-map
          ("gl" . swiper)
+         ("go" . counsel-imenu)
          )
   )
 
