@@ -25,10 +25,18 @@
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+(defun js-jsx-indent-line-align-closing-bracket ()
+  "Workaround sgml-mode and align closing bracket with opening bracket"
+  (save-excursion
+    (beginning-of-line)
+    (when (looking-at-p "^ +\/?> *$")
+      (delete-char sgml-basic-offset))))
+
 (use-package rjsx-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
   (add-to-list 'auto-mode-alist '("\\.react\\.js$" . rjsx-mode))
+  (advice-add #'js-jsx-indent-line :after #'js-jsx-indent-line-align-closing-bracket)
   )
 
 

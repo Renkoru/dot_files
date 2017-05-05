@@ -40,6 +40,7 @@
 ;; Make smooth scroll {{
 ;; scrolling to always be a line at a time
 (setq scroll-margin 4)
+(setq hscroll-margin 0)
 (setq linum-delay t) ;; Delay updates to give Emacs a chance for other changes
 (setq scroll-conservatively 10000)
 (setq scroll-step 1) ;; keyboard scroll one line at a time

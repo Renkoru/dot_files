@@ -102,22 +102,6 @@
   (use-package evil-matchit
     :config (global-evil-matchit-mode 1))
 
-  (use-package neotree
-    :config
-    (global-set-key [f3] 'neotree-toggle)
-    (setq neo-theme 'nerd)
-    (add-hook 'neotree-mode-hook
-              (lambda ()
-                (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)
-                (define-key evil-normal-state-local-map (kbd "O") 'neotree-change-root)
-                (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)
-                (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-                (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-                (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-                (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
-                (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-vertical-split)))
-    )
-
   (use-package vimish-fold
     :bind (:map evil-visual-state-map ("zf" . vimish-fold)
 
