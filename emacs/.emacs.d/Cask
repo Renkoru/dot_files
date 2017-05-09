@@ -17,10 +17,9 @@
 (depends-on "dumb-jump")
 (depends-on "editorconfig")
 
-(depends-on "helm")
-(depends-on "helm-ag")
-(depends-on "helm-swoop")
-(depends-on "helm-projectile")
+;; (depends-on "helm")
+;; (depends-on "helm-ag")
+;; (depends-on "helm-swoop")
 
 (depends-on "smex") ;; ranking and remembering M-x
 (depends-on "counsel")
@@ -76,6 +75,11 @@
 (depends-on "rjsx-mode")
 (depends-on "js2-refactor")
 (depends-on "js-doc")
+
+(depends-on "elm-mode")
+(depends-on "flycheck-elm")
+
+(depends-on "alchemist")
 
 (depends-on "leuven-theme")
 (depends-on "ample-theme")

@@ -30,8 +30,6 @@
       :init (company-quickhelp-mode 1))
     (use-package company-statistics
       :init (company-statistics-mode 1))
-    (use-package company-flx-mode
-      :init (company-flx-mode +1))
     )
   )
 

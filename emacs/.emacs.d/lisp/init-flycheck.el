@@ -25,8 +25,6 @@
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))
-
-    (add-hook 'flycheck-mode-hook #'flycheck-cask-setup)
     ))
 
 

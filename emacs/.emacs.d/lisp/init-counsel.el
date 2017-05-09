@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
+;; not working good for current docker-mode setup
+;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 
 (use-package counsel
   :init
@@ -20,22 +21,11 @@
 
   :config
   (ivy-mode 1)
-  (all-the-icons-ivy-setup)
+  ;; (all-the-icons-ivy-setup)
 
   (evil-leader/set-key
     "y" 'counsel-yank-pop
     )
-
-  (use-package counsel-projectile
-    :config
-    (counsel-projectile-on)
-
-    (evil-leader/set-key
-      "f" 'counsel-projectile-find-file
-      "a" 'counsel-projectile-rg
-      )
-    )
-
 
   :bind (
          ("C-q" . ivy-switch-buffer)
@@ -47,6 +37,16 @@
          ("gl" . swiper)
          ("go" . counsel-imenu)
          )
+  )
+
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-on)
+
+  (evil-leader/set-key
+    "f" 'counsel-projectile-find-file
+    "a" 'counsel-projectile-rg
+    )
   )
 
 

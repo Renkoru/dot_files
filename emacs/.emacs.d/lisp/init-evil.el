@@ -162,7 +162,6 @@
   (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
 
   (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
-  (define-key evil-normal-state-map (kbd "tor") 'rainbow-delimiters-mode)
 
   (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
   (define-key evil-insert-state-map (kbd "C-a") 'beginning-of-line)
@@ -170,8 +169,13 @@
   )
 
 
-(require 'rainbow-delimiters)
-(add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+
+  :bind (:map evil-normal-state-map
+         ("tor" . rainbow-delimiters-mode)))
+
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
 ; (global-rainbow-delimiters-mode)
 
