@@ -126,7 +126,7 @@
 
 
   (setq evil-emacs-state-cursor '("#8b0000" box))
-  (setq evil-normal-state-cursor '("#Adff2f" box))
+  (setq evil-normal-state-cursor '("ForestGreen" box))
   (setq evil-visual-state-cursor '("orange" box))
   (setq evil-insert-state-cursor '("#8b0000" bar))
   (setq evil-replace-state-cursor '("#8b0000" bar))

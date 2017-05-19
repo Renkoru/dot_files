@@ -1,5 +1,10 @@
 ;;; init-javascript.el --- javascript
+
 ;;; Commentary:
+
+;; Investigate this package and fork and update it to use ripgrep and ivy/counsel to select cantidates
+;; https://github.com/nicolaspetton/xref-js2
+
 ;;; Code:
 
 
@@ -19,10 +24,12 @@
   (add-hook 'js-mode-hook (lambda () (tern-mode t))))
 
 (use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode))
+  :mode ("\\.js\\'" . js2-mode)
+  :config
+  (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
+  (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+  )
 
-(add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 (defun js-jsx-indent-line-align-closing-bracket ()
@@ -40,6 +47,7 @@
   )
 
 
+;; Not usable for now, investigate package, maybe found some usefull things
 (use-package js2-refactor
   :config
   (add-hook 'js2-mode-hook #'js2-refactor-mode))

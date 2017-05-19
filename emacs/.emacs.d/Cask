@@ -16,6 +16,7 @@
 (depends-on "ace-window")
 (depends-on "dumb-jump")
 (depends-on "editorconfig")
+(depends-on "wgrep")
 
 ;; (depends-on "helm")
 ;; (depends-on "helm-ag")
@@ -72,8 +73,8 @@
 
 (depends-on "tern")
 (depends-on "js2-mode")
-(depends-on "rjsx-mode")
 (depends-on "js2-refactor")
+(depends-on "rjsx-mode")
 (depends-on "js-doc")
 
 (depends-on "elm-mode")

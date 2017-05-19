@@ -83,6 +83,7 @@
 
 (use-package json-mode)
 (use-package writeroom-mode)
+(use-package wgrep)
 
 (require 'init-emacs)
 (require 'init-evil) ; -------------------------------------------------------------
