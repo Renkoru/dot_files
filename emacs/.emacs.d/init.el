@@ -1,20 +1,6 @@
 ;;; init.el --- Main file of Emacs settings
 ;;; Commentary:
 
-;; To test:
-;; 1. writeroom-mode
-
-;; To look at:
-;; ecukes (https://github.com/ecukes/ecukes)
-;; 'wgrep' for refactoring  (https://github.com/mhayashi1120/Emacs-wgrep)
-;; 'indent-tools' for working with indent based formats (https://gitlab.com/emacs-stuff/indent-tools)
-
-;; TODO:
-;; Use other suggestor for https://github.com/jacktasia/dumb-jump or use ivy (contribute?)
-
-;; You need to install Cask (http://cask.readthedocs.io/) on your system
-;; And do: cask install
-
 ;;; Code:
 
 (custom-set-variables
@@ -84,6 +70,7 @@
 (use-package json-mode)
 (use-package writeroom-mode)
 (use-package wgrep)
+(use-package restclient)
 
 (require 'init-emacs)
 (require 'init-evil) ; -------------------------------------------------------------
@@ -94,6 +81,7 @@
 (require 'init-custom-functions)
 (require 'init-flyspell)
 (require 'init-docker)
+(require 'init-hydra)
 
 (require 'init-neotree)
 

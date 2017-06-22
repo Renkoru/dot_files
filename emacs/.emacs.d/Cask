@@ -17,6 +17,8 @@
 (depends-on "dumb-jump")
 (depends-on "editorconfig")
 (depends-on "wgrep")
+(depends-on "restclient")
+(depends-on "hydra")
 
 ;; (depends-on "helm")
 ;; (depends-on "helm-ag")
