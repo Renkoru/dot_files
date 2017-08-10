@@ -179,6 +179,21 @@
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
 ; (global-rainbow-delimiters-mode)
 
+(use-package evil-goggles
+  :config
+  (setq evil-goggles-duration 0.100)
+  (evil-goggles-mode)
+  (custom-set-faces
+   '(evil-goggles-delete-face ((t (:inherit 'smerge-refined-removed))))
+   '(evil-goggles-paste-face ((t (:inherit 'smerge-refined-added)))))
+
+  ;; optionally use diff-mode's faces; as a result, deleted text
+  ;; will be highlighed with `diff-removed` face which is typically
+  ;; some red color (as defined by the color theme)
+  ;; other faces such as `diff-added` will be used for other actions
+  ;; (evil-goggles-use-diff-faces)
+  )
+
 
 ; (define-key evil-normal-state-map "c" nil)
 ; (define-key evil-motion-state-map "cu" 'universal-argument)

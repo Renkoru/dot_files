@@ -66,6 +66,7 @@
 (depends-on "vimish-fold")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-anzu") ;; displays current match and total matches.
+(depends-on "evil-goggles")
 
 (depends-on "python-mode")
 (depends-on "pyenv-mode")
