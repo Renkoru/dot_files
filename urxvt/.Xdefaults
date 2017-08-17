@@ -4,7 +4,7 @@
 /* Couleurs Tango */
 URxvt.foreground: #EEEEEC
 ! URxvt.foreground: #C8C8C8
-URxvt.background: #323232
+! URxvt.background: #323232
 URxvt.color0:     #2E3436
 URxvt.color1:     #CC0000
 URxvt.color2:     #4E9A06
@@ -23,7 +23,8 @@ URxvt.color14:    #34E2E2
 URxvt.color15:    #EEEEEC
 
 URxvt*foreground:White
-URxvt*background:Black
+! URxvt*background:Black
+URxvt*background: rgba:0000/0000/0000/cccc
 
 urxvt*cursorUnderline: 1 ! cursor position
 urxvt*letterspace: -5    ! space between letters
@@ -33,9 +34,8 @@ urxvt*scrollBar: true
 URxvt.scrollstyle: plain
 urxvt*depth: 32
 urxvt*internalBorder: 5
-
-URxvt.transparent: true
-URxvt.shading:     10
+URxvt.transparent:   true
+URxvt.shading:       20
 URxvt.fading:      40
 !urxvt*fadeColor: #000000 ! цвет тени
 
