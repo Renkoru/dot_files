@@ -19,6 +19,7 @@
 (depends-on "wgrep")
 (depends-on "restclient")
 (depends-on "hydra")
+(depends-on "jump-tree")
 
 ;; (depends-on "helm")
 ;; (depends-on "helm-ag")

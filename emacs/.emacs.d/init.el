@@ -163,6 +163,36 @@
 
 (use-package alchemist)
 
+  ;; List of possible 'jump-tree-pos-list-record-commands'
+  ;; (save-buffer
+  ;;           beginning-of-buffer
+  ;;           end-of-buffer backward-up-list
+  ;;           beginning-of-defun end-of-defun
+  ;;           unimacs-move-beginning-of-line unimacs-move-end-of-line
+  ;;           unimacs-move-beginning-of-window unimacs-move-end-of-window
+  ;;           find-function find-variable
+  ;;           mark-defun mark-whole-buffer
+  ;;           avy-goto-char avy-goto-char-2
+  ;;           ensime-edit-definition
+  ;;           ensime-edit-definition-with-fallback
+  ;;           isearch-forward)
+
+(use-package jump-tree
+  :after evil
+  :bind (:map evil-normal-state-map
+              ("C-o" . jump-tree-jump-prev)
+              ("C-i" . jump-tree-jump-next)
+              ("C-x j" . jump-tree-visualize))
+  :config
+  (global-jump-tree-mode 1)
+
+
+  (setq jump-tree-pos-list-skip-commands
+        '(self-insert-command counsel-M-x execute-extended-command))
+
+  (setq jump-tree-pos-list-record-commands
+        '(avy-goto-line-below avy-goto-line-above evil-avy-goto-char-timer evil-avy-goto-char-in-line)))
+
 
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
