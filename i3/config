@@ -9,6 +9,24 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+set $mod Mod4
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
 # Mod4 - Win key. Mod1 - Alt key
 set $mod Mod4
 
@@ -23,15 +41,41 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # font pango:Myriad Pro 9
 # font pango:Inconsolata 12
 # font pango:Source Code Pro 9
-font pango:Monospace 10
+font pango:SFNS Display 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# i3-gaps settings
+for_window [class="^.*"] border pixel 0
+
+gaps inner 5
+gaps outer 10
+
+workspace 1 gaps outer 0
+
+# bindsym $mod+s gaps inner current plus 5
+# bindsym $mod+Shift+s gaps inner current minus 5
+
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+g gaps inner current set 7; gaps outer current set 10
+
+bindsym $mod+Shift+o resize shrink width 10 px
+bindsym $mod+Shift+n resize shrink height 10 px
+bindsym $mod+Shift+p resize grow height 10 px
+bindsym $mod+Shift+i resize grow width 10 px
+
+bindsym $mod+Ctrl+h move left 30
+bindsym $mod+Ctrl+j move down 30
+bindsym $mod+Ctrl+k move up 30
+bindsym $mod+Ctrl+l move right 30
+
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec urxvt
-exec --no-startup-id feh --bg-max ~/downloads/imgs/background.png
+exec --no-startup-id feh --bg-scale ~/Pictures/wallps/0000walp.png
+#Composite manager:
+exec --no-startup-id compton
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -41,17 +85,21 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -p "run:"'
+bindsym $mod+d exec rofi -show run -lines 10 -font "System San Francisco Display 14" -color-window #002b37 #002b37 #003642
+# -color-normal: #002b37, #819396, #003643, #008ed4, #ffffff
+# -color-active: #002b37, #008ed4, #003643, #008ed4, #66c6ff
+# -color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
 
 # Swap Left Control and Caps Lock
-setxkbmap -option ctrl:swapcaps
+exec --no-startup-id ~/dev-tools/dot_files/scripts/keyboard.sh
 # Make Caps Lock a Control key
-setxkbmap -option ctrl:nocaps
+# exec --no-startup-id setxkbmap -option ctrl:nocaps
 
 # Change keyboard layout. en, ru
-setxkbmap -layout us,ru
-setxkbmap -option 'grp:alt_shift_toggle'
+# exec --no-startup-id setxkbmap -layout us,ru
+# exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
 
 # change focus
 bindsym $mod+h focus left
@@ -106,10 +154,10 @@ bindsym $mod+a focus parent
 #
 
 # Name the workspaces
-set $tag1 "1: www"
-set $tag2 "2: dev"
-set $tag3 "3: console"
-set $tag4 "4: mc"
+set $tag1 "1: "
+set $tag2 "2: "
+set $tag3 "3: "
+set $tag4 "4: "
 set $tag5 "5: misc"
 set $tag6 "6: temp"
 
@@ -186,6 +234,13 @@ bindsym $mod+r mode "resize"
 bindsym $mod+F1 exec amixer set Master 10%-
 bindsym $mod+F2 exec amixer set Master 10%+
 
+# Window Colours
+#                         border  background text    indicator
+  client.focused          $base01 $base01    $base07 $base0F
+  client.focused_inactive $base02 $base02    $base03 $base0F
+  client.unfocused        $base02 $base02    $base03 $base0F
+  client.urgent           $base02 $base08    $base00 $base0F
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -195,17 +250,16 @@ bindsym $mod+F2 exec amixer set Master 10%+
 # }
 bar {
     colors {
-        # Whole color settings
-        background #000000
-        statusline #ffffff
-        separator  #666666
-
-        # Type             border  background font
-        focused_workspace  #008fff #007fff #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #aa0000 #990000 #ffffff
+              separator $base03
+              background $base01
+              statusline $base05
+#                        border  background text
+              focused_workspace  $base01 $base01    $base07
+              active_workspace   $base01 $base02    $base03
+              inactive_workspace $base01 $base01    $base03
+              urgent_workspace   $base01 $base01    $base08
     }
+
     # i3bar position
     position top
     # Using custom i3status.conf
