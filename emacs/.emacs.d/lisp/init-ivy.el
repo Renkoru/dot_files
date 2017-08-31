@@ -5,7 +5,8 @@
 ;; not working good for current docker-mode setup
 ;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 
-(use-package counsel
+(use-package ivy
+  :ensure t
   :init
   (setq ivy-switch-buffer-faces-alist
         '((emacs-lisp-mode . swiper-match-face-1)
@@ -39,6 +40,8 @@
          )
   )
 
+(use-package ivy-hydra)
+
 (use-package counsel-projectile
   :config
   (counsel-projectile-on)
@@ -50,5 +53,5 @@
   )
 
 
-(provide 'init-counsel)
+(provide 'init-ivy)
 ;;; init-counsel.el ends here

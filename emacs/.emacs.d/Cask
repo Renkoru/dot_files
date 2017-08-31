@@ -18,7 +18,6 @@
 (depends-on "editorconfig")
 (depends-on "wgrep")
 (depends-on "restclient")
-(depends-on "hydra")
 (depends-on "jump-tree")
 
 ;; (depends-on "helm")
@@ -26,7 +25,9 @@
 ;; (depends-on "helm-swoop")
 
 (depends-on "smex") ;; ranking and remembering M-x
-(depends-on "counsel")
+(depends-on "hydra") ;; should be installed before ivy
+(depends-on "ivy") ;; not working with cask for some reason
+(depends-on "ivy-hydra")
 (depends-on "counsel-projectile")
 
 (depends-on "flyspell")

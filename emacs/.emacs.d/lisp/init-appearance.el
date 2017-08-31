@@ -42,7 +42,7 @@
 
 ;; be sure that you have '~/.local/share/fonts' folder before install
 ;; after install setup fonts: M-x all-the-icons-install-fonts
-(use-package all-the-icons)
+(use-package all-the-icons :after ivy)
 
 (use-package material-theme
   :init (progn

@@ -16,7 +16,7 @@
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(package-selected-packages
    (quote
-    (editorconfig elm-mode company-flx-mode all-the-icons all-the-icons-dired unicode-fonts ivy-bibtex flyspell-correct-ivy swiper rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol helm-swoop helm-projectile helm-ag git-timemachine git-gutter flyspell-correct-helm flycheck-cask expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+    (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
     ((defun js-custom nil "JavaScript-mode-hook."
@@ -75,13 +75,13 @@
 (require 'init-emacs)
 (require 'init-evil) ; -------------------------------------------------------------
 (require 'init-appearance)
-(require 'init-counsel) ; -------------------------------------------------------------
+(require 'init-hydra)
+(require 'init-ivy) ; -------------------------------------------------------------
 ;; (require 'init-helm) ; -------------------------------------------------------------
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
 (require 'init-flyspell)
 (require 'init-docker)
-(require 'init-hydra)
 
 (require 'init-neotree)
 
