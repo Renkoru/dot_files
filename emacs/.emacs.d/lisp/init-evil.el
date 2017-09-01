@@ -94,8 +94,6 @@
 
   (define-key evil-normal-state-map (kbd "go") 'helm-semantic-or-imenu)
 
-  (define-key evil-normal-state-map (kbd "tol") 'linum-mode)
-
   (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
   (define-key evil-insert-state-map (kbd "C-a") 'beginning-of-line)
 

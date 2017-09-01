@@ -64,8 +64,6 @@
   )
 
 ;; ---------------------------------------------------------------------------------------------
-(setq whitespace-style '(face tabs trailing tab-mark))
-(global-whitespace-mode 1)
 
 (use-package json-mode)
 (use-package writeroom-mode)
