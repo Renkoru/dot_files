@@ -23,19 +23,20 @@
   :config
   (ivy-mode 1)
   ;; (all-the-icons-ivy-setup)
+  (setq counsel-grep-base-command
+        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
   (evil-leader/set-key
-    "y" 'counsel-yank-pop
-    )
+    "y" 'counsel-yank-pop)
 
   :bind (
          ("C-q" . ivy-switch-buffer)
          ("M-x" . counsel-M-x)
          ("M-f" . counsel-find-file)
-         ("C-c C-r" . ivy-resume)
+         ("C-c C-i" . ivy-resume)
 
          :map evil-normal-state-map
-         ("gl" . swiper)
+         ("gl" . counsel-grep-or-swiper)
          ("go" . counsel-imenu)
          )
   )

@@ -1,0 +1,83 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:jsx-control-statements/recommended"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "jsx-control-statements"
+    ],
+    "rules": {
+        "complexity": [
+            "warn"
+        ],
+        "id-blacklist": ["warn", "margin", "padding", "font", "background", "kevin"],
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-var": [
+            "warn"
+        ],
+        "prefer-const": [
+            "warn"
+        ],
+        "max-depth": [
+            "warn"
+        ],
+        "comma-style": [
+            "error",
+            "last"
+        ],
+        "react/sort-prop-types": [
+            "warn"
+        ],
+        "react/prefer-stateless-function": [
+            "warn"
+        ],
+        "react/prefer-es6-class": [
+            "warn"
+        ],
+        "react/no-unused-prop-types": [
+            "warn"
+        ],
+        "react/no-deprecated": [
+            "warn"
+        ],
+        "react/display-name": [
+            "warn"
+        ]
+    },
+    "globals": {
+        "jest": false,
+        "describe": false,
+        "expect": false,
+        "it": false,
+        "afterAll": false,
+        "afterEach": false,
+        "beforeAll": false,
+        "beforeEach": false,
+        "require": false,
+        "test": false
+    }
+}

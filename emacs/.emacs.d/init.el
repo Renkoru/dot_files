@@ -25,8 +25,11 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
+;; use straight.el instead of Cask
+(require 'init-straight)
+
+;; (require 'cask "~/.cask/cask.el")
+;; (cask-initialize)
 
 ;; package manager
 (require 'package)
