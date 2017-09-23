@@ -49,4 +49,9 @@
 ;; ssh-agent socket settings
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
+(setq browse-url-browser-function
+      '(("." . browse-url-generic)))
+(setq shr-external-browser 'browse-url-generic)
+(setq browse-url-generic-program (executable-find "qutebrowser"))
+
 (provide 'init-emacs)
