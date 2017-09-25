@@ -25,10 +25,12 @@
   (defhydra hydra-toggle (:color pink :idle 0.8)
     "
     _l_ linum-mode:       %`linum-mode
+    _g_ git-gutter:       %`git-gutter-mode
     _w_ whitespace-mode:   %`whitespace-mode
     _s_ flyspell-mode:   %`flyspell-mode
     "
     ("l" linum-mode nil)
+    ("g" git-gutter-mode nil)
     ("w" whitespace-mode nil)
     ("s" hydra-flyspell/body :exit t)
     ("q" nil "quit"))
