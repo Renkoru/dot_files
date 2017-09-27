@@ -25,6 +25,7 @@ black = #000000
 grey = #2B2B2B
 aqua = #A9B7C6
 blue = #6897BB
+deepskyblue = #00bfff
 white = #FFFFFF
 red = #A02929
 purple = #664975
@@ -149,7 +150,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %name%
 label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-underline = ${colors.deepskyblue}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor

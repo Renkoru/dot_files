@@ -4,3 +4,4 @@
 /emacs/.emacs.d/company-statistics-cache.el
 .cask/
 smex-items
+*straight/

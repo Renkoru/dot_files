@@ -5,7 +5,7 @@
 
 
 
-(use-package elm-mode)
+(straight-use-package 'elm-mode)
 
 (with-eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
@@ -15,6 +15,11 @@
 
 (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
 
+
+(straight-use-package 'flycheck-elm)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
 
 (provide 'init-elm)
 ;;; init-elm.el ends here

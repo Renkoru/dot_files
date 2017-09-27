@@ -96,9 +96,6 @@
 (straight-use-package 'rjsx-mode)
 (straight-use-package 'js-doc)
 
-(straight-use-package 'elm-mode)
-(straight-use-package 'flycheck-elm)
-
 (straight-use-package 'alchemist)
 
 (straight-use-package 'leuven-theme)
@@ -115,13 +112,16 @@
 (straight-use-package 'dash)
 (straight-use-package 'exec-path-from-shell)
 (straight-use-package 'expand-region)
-(straight-use-package 'f)
 (straight-use-package 'htmlize)
 (straight-use-package 'idle-highlight-mode)
 (straight-use-package 'pallet)
 (straight-use-package 'popwin)
 (straight-use-package 'prodigy)
+
+(straight-use-package 'f)
 (straight-use-package 's)
+(straight-use-package 'let-alist)
+
 
 
 (provide 'init-straight)
