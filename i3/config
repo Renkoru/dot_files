@@ -93,7 +93,7 @@ bindsym $mod+d exec rofi -show run -lines 10 -font "System San Francisco Display
 # -color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
 
 # Swap Left Control and Caps Lock
-exec --no-startup-id ~/dev-tools/dot_files/scripts/keyboard.sh
+exec --no-startup-id "~/dev_tools/dot_files/scripts/keyboard.sh"
 # Make Caps Lock a Control key
 # exec --no-startup-id setxkbmap -option ctrl:nocaps
 
@@ -250,7 +250,7 @@ bindsym $mod+F2 exec amixer set Master 5%+
 #         status_command i3status
 # #         status_command i3status | dzen2 -fg white -ta r -w 1280 -fn "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1"
 # }
-exec_always --no-startup-id "$HOME/dev-tools/dot_files/i3/polybar/launch.sh"
+exec_always --no-startup-id "~/dev_tools/dot_files/i3/polybar/launch.sh"
 
 # bar {
 #     colors {
