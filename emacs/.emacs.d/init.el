@@ -162,6 +162,7 @@
 (require 'init-python) ; -----
 (require 'init-web) ; -----------
 (require 'init-elm) ; -----
+(require 'init-org) ; -----
 
 (use-package alchemist)
 
@@ -225,9 +226,6 @@
   :config
   (editorconfig-mode 1))
 
-
-;; Org-mode settings
-(setq org-src-fontify-natively t)
 
 
 (provide 'init)

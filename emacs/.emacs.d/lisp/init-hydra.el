@@ -25,12 +25,10 @@
   (defhydra hydra-toggle (:color pink :idle 0.8)
     "
     _l_ linum-mode:       %`linum-mode
-    _g_ git-gutter:       %`git-gutter-mode
     _w_ whitespace-mode:   %`whitespace-mode
     _s_ flyspell-mode:   %`flyspell-mode
     "
     ("l" linum-mode nil)
-    ("g" git-gutter-mode nil)
     ("w" whitespace-mode nil)
     ("s" hydra-flyspell/body :exit t)
     ("q" nil "quit"))
@@ -41,9 +39,32 @@
     ("f" flyspell-correct-word-generic "fix")
     ("q" nil "quit"))
 
+  (defhydra hydra-git-toggle (:color pink)
+    "
+    _g_ git-gutter:       %`git-gutter-mode
+    "
+    ("g" git-gutter-mode nil)
+    ("q" nil "quit"))
+
+  (defhydra hydra-org (:color pink)
+    "
+    _L_ right _H_ left
+    _K_ up _J_ down
+    _c_ shift right _C_ shift left
+    "
+    ("H" org-metaleft)
+    ("L" org-metaright)
+    ("K" org-metaup)
+    ("J" org-metadown)
+    ("c" org-shiftright)
+    ("C" org-shiftleft)
+    ("q" nil "quit"))
+
   (evil-leader/set-key "cf" 'hydra-zoom/body)
-  (evil-leader/set-key "mc" 'hydra-mc/body)
+  (evil-leader/set-key "cc" 'hydra-mc/body)
   (evil-leader/set-key "t" 'hydra-toggle/body)
+  (evil-leader/set-key "g" 'hydra-git-toggle/body)
+  (evil-leader/set-key "o" 'hydra-org/body)
 )
 
 (provide 'init-hydra)
