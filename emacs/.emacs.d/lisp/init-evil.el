@@ -24,7 +24,6 @@
       "w" 'save-buffer
       "q" 'kill-buffer-and-window
       "=" (kbd "C-w =")
-      "g" 'magit-status
       )
     )
 

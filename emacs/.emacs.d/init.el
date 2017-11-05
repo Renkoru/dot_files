@@ -88,7 +88,8 @@
 
 (use-package magit
   :config
-  (setq magit-completing-read-function 'ivy-completing-read))
+  (setq magit-completing-read-function 'ivy-completing-read)
+  (evil-leader/set-key "m" 'magit-status))
 
 
 (use-package ace-window
