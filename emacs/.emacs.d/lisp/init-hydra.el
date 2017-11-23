@@ -11,14 +11,16 @@
     ("i" text-scale-increase "increase")
     ("d" text-scale-decrease "decrease"))
 
-  (defhydra hydra-mc (:pre (evil-mc-pause-cursors)
+  (defhydra hydra-mc (:color pink
+                      :pre (evil-mc-pause-cursors)
                       :post (evil-mc-resume-cursors))
     "multiple cursors"
-    ("l" forward-char)
-    ("h" backward-char)
-    ("j" next-line)
-    ("k" previous-line)
+    ("H" highlight-symbol-at-point "highlight")
     ("c" evil-mc-make-cursor-here "create cursor")
+    ("s" evil-mc-skip-and-goto-next-match "skip and next")
+    ("S" evil-mc-skip-and-goto-prev-match "skip and prev")
+    ("n" evil-mc-make-and-goto-next-match "make and next")
+    ("p" evil-mc-make-and-goto-prev-match "make and prev")
     ("q" nil "quit"))
 
   (defvar whitespace-mode t)
@@ -51,6 +53,7 @@
     _L_ right _H_ left
     _K_ up _J_ down
     _c_ shift right _C_ shift left
+    _t_ set tag
     "
     ("H" org-metaleft)
     ("L" org-metaright)
@@ -58,6 +61,7 @@
     ("J" org-metadown)
     ("c" org-shiftright)
     ("C" org-shiftleft)
+    ("t" org-set-tags-command :exit t)
     ("q" nil "quit"))
 
   (evil-leader/set-key "cf" 'hydra-zoom/body)

@@ -15,9 +15,10 @@
          (file "~/.emacs.d/org-templates/work-note.orgcapture"))
         ))
 
+(setq org-log-done 'time)
+(setq org-log-done 'note)
 
-
-(evil-leader/set-key "c" 'org-capture)
+(evil-leader/set-key "z" 'org-capture)
 
 
 (provide 'init-org)

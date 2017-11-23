@@ -1,6 +1,7 @@
 ;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
+(eval-when-compile (require 'use-package))
 
 
 (use-package evil
@@ -34,7 +35,10 @@
     :config (global-evil-visualstar-mode t))
 
   (use-package evil-mc
-    :config (global-evil-mc-mode 1))
+    :config
+    (global-evil-mc-mode 1)
+    (unbind-key "C-n" evil-normal-state-map)
+    (unbind-key "C-p" evil-normal-state-map))
 
   (use-package evil-matchit
     :config (global-evil-matchit-mode 1))
@@ -104,10 +108,10 @@
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 
   :bind (:map evil-normal-state-map
-         ("tor" . rainbow-delimiters-mode)))
+              ("tor" . rainbow-delimiters-mode)))
 
 (global-set-key [(shift f12)] 'highlight-symbol-prev)
-; (global-rainbow-delimiters-mode)
+                                        ; (global-rainbow-delimiters-mode)
 
 (use-package evil-goggles
   :config
@@ -134,7 +138,6 @@
 ;; This hook add some sacrifice mark to reset it.
 ;; Temporary disabled be cause of bug: Visual Vim select at the end and at the start of buffer
 ;; (add-hook 'activate-mark-hook 'push-mark-no-activate)
-
 
 
 

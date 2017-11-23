@@ -147,6 +147,8 @@
   ("C-<f12>" . highlight-symbol)
   ("<f12>" . highlight-symbol-next)
   ("S-<f12>" . highlight-symbol-prev)
+  :config
+  (evil-leader/set-key "h" 'highlight-symbol-at-point)
   )
 
 ;; make return key also do indent, globally
