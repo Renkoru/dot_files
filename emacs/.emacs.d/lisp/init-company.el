@@ -22,8 +22,8 @@
 
     (use-package company-web
       :init (add-to-list 'company-backends 'company-web-html))
-    (use-package company-tern
-      :init (add-to-list 'company-backends '(company-tern :with company-capf)))
+    ;; (use-package company-tern
+    ;;   :init (add-to-list 'company-backends '(company-tern :with company-capf)))
     (use-package company-anaconda
       :init (add-to-list 'company-backends '(company-anaconda :with company-capf)))
     (use-package company-quickhelp

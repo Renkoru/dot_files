@@ -1,15 +1,22 @@
 * Third-party dependencies
 
 ** Javascript
-   - *jshint* for flycheck 'npm install -g jshint'
+   - *eslint* for flycheck. Installation: 'npm install eslint'
 
 ** Python
    - pyenv TODO: add commands to install pyenv on ubuntu or smth
 
 
-* General
+* Cheats
+** Commands
+- *magit-log-buffer-file*
+  :Source: http://irreal.org/blog/?p=6754
+- *magit-file-popup*
+- *magit-find-file* Find state of a file in any branch.
+  You could diff it if you want Find state of a file in any branch. You could diff it if you want.
 
-** To look at:
+* Interesting packages to look at
+- https://github.com/Fuco1/smartparens Dealing with parens
 - !https://github.com/emacs-lsp/lsp-mode [UNDER DEVELOPMENT] good integration with code (Python, ...)?
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
 - https://github.com/Wilfred/helpful show emacs helps
@@ -18,8 +25,9 @@
 - https://github.com/hlissner/.emacs.d good place to look at evil/vim setup for emacs
 - https://github.com/hlissner/evil-multiedit multiple cursors if evil-mc not enougth
 - [[https://github.com/Lindydancer/face-explorer][Face explorer]] some usefull functions to work with faces
+- https://github.com/ninrod/exato To look at it later
 
-** Already using, but new in it
+* Installed but not full configured/used packages
 - https://github.com/pashky/restclient.el rest client. Try it! )
 - writeroom-mode
 
@@ -37,10 +45,6 @@
 ;; You need to install Cask (http://cask.readthedocs.io/) on your system
 ;; And do: cask install
 
-
-* Cheatsheet
-
-Disable evil mode
 
 * TODOs
 
@@ -65,3 +69,7 @@ Disable evil mode
 )
  (message (concat (nth 0 myvar) "-" (nth 1 myvar)))
 )
+
+** TODO Fix company-files with company-tide (javascript) working
+
+** TODO Add new surround text objects (evil-surround)

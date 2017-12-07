@@ -1,7 +1,6 @@
 ;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
-(eval-when-compile (require 'use-package))
 
 
 (use-package evil

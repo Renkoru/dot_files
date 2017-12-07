@@ -6,7 +6,6 @@
 ;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 
 (use-package ivy
-  :ensure t
   :init
   (setq ivy-switch-buffer-faces-alist
         '((emacs-lisp-mode . swiper-match-face-1)
@@ -26,8 +25,7 @@
   (setq counsel-grep-base-command
         "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
-  (evil-leader/set-key
-    "y" 'counsel-yank-pop)
+  (evil-leader/set-key "y" 'counsel-yank-pop)
 
   :bind (
          ("C-q" . ivy-switch-buffer)

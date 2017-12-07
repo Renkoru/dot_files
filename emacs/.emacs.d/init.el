@@ -82,14 +82,10 @@
 (require 'init-yasnippet) ; should be initializes before auto-complete
 (require 'init-custom-functions)
 (require 'init-flyspell)
+(require 'init-vcs) ; -------------------------------------------------------------
 (require 'init-docker)
 
 (require 'init-neotree)
-
-(use-package magit
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read)
-  (evil-leader/set-key "m" 'magit-status))
 
 
 (use-package ace-window
@@ -142,6 +138,7 @@
 
 
 (use-package highlight-symbol
+  :demand
   :bind
   ("M-<f12>" . highlight-symbol-mode) ;; highlight symbol under a crusor
   ("C-<f12>" . highlight-symbol)
