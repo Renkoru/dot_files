@@ -46,20 +46,6 @@ font pango:SFNS Display 11
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# i3-gaps settings
-for_window [class="^.*"] border pixel 0
-
-gaps inner 5
-gaps outer 10
-
-workspace 1 gaps outer 0
-
-# bindsym $mod+s gaps inner current plus 5
-# bindsym $mod+Shift+s gaps inner current minus 5
-
-bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+g gaps inner current set 7; gaps outer current set 10
-
 bindsym $mod+Shift+o resize shrink width 10 px
 bindsym $mod+Shift+n resize shrink height 10 px
 bindsym $mod+Shift+p resize grow height 10 px
@@ -160,6 +146,24 @@ set $tag3 "3: "
 set $tag4 "4: "
 set $tag5 "5: misc"
 set $tag6 "6: temp"
+
+# >>> i3-gaps settings
+for_window [class="^.*"] border pixel 0
+
+gaps inner 5
+gaps outer 10
+
+# disable gaps for workspase #8
+# workspace 4 gaps outer 0
+# workspace 4 gaps inner 0
+
+# bindsym $mod+s gaps inner current plus 5
+# bindsym $mod+Shift+s gaps inner current minus 5
+
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+g gaps inner current set 7; gaps outer current set 10
+
+# <<< i3-gaps settings
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1

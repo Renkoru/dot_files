@@ -22,6 +22,11 @@
                           '(javascript-jscs)))
 
     ;; (setq flycheck-checkers '(javascript-eslint))
+    (setq-default flycheck-checkers
+                  (append flycheck-checkers
+                          '(jsx-tide)
+                          )
+                  )
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))
@@ -52,8 +57,7 @@ Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
   (-when-let* ((file-name (buffer-file-name))
                (root (locate-dominating-file file-name "node_modules"))
                (module-directory (expand-file-name "node_modules" root)))
-    (pcase-dolist (`(,checker . ,module) '((javascript-jshint . "jshint")
-                                           (javascript-eslint . "eslint")
+    (pcase-dolist (`(,checker . ,module) '((javascript-eslint . "eslint")
                                            (javascript-jscs   . "jscs")))
       (let ((package-directory (expand-file-name module module-directory))
             (executable-var (flycheck-checker-executable-variable checker)))

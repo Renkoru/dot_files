@@ -17,9 +17,6 @@
 
 (straight-use-package 'use-package)
 
-(straight-use-package 'org)
-
-(straight-use-package 'use-package)
 (straight-use-package 'avy)
 (straight-use-package 'all-the-icons)
 (straight-use-package 'neotree)
@@ -90,7 +87,8 @@
 (straight-use-package 'sphinx-doc)
 (straight-use-package 'py-yapf)
 
-(straight-use-package 'tern)
+;; (straight-use-package 'tern) ;; Replaced with tide
+(straight-use-package 'tide)
 (straight-use-package 'js2-mode)
 (straight-use-package 'js2-refactor)
 (straight-use-package 'rjsx-mode)

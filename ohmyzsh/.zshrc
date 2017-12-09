@@ -87,6 +87,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dc="docker-compose"
+alias dps="docker-compose ps"
+alias dlog="docker-compose log"
 
 # RPS1='$(vi_mode_prompt_info) ${return_code}'
 
