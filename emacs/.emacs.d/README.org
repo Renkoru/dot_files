@@ -73,3 +73,4 @@
 ** TODO Fix company-files with company-tide (javascript) working
 
 ** TODO Add new surround text objects (evil-surround)
+** TODO Add a org-file with testing data to show possibilities of my configuration of emacs

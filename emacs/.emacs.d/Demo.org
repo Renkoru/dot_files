@@ -1,0 +1,31 @@
+* Org-mode
+Settings file: './lisp/init-org.el'
+
+** Outlines
+*** Sub-level 1
+*** Sub-level 2
+**** Sub-sub level
+***** Sub-sub-sub level
+** TODOs
+*** TODO This is a TODO outline
+It has 2 different states:
+- TODO
+- DONE
+
+But you could extend this list with yours.
+*** DONE This is a DONE todo outline
+*** You could switch state with <C-c C-t>
+I have a special settings to capture a resolution message and timestamp
+*** TODO [1/2] With progress of internal todos
+**** TODO Need to do
+**** DONE Done task
+* Evil
+** Marks
+Remeber some place and return to it
+Normal mode -> m + <key to remember>
+**
+* Jump-tree
+Move around on touched places.
+
+* Highlight-symbol
+Use this to highlight variables. You can highlight several variables in the same time.
