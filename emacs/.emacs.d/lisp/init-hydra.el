@@ -11,6 +11,14 @@
     ("i" text-scale-increase "increase")
     ("d" text-scale-decrease "decrease"))
 
+  (defhydra hydra-resize ()
+    "resize"
+    ("s" shrink-window "V shrink")
+    ("e" enlarge-window "V enlarge")
+    ("S" shrink-window-horizontally "H shrink")
+    ("E" enlarge-window-horizontally "H enlarge")
+    ("q" nil "quit"))
+
   (defhydra hydra-mc (:color pink
                       :body-pre (evil-mc-pause-cursors)
                       :before-exit (evil-mc-resume-cursors))
@@ -44,6 +52,7 @@
   (evil-leader/set-key "cf" 'hydra-zoom/body)
   (evil-leader/set-key "cc" 'hydra-mc/body)
   (evil-leader/set-key "t" 'hydra-toggle/body)
+  (evil-leader/set-key "r" 'hydra-resize/body)
 )
 
 (provide 'init-hydra)
