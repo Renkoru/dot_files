@@ -7,9 +7,12 @@
 (setq org-startup-indented t)
 (setq org-export-coding-system 'utf-8)
 (setq org-capture-templates
-      '(("t" "Todo list item" plain
+      '(("w" "Work Todo list item" plain
          (file+olp "~/org/work.org" "Inbox" "Todos")
          (file "~/.emacs.d/org-templates/work-todo.orgcapture"))
+        ("p" "Personal Todo list item" plain
+         (file+olp "~/projects/diary/todolist.org" "Inbox" "Todos")
+         (file "~/.emacs.d/org-templates/personal-todo.orgcapture"))
         ("n" "Note" plain
          (file+olp "~/org/work.org" "Inbox" "Notes")
          (file "~/.emacs.d/org-templates/work-note.orgcapture"))

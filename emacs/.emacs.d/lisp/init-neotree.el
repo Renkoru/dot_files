@@ -39,6 +39,8 @@
   ;; (setq neo-theme 'nerd)
   (setq neo-window-fixed-size nil)
   (setq neo-theme 'icons)
+  (setq neo-theme 'icons)
+  (setq neo-smart-open nil)
   (add-hook 'neotree-mode-hook
             (lambda ()
               (define-key evil-normal-state-local-map (kbd "j") 'my-neotree-next-line)

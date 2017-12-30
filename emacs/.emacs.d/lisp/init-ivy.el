@@ -43,7 +43,7 @@
 
 (use-package counsel-projectile
   :config
-  (counsel-projectile-on)
+  (counsel-projectile-mode)
 
   (evil-leader/set-key
     "f" 'counsel-projectile-find-file

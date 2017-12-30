@@ -16,6 +16,8 @@
   You could diff it if you want Find state of a file in any branch. You could diff it if you want.
 
 * Interesting packages to look at
+- general.el
+- which-key
 - https://github.com/Fuco1/smartparens Dealing with parens
 - !https://github.com/emacs-lsp/lsp-mode [UNDER DEVELOPMENT] good integration with code (Python, ...)?
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
@@ -26,6 +28,8 @@
 - https://github.com/hlissner/evil-multiedit multiple cursors if evil-mc not enougth
 - [[https://github.com/Lindydancer/face-explorer][Face explorer]] some usefull functions to work with faces
 - https://github.com/ninrod/exato To look at it later
+- https://github.com/jojojames/dired-sidebar File sidebar
+- https://github.com/ninrod/evil-string-inflection Evil operator to cycle text objects through camelCase, kebab-case, snake_case and UPPER_CASE.
 
 * Installed but not full configured/used packages
 - https://github.com/pashky/restclient.el rest client. Try it! )
@@ -74,3 +78,16 @@
 
 ** TODO Add new surround text objects (evil-surround)
 ** TODO Add a org-file with testing data to show possibilities of my configuration of emacs
+** TODO Think about idea to implement Definition peak
+http://tuhdo.github.io/emacs-frame-peek.html
+** TODO Improve package 'evil-mc' Add possibility to add a sequence of numbers. Enumerate.
+Like 'mc/insert-numbers' in multiple cursors package
+* Why Emacs
+** Emacs is:
+- Original extensible
+- Customizable
+  - Change all key-bindings
+- Self-documenting
+
+* Articles
+1. About why Vim. https://medium.com/@mkozlows/why-atom-cant-replace-vim-433852f4b4d1

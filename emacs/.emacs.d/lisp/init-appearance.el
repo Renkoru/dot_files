@@ -15,13 +15,17 @@
 ;;  - solarized
 ;;
 ;; Good fonts:
-;; - Source Code Pro
-;; - Inconsolata
-;; - DejaVu Sans Mono
-;; - Liberation Mono
-;; - Anonymous pro
-;;
-;;
+;; 1 mononoki
+;; 2 Fira Code
+;; 3 Inconsolata
+;; 4 Source Code Pro
+;; 5 Liberation Mono
+;; 6 DejaVu Sans Mono
+;; 7 Anonymous Pro
+;; 8 Input Mono
+;; 9 Droid Sans Mono
+;; 10 Iosevka
+
 ;;; Code:
 
 ;; (use-package leuven-theme
@@ -45,10 +49,7 @@
 (use-package all-the-icons :after ivy)
 
 (use-package material-theme
-  :init (progn
-          (load-theme 'material-light t))
-  :config
-  :defer t)
+  :init (load-theme 'material-light t))
 
 ;; (enable-theme 'leuven t)
 ;; (enable-theme 'ample-light)
@@ -56,8 +57,17 @@
   (enable-theme 'material-light)
   (set-face-attribute 'region nil :background "gold"))
 
-(add-to-list 'default-frame-alist
-             '(font . "Source Code Pro-10"))
+;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
+;; (add-to-list 'default-frame-alist '(font . "Inconsolata-10"))
+;; (add-to-list 'default-frame-alist '(font . "mononoki-10"))
+;; (set-default-font "mononoki-10")
+
+
+
+;; to set font for a singe buffer you need to:
+;; (setq buffer-face-mode-face '(:family "Input Mono" :height 130 :weight light))
+;; (buffer-face-mode)
+;;
 
 
 ;; smart-mode-line uses rich-minority-mode
