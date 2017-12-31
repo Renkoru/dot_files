@@ -52,7 +52,7 @@ Xft.rgba: rgb
 ! tabbedex is not provided by default (Debian/Ubuntu)
 ! put it in ~/.urxvt/ext
 
-!используемые расширения
+! used extensions
 URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex
 
 
