@@ -6,43 +6,31 @@
 ;; - https://github.com/greduan/emacs-theme-gruvbox
 
 ;;
-;;  Good themes:
-;;  - leuven-theme
-;;  - color-theme-sanityinc-tomorrow
-;;  - moe-theme
-;;  - material-theme
-;;  - zenburn-theme
-;;  - solarized
+;; Good themes:
+;; - leuven-theme
+;; - color-theme-sanityinc-tomorrow
+;; - moe-theme
+;; - material-theme
+;; - zenburn-theme
+;; - solarized
 ;;
 ;; Good fonts:
-;; 1 mononoki
-;; 2 Fira Code
-;; 3 Inconsolata
-;; 4 Source Code Pro
-;; 5 Liberation Mono
-;; 6 DejaVu Sans Mono
-;; 7 Anonymous Pro
-;; 8 Input Mono
-;; 9 Droid Sans Mono
-;; 10 Iosevka
+;; 1. mononoki
+;; 2. Fira Code
+;; 3. Inconsolata
+;; 4. Source Code Pro
+;; 5. Liberation Mono
+;; 6. DejaVu Sans Mono
+;; 7. Anonymous Pro
+;; 8. Input Mono
+;; 9. Droid Sans Mono
+;; 10. Iosevka
+
+;; to set font for a singe buffer you need to:
+;; (setq buffer-face-mode-face '(:family "Input Mono" :height 130 :weight light))
+;; (buffer-face-mode)
 
 ;;; Code:
-
-;; (use-package leuven-theme
-;;   :init (load-theme 'leuven t t)
-;;   :defer t)
-
-;; (use-package ample-theme
-;;   :init (progn (load-theme 'ample t t)
-;;                (load-theme 'ample-flat t t)
-;;                (load-theme 'ample-light t t))
-;;   :defer t)
-
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :defer t)
-
-;; (use-package solarized-theme
-;;   :defer t)
 
 ;; be sure that you have '~/.local/share/fonts' folder before install
 ;; after install setup fonts: M-x all-the-icons-install-fonts
@@ -51,24 +39,23 @@
 (use-package material-theme
   :init (load-theme 'material-light t))
 
-;; (enable-theme 'leuven t)
-;; (enable-theme 'ample-light)
-(progn
-  (enable-theme 'material-light)
-  (set-face-attribute 'region nil :background "gold"))
+(enable-theme 'material-light)
+(set-face-attribute 'region nil :background "gold")
 
-;; (add-to-list 'default-frame-alist '(font . "Source Code Pro-10"))
-;; (add-to-list 'default-frame-alist '(font . "Inconsolata-10"))
-;; (add-to-list 'default-frame-alist '(font . "mononoki-10"))
-;; (set-default-font "mononoki-10")
+(add-to-list 'default-frame-alist '(font . "mononoki-11"))
 
+(defun set-default-font-height ()
+  (interactive)
+  (text-scale-adjust 0))
 
+(defhydra hydra-zoom ()
+  "zoom"
+  ("i" text-scale-increase "increase")
+  ("r" set-default-font-height "reset")
+  ("d" text-scale-decrease "decrease"))
 
-;; to set font for a singe buffer you need to:
-;; (setq buffer-face-mode-face '(:family "Input Mono" :height 130 :weight light))
-;; (buffer-face-mode)
-;;
-
+(general-define-key :prefix my-leader
+                    "cf" 'hydra-zoom/body)
 
 ;; smart-mode-line uses rich-minority-mode
 (use-package rich-minority)
@@ -76,12 +63,9 @@
   :config
   (progn
     (setq sml/theme 'light)
-    (setq rm-whitelist '(" Helm"))
+    ;; (setq rm-whitelist '(" Helm"))
     (sml/setup)))
 
-
-;; set font height
-(set-face-attribute 'default nil :height 100)
 
 ;; Transparency settings
 ;;
@@ -101,7 +85,6 @@
 
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
-
 
 (provide 'init-appearance)
 

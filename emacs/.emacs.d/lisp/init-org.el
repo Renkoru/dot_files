@@ -45,9 +45,9 @@
   ("q" nil "quit"))
 
 
-(evil-leader/set-key "z" 'org-capture)
-(evil-leader/set-key "o" 'hydra-org/body)
-
+(general-define-key :prefix my-leader
+                    "z" 'org-capture
+                    "o" 'hydra-org/body)
 
 (provide 'init-org)
 ;;; init-org.el ends here

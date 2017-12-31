@@ -6,11 +6,6 @@
 (use-package hydra
   :config
 
-  (defhydra hydra-zoom ()
-    "zoom"
-    ("i" text-scale-increase "increase")
-    ("d" text-scale-decrease "decrease"))
-
   (defhydra hydra-resize ()
     "resize"
     ("s" shrink-window "V shrink")
@@ -19,27 +14,17 @@
     ("E" enlarge-window-horizontally "H enlarge")
     ("q" nil "quit"))
 
-  (defhydra hydra-mc (:color pink
-                      :body-pre (evil-mc-pause-cursors)
-                      :before-exit (evil-mc-resume-cursors))
-    "multiple cursors"
-    ("H" highlight-symbol-at-point "highlight")
-    ("c" evil-mc-make-cursor-here "create cursor")
-    ("s" evil-mc-skip-and-goto-next-match "skip and next")
-    ("S" evil-mc-skip-and-goto-prev-match "skip and prev")
-    ("n" evil-mc-make-and-goto-next-match "make and next")
-    ("p" evil-mc-make-and-goto-prev-match "make and prev")
-    ("q" nil "quit"))
-
   (defvar whitespace-mode t)
   (defhydra hydra-toggle (:color pink :idle 0.8)
     "
     _l_ linum-mode:       %`linum-mode
     _w_ whitespace-mode:   %`whitespace-mode
+    _r_ rainbow-delimiters-mode:   %`rainbow-delimiters-mode
     _s_ flyspell-mode:   %`flyspell-mode
     "
     ("l" linum-mode nil)
     ("w" whitespace-mode nil)
+    ("r" rainbow-delimiters-mode nil)
     ("s" hydra-flyspell/body :exit t)
     ("q" nil "quit"))
 
@@ -49,10 +34,11 @@
     ("f" flyspell-correct-word-generic "fix")
     ("q" nil "quit"))
 
-  (evil-leader/set-key "cf" 'hydra-zoom/body)
-  (evil-leader/set-key "cc" 'hydra-mc/body)
-  (evil-leader/set-key "t" 'hydra-toggle/body)
-  (evil-leader/set-key "r" 'hydra-resize/body)
+
+  (general-define-key :prefix my-leader
+                      "t" 'hydra-toggle/body
+                      "r" 'hydra-resize/body
+                      "cf" 'hydra-zoom/body)
 )
 
 (provide 'init-hydra)

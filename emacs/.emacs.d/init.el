@@ -1,4 +1,4 @@
-;;; init.el --- Main file of Emacs settings
+;;; init.el --- Entrypoint of Emacs settings
 ;;; Commentary:
 
 ;;; Code:
@@ -16,7 +16,7 @@
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(package-selected-packages
    (quote
-    (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit evil-leader emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
+    (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu yaml-mode writeroom-mode web-mode vimish-fold use-package sphinx-doc smex smart-mode-line scss-mode rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
     ((defun js-custom nil "JavaScript-mode-hook."
@@ -25,37 +25,9 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; use straight.el instead of Cask
-(require 'init-straight)
+;; ---------------------------------------------------------------------------------------------
 
-;; (require 'cask "~/.cask/cask.el")
-;; (cask-initialize)
-
-;; package manager
-(require 'package)
-(require 'cl) ; for loop
-
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
-(add-to-list 'package-archives
-             '("marmalade" . "https://marmalade-repo.org/packages/"))
-
-;;; loads packages and activates them
-(package-initialize)
-
-;; *** use-package settings
-
-;; use-package.el is no longer needed at runtime
-;; This means you should put the following at the top of your Emacs, to further reduce load time:
-;; (setq use-package-always-ensure t)
-(eval-when-compile
-  (require 'use-package))
-
-;; Use ensure for all packages
-;; Now we have cask!
-;; (setq use-package-always-ensure t)
-
+(require 'init-straight) ; package manager
 
 ;; Plugin: exec-path-from-shell. Setting
 ;; Wrap to hide pyenv-mode warning. Don't know why it happends
@@ -66,64 +38,50 @@
   (setq warning-minimum-level :warning)
   )
 
-;; ---------------------------------------------------------------------------------------------
-
 (use-package json-mode)
 (use-package writeroom-mode)
 (use-package wgrep)
 (use-package restclient)
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+
+(use-package general
+  :demand
+  :config
+  (setq general-default-keymaps 'evil-normal-state-map)
+  (setq my-leader "<SPC>"))
+
 
 (require 'init-emacs)
-(require 'init-evil) ; -------------------------------------------------------------
+(require 'init-hydra) ; should be initialized before evil
+(require 'init-evil)
 (require 'init-appearance)
-(require 'init-hydra)
-(require 'init-ivy) ; -------------------------------------------------------------
-;; (require 'init-helm) ; -------------------------------------------------------------
-(require 'init-yasnippet) ; should be initializes before auto-complete
+(require 'init-ivy)
+(require 'init-yasnippet) ; should be initialized before auto-complete
 (require 'init-custom-functions)
 (require 'init-flyspell)
-(require 'init-vcs) ; -------------------------------------------------------------
+(require 'init-vcs)
 (require 'init-docker)
-
 (require 'init-neotree)
 
 
 (use-package ace-window
-  :bind
-  ("M-q" . ace-window))
-
+  :general
+  ("M-q" 'ace-window))
 
 (use-package dumb-jump
-  :bind (("M-d" . dumb-jump-go)
-         ("M-D" . dumb-jump-back))
-  :config (setq dumb-jump-selector 'ivy)
-  )
-
-(use-package nyan-mode)
-
-
+  :general
+  ("M-d" 'dumb-jump-go)
+  ("M-D" 'dumb-jump-back)
+  :config
+  (setq dumb-jump-selector 'ivy))
 
 (use-package projectile
-  ;; :init (progn (setq projectile-completion-system 'helm))
-  :init (progn (setq projectile-completion-system 'ivy))
-  :config (projectile-global-mode t)
-  )
-
-;; ; Add this after helm init
-;; (projectile-global-mode)
-;; (setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
-
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(setq scss-mode-scss-indent-offset 2)
-
-;; Customize ediff --------------------- <
-
-;; Don't use the weird setup with the control panel in a separate frame.
-;; I can manage windows in Emacs much better than my desktop (Unity or Gnome Shell) can manage the Emacs frames.
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-horizontally)
+  :init
+  (setq projectile-completion-system 'ivy)
+  :config
+  (projectile-global-mode t))
 
 (use-package beacon
   :init
@@ -136,35 +94,36 @@
         beacon-blink-when-point-moves t
         beacon-blink-when-window-scrolls t))
 
-
 (use-package highlight-symbol
   :demand
-  :bind
-  ("M-<f12>" . highlight-symbol-mode) ;; highlight symbol under a crusor
-  ("C-<f12>" . highlight-symbol)
-  ("<f12>" . highlight-symbol-next)
-  ("S-<f12>" . highlight-symbol-prev)
+  :general
+  ("M-<f12>" 'highlight-symbol-mode) ;; highlight symbol under a crusor
+  ("C-<f12>" 'highlight-symbol)
+  ("<f12>" 'highlight-symbol-next)
+  ("S-<f12>" 'highlight-symbol-prev)
   :config
-  (evil-leader/set-key "h" 'highlight-symbol-at-point)
-  )
+  (general-define-key :prefix my-leader "h" 'highlight-symbol-at-point))
 
-;; make return key also do indent, globally
-(electric-indent-mode 1)
-(electric-pair-mode 1)
-
-(require 'init-avy) ; -------
-(require 'init-flycheck) ; -------
-(require 'init-emmet) ; ---------
-(require 'init-company) ; ------
-;; (require 'init-php) ; ------
-(require 'init-javascript) ; -----
-(require 'init-python) ; -----
-(require 'init-web) ; -----------
-(require 'init-elm) ; -----
-(require 'init-org) ; -----
+(require 'init-avy)
+(require 'init-flycheck)
+(require 'init-emmet)
+(require 'init-company)
+(require 'init-web) ; should be before javascript init
+(require 'init-javascript)
+(require 'init-python)
+(require 'init-elm)
+(require 'init-org)
 
 (use-package alchemist)
+(use-package jump-tree
+  :after evil
+  :general
+  ("C-o" 'jump-tree-jump-prev)
+  ("C-i" 'jump-tree-jump-next)
+  ("C-x j" 'jump-tree-visualize)
 
+  :config
+  (global-jump-tree-mode 1)
   ;; List of possible 'jump-tree-pos-list-record-commands'
   ;; (save-buffer
   ;;           beginning-of-buffer
@@ -179,22 +138,18 @@
   ;;           ensime-edit-definition-with-fallback
   ;;           isearch-forward)
 
-(use-package jump-tree
-  :after evil
-  :bind (:map evil-normal-state-map
-              ("C-o" . jump-tree-jump-prev)
-              ("C-i" . jump-tree-jump-next)
-              ("C-x j" . jump-tree-visualize))
-  :config
-  (global-jump-tree-mode 1)
-
-
   (setq jump-tree-pos-list-skip-commands
         '(self-insert-command counsel-M-x execute-extended-command))
 
   (setq jump-tree-pos-list-record-commands
         '(avy-goto-line-below avy-goto-line-above evil-avy-goto-char-timer evil-avy-goto-char-in-line)))
 
+;; Keep same configs for all team (all editors)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
+(use-package nyan-mode)
 
 ; Enable modes
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
@@ -219,21 +174,5 @@
       c-default-style "stroustrup" ; indent style in CC mode
       css-indent-offset 2) ; indentation level in CSS mode
 
-
-;; Keep same configs for all team (all editors)
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1))
-
-
-
 (provide 'init)
-
-;; Packages that can be usefull
-;; https://github.com/abo-abo/hydra  ; for key mappings
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;; init.el ends here

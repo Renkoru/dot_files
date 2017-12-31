@@ -8,29 +8,28 @@
 
 (use-package flycheck
   :config
-  (progn
-    (global-flycheck-mode)
+  (global-flycheck-mode)
 
-    (setq-default flycheck-disabled-checkers
-                  ;; disable jshint since we prefer eslint checking
-                  (append flycheck-disabled-checkers
-                          '(javascript-jshint)))
+  (setq-default flycheck-disabled-checkers
+                ;; disable jshint since we prefer eslint checking
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
 
-    (setq-default flycheck-disabled-checkers
-                  ;; disable jscs since we prefer eslint checking
-                  (append flycheck-disabled-checkers
-                          '(javascript-jscs)))
+  (setq-default flycheck-disabled-checkers
+                ;; disable jscs since we prefer eslint checking
+                (append flycheck-disabled-checkers
+                        '(javascript-jscs)))
 
-    ;; (setq flycheck-checkers '(javascript-eslint))
-    (setq-default flycheck-checkers
-                  (append flycheck-checkers
-                          '(jsx-tide)
-                          )
-                  )
-    (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(json-jsonlist)))
-    ))
+  ;; (setq flycheck-checkers '(javascript-eslint))
+  (setq-default flycheck-checkers
+                (append flycheck-checkers
+                        '(jsx-tide)
+                        )
+                )
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(json-jsonlist)))
+  )
 
 
 ;; (add-hook 'js-mode-hook
@@ -65,18 +64,6 @@ Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
           (set (make-local-variable executable-var)
                (expand-file-name (concat "bin/" module ".js")
                                  package-directory)))))))
-
-
-(flycheck-define-checker my-php
-  "A PHP syntax checker using the PHP command line interpreter.
-
-See URL `http://php.net/manual/en/features.commandline.php'."
-  :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
-            "-d" "log_errors=0" source)
-  :error-patterns
-  ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
-          (message) " in " (file-name) " on line " line line-end))
-  :modes (php-mode php+-mode web-mode))
 
 ;; Copyed from:
 ;; https://gist.github.com/ustun/73321bfcb01a8657e5b8

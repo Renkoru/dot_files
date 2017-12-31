@@ -4,8 +4,7 @@
 ;;; Code:
 
 
-
-(straight-use-package 'elm-mode)
+(use-package elm-mode)
 
 (with-eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
@@ -15,8 +14,7 @@
 
 (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
 
-
-(straight-use-package 'flycheck-elm)
+(use-package flycheck-elm)
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))

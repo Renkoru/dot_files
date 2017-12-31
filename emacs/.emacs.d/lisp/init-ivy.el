@@ -25,19 +25,15 @@
   (setq counsel-grep-base-command
         "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
-  (evil-leader/set-key "y" 'counsel-yank-pop)
+  (general-define-key :prefix my-leader "y" 'counsel-yank-pop)
 
-  :bind (
-         ("C-q" . ivy-switch-buffer)
-         ("M-x" . counsel-M-x)
-         ("M-f" . counsel-find-file)
-         ("C-c C-i" . ivy-resume)
-
-         :map evil-normal-state-map
-         ("gl" . counsel-grep-or-swiper)
-         ("go" . counsel-imenu)
-         )
-  )
+  :general
+  ("C-q" 'ivy-switch-buffer)
+  ("M-x" 'counsel-M-x)
+  ("M-f" 'counsel-find-file)
+  ("C-c C-i" 'ivy-resume)
+  ("gl" 'counsel-grep-or-swiper)
+  ("go" 'counsel-imenu))
 
 (use-package ivy-hydra)
 
@@ -45,11 +41,9 @@
   :config
   (counsel-projectile-mode)
 
-  (evil-leader/set-key
-    "f" 'counsel-projectile-find-file
-    "a" 'counsel-projectile-rg
-    )
-  )
+  (general-define-key :prefix my-leader
+                      "f" 'counsel-projectile-find-file
+                      "a" 'counsel-projectile-rg))
 
 
 (provide 'init-ivy)

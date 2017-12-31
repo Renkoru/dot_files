@@ -1,3 +1,12 @@
+* Straight
+Package manager
+Link: https://github.com/raxod502/straight.el
+Pros:
+- Repetablility. Lock files
+- Fast to start
+- Easy but not fast packages updating
+- Good documentation
+* General
 * Org-mode
 Settings file: './lisp/init-org.el'
 
@@ -24,8 +33,54 @@ I have a special settings to capture a resolution message and timestamp
 Remeber some place and return to it
 Normal mode -> m + <key to remember>
 **
+** Evil plugins
+*** evil-surround
+*** evil-visualstar
+*** evil-mc
+*** evil-matchit
+*** vimish-fold
+*** evil-nerd-commenter
+*** evil-anzu
+*** evil-goggles
+* Neotree
+* Hydra
+* Drag-stuff
 * Jump-tree
 Move around on touched places.
 
 * Highlight-symbol
 Use this to highlight variables. You can highlight several variables in the same time.
+* Rich-minority
+* Smart-mode-line
+* Swiper
+** Counsel
+** Ivy
+* Projectile
+* Yasnippet
+* Flyspell
+* Git
+** Magit
+** Git-timemachine
+** Git-gutter
+* Ace-window
+* Dumb-jump
+* Beacon
+* Avy
+* Flycheck
+* Emmet
+* Company
+* Web (mode)
+* Javascript
+** Tide
+** js2-mode
+** rjsx-mode
+* Python
+** Pyenv-mode
+** elpy
+** sphinx-doc
+** py-yapf
+* Elm
+** elm-mode
+* Elixir
+** Alchemist
+* Jump-tree

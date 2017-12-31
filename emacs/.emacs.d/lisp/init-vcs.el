@@ -48,8 +48,9 @@
 
 
 ;; Keybindings
-(evil-leader/set-key "m" 'magit-status)
-(evil-leader/set-key "g" 'hydra-git-toggle/body)
+(general-define-key :prefix my-leader
+ "m" 'magit-status
+ "g" 'hydra-git-toggle/body)
 
 
 (provide 'init-vcs)

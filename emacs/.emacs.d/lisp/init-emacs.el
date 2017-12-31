@@ -1,5 +1,6 @@
-;; init-emacs
-;; Just emacs settings
+;;; init-emacs.el --- Emacs settings
+;;; Commentary:
+;;; Code:
 
 ;; Disable splash screen
 (setq inhibit-startup-message t)
@@ -44,6 +45,7 @@
 (setq linum-delay t) ;; Delay updates to give Emacs a chance for other changes
 (setq scroll-conservatively 10000)
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+(global-linum-mode 0)
 ;; }}
 
 ;; ssh-agent socket settings
@@ -53,5 +55,18 @@
       '(("." . browse-url-generic)))
 (setq shr-external-browser 'browse-url-generic)
 (setq browse-url-generic-program (executable-find "qutebrowser"))
+
+
+;; Customize ediff --------------------- <
+
+;; Don't use the weird setup with the control panel in a separate frame.
+;; I can manage windows in Emacs much better than my desktop (Unity or Gnome Shell) can manage the Emacs frames.
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; make return key also do indent, globally
+(electric-indent-mode 1)
+(electric-pair-mode 1)
+
 
 (provide 'init-emacs)

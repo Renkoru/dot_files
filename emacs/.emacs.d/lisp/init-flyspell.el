@@ -13,30 +13,25 @@
   ;; Can't enable flyspell mode where it is needed
   ;; :init
   ;; (progn
-    ;; (add-hook 'evil-mode-hook 'flyspell-mode)
-    ;; (add-hook 'text-mode-hook 'flyspell-mode)
-    ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-    ;; )
+  ;; (add-hook 'evil-mode-hook 'flyspell-mode)
+  ;; (add-hook 'text-mode-hook 'flyspell-mode)
+  ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  ;; )
   :config
-  (progn
-    (setq ispell-program-name "aspell")
-    (add-to-list 'ispell-extra-args "--sug-mode=ultra")
-    (add-to-list 'ispell-extra-args "--run-together")
-    (add-to-list 'ispell-extra-args "--run-together-limit=5")
-    ;; Disable cause: detect "Varible" as correct. (with --run-together-min option)
-    ;; (add-to-list 'ispell-extra-args "--run-together-min=2")
+  (setq ispell-program-name "aspell")
+  (add-to-list 'ispell-extra-args "--sug-mode=ultra")
+  (add-to-list 'ispell-extra-args "--run-together")
+  (add-to-list 'ispell-extra-args "--run-together-limit=5")
+  ;; Disable cause: detect "Varible" as correct. (with --run-together-min option)
+  ;; (add-to-list 'ispell-extra-args "--run-together-min=2")
 
-    (setq ispell-local-dictionary "en_US")
+  (setq ispell-local-dictionary "en_US")
 
-    (use-package flyspell-correct-ivy)
-    (use-package flyspell-correct
-      :config
-      (progn
-        (setq flyspell-correct-interface 'flyspell-correct-ivy)
-        )
-      )
-
-    ))
+  (use-package flyspell-correct-ivy)
+  (use-package flyspell-correct
+    :config
+    (setq flyspell-correct-interface 'flyspell-correct-ivy))
+  )
 
 ;;
 ;; Copied from http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
