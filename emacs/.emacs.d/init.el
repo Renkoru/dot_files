@@ -14,6 +14,7 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
+ '(git-gutter:hide-gutter t)
  '(package-selected-packages
    (quote
     (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu web-mode vimish-fold use-package sphinx-doc smex smart-mode-line rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
@@ -38,6 +39,8 @@
   (setq warning-minimum-level :warning)
   )
 
+
+(use-package smex) ;; ranking and remembering M-x
 (use-package json-mode)
 (use-package writeroom-mode)
 (use-package wgrep)
@@ -52,11 +55,15 @@
   (setq general-default-keymaps 'evil-normal-state-map)
   (setq my-leader "<SPC>"))
 
+(use-package ranger
+  :general
+  ("<f3>" 'ranger))
 
 (require 'init-emacs)
 (require 'init-hydra) ; should be initialized before evil
 (require 'init-evil)
 (require 'init-appearance)
+(require 'init-modeline)
 (require 'init-ivy)
 (require 'init-yasnippet) ; should be initialized before auto-complete
 (require 'init-custom-functions)
@@ -149,6 +156,8 @@
   :config
   (editorconfig-mode 1))
 
+(use-package markdown-mode)
+(use-package yaml-mode)
 (use-package nyan-mode)
 
 ; Enable modes
@@ -176,3 +185,10 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-goggles-delete-face ((t (:inherit (quote smerge-refined-removed)))))
+ '(evil-goggles-paste-face ((t (:inherit (quote smerge-refined-added))))))

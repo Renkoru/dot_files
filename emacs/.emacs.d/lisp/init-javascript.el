@@ -50,6 +50,7 @@
 ;; Install node.js v0.12.0 or greater.
 ;; Make sure tsconfig.json or jsconfig.json is present in the root folder of the project.
 ;; Tide is available in melpa.You can install tide via package - install M - x package - install[ret] tide
+(use-package tide)
 
 (defun setup-tide-mode()
   (interactive)

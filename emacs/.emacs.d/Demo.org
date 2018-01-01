@@ -7,6 +7,9 @@ Pros:
 - Easy but not fast packages updating
 - Good documentation
 * General
+Bind mappings like evil-leader
+* Telephone-line
+** Rich-minority
 * Org-mode
 Settings file: './lisp/init-org.el'
 
@@ -50,8 +53,6 @@ Move around on touched places.
 
 * Highlight-symbol
 Use this to highlight variables. You can highlight several variables in the same time.
-* Rich-minority
-* Smart-mode-line
 * Swiper
 ** Counsel
 ** Ivy
@@ -84,3 +85,4 @@ Use this to highlight variables. You can highlight several variables in the same
 * Elixir
 ** Alchemist
 * Jump-tree
+* Smex

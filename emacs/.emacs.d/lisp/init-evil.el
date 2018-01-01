@@ -56,20 +56,24 @@
 
   (use-package evil-mc
     :config
-    (global-evil-mc-mode 1)
-    (unbind-key "C-n" evil-normal-state-map)
-    (unbind-key "C-p" evil-normal-state-map)
+    ;; Do not use global mode, do not know how to disable default bindings
 
     (defhydra hydra-mc (:color pink
-                               :body-pre (evil-mc-pause-cursors)
+                               :body-pre (progn
+                                           (evil-mc-mode 1)
+                                           (evil-mc-pause-cursors))
                                :before-exit (evil-mc-resume-cursors))
-      "multiple cursors"
+      "
+      multiple cursors
+       _m_ evil-mc-mode:       %`evil-mc-mode
+      "
       ("H" highlight-symbol-at-point "highlight")
       ("c" evil-mc-make-cursor-here "create cursor")
       ("s" evil-mc-skip-and-goto-next-match "skip and next")
       ("S" evil-mc-skip-and-goto-prev-match "skip and prev")
       ("n" evil-mc-make-and-goto-next-match "make and next")
       ("p" evil-mc-make-and-goto-prev-match "make and prev")
+      ("m" evil-mc-mode nil)
       ("q" nil "quit"))
 
     (general-define-key :prefix my-leader "cc" 'hydra-mc/body))

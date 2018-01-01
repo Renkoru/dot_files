@@ -54,7 +54,7 @@
               (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-horizontal-split)
               (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-vertical-split)))
 
-  :bind (("<f3>" . neotree-toggle))
+  ;; :bind (("<f3>" . neotree-toggle))
   )
 
 

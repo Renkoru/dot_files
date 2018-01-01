@@ -57,15 +57,8 @@
 (general-define-key :prefix my-leader
                     "cf" 'hydra-zoom/body)
 
-;; smart-mode-line uses rich-minority-mode
-(use-package rich-minority)
-(use-package smart-mode-line
-  :config
-  (progn
-    (setq sml/theme 'light)
-    ;; (setq rm-whitelist '(" Helm"))
-    (sml/setup)))
 
+(use-package rainbow-mode)
 
 ;; Transparency settings
 ;;
