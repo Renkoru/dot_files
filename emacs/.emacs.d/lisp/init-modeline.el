@@ -3,15 +3,42 @@
 ;;; Code:
 
 
+(defun mr/get-filename-with-directory ()
+  (interactive "P")
+
+  (if buffer-file-name
+      (progn
+        (setq current-file-name (file-name-nondirectory buffer-file-name))
+
+        (if (> (length current-file-name) 20)
+            mode-line-buffer-identification
+          (progn
+            (setq file-paths (split-string buffer-file-name "/"))
+            (setq total-parts (length file-paths))
+            (string-join (nthcdr (- total-parts 2) file-paths) "/")
+            ))
+        )
+    mode-line-buffer-identification
+    )
+  )
+(mr/get-filename-with-directory)
+
+(defun mr/get-git-branch-name ()
+  ;; (truncate-string-to-width (magit-get-current-branch) 18 0 nil ">")
+  (magit-get-current-branch)
+  )
+
 (use-package telephone-line
   :config
 
   (defface my-red '((t (:foreground "white" :background "indian red"))) "")
-  (defface my-blue '((t (:foreground "white" :background "SteelBlue4"))) "")
+  (defface my-green '((t (:foreground "white" :background "DarkGreen"))) "")
+  (defface my-grey '((t (:foreground "white" :background "DimGrey"))) "")
 
   (setq telephone-line-faces
         '((red . (my-red . my-red))
-          (blue . (my-blue . my-blue))
+          (green . (my-green . mode-line-inactive))
+          (grey . (my-grey . mode-line-inactive))
           (evil . telephone-line-modal-face)
           (modal . telephone-line-modal-face)
           (ryo . telephone-line-ryo-modal-face)
@@ -19,10 +46,11 @@
           (nil . (mode-line . mode-line-inactive))))
 
   (telephone-line-defsegment mr/telephone-line-projectile-project-name ()
-    (ignore-errors (format "[%s]" (projectile-project-name))))
+    (ignore-errors (format "%s" (projectile-project-name))))
 
   (telephone-line-defsegment mr/telephone-line-magit-current-branch-segment ()
-    (magit-get-current-branch))
+    (mr/get-git-branch-name)
+    )
 
   (telephone-line-defsegment mr/telephone-line-flycheck-segment ()
     (replace-regexp-in-string "FlyC" "FC" (flycheck-mode-line-status-text)))
@@ -38,7 +66,9 @@
       ))
 
   (telephone-line-defsegment mr/telephone-line-buffer-segment ()
-    mode-line-buffer-identification)
+    ;; mode-line-buffer-identification ; replaced by my function
+    (mr/get-filename-with-directory)
+    )
 
   (use-package rich-minority
     :config
@@ -50,19 +80,20 @@
     )
 
   (setq telephone-line-lhs
-        '((red    . (mr/telephone-line-buffer-status-segment))
-          (evil   . (telephone-line-evil-tag-segment))
-          (blue   . (mr/telephone-line-projectile-project-name))
-          (accent . (mr/telephone-line-magit-current-branch-segment
+        '((red    . (mr/telephone-line-buffer-status-segment
                      telephone-line-process-segment))
-          (nil    . (mr/telephone-line-buffer-segment
-                     mr/telephone-line-rich-minority-segment))))
+          (green   . (mr/telephone-line-buffer-segment))
+          (grey . (telephone-line-position-segment))
+          (evil   . (telephone-line-evil-tag-segment))
+          (nil    . (mr/telephone-line-flycheck-segment))
+          ))
 
   (setq telephone-line-rhs
-        '((nil    . (telephone-line-misc-info-segment
-                     mr/telephone-line-flycheck-segment))
-          (accent . (telephone-line-position-segment))
-          (evil   . (telephone-line-major-mode-segment))))
+        '((nil    . (mr/telephone-line-projectile-project-name))
+          (green . (mr/telephone-line-magit-current-branch-segment))
+          ;; (nil . (telephone-line-misc-info-segment))
+          (grey   . (mr/telephone-line-rich-minority-segment
+                     telephone-line-major-mode-segment))))
 
   (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
         telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left

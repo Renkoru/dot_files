@@ -19,9 +19,10 @@ https://github.com/raxod502/straight.el
   You could diff it if you want Find state of a file in any branch. You could diff it if you want.
 
 * Interesting packages to look at
-- general.el
-- which-key
+- aggressive-indent. https://github.com/Malabarba/aggressive-indent-mode
+- realgud. Dubugger, try it!
 - https://github.com/Fuco1/smartparens Dealing with parens
+- which-key
 - !https://github.com/emacs-lsp/lsp-mode [UNDER DEVELOPMENT] good integration with code (Python, ...)?
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
 - https://github.com/Wilfred/helpful show emacs helps
