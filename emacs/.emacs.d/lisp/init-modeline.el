@@ -32,13 +32,16 @@
   :config
 
   (defface my-red '((t (:foreground "white" :background "indian red"))) "")
-  (defface my-green '((t (:foreground "white" :background "DarkGreen"))) "")
-  (defface my-grey '((t (:foreground "white" :background "DimGrey"))) "")
+  (defface my-green '((t (:foreground "grey39" :background "LightGreen"))) "")
+  (defface my-grey '((t (:foreground "grey39" :background "LightGrey"))) "")
+  (defface my-blue '((t (:foreground "grey32" :background "AliceBlue"))) "")
+
 
   (setq telephone-line-faces
         '((red . (my-red . my-red))
           (green . (my-green . mode-line-inactive))
           (grey . (my-grey . mode-line-inactive))
+          (blue . (my-blue . my-blue))
           (evil . telephone-line-modal-face)
           (modal . telephone-line-modal-face)
           (ryo . telephone-line-ryo-modal-face)
@@ -83,16 +86,16 @@
         '((red    . (mr/telephone-line-buffer-status-segment
                      telephone-line-process-segment))
           (green   . (mr/telephone-line-buffer-segment))
-          (grey . (telephone-line-position-segment))
+          (blue . (telephone-line-position-segment))
           (evil   . (telephone-line-evil-tag-segment))
-          (nil    . (mr/telephone-line-flycheck-segment))
+          (blue    . (mr/telephone-line-flycheck-segment))
           ))
 
   (setq telephone-line-rhs
-        '((nil    . (mr/telephone-line-projectile-project-name))
-          (green . (mr/telephone-line-magit-current-branch-segment))
-          ;; (nil . (telephone-line-misc-info-segment))
-          (grey   . (mr/telephone-line-rich-minority-segment
+        '((blue    . (telephone-line-misc-info-segment)) ;; just for the color
+          (green . (mr/telephone-line-projectile-project-name
+                    mr/telephone-line-magit-current-branch-segment))
+          (blue   . (mr/telephone-line-rich-minority-segment
                      telephone-line-major-mode-segment))))
 
   (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
