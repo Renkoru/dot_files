@@ -20,7 +20,8 @@
     (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu web-mode vimish-fold use-package sphinx-doc smex smart-mode-line rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
  '(safe-local-variable-values
    (quote
-    ((defun js-custom nil "JavaScript-mode-hook."
+    ((sgml-basic-offset . 2)
+     (defun js-custom nil "JavaScript-mode-hook."
             (setq js-indent-level 4)
             (setq tab-width 4))))))
 

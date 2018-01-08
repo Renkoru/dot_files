@@ -107,7 +107,10 @@
     :config
     (general-define-key "gcc" 'evilnc-comment-or-uncomment-lines))
 
-  (use-package evil-anzu))
+  (use-package evil-anzu
+    :config
+    ;; Telephone line will handle modeline for anzu
+    (setq anzu-cons-mode-line-p nil)))
 
 (use-package evil-goggles
   :config

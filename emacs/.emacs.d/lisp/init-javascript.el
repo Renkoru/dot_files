@@ -16,7 +16,6 @@
   :config
   (setq js-switch-indent-offset 4)
   (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
-  (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
   )
 
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))

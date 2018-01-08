@@ -52,8 +52,10 @@
     (ignore-errors (format "%s" (projectile-project-name))))
 
   (telephone-line-defsegment mr/telephone-line-magit-current-branch-segment ()
-    (mr/get-git-branch-name)
-    )
+    (mr/get-git-branch-name))
+
+  (telephone-line-defsegment mr/telephone-line-anzu-segment ()
+    (anzu--update-mode-line))
 
   (telephone-line-defsegment mr/telephone-line-flycheck-segment ()
     (replace-regexp-in-string "FlyC" "FC" (flycheck-mode-line-status-text)))
@@ -83,7 +85,8 @@
     )
 
   (setq telephone-line-lhs
-        '((red    . (mr/telephone-line-buffer-status-segment
+        '((red    . (mr/telephone-line-anzu-segment
+                     mr/telephone-line-buffer-status-segment
                      telephone-line-process-segment))
           (green   . (mr/telephone-line-buffer-segment))
           (blue . (telephone-line-position-segment))
