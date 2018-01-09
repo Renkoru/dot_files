@@ -1,7 +1,0 @@
-/emacs/.emacs.d/.python-environments/
-/emacs/.emacs.d/recentf
-/emacs/.emacs.d/eshell/history
-/emacs/.emacs.d/company-statistics-cache.el
-.cask/
-smex-items
-*straight/

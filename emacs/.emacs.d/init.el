@@ -3,28 +3,6 @@
 
 ;;; Code:
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
- '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
- '(git-gutter:hide-gutter t)
- '(package-selected-packages
-   (quote
-    (ivy-hydra jump-tree alchemist js2-mode company flycheck flyspell-correct yasnippet counsel-projectile ivy hydra flyspell-correct-ivy editorconfig elm-mode company-flx-mode unicode-fonts rjsx-mode evil-anzu web-mode vimish-fold use-package sphinx-doc smex smart-mode-line rainbow-mode rainbow-delimiters python-mode pyenv-mode py-yapf prodigy popwin pallet nyan-mode neotree markdown-mode magit leuven-theme json-mode js2-refactor js-doc idle-highlight-mode htmlize highlight-symbol git-timemachine git-gutter expand-region exec-path-from-shell evil-visualstar evil-surround evil-nerd-commenter evil-mc evil-matchit emmet-mode elpy dumb-jump drag-stuff company-web company-tern company-statistics company-quickhelp company-flx company-anaconda beacon ace-window)))
- '(safe-local-variable-values
-   (quote
-    ((sgml-basic-offset . 2)
-     (defun js-custom nil "JavaScript-mode-hook."
-            (setq js-indent-level 4)
-            (setq tab-width 4))))))
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; ---------------------------------------------------------------------------------------------
@@ -186,10 +164,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-goggles-delete-face ((t (:inherit (quote smerge-refined-removed)))))
- '(evil-goggles-paste-face ((t (:inherit (quote smerge-refined-added))))))

@@ -1,5 +1,10 @@
-anaconda-mode/
-vimish-fold/
-elpa/
+straight/build
+straight/repos
+straight/bootstrap.el
+straight/build-cache.el
 
-.mc-lists.el
+auto-save-list
+company-statistics-cache.el
+projectile-bookmarks.eld
+recentf
+smex-items

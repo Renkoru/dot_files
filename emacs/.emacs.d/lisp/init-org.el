@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
+(setq initial-major-mode 'org-mode)
 (setq org-src-fontify-natively t)
 (setq org-startup-indented t)
 (setq org-export-coding-system 'utf-8)
