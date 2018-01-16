@@ -17,6 +17,8 @@
   (elpy-enable)
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
   (setq elpy-rpc-backend "jedi")
+  :config
+  (highlight-indentation-mode -1)
   )
 
 

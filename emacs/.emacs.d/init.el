@@ -36,7 +36,18 @@
 
 (use-package ranger
   :general
-  ("<f3>" 'ranger))
+  ("<f3>" 'ranger)
+  :config
+  (setq ranger-preview-file nil)
+  (setq ranger-cleanup-on-disable t)
+  )
+
+(use-package dumb-jump
+  :general
+  ("M-d" 'dumb-jump-go)
+  ("M-D" 'dumb-jump-back)
+  :config
+  (setq dumb-jump-selector 'ivy))
 
 (require 'init-emacs)
 (require 'init-hydra) ; should be initialized before evil
@@ -55,13 +66,6 @@
 (use-package ace-window
   :general
   ("M-q" 'ace-window))
-
-(use-package dumb-jump
-  :general
-  ("M-d" 'dumb-jump-go)
-  ("M-D" 'dumb-jump-back)
-  :config
-  (setq dumb-jump-selector 'ivy))
 
 (use-package projectile
   :init
@@ -164,3 +168,17 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(git-gutter:hide-gutter t)
+ '(safe-local-variable-values (quote ((sgml-basic-offset . 4) (sgml-basic-offset . 2)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-goggles-delete-face ((t (:inherit (quote smerge-refined-removed)))))
+ '(evil-goggles-paste-face ((t (:inherit (quote smerge-refined-added))))))

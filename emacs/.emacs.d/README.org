@@ -19,6 +19,9 @@ https://github.com/raxod502/straight.el
   You could diff it if you want Find state of a file in any branch. You could diff it if you want.
 
 * Interesting packages to look at
+- Lsp mode https://github.com/emacs-lsp/lsp-mode
+- Quick pick. Popup with definition of a function https://github.com/cpitclaudel/quick-peek
+- lsp-ui https://github.com/emacs-lsp/lsp-ui
 - aggressive-indent. https://github.com/Malabarba/aggressive-indent-mode
 - realgud. Dubugger, try it!
 - https://github.com/Fuco1/smartparens Dealing with parens
@@ -63,10 +66,12 @@ https://github.com/raxod502/straight.el
    - [[https://github.com/skeeto/elfeed][Rss|Atom feed package]]
 
 ** Emacs things to learn
-   - [ ] Help functions in emacs
-     - [ ] Make a list of all kinds of 'help' that emacs has
-     - [ ] *C-h C-h* 'help-to-help'
-     - [ ] *C-h k* help about command
+- Hooks
+  Add a hook for 'jump to definition' to make 'z t'(scroll line to top) after it
+- [ ] Help functions in emacs
+    - [ ] Make a list of all kinds of 'help' that emacs has
+    - [ ] *C-h C-h* 'help-to-help'
+    - [ ] *C-h k* help about command
 
 ** Important:
    - Nothing yet...
