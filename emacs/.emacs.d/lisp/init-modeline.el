@@ -78,7 +78,7 @@
   (use-package rich-minority
     :config
     (rich-minority-mode 1)
-    (setq rm-whitelist '(" emc" " ws"))
+    (setq rm-whitelist '(" emc" " ws" " !EML!"))
 
     (telephone-line-defsegment mr/telephone-line-rich-minority-segment ()
       (rm--mode-list-as-string-list))

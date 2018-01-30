@@ -52,6 +52,7 @@
 (require 'init-emacs)
 (require 'init-hydra) ; should be initialized before evil
 (require 'init-evil)
+(require 'init-evil-mlang) ; should go after evil settigns
 (require 'init-appearance)
 (require 'init-modeline)
 (require 'init-ivy)
