@@ -2,48 +2,35 @@
 
 ;;; Commentary:
 ;; Contains all setting about python
-;; System requirements:
+
+;; !!!! Python virtualenv requirements for 'elpy' to work:
 ;; jedi
+;; flake8
+;; autopep8
+;; yapf
 
 ;;; Code:
-
-
-(use-package pyenv-mode
-  :init
-  (pyenv-mode))
+(use-package pipenv
+  :hook (python-mode . pipenv-mode))
 
 (use-package elpy
   :init
   (elpy-enable)
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
   (setq elpy-rpc-backend "jedi")
+  :general
+  (:keymaps 'evil-normal-state-map "gd" 'elpy-goto-definition)
   :config
-  (highlight-indentation-mode -1)
-  )
-
+  (setq elpy-modules (delete 'elpy-module-highlight-indentation elpy-modules))
+  (setq elpy-modules (delete 'elpy-module-flymake elpy-modules)))
 
 ;; (use-package anaconda-mode)
 (use-package sphinx-doc)
 (use-package py-yapf)
 
-
 (add-hook 'python-mode-hook
           (lambda ()
             (setq tab-width 4)
-            (sphinx-doc-mode t)
-            (define-key evil-normal-state-map (kbd "gd") 'elpy-goto-definition)
-            ))
-
-;; (add-hook 'python-mode-hook 'anaconda-mode)
-;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-;; (pyenv-mode)
-(defun projectile-pyenv-mode-set ()
-  "Set pyenv version matching project name.
-Version must be already installed."
-  (pyenv-mode-set (projectile-project-name)))
-
-(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
+            (sphinx-doc-mode t)))
 
 (provide 'init-python)
 

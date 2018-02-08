@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;;; Notes:
+;;  C-u [COMMAND](Ex.: M-x counsel-rg / keybinding) RET [rg args](Ex.: -t org) RET [search keyword](Ex.: tes)
+
 ;; not working good for current docker-mode setup
 ;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 

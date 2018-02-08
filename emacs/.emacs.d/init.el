@@ -9,19 +9,15 @@
 
 (require 'init-straight) ; package manager
 
-;; Plugin: exec-path-from-shell. Setting
-;; Wrap to hide pyenv-mode warning. Don't know why it happends
 (use-package exec-path-from-shell
   :config
-  (setq warning-minimum-level :emergency)
-  (exec-path-from-shell-initialize)
-  (setq warning-minimum-level :warning)
-  )
+  (exec-path-from-shell-initialize))
 
-
+;; (use-package realgud) ;; debugging, try it sometime. (Hard with docker env)
 (use-package smex) ;; ranking and remembering M-x
 (use-package json-mode)
 (use-package writeroom-mode)
+(use-package fish-mode)
 (use-package wgrep)
 (use-package restclient)
 (use-package rainbow-delimiters

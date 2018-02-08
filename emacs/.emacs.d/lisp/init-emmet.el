@@ -5,7 +5,7 @@
 ;;; Code:
 (use-package emmet-mode
   :general
-  ("C-j" 'emmet-expand-line)
+  (:keymaps 'evil-insert-state-map "C-j" 'emmet-expand-line)
 
   :init
   ;; Auto-start on any markup modes
