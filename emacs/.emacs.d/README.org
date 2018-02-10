@@ -100,3 +100,7 @@ Like 'mc/insert-numbers' in multiple cursors package
 
 * Articles
 1. About why Vim. https://medium.com/@mkozlows/why-atom-cant-replace-vim-433852f4b4d1
+* Good editor color scheme
+** Points
+1. *Dark* text on *light* background when we talking about *paragraphs* of text, that user going to *read*
+2. *Light* text on *dark* background when we talking about *headings/titles/lables* of text, that user going to *scan*

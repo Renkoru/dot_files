@@ -36,10 +36,33 @@
 ;; after install setup fonts: M-x all-the-icons-install-fonts
 (use-package all-the-icons :after ivy)
 
-(use-package material-theme
-  :init (load-theme 'material-light t))
+;; Good light schemes:
+;; 1. base16-atelier-sulphurpool-light
+;; 1. base16-atelier-lakeside-light
+;; 2. base16-atelier-forest-light
+;; 2. base16-google-light
+;; 3. base16-atelier-heath-light
+;; 3. base16-atelier-plateau-light
+;; 3. base16-atelier-savanna-light
 
-(enable-theme 'material-light)
+;; Good dark schemes:
+;; 3. base16-flat
+;; 3. base16-nord
+;; 3. base16-paraiso
+
+;; base16-ocean need some 'magit' changes
+;; base16-ashes is too aggressive
+;; base16-atelier-dune-light - hmmmmm, maaaay be
+;; base16-atelier-estuary-light - hmmmmm, maaaay be
+;; base16-atelier-estuary-light - not bad, but need to add more contrast here
+(use-package base16-theme
+  :config
+  (load-theme 'base16-atelier-sulphurpool-light t))
+
+;; (use-package material-theme
+;;   :init (load-theme 'material-light t))
+
+;; (enable-theme 'material-light)
 (set-face-attribute 'region nil :background "gold")
 
 (add-to-list 'default-frame-alist '(font . "mononoki-11"))

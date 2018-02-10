@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Swap Left Control and Caps Lock
 # Make Caps Lock a Control key
 # Change keyboard layout. en, ru
