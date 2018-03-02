@@ -198,6 +198,12 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
 
+# Application placement
+for_window [title="^Google Chrome"] move window to workspace $tag1
+for_window [title="^emacs@arch"] move window to workspace $tag2
+for_window [title="^Skype"] move window to workspace 9
+for_window [title="^Slack"] move window to workspace 9
+
 # switch between the current and the previously focused one
 bindsym $mod+b workspace back_and_forth
 # reload the configuration file
