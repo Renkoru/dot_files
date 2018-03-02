@@ -75,6 +75,13 @@
     (mr/get-filename-with-directory)
     )
 
+  (telephone-line-defsegment mr/telephone-line-process-segment ()
+    ;; telephone-line-process-segment; replaced by my function
+   (if mode-line-process
+       (concat "" mode-line-process)
+     nil))
+
+
   (use-package rich-minority
     :config
     (rich-minority-mode 1)
@@ -87,7 +94,7 @@
   (setq telephone-line-lhs
         '((red    . (mr/telephone-line-anzu-segment
                      mr/telephone-line-buffer-status-segment
-                     telephone-line-process-segment))
+                     mr/telephone-line-process-segment))
           (green   . (mr/telephone-line-buffer-segment))
           (blue . (telephone-line-position-segment))
           (evil   . (telephone-line-evil-tag-segment))

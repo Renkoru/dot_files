@@ -19,6 +19,7 @@ https://github.com/raxod502/straight.el
   You could diff it if you want Find state of a file in any branch. You could diff it if you want.
 
 * Interesting packages to look at
+- Postframe for Ivy. *Requires Emacs 26!* https://github.com/tumashu/ivy-posframe
 - Lsp mode https://github.com/emacs-lsp/lsp-mode
 - Quick pick. Popup with definition of a function https://github.com/cpitclaudel/quick-peek
 - lsp-ui https://github.com/emacs-lsp/lsp-ui

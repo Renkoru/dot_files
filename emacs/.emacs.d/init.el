@@ -15,6 +15,7 @@
 
 ;; (use-package realgud) ;; debugging, try it sometime. (Hard with docker env)
 (use-package smex) ;; ranking and remembering M-x
+(use-package vlf) ;; open big files by chunks
 (use-package json-mode)
 (use-package writeroom-mode)
 (use-package fish-mode)
@@ -47,6 +48,7 @@
 
 (require 'init-emacs)
 (require 'init-hydra) ; should be initialized before evil
+(require 'init-vcs) ; should be before evil
 (require 'init-evil)
 (require 'init-evil-mlang) ; should go after evil settigns
 (require 'init-appearance)
@@ -55,14 +57,13 @@
 (require 'init-yasnippet) ; should be initialized before auto-complete
 (require 'init-custom-functions)
 (require 'init-flyspell)
-(require 'init-vcs)
 (require 'init-docker)
 (require 'init-neotree)
 
 
 (use-package ace-window
   :general
-  ("M-q" 'ace-window))
+  (:keymaps 'global "M-q" 'ace-window))
 
 (use-package projectile
   :init

@@ -29,14 +29,14 @@
         "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
 
   (general-define-key :prefix my-leader "y" 'counsel-yank-pop)
-
+  (general-define-key :keymaps 'evil-normal-state-map :prefix "g"
+                      "l" 'counsel-grep-or-swiper
+                      "o" 'counsel-imenu)
   :general
-  ("C-q" 'ivy-switch-buffer)
-  ("M-x" 'counsel-M-x)
-  ("M-f" 'counsel-find-file)
-  ("C-c C-i" 'ivy-resume)
-  ("gl" 'counsel-grep-or-swiper)
-  ("go" 'counsel-imenu))
+  (:keymaps 'global "C-q" 'ivy-switch-buffer)
+  (:keymaps 'global "M-x" 'counsel-M-x)
+  (:keymaps 'global "M-f" 'counsel-find-file)
+  (:keymaps 'global "C-c C-i" 'ivy-resume))
 
 (use-package ivy-hydra)
 
