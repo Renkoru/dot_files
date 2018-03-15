@@ -23,13 +23,12 @@
   ;; (setq flycheck-checkers '(javascript-eslint))
   (setq-default flycheck-checkers
                 (append flycheck-checkers
-                        '(jsx-tide)
-                        )
-                )
+                        '(jsx-tide)))
+
+
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(json-jsonlist)))
-  )
+                        '(json-jsonlist))))
 
 
 ;; (add-hook 'js-mode-hook
@@ -40,14 +39,6 @@
 ;; (add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
 ;; (add-hook 'projectile-after-switch-project-hook 'lunaryorn-use-js-executables-from-node-modules)
 (add-hook 'js-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
-
-(defun mjs/setup-local-eslint ()
-    "If ESLint found in node_modules directory - use that for flycheck.
-Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
-    (interactive)
-    (let ((local-eslint (expand-file-name "./node_modules/.bin/eslint")))
-      (setq flycheck-javascript-eslint-executable
-            (and (file-exists-p local-eslint) local-eslint))))
 
 ;; Do not know what it does, really
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/lisp/lunaryorn-flycheck.el#L62
@@ -70,7 +61,7 @@ Intended for use in PROJECTILE-AFTER-SWITCH-PROJECT-HOOK."
 (defun eslint-fix-file ()
   (interactive)
   (message "eslint --fixing the file" (buffer-file-name))
-  (shell-command (concat "eslint --fix " (buffer-file-name)))
+  (shell-command (concat flycheck-javascript-eslint-executable " --fix " (buffer-file-name)))
   (revert-buffer t t))
 
 

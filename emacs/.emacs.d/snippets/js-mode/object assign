@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: object assign
+# key: oa
+# --
+Object.assign({}$1, $2, {$3});$0

@@ -51,6 +51,16 @@
 ;; Tide is available in melpa.You can install tide via package - install M - x package - install[ret] tide
 (use-package tide)
 
+(general-define-key
+ :states 'normal
+ :keymaps 'js-mode-map
+ "gd" 'tide-jump-to-definition)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'js-mode-map
+ "gb" 'tide-jump-back)
+
 (defun setup-tide-mode()
   (interactive)
   (tide-setup)
@@ -78,11 +88,7 @@
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 
-
-(bind-keys :map rjsx-mode-map
-           :map js2-mode-map
-           ("M-d" . tide-jump-to-definition))
-  ;; configure javascript - tide checker to run after your default javascript checker
+;; configure javascript - tide checker to run after your default javascript checker
 
 
 ;; Not usable for now, investigate package, maybe found some usefull things

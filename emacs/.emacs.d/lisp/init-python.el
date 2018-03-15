@@ -18,7 +18,7 @@
   (elpy-enable)
   (setq elpy-rpc-backend "jedi")
   :general
-  (:keymaps 'evil-normal-state-map "gd" 'elpy-goto-definition)
+  (:keymaps 'python-mode-map :states 'normal "gd" 'elpy-goto-definition)
   :config
   (setq elpy-modules (delete 'elpy-module-highlight-indentation elpy-modules))
   (setq elpy-modules (delete 'elpy-module-flymake elpy-modules)))

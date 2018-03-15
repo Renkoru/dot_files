@@ -36,8 +36,8 @@
   ("<f3>" 'ranger)
   :config
   (setq ranger-preview-file nil)
-  (setq ranger-cleanup-on-disable t)
-  )
+  (setq ranger-cleanup-on-disable t))
+
 
 (use-package dumb-jump
   :general
@@ -59,6 +59,7 @@
 (require 'init-flyspell)
 (require 'init-docker)
 (require 'init-neotree)
+(require 'init-lisp)
 
 
 (use-package ace-window
@@ -101,6 +102,9 @@
 (require 'init-python)
 (require 'init-elm)
 (require 'init-org)
+
+(use-package expand-region
+  :general (:prefix my-leader "e" 'er/expand-region))
 
 (use-package alchemist)
 (use-package jump-tree
