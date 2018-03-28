@@ -37,10 +37,10 @@
     ("q" nil "quit"))
 
 
-  (general-define-key :prefix my-leader
-                      "t" 'hydra-toggle/body
-                      "r" 'hydra-resize/body
-                      "cf" 'hydra-zoom/body)
+  (my-space-leader
+    "t" 'hydra-toggle/body
+    "r" 'hydra-resize/body
+    "cf" 'hydra-zoom/body)
 )
 
 (provide 'init-hydra)

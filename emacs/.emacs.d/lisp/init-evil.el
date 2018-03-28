@@ -30,16 +30,16 @@
    "C-e" 'end-of-line
    "C-a" 'beginning-of-line)
 
-  (general-define-key :prefix my-leader
-   "w" 'save-buffer
-   "q" 'delete-window
-   "=" 'balance-windows)
+  (my-space-leader
+    "w" 'save-buffer
+    "q" 'delete-window
+    "=" 'balance-windows)
 
-  (general-define-key :prefix "["
-                      "SPC" 'insert-line-above)
+  ;; (general-define-key :prefix "["
+  ;;                     "SPC" 'insert-line-above)
 
-  (general-define-key :prefix "]"
-                      "SPC" 'insert-line-below)
+  ;; (general-define-key :prefix "]"
+  ;;                     "SPC" 'insert-line-below)
 
   (setq evil-emacs-state-cursor '("#8b0000" box))
   (setq evil-normal-state-cursor '("ForestGreen" box))
@@ -76,36 +76,38 @@
       ("m" evil-mc-mode nil)
       ("q" nil "quit"))
 
-    (general-define-key :prefix my-leader "cc" 'hydra-mc/body))
+    (my-space-leader "cc" 'hydra-mc/body))
 
   (use-package evil-matchit
     :config (global-evil-matchit-mode 1))
 
   (use-package vimish-fold
     :general
-    (evil-visual-state-map "zf" 'vimish-fold)
-    ("zd" 'vimish-fold-delete)
-    ("zD" 'vimish-fold-delete-all)
-    ("za" 'vimish-fold-toggle)
-    ("zA" 'vimish-fold-toggle-all)
-    ("zo" 'vimish-fold-unfold)
-    ("zO" 'vimish-fold-unfold-all)
-    ("zc" 'vimish-fold-refold)
-    ("zC" 'vimish-fold-refold-all))
+    (general-nvmap "zf" 'vimish-fold)
+
+    (:states '(normal visual) :prefix "z"
+    "d" 'vimish-fold-delete
+    "D" 'vimish-fold-delete-all
+    "a" 'vimish-fold-toggle
+    "A" 'vimish-fold-toggle-all
+    "o" 'vimish-fold-unfold
+    "O" 'vimish-fold-unfold-all
+    "c" 'vimish-fold-refold
+    "C" 'vimish-fold-refold-all))
 
   (use-package drag-stuff
-    :init
-    (drag-stuff-global-mode 1)
     :general
-    ("M-k" 'drag-stuff-up)
-    ("M-j" 'drag-stuff-down)
-    ("M-l" 'drag-stuff-right)
-    ("M-h" 'drag-stuff-left))
-
+    (general-nmap
+      "M-k" 'drag-stuff-up
+      "M-j" 'drag-stuff-down
+      "M-l" 'drag-stuff-right
+      "M-h" 'drag-stuff-left)
+    :init
+    (drag-stuff-global-mode 1))
 
   (use-package evil-nerd-commenter
-    :config
-    (general-define-key "gcc" 'evilnc-comment-or-uncomment-lines))
+    :general
+    (general-nvmap "gcc" 'evilnc-comment-or-uncomment-lines))
 
   (use-package evil-anzu
     :config
@@ -127,12 +129,6 @@
   ;; other faces such as `diff-added` will be used for other actions
   ;; (evil-goggles-use-diff-faces)
   )
-
-;; When i visual select some region last mark is resetting.
-;; Emacs lost it and i can't jump back to it.  (C-i)
-;; This hook add some sacrifice mark to reset it.
-;; Temporary disabled be cause of bug: Visual Vim select at the end and at the start of buffer
-;; (add-hook 'activate-mark-hook 'push-mark-no-activate)
 
 
 (provide 'init-evil)

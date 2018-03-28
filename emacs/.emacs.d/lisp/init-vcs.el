@@ -48,7 +48,7 @@
 
 
 ;; Keybindings
-(general-define-key :prefix my-leader
+(my-space-leader
  "m" 'magit-status
  "g" 'hydra-git-toggle/body)
 

@@ -28,8 +28,9 @@
 (use-package general
   :demand
   :config
-  (setq general-default-keymaps 'evil-normal-state-map)
-  (setq my-leader "<SPC>"))
+  (general-evil-setup)
+  (general-create-definer my-general-g-definer :states 'normal :prefix "g")
+  (general-create-definer my-space-leader :states 'normal :prefix "<SPC>"))
 
 (use-package ranger
   :general
@@ -90,8 +91,7 @@
   ("C-<f12>" 'highlight-symbol)
   ("<f12>" 'highlight-symbol-next)
   ("S-<f12>" 'highlight-symbol-prev)
-  :config
-  (general-define-key :prefix my-leader "h" 'highlight-symbol-at-point))
+  (my-space-leader "h" 'highlight-symbol-at-point))
 
 (require 'init-avy)
 (require 'init-flycheck)
@@ -104,7 +104,7 @@
 (require 'init-org)
 
 (use-package expand-region
-  :general (:prefix my-leader "e" 'er/expand-region))
+  :general (my-space-leader "e" 'er/expand-region))
 
 (use-package alchemist)
 (use-package jump-tree

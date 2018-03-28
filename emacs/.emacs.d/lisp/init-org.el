@@ -45,9 +45,9 @@
   ("q" nil "quit"))
 
 
-(general-define-key :prefix my-leader
-                    "z" 'org-capture
-                    "o" 'hydra-org/body)
+(my-space-leader
+  "z" 'org-capture
+  "o" 'hydra-org/body)
 
 (provide 'init-org)
 ;;; init-org.el ends here

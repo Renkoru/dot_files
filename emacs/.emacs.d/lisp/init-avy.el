@@ -4,6 +4,12 @@
 
 
 (use-package avy
+  :general
+  (my-space-leader
+    "j" 'avy-goto-line-below
+    "k" 'avy-goto-line-above
+    "l" 'avy-goto-char-in-line
+    "s" 'avy-goto-char-timer)
   :config
   ;; Bind key for isearch C-' to activate avy
   (setq avy-style 'at-full)
@@ -27,13 +33,7 @@
   (setq avy-dispatch-alist '((?c . avy-action-copy)
                              (?w . my-avy-action-copy-and-yank)))
 
-  (avy-setup-default)
-
-  (general-define-key :prefix my-leader
-   "j" 'avy-goto-line-below
-   "k" 'avy-goto-line-above
-   "l" 'avy-goto-char-in-line
-   "s" 'avy-goto-char-timer))
+  (avy-setup-default))
 
 (provide 'init-avy)
 ;;; init-avy.el ends here

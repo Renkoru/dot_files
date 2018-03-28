@@ -77,8 +77,7 @@
   ("r" set-default-font-height "reset")
   ("d" text-scale-decrease "decrease"))
 
-(general-define-key :prefix my-leader
-                    "cf" 'hydra-zoom/body)
+(my-space-leader "cf" 'hydra-zoom/body)
 
 
 (use-package rainbow-mode)
