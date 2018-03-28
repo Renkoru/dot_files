@@ -107,34 +107,6 @@
   :general (my-space-leader "e" 'er/expand-region))
 
 (use-package alchemist)
-(use-package jump-tree
-  :after evil
-  :general
-  ("C-o" 'jump-tree-jump-prev)
-  ("C-i" 'jump-tree-jump-next)
-  ("C-x j" 'jump-tree-visualize)
-
-  :config
-  (global-jump-tree-mode 1)
-  ;; List of possible 'jump-tree-pos-list-record-commands'
-  ;; (save-buffer
-  ;;           beginning-of-buffer
-  ;;           end-of-buffer backward-up-list
-  ;;           beginning-of-defun end-of-defun
-  ;;           unimacs-move-beginning-of-line unimacs-move-end-of-line
-  ;;           unimacs-move-beginning-of-window unimacs-move-end-of-window
-  ;;           find-function find-variable
-  ;;           mark-defun mark-whole-buffer
-  ;;           avy-goto-char avy-goto-char-2
-  ;;           ensime-edit-definition
-  ;;           ensime-edit-definition-with-fallback
-  ;;           isearch-forward)
-
-  (setq jump-tree-pos-list-skip-commands
-        '(self-insert-command counsel-M-x execute-extended-command))
-
-  (setq jump-tree-pos-list-record-commands
-        '(avy-goto-line-below avy-goto-line-above evil-avy-goto-char-timer evil-avy-goto-char-in-line)))
 
 ;; Keep same configs for all team (all editors)
 (use-package editorconfig
