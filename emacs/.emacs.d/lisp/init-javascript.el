@@ -49,47 +49,39 @@
 ;; Install node.js v0.12.0 or greater.
 ;; Make sure tsconfig.json or jsconfig.json is present in the root folder of the project.
 ;; Tide is available in melpa.You can install tide via package - install M - x package - install[ret] tide
-(use-package tide)
+(use-package tide
+  :general
+  (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gd" 'tide-jump-to-definition)
+  (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gb" 'tide-jump-back)
 
-(general-define-key
- :states 'normal
- :keymaps 'js-mode-map
- "gd" 'tide-jump-to-definition)
+  :config
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    ;; (tide-hl-identifier-mode +1)
 
-(general-define-key
- :states 'normal
- :keymaps 'js-mode-map
- "gb" 'tide-jump-back)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (company-mode +1))
 
-(defun setup-tide-mode()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  ;; (tide-hl-identifier-mode +1)
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
 
-  ;; company is an optional dependency.You have to
-  ;; install it separately via package - install
-  ;; `M-x package-install [ret] company`
-  ;; (company-mode +1)
-  ;; (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
-  ;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
-  )
+  ;; formats the buffer before saving
+  ;; (add-hook 'before-save-hook 'tide-format-before-save)
 
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
+  (add-hook 'js2-mode-hook #'setup-tide-mode))
 
-;; formats the buffer before saving
-;; (add-hook 'before-save-hook 'tide-format-before-save)
 
 ;; (add - hook 'typescript-mode-hook #'setup - tide - mode)
-(add-hook 'rjsx-mode-hook #'setup-tide-mode)
-
-(add-hook 'js2-mode-hook #'setup-tide-mode)
 
 ;; configure javascript - tide checker to run after your default javascript checker
-
 
 ;; Not usable for now, investigate package, maybe found some usefull things
 (use-package js2-refactor
@@ -108,7 +100,6 @@
 (setq-default js2-global-externs '("describe" "expect" "it" "jest" ))
 
 (add-hook 'js-mode-hook 'js-custom)
-
 
 (setq js2-highlight-level 3)
 
