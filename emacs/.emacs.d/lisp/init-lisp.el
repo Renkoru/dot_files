@@ -7,6 +7,7 @@
   :general
   ;; replace a global binding with major-mode's default
   (lispy-mode-map "M-q" nil)
+  (lispy-mode-map :states '(normal) "gcc" 'lispy-comment)
   :config
   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1))))
 
