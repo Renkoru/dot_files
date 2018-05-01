@@ -48,6 +48,25 @@
   :config
   (counsel-projectile-mode))
 
+(use-package ivy-posframe
+  :config
+  (setq ivy-posframe-parameters
+        '((left-fringe . 5)
+          (right-fringe . 5)
+          ;; (foreground-color . "DarkSlateGrey")
+          ;; (background-color . "LightSteelBlue1")
+          ))
+  ;; (defun ivy-posframe-display-at-frame-bottom-left (str)
+  ;;   (ivy-posframe--display str #'posframe-poshandler-frame-bottom-right-corner))
+
+  (setq ivy-display-function #'ivy-posframe-display)
+  ;; (setq ivy-display-function #'ivy-posframe-display-at-frame-center)
+  ;; (setq ivy-display-function #'ivy-posframe-display-at-window-center)
+  ;; (setq ivy-display-function #'ivy-posframe-display-at-frame-bottom-left)
+  ;; (setq ivy-display-function #'ivy-posframe-display-at-window-bottom-left)
+  ;; (setq ivy-display-function #'ivy-posframe-display-at-point)
+  (ivy-posframe-enable))
+
 
 (provide 'init-ivy)
 ;;; init-counsel.el ends here
