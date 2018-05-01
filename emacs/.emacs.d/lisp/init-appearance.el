@@ -55,9 +55,13 @@
 ;; base16-atelier-dune-light - hmmmmm, maaaay be
 ;; base16-atelier-estuary-light - hmmmmm, maaaay be
 ;; base16-atelier-estuary-light - not bad, but need to add more contrast here
+;; Check this package maybe it worth it
+;; - https://github.com/manuel-uberti/doneburn-theme
+;; - https://github.com/bbatsov/zenburn-emacs
+
 (use-package base16-theme
   :config
-  (load-theme 'base16-atelier-sulphurpool-light t))
+  (load-theme 'base16-nord t))
 
 ;; (use-package material-theme
 ;;   :init (load-theme 'material-light t))

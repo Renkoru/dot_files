@@ -5,6 +5,9 @@
 
 (use-package evil
   :demand
+  :general
+  (:states '(insert)
+           "C-e" 'end-of-line)
   :config
   (evil-mode 1)
 
@@ -27,7 +30,6 @@
    "C-j" 'evil-window-down
    "C-k" 'evil-window-up
    "C-l" 'evil-window-right
-   "C-e" 'end-of-line
    "C-a" 'beginning-of-line)
 
   (my-space-leader
@@ -86,14 +88,14 @@
     (general-nvmap "zf" 'vimish-fold)
 
     (:states '(normal visual) :prefix "z"
-    "d" 'vimish-fold-delete
-    "D" 'vimish-fold-delete-all
-    "a" 'vimish-fold-toggle
-    "A" 'vimish-fold-toggle-all
-    "o" 'vimish-fold-unfold
-    "O" 'vimish-fold-unfold-all
-    "c" 'vimish-fold-refold
-    "C" 'vimish-fold-refold-all))
+             "d" 'vimish-fold-delete
+             "D" 'vimish-fold-delete-all
+             "a" 'vimish-fold-toggle
+             "A" 'vimish-fold-toggle-all
+             "o" 'vimish-fold-unfold
+             "O" 'vimish-fold-unfold-all
+             "c" 'vimish-fold-refold
+             "C" 'vimish-fold-refold-all))
 
   (use-package drag-stuff
     :general
