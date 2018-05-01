@@ -3,7 +3,6 @@
 # Swap Left Control and Caps Lock
 # Make Caps Lock a Control key
 # Change keyboard layout. en, ru
-setxkbmap -option
 setxkbmap -option ctrl:swapcaps -option ctrl:nocaps -option grp:alt_shift_toggle -layout us,ru -rules evdev -model pc105
 
 # Setting verbose level to 10
