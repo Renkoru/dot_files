@@ -58,6 +58,7 @@
 (require 'init-yasnippet) ; should be initialized before auto-complete
 (require 'init-custom-functions)
 (require 'init-flyspell)
+(require 'init-lsp)
 (require 'init-docker)
 ;; (require 'init-neotree)
 (require 'init-lisp)
@@ -71,7 +72,13 @@
   :init
   (setq projectile-completion-system 'ivy)
   :config
-  (projectile-global-mode t))
+  (projectile-global-mode t)
+  :custom
+  (projectile-switch-project-action
+   (lambda ()
+     (if-let* ((last-buffer (second (projectile-project-buffers))))
+         (switch-to-buffer last-buffer)
+       (projectile-find-file)))))
 
 (use-package beacon
   :init

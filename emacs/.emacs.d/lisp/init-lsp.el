@@ -5,7 +5,11 @@
   :init
   (setq lsp-highlight-symbol-at-point nil)
   (setq lsp-enable-eldoc t)
-  (setq lsp-fly t)
+  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-ui-sideline-delay 1)
+  (setq lsp-ui-sideline-show-symbol nil)
 
   :config
   ;; make sure we have lsp-imenu everywhere we have LSP
@@ -36,7 +40,7 @@
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package company-lsp
-  :after lsp-mode
+  :after (company lsp-mode)
   :config
   (push 'company-lsp company-backends))
 
