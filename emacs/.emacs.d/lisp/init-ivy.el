@@ -31,6 +31,7 @@
   (setq ivy-re-builders-alist
         ;; allow input not in order
         '((t   . ivy--regex-ignore-order)))
+  (setq ivy-use-selectable-prompt t)
 
   :config
   (ivy-mode 1)

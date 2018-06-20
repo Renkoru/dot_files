@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: define funcion
+# key: df
+# --
+def $1($2):
+    pass$0

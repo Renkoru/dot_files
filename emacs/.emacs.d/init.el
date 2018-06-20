@@ -59,7 +59,7 @@
 (require 'init-custom-functions)
 (require 'init-flyspell)
 (require 'init-docker)
-(require 'init-neotree)
+;; (require 'init-neotree)
 (require 'init-lisp)
 
 
@@ -117,7 +117,12 @@
 (use-package yaml-mode)
 (use-package nyan-mode)
 
-; Enable modes
+(use-package nginx-mode)
+(use-package company-nginx
+  :after nginx-mode
+  :config
+  (add-hook 'nginx-mode-hook #'company-nginx-keywords))
+
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
 

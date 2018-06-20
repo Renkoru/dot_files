@@ -2,10 +2,8 @@
 ** Straight
 https://github.com/raxod502/straight.el
 * Third-party dependencies
-
 ** Javascript
    - *eslint* for flycheck. Installation: 'npm install eslint'
-
 ** Python
    - pyenv TODO: add commands to install pyenv on ubuntu or smth
 
@@ -22,19 +20,18 @@ https://github.com/raxod502/straight.el
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
 * Interesting packages to look at
+- Exchange things placement https://github.com/Dewdrops/evil-exchange
+- Spelling setup http://blog.binchen.org/posts/how-to-spell-check-functionvariable-in-emacs.html
 - Postframe for Ivy. *Requires Emacs 26!* https://github.com/tumashu/ivy-posframe
 - This package maybe useful for theme development https://github.com/Fuco1/fontify-face
 - Could be interesting https://github.com/davidshepherd7/fill-function-arguments
 - Flycheck-posframe. *Requires Emacs 26!* https://github.com/alexmurray/flycheck-posframe
 - Look for Prettier js package for emacs. Prettify your js
-- Lsp mode https://github.com/emacs-lsp/lsp-mode
 - Quick pick. Popup with definition of a function https://github.com/cpitclaudel/quick-peek
-- lsp-ui https://github.com/emacs-lsp/lsp-ui
 - aggressive-indent. https://github.com/Malabarba/aggressive-indent-mode
 - realgud. Dubugger, try it!
 - https://github.com/Fuco1/smartparens Dealing with parens
 - which-key
-- !https://github.com/emacs-lsp/lsp-mode [UNDER DEVELOPMENT] good integration with code (Python, ...)?
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
 - https://github.com/Wilfred/helpful show emacs helps
 - https://github.com/wasamasa/shackle to force popup windows opens where you want
@@ -66,12 +63,17 @@ https://github.com/raxod502/straight.el
 
 
 * TODOs
-
 ** To try
-   - [[http://langserver.org/ ][LSP]] ([[https://github.com/emacs-lsp/lsp-mode][Emacs package]]):
-     - [[https://github.com/palantir/python-language-server][Python]]
-     - [[https://github.com/sourcegraph/javascript-typescript-langserver][Javascript]]
-   - [[https://github.com/skeeto/elfeed][Rss|Atom feed package]]
+- [[http://langserver.org/ ][LSP]] ([[https://github.com/emacs-lsp/lsp-mode][Emacs package]]):
+  https://www.youtube.com/watch?v=2GqpdfIAhz8
+  - Core
+    - https://github.com/joaotavora/eglot
+    - https://github.com/emacs-lsp/lsp-mode
+    - https://github.com/emacs-lsp/lsp-ui
+  - [[https://github.com/palantir/python-language-server][Python]]. Replacing Elpy
+    - Check the virtualenvs
+  - [[https://github.com/sourcegraph/javascript-typescript-langserver][Javascript]]
+- [[https://github.com/skeeto/elfeed][Rss|Atom feed package]]
 
 ** Emacs things to learn
 - Hooks

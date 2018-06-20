@@ -46,8 +46,8 @@
 ;; 3. base16-atelier-savanna-light
 
 ;; Good dark schemes:
-;; 3. base16-flat
 ;; 3. base16-nord
+;; 3. base16-flat
 ;; 3. base16-paraiso
 
 ;; base16-ocean need some 'magit' changes
@@ -60,14 +60,15 @@
 ;; - https://github.com/bbatsov/zenburn-emacs
 
 (use-package base16-theme
+  :after ivy
   :config
-  (load-theme 'base16-nord t))
+  (load-theme 'base16-atelier-lakeside-light t)
+  (set-face-attribute 'region nil :background "gold"))
 
 ;; (use-package material-theme
 ;;   :init (load-theme 'material-light t))
 
 ;; (enable-theme 'material-light)
-(set-face-attribute 'region nil :background "gold")
 
 (add-to-list 'default-frame-alist '(font . "mononoki-11"))
 

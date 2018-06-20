@@ -132,6 +132,11 @@
   ;; (evil-goggles-use-diff-faces)
   )
 
+(use-package evil-exchange
+  :after evil
+  :config
+  (evil-exchange-install))
+
 
 (provide 'init-evil)
 

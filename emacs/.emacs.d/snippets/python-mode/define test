@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: define test
+# key: dt
+# --
+def test_$1($2):
+    assert False$0
