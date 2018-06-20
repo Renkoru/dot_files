@@ -246,6 +246,8 @@ bindsym $mod+r mode "resize"
 bindsym $mod+F1 exec amixer set Master 5%-
 bindsym $mod+F2 exec amixer set Master 5%+
 
+bindsym $mod+BackSpace exec shutter -f
+
 # Window Colours
 #                         border  background text    indicator
   client.focused          $base01 $base01    $base07 $base0F
