@@ -143,6 +143,8 @@
 
 (setq markdown-command "pandoc --smart -f markdown -t html")
 
+(use-package htmlize)
+
 ;;--------------------
 ;; Indentation setup
 ;;-------------------

@@ -2,10 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package org)
+
 (setq initial-major-mode 'org-mode)
 (setq org-src-fontify-natively t)
 (setq org-startup-indented t)
 (setq org-export-coding-system 'utf-8)
+
+;; (use-package ox-reveal :defer t)
+(use-package ox-reveal
+ :straight (ox-reveal :type git :host github :repo "Renkoru/org-reveal"
+            :upstream (:host github
+                             :repo "yjwen/org-reveal"))
+ :defer t)
+
 (setq org-capture-templates
       '(("w" "Work Todo list item" plain
          (file+olp "~/org/work.org" "Inbox" "Todos")
