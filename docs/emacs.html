@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Emacs Demo!</title>
+<meta name="author" content="(Maxim Rurenko)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/night.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Emacs Demo!</h1><h2 class="author">Maxim Rurenko</h2><p class="date">Created: 2018-07-15 Sun 19:25</p>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="orga8771a5"><span class="section-number-2">1</span> Straight</h2>
+<p>
+Package manager
+Link: <a href="https://github.com/raxod502/straight.el">https://github.com/raxod502/straight.el</a>
+Pros:
+</p>
+<ul>
+<li>Repetablility. Lock files</li>
+<li>Fast to start</li>
+<li>Easy but not fast packages updating</li>
+<li>Good documentation</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="org9c83616"><span class="section-number-2">2</span> General</h2>
+<p>
+Bind mappings like evil-leader
+</p>
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="orgc33c406"><span class="section-number-2">3</span> Telephone-line</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-3-1">
+<h3 id="orgc9a6ee7"><span class="section-number-3">3.1</span> Rich-minority</h3>
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="orgb0e5cce"><span class="section-number-2">4</span> Org-mode</h2>
+<p>
+Settings file: './lisp/init-org.el'
+</p>
+
+</section>
+<section id="slide-4-1">
+<h3 id="org225cdbc"><span class="section-number-3">4.1</span> Outlines</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+</section>
+<section id="slide-4-1-1">
+<h4 id="orgcaaa24f"><span class="section-number-4">4.1.1</span> Sub-level 1</h4>
+</section>
+<section id="slide-4-1-2">
+<h4 id="org16c58b9"><span class="section-number-4">4.1.2</span> Sub-level 2</h4>
+<div class="outline-text-4" id="text-4-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org56bde43"></a>Sub-sub level<br />
+<ol class="org-ol">
+<li><a id="org470cdbe"></a>Sub-sub-sub level<br /></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="slide-4-2">
+<h3 id="org13dd323"><span class="section-number-3">4.2</span> TODOs</h3>
+<div class="outline-text-3" id="text-4-2">
+</div>
+</section>
+<section id="slide-4-2-1">
+<h4 id="orgfb58d94"><span class="section-number-4">4.2.1</span> <span class="todo TODO">TODO</span> This is a TODO outline</h4>
+<p>
+It has 2 different states:
+</p>
+<ul>
+<li>TODO</li>
+<li>DONE</li>
+
+</ul>
+
+<p>
+But you could extend this list with yours.
+</p>
+</section>
+<section id="slide-4-2-2">
+<h4 id="orge3e2ab4"><span class="section-number-4">4.2.2</span> <span class="done DONE">DONE</span> This is a DONE todo outline</h4>
+</section>
+<section id="slide-4-2-3">
+<h4 id="org7f7f1ba"><span class="section-number-4">4.2.3</span> You could switch state with &lt;C-c C-t&gt;</h4>
+<p>
+I have a special settings to capture a resolution message and timestamp
+</p>
+</section>
+<section id="slide-4-2-4">
+<h4 id="orge93bd1c"><span class="section-number-4">4.2.4</span> <span class="todo TODO">TODO</span> <code>[1/2]</code> With progress of internal todos</h4>
+<div class="outline-text-4" id="text-4-2-4">
+</div>
+<ol class="org-ol">
+<li><a id="orga82dcd3"></a><span class="todo TODO">TODO</span> Need to do<br /></li>
+<li><a id="orgcdd1eb9"></a><span class="done DONE">DONE</span> Done task<br /></li>
+</ol>
+</section>
+</section>
+<section>
+<section id="slide-5">
+<h2 id="orga8a2984"><span class="section-number-2">5</span> Evil</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+</section>
+<section id="slide-5-1">
+<h3 id="org20f03ec"><span class="section-number-3">5.1</span> Marks</h3>
+<p>
+Remeber some place and return to it
+Normal mode -&gt; m + &lt;key to remember&gt;
+**
+</p>
+</section>
+<section id="slide-5-2">
+<h3 id="org32b4c5d"><span class="section-number-3">5.2</span> Evil plugins</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+</section>
+<section id="slide-5-2-1">
+<h4 id="orgf3ab1f6"><span class="section-number-4">5.2.1</span> evil-surround</h4>
+</section>
+<section id="slide-5-2-2">
+<h4 id="orgbe6f514"><span class="section-number-4">5.2.2</span> evil-visualstar</h4>
+</section>
+<section id="slide-5-2-3">
+<h4 id="org76cc22b"><span class="section-number-4">5.2.3</span> evil-mc</h4>
+</section>
+<section id="slide-5-2-4">
+<h4 id="orgab58006"><span class="section-number-4">5.2.4</span> evil-matchit</h4>
+</section>
+<section id="slide-5-2-5">
+<h4 id="orgec669a5"><span class="section-number-4">5.2.5</span> vimish-fold</h4>
+</section>
+<section id="slide-5-2-6">
+<h4 id="orgb075aae"><span class="section-number-4">5.2.6</span> evil-nerd-commenter</h4>
+</section>
+<section id="slide-5-2-7">
+<h4 id="org73375d5"><span class="section-number-4">5.2.7</span> evil-anzu</h4>
+</section>
+<section id="slide-5-2-8">
+<h4 id="org89502a8"><span class="section-number-4">5.2.8</span> evil-goggles</h4>
+</section>
+</section>
+<section>
+<section id="slide-6">
+<h2 id="org8aee972"><span class="section-number-2">6</span> Neotree</h2>
+</section>
+</section>
+<section>
+<section id="slide-7">
+<h2 id="org537b584"><span class="section-number-2">7</span> Hydra</h2>
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="orgb074795"><span class="section-number-2">8</span> Drag-stuff</h2>
+</section>
+</section>
+<section>
+<section id="slide-9">
+<h2 id="org55ff5a3"><span class="section-number-2">9</span> Jump-tree</h2>
+<p>
+Move around on touched places.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-10">
+<h2 id="org5742a73"><span class="section-number-2">10</span> Highlight-symbol</h2>
+<p>
+Use this to highlight variables. You can highlight several variables in the same time.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-11">
+<h2 id="org30139d1"><span class="section-number-2">11</span> Swiper</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+</section>
+<section id="slide-11-1">
+<h3 id="orgf952e4b"><span class="section-number-3">11.1</span> Counsel</h3>
+</section>
+<section id="slide-11-2">
+<h3 id="orgd73690a"><span class="section-number-3">11.2</span> Ivy</h3>
+</section>
+</section>
+<section>
+<section id="slide-12">
+<h2 id="org9783503"><span class="section-number-2">12</span> Projectile</h2>
+</section>
+</section>
+<section>
+<section id="slide-13">
+<h2 id="org6d4ef37"><span class="section-number-2">13</span> Yasnippet</h2>
+</section>
+</section>
+<section>
+<section id="slide-14">
+<h2 id="org57a0133"><span class="section-number-2">14</span> Flyspell</h2>
+</section>
+</section>
+<section>
+<section id="slide-15">
+<h2 id="org6a30228"><span class="section-number-2">15</span> Git</h2>
+<div class="outline-text-2" id="text-15">
+</div>
+</section>
+<section id="slide-15-1">
+<h3 id="orge78eea5"><span class="section-number-3">15.1</span> Magit</h3>
+</section>
+<section id="slide-15-2">
+<h3 id="org0c58b6a"><span class="section-number-3">15.2</span> Git-timemachine</h3>
+</section>
+<section id="slide-15-3">
+<h3 id="org3b211be"><span class="section-number-3">15.3</span> Git-gutter</h3>
+</section>
+</section>
+<section>
+<section id="slide-16">
+<h2 id="orgb1bf9f0"><span class="section-number-2">16</span> Ace-window</h2>
+</section>
+</section>
+<section>
+<section id="slide-17">
+<h2 id="org001676d"><span class="section-number-2">17</span> Dumb-jump</h2>
+</section>
+</section>
+<section>
+<section id="slide-18">
+<h2 id="org9a758d3"><span class="section-number-2">18</span> Beacon</h2>
+</section>
+</section>
+<section>
+<section id="slide-19">
+<h2 id="org041612b"><span class="section-number-2">19</span> Avy</h2>
+</section>
+</section>
+<section>
+<section id="slide-20">
+<h2 id="orgd01e315"><span class="section-number-2">20</span> Flycheck</h2>
+</section>
+</section>
+<section>
+<section id="slide-21">
+<h2 id="org4e7b079"><span class="section-number-2">21</span> Emmet</h2>
+</section>
+</section>
+<section>
+<section id="slide-22">
+<h2 id="org0936ed5"><span class="section-number-2">22</span> Company</h2>
+</section>
+</section>
+<section>
+<section id="slide-23">
+<h2 id="org6dabd65"><span class="section-number-2">23</span> Web (mode)</h2>
+</section>
+</section>
+<section>
+<section id="slide-24">
+<h2 id="orgd434149"><span class="section-number-2">24</span> Javascript</h2>
+<div class="outline-text-2" id="text-24">
+</div>
+</section>
+<section id="slide-24-1">
+<h3 id="org36dc4cd"><span class="section-number-3">24.1</span> Tide</h3>
+</section>
+<section id="slide-24-2">
+<h3 id="orgd6b74d8"><span class="section-number-3">24.2</span> js2-mode</h3>
+</section>
+<section id="slide-24-3">
+<h3 id="orgd2dc1d6"><span class="section-number-3">24.3</span> rjsx-mode</h3>
+</section>
+</section>
+<section>
+<section id="slide-25">
+<h2 id="org599c8d5"><span class="section-number-2">25</span> Python</h2>
+<div class="outline-text-2" id="text-25">
+</div>
+</section>
+<section id="slide-25-1">
+<h3 id="org9b6a970"><span class="section-number-3">25.1</span> Pyenv-mode</h3>
+</section>
+<section id="slide-25-2">
+<h3 id="orgaa11b0f"><span class="section-number-3">25.2</span> elpy</h3>
+</section>
+<section id="slide-25-3">
+<h3 id="org922fbc0"><span class="section-number-3">25.3</span> sphinx-doc</h3>
+</section>
+<section id="slide-25-4">
+<h3 id="orgc589f80"><span class="section-number-3">25.4</span> py-yapf</h3>
+</section>
+</section>
+<section>
+<section id="slide-26">
+<h2 id="org7fdb6a3"><span class="section-number-2">26</span> Elm</h2>
+<div class="outline-text-2" id="text-26">
+</div>
+</section>
+<section id="slide-26-1">
+<h3 id="org422c46c"><span class="section-number-3">26.1</span> elm-mode</h3>
+</section>
+</section>
+<section>
+<section id="slide-27">
+<h2 id="org89427bd"><span class="section-number-2">27</span> Elixir</h2>
+<div class="outline-text-2" id="text-27">
+</div>
+</section>
+<section id="slide-27-1">
+<h3 id="org28cf4bd"><span class="section-number-3">27.1</span> Alchemist</h3>
+</section>
+</section>
+<section>
+<section id="slide-28">
+<h2 id="org1c131c0"><span class="section-number-2">28</span> Jump-tree</h2>
+</section>
+</section>
+<section>
+<section id="slide-29">
+<h2 id="org282be14"><span class="section-number-2">29</span> Smex</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

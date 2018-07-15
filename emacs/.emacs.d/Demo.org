@@ -3,7 +3,7 @@
 #+OPTIONS: toc:nil reveal_mathjax:t
 #+REVEAL_THEME: night
 #+REVEAL_TRANS: linear
-#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 
 * Straight
 Package manager
