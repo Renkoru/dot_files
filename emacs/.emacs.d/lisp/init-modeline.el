@@ -97,7 +97,7 @@
                      mr/telephone-line-process-segment))
           (green   . (mr/telephone-line-buffer-segment))
           (blue . (telephone-line-position-segment))
-          (evil   . (telephone-line-evil-tag-segment))
+          ;; (evil   . (telephone-line-evil-tag-segment))
           (blue    . (mr/telephone-line-flycheck-segment))
           ))
 

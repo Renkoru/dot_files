@@ -32,6 +32,7 @@ https://github.com/raxod502/straight.el
 - realgud. Dubugger, try it!
 - https://github.com/Fuco1/smartparens Dealing with parens
 - which-key
+- Possible evil-surround package https://github.com/casouri/isolate
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
 - https://github.com/Wilfred/helpful show emacs helps
 - https://github.com/wasamasa/shackle to force popup windows opens where you want
@@ -42,6 +43,7 @@ https://github.com/raxod502/straight.el
 - https://github.com/ninrod/exato To look at it later
 - https://github.com/jojojames/dired-sidebar File sidebar
 - https://github.com/ninrod/evil-string-inflection Evil operator to cycle text objects through camelCase, kebab-case, snake_case and UPPER_CASE.
+- Web development Emacs config to watch https://github.com/redguardtoo/emacs.d
 
 * Installed but not full configured/used packages
 - https://github.com/pashky/restclient.el rest client. Try it! )

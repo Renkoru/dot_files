@@ -3,6 +3,8 @@
 ;;; Commentary:
 ;; Contains all setting about python
 
+;; !!!! Python pipenv requirements for 'lsp-python' to work:
+;; pipenv install 'python-language-server[all]'
 ;; !!!! Python virtualenv requirements for 'elpy' to work:
 ;; jedi
 ;; flake8
@@ -42,6 +44,19 @@
             (lsp-python-enable)
             (setq tab-width 4)
             (sphinx-doc-mode t)))
+
+(use-package evil-python-movement
+  :after evil
+  :general
+  (:states 'normal :keymaps 'python-mode-map
+           "[[" 'evil-python-movement-lsb-lsb
+           "]]" 'evil-python-movement-rsb-rsb
+           "[m" 'evil-python-movement-lsb-m
+           "]m" 'evil-python-movement-rsb-m
+           "[M" 'evil-python-movement-lsb-M
+           "]M" 'evil-python-movement-rsb-M
+           "[]" 'evil-python-movement-lsb-rsb
+           "][" 'evil-python-movement-lsb-rsb))
 
 (provide 'init-python)
 

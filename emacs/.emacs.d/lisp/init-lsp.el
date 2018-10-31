@@ -4,10 +4,9 @@
 (use-package lsp-mode
   :init
   (setq lsp-highlight-symbol-at-point nil)
-  (setq lsp-enable-eldoc t)
-  (setq lsp-ui-flycheck-enable t)
+  (setq lsp-enable-eldoc nil)
+  (setq lsp-ui-flycheck-enable nil)
   (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-flycheck-enable t)
   (setq lsp-ui-sideline-delay 1)
   (setq lsp-ui-sideline-show-symbol nil)
 

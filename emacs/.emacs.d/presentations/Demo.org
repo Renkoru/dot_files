@@ -1,10 +1,13 @@
 #+Title: Emacs Demo!
 #+Author: Maxim Rurenko
+#+bind: org-export-publishing-directory "./exports/demop.html"
 #+OPTIONS: toc:nil reveal_mathjax:t
 #+REVEAL_THEME: night
 #+REVEAL_TRANS: linear
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 
+* Presentation
+Article: http://cestlaz.github.io/posts/using-emacs-50-presentations/#.W1r2IHb-hhH
 * Straight
 Package manager
 Link: https://github.com/raxod502/straight.el
@@ -18,27 +21,28 @@ Bind mappings like evil-leader
 * Telephone-line
 ** Rich-minority
 * Org-mode
-Settings file: './lisp/init-org.el'
+Everything is Text!
 
+Usecases:
+- Project notes. Structuring
 ** Outlines
-*** Sub-level 1
-*** Sub-level 2
-**** Sub-sub level
-***** Sub-sub-sub level
+1. Several levels of outlines
+2. You could toggle theirs visibility
+3. Move them around
+** Lists
+1. Auto-numeration
+2. Sub-lists
+3. Different types of dots
+4. Move them around
 ** TODOs
-*** TODO This is a TODO outline
-It has 2 different states:
-- TODO
-- DONE
-
-But you could extend this list with yours.
-*** DONE This is a DONE todo outline
-*** You could switch state with <C-c C-t>
-I have a special settings to capture a resolution message and timestamp
-*** TODO [1/2] With progress of internal todos
-**** TODO Need to do
-**** DONE Done task
 * Evil
+** Text manipulation
+1. Change / Replace
+** Movements
+1. Word, begining, ending
+2. Find in line
+3. Avy / ace-window
+4. Jump-list (part of evil)
 ** Marks
 Remeber some place and return to it
 Normal mode -> m + <key to remember>

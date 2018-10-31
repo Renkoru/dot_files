@@ -18,6 +18,7 @@
   (:keymaps 'global "M-x" 'counsel-M-x)
   (:keymaps 'global "M-f" 'counsel-find-file)
   (:keymaps 'global "C-c C-i" 'ivy-resume)
+  (:keymaps 'global "C-c p p" 'counsel-projectile-switch-project)
 
   :init
   (setq ivy-switch-buffer-faces-alist
@@ -57,6 +58,7 @@
           ;; (foreground-color . "DarkSlateGrey")
           ;; (background-color . "LightSteelBlue1")
           ))
+  (setq ivy-posframe-width 115)
   ;; (defun ivy-posframe-display-at-frame-bottom-left (str)
   ;;   (ivy-posframe--display str #'posframe-poshandler-frame-bottom-right-corner))
 

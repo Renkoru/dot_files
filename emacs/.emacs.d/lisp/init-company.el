@@ -32,6 +32,7 @@
 
   (setq company-dabbrev-downcase nil)
   (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay 1.5)
 
   ;; source begin >>>: https://github.com/abo-abo/oremacs/blob/github/modes/ora-company.el#L22-L45
   (defun ora-company-number ()
@@ -64,8 +65,8 @@ In that case, insert the number."
     (add-to-list 'company-backends 'company-web-html))
   ;; (use-package company-tern
   ;;   :init (add-to-list 'company-backends '(company-tern :with company-capf)))
-  (use-package company-anaconda
-    :init (add-to-list 'company-backends '(company-anaconda :with company-capf)))
+  ;; (use-package company-anaconda
+  ;;   :init (add-to-list 'company-backends '(company-anaconda :with company-capf)))
   (use-package company-quickhelp
     :init (company-quickhelp-mode 1))
   (use-package company-statistics
