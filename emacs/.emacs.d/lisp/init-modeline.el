@@ -78,7 +78,8 @@
   (telephone-line-defsegment mr/telephone-line-process-segment ()
     ;; telephone-line-process-segment; replaced by my function
    (if mode-line-process
-       (concat "" mode-line-process)
+       ;; (concat "" mode-line-process)
+       (concat "(wip)" mode-line-process)
      nil))
 
 

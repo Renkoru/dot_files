@@ -69,6 +69,8 @@
 ;;   :init (load-theme 'material-light t))
 
 ;; (enable-theme 'material-light)
+;; (set-face-attribute 'default nil :height 230)
+
 
 (add-to-list 'default-frame-alist '(font . "mononoki-11"))
 

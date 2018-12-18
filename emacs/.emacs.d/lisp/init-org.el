@@ -10,7 +10,10 @@
 (setq org-export-coding-system 'utf-8)
 
 ;; (use-package ox-reveal :defer t)
-(use-package ox-reveal)
+(use-package ox-reveal
+  :config
+  (setq org-reveal-title-slide nil)
+  )
 
 (setq org-capture-templates
       '(("w" "Work Todo list item" plain

@@ -29,20 +29,21 @@
 
 (use-package rjsx-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
   (add-to-list 'auto-mode-alist '("\\.react\\.js$" . rjsx-mode))
-  (setq sgml-basic-offset 4) ;; need for js2-jsx-indent-line
-  (advice-add #'js-jsx-indent-line :after #'js-jsx-indent-line-align-closing-bracket)
+  ;; (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
+  ;; (setq sgml-basic-offset 4) ;; need for js2-jsx-indent-line
+  ;; (advice-add #'js-jsx-indent-line :after #'js-jsx-indent-line-align-closing-bracket)
 
 
-  ;; JSX
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'".web-mode))
-  (add-hook 'web-mode-hook
-            (lambda()
-              (when(string-equal "jsx"(file-name-extension buffer-file-name))
-                (setup-tide-mode))))
+  ;; ;; JSX
+  ;; (add-to-list 'auto-mode-alist '("\\.jsx\\'".web-mode))
+  ;; (add-hook 'web-mode-hook
+  ;;           (lambda()
+  ;;             (when(string-equal "jsx"(file-name-extension buffer-file-name))
+  ;;               (setup-tide-mode))))
   ;; configure jsx - tide checker to run after your default jsx checker
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
+  ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
+  )
 
 
 ;; ---------------------
@@ -106,6 +107,14 @@
 ;; (setq-default js2-strict-trailing-comma-warning nil)
 ;; '(js2-strict-trailing-comma-warning nil)
 (setq js2-strict-trailing-comma-warning nil)
+
+(use-package vue-mode
+  :mode "\\.vue\\'"
+  :init
+  (add-hook 'mmm-mode-hook
+            (lambda ()
+              (set-face-background 'mmm-default-submode-face nil)))
+  )
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here
