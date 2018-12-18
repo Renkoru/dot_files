@@ -34,7 +34,7 @@ urxvt*scrollBar: true
 URxvt.scrollstyle: plain
 urxvt*depth: 32
 urxvt*internalBorder: 5
-URxvt.transparent:   true
+! URxvt.transparent:   true
 URxvt.shading:       20
 URxvt.fading:      40
 !urxvt*fadeColor: #000000 ! цвет тени
@@ -53,11 +53,19 @@ Xft.rgba: rgb
 ! put it in ~/.urxvt/ext
 
 ! used extensions
+! URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex,font-size
 URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex
 
 
 URxvt*font: xft:Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
 URxvt*boldFont: xft:Inconsolata:bold:pixelsize=14:antialias=true:hinting=true
+
+! URxvt.keysym.C-Up:     perl:font-size:increase
+! URxvt.keysym.C-Down:   perl:font-size:decrease
+! URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+! URxvt.keysym.C-S-Down: perl:font-size:decglobal
+! URxvt.keysym.C-equal:  perl:font-size:reset
+! URxvt.keysym.C-slash:  perl:font-size:show
 
 URxvt*saveLines: 12000
 URxvt*color4: RoyalBlue

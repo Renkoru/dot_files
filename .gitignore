@@ -10,3 +10,6 @@
 /fish/functions/nvm_alias_function.fish
 /fish/functions/yarn.fish
 /fish/fishd.mrurenko
+/emacs/.emacs.d/projectile.cache
+/emacs/.emacs.d/tramp
+/fish/completions/nvm.fish

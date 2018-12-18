@@ -11,7 +11,7 @@
 # scrot (optional but default)
 
 IMAGE=/tmp/i3lock.png
-SCREENSHOT="scrot $IMAGE" # 0.46s
+SCREENSHOT="maim $IMAGE" # 0.46s
 
 # Alternate screenshot method with imagemagick. NOTE: it is much slower
 # SCREENSHOT="import -window root $IMAGE" # 1.35s

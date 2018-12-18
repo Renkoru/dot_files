@@ -59,7 +59,7 @@ bindsym $mod+Ctrl+l move right 30
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec urxvt
-exec --no-startup-id feh --bg-scale ~/Pictures/wallps/0000walp.png
+exec --no-startup-id feh --bg-scale ~/pictures/wallps/0000walp.png
 #Composite manager:
 exec --no-startup-id compton
 
@@ -150,8 +150,9 @@ set $tag6 "6: temp"
 # >>> i3-gaps settings
 for_window [class="^.*"] border pixel 0
 
-gaps inner 5
-gaps outer 10
+gaps inner 3
+# gaps outer 10
+gaps outer 0
 
 # disable gaps for workspase #8
 # workspace 4 gaps outer 0
@@ -212,8 +213,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+b exec "~/dev-tools/dot_files/scripts/lock.sh"
-exec xautolock -time 5 -locker "~/dev-tools/dot_files/scripts/lock.sh"
+bindsym $mod+Shift+b exec "~/dev_tools/dot_files/scripts/lock.sh"
+exec xautolock -time 5 -locker "~/dev_tools/dot_files/scripts/lock.sh"
 
 
 # resize window (you can also use the mouse for that)
@@ -243,10 +244,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # volume control (Alt + F2 or Alt + F3)
-bindsym $mod+F1 exec amixer set Master 5%-
-bindsym $mod+F2 exec amixer set Master 5%+
+# bindsym $mod+F1 exec amixer set Master 5%-
+# bindsym $mod+F2 exec amixer set Master 5%+
 
-bindsym $mod+BackSpace exec shutter -f
+bindsym $mod+F1 exec pactl set-sink-volume 2 -5%
+bindsym $mod+F2 exec pactl set-sink-volume 2 +5%
+
+
+# take a screenshot
+bindsym $mod+BackSpace exec maim -s /home/mrurenko/pictures/screenshots/shot_$(date +%s).png
 
 # Window Colours
 #                         border  background text    indicator
@@ -262,7 +268,7 @@ bindsym $mod+BackSpace exec shutter -f
 #         status_command i3status
 # #         status_command i3status | dzen2 -fg white -ta r -w 1280 -fn "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1"
 # }
-exec_always --no-startup-id "~/dev-tools/dot_files/i3/polybar/launch.sh"
+exec_always --no-startup-id "~/dev_tools/dot_files/i3/polybar/launch.sh"
 
 
 # bar {
