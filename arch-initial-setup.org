@@ -1,0 +1,52 @@
+* Base system
+1. yay
+2. xorg-server
+3. xorg-xinput
+4. i3          [yay -S i3-gaps-next-git]
+5. xrandr
+6. fish
+7. git
+8. ly-git      (Display manager)
+9. fzf
+10. neovim
+11. emacs
+12. feh
+12. sxiv
+13. imagemagick
+14. maim
+15. htop
+16. openssh
+17. nodejs
+18. ranger
+19. ripgrep
+20. alsa-utils
+21. pulseaudio
+22. ncpamixer
+* Fonts
+#+NAME: Fonts
+#+BEGIN_SRC sh
+  yay -S ttf-yosemite-san-francisco-font-git ttf-inconsolata ttf-mononoki
+#+END_SRC
+* i3 WM
+1. Rofi
+2. Polybar
+* Fish
+#+NAME: install
+#+BEGIN_SRC sh
+  ln -s /home/mrurenko/dev_tools/dot_files/fish/ /home/mrurenko/.config/fish/
+  chsh -l
+  chsh -s full-path-to-shell
+  # logout and login again
+#+END_SRC
+* Python
+1. pyenv (https://github.com/pyenv/pyenv-installer)
+* Messangers
+1. Skype
+2. Slack
+
+* Packages to look at
+- https://wiki.archlinux.org/index.php/thunar
+- maybe (Track program disk usage)
+* Powermanagment tools?
+- laptop tools?
+- lm sensors
