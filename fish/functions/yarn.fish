@@ -1,1 +1,0 @@
-/home/mrurenko/.config/fisherman/nvm/functions/yarn.fish
