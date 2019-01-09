@@ -15,6 +15,13 @@
   (setq org-reveal-title-slide nil)
   )
 
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode)
+  :init
+  (setq org-bullets-bullet-list
+        '("◉" "○"))
+  )
+
 (setq org-capture-templates
       '(("w" "Work Todo list item" plain
          (file+olp "~/org/work.org" "Inbox" "Todos")

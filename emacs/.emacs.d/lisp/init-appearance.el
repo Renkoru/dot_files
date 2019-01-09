@@ -92,6 +92,20 @@
 (setq whitespace-style '(face tabs trailing tab-mark))
 (global-whitespace-mode 1)
 
+
+(use-package highlight-symbol
+  :defer t
+  :hook ((prog-mode . highlight-symbol-mode)
+         (prog-mode . highlight-symbol-nav-mode))
+  :init
+  (setq highlight-symbol-idle-delay 1)
+  :general
+  ("M-<f12>" 'highlight-symbol-mode) ;; highlight symbol under a crusor
+  ("C-<f12>" 'highlight-symbol)
+  ("<f12>" 'highlight-symbol-next)
+  ("S-<f12>" 'highlight-symbol-prev)
+  (my-space-leader "h" 'highlight-symbol-at-point))
+
 (provide 'init-appearance)
 
 ;;; init-appearance.el ends here

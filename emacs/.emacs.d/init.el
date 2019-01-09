@@ -91,15 +91,6 @@
         beacon-blink-when-point-moves t
         beacon-blink-when-window-scrolls t))
 
-(use-package highlight-symbol
-  :demand
-  :general
-  ("M-<f12>" 'highlight-symbol-mode) ;; highlight symbol under a crusor
-  ("C-<f12>" 'highlight-symbol)
-  ("<f12>" 'highlight-symbol-next)
-  ("S-<f12>" 'highlight-symbol-prev)
-  (my-space-leader "h" 'highlight-symbol-at-point))
-
 (require 'init-avy)
 (require 'init-flycheck)
 (require 'init-emmet)
@@ -144,6 +135,7 @@
 (setq markdown-command "pandoc --smart -f markdown -t html")
 
 (use-package htmlize)
+(use-package helpful)
 
 ;;--------------------
 ;; Indentation setup
