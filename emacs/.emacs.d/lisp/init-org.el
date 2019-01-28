@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package org)
+(use-package org
+  :ensure t
+  :pin org)
 
 (setq initial-major-mode 'org-mode)
 (setq org-src-fontify-natively t)

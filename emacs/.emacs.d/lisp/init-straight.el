@@ -3,6 +3,12 @@
 ;;; Code:
 
 ;; >>> straight.el configuration from straight docs
+(setq
+ package-archives '(("melpa" . "https://melpa.org/packages/")
+                    ("org" . "http://orgmode.org/elpa/")
+                    ("gnu" . "https://elpa.gnu.org/packages/"))
+ )
+
 (let ((bootstrap-file (concat user-emacs-directory "straight/bootstrap.el"))
       (bootstrap-version 2))
   (unless (file-exists-p bootstrap-file)

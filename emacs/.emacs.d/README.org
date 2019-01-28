@@ -119,3 +119,14 @@ Like 'mc/insert-numbers' in multiple cursors package
 ** Points
 1. *Dark* text on *light* background when we talking about *paragraphs* of text, that user going to *read*
 2. *Light* text on *dark* background when we talking about *headings/titles/lables* of text, that user going to *scan*
+
+* *Known Issues*
+** No url found for submodule path 'v2/dashboard_project/src/python-instagram' in .gitmodules
+Solution: Invoke next script in the shell
+#+BEGIN_SRC sh
+  # find a submodule
+  git ls-files --stage | grep 160000
+  # remove it
+  git rm --cached v2/dashboard_project/src/python-instagram
+#+END_SRC
+[[https://stackoverflow.com/questions/4185365/no-submodule-mapping-found-in-gitmodule-for-a-path-thats-not-a-submodule][Link]]

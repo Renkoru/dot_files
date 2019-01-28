@@ -2,30 +2,45 @@
 ;;; Commentary:
 ;;; Code:
 
+(defun mr/truncate-file-path (path max-length)
+  "Cuts file PATH from the end to MAX-LENGTH."
+
+  (let* ((file-paths (reverse (split-string path "/")))
+         (total-parts (length file-paths))
+         (result (pop file-paths))
+         (next-length (+ (length result) (length (car file-paths)))))
+
+    (while (and (< next-length max-length) file-paths)
+      (setq result (concat (pop file-paths) "/" result))
+      (setq next-length (+ (length result) (length (car file-paths)))))
+    result
+    )
+  )
 
 (defun mr/get-filename-with-directory ()
   (interactive "P")
 
   (if buffer-file-name
-      (progn
-        (setq current-file-name (file-name-nondirectory buffer-file-name))
+      (let ((proj-path (projectile-project-root))
+            (path-to-truncate buffer-file-name))
 
-        (if (> (length current-file-name) 20)
-            mode-line-buffer-identification
-          (progn
-            (setq file-paths (split-string buffer-file-name "/"))
-            (setq total-parts (length file-paths))
-            (string-join (nthcdr (- total-parts 2) file-paths) "/")
-            ))
+        (if proj-path
+            (setq path-to-truncate
+                  (replace-regexp-in-string proj-path "" path-to-truncate))
+            )
+
+        (mr/truncate-file-path path-to-truncate 50)
         )
+
     mode-line-buffer-identification
     )
   )
-(mr/get-filename-with-directory)
 
 (defun mr/get-git-branch-name ()
-  ;; (truncate-string-to-width (magit-get-current-branch) 18 0 nil ">")
-  (magit-get-current-branch)
+  (truncate-string-to-width (magit-get-current-branch) 10 0 nil ">")
+  ;; (let ((branch-name (magit-get-current-branch))
+  ;;       (max-name-length 7))
+  ;;   (substring branch-name  0 (min max-name-length (length branch-name))))
   )
 
 (use-package telephone-line
