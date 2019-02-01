@@ -20,9 +20,9 @@
 ;;    #'pipenv-projectile-after-switch-extended))
 (use-package pyvenv)
 
-(lsp-define-stdio-client lsp-python "python"
-                         #'projectile-project-root
-                         '("pyls"))
+;; (lsp-define-stdio-client lsp-python "python"
+;;                          #'projectile-project-root
+;;                          '("pyls"))
 
 ;; (use-package elpy
 ;;   :init
@@ -41,7 +41,7 @@
 (add-hook 'python-mode-hook
           (lambda ()
             'flycheck-mode
-            (lsp-python-enable)
+            #'lsp
             (setq tab-width 4)
             (sphinx-doc-mode t)))
 
