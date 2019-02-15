@@ -31,6 +31,7 @@ red = #A02929
 purple = #664975
 
 [bar/bar1]
+bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27

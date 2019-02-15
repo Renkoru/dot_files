@@ -106,6 +106,19 @@ https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/javascript
 http://tuhdo.github.io/emacs-frame-peek.html
 ** TODO Improve package 'evil-mc' Add possibility to add a sequence of numbers. Enumerate.
 Like 'mc/insert-numbers' in multiple cursors package
+** Good documentation?
+Emacs online resources:
+1. http://planet.emacsen.org/
+2. https://www.emacswiki.org/
+3. http://emacsredux.com/
+
+Good posts:
+1. https://www.quora.com/How-can-I-go-from-good-to-great-in-Emacs
+
+Elisp guides:
+1. https://www.gnu.org/software/emacs/manual/eintr.html
+2. http://steve-yegge.blogspot.ru/2008/01/emergency-elisp.html
+
 * Why Emacs
 ** Emacs is:
 - Original extensible
