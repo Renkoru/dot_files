@@ -11,12 +11,14 @@
 ;; JS packages
 ;; use-package nodejs-repl ?
 
+
 (use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode)
+  ;; :mode ("\\.js\\'" . js2-mode)
   :config
   (setq js-switch-indent-offset 4)
   (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
   )
+
 
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
@@ -28,6 +30,7 @@
       (delete-char sgml-basic-offset))))
 
 (use-package rjsx-mode
+  :mode "\\.js\\'"
   :config
   (add-to-list 'auto-mode-alist '("\\.react\\.js$" . rjsx-mode))
   ;; (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
@@ -44,6 +47,14 @@
   ;; configure jsx - tide checker to run after your default jsx checker
   ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
   )
+
+(use-package add-node-modules-path
+  :after (:any js2-mode rjsx-mode)
+  :hook (js2-mode rjsx-mode))
+
+(use-package prettier-js
+  :hook ((js2-mode . prettier-js-mode)
+         (rjsx-mode . prettier-js-mode)))
 
 
 ;; ---------------------
@@ -93,8 +104,8 @@
 
 (defun js-custom ()
   "JavaScript-mode-hook."
-  (setq js-indent-level 4)
-  (setq tab-width 4)
+  (setq js-indent-level 2)
+  (setq tab-width 2)
 
   )
 

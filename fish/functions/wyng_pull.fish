@@ -1,7 +1,26 @@
 function wyng_pull
     set_wyng_env
 
-    set -l repo_list auth-service event-api-service experience-service experience-studio media-service offerpop offerpop-services reporting-service submission-service integration-service voting-service code-service web-service export-service publish-service profile-service
+    set -l repo_list auth-service \
+    code-service \
+    docker \
+    event-api-service \
+    experience-service \
+    experience-studio \
+    export-service \
+    instagram-ingestion \
+    integration-service \
+    living-style-guide \
+    media-service \
+    offerpop \
+    offerpop-services \
+    profile-service \
+    publish-service \
+    quiz-service \
+    reporting-service \
+    submission-service \
+    voting-service \
+    web-service
 
     for repo in $repo_list
         if test -e $OP_SRC/$repo

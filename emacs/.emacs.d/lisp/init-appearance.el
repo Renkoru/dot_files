@@ -17,6 +17,7 @@
 ;; Good fonts:
 ;; 1. mononoki
 ;; 2. Fira Code
+;; 3. Dank Mono
 ;; 3. Inconsolata
 ;; 4. Source Code Pro
 ;; 5. Liberation Mono
@@ -29,12 +30,17 @@
 ;; to set font for a singe buffer you need to:
 ;; (setq buffer-face-mode-face '(:family "Input Mono" :height 130 :weight light))
 ;; (buffer-face-mode)
+;; set font globaly
+;; (set-face-attribute 'default nil :font "mononoki-24")
 
 ;;; Code:
+(require 'fira-code)
+(add-hook 'prog-mode-hook 'fira-code-mode)
 
 ;; be sure that you have '~/.local/share/fonts' folder before install
 ;; after install setup fonts: M-x all-the-icons-install-fonts
 (use-package all-the-icons :after ivy)
+
 
 ;; Good light schemes:
 ;; 1. base16-atelier-sulphurpool-light
@@ -72,7 +78,7 @@
 ;; (set-face-attribute 'default nil :height 230)
 
 
-(add-to-list 'default-frame-alist '(font . "mononoki-11"))
+(add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 
 (defun set-default-font-height ()
   (interactive)

@@ -6,8 +6,14 @@
 (use-package evil
   :demand
   :general
-  (:states '(insert)
+  (:states 'insert
            "C-e" 'end-of-line)
+  (:states 'normal
+           "C-h" 'evil-window-left
+           "C-j" 'evil-window-down
+           "C-k" 'evil-window-up
+           "C-l" 'evil-window-right
+           "C-a" 'beginning-of-line)
   :config
   (evil-mode 1)
 
@@ -24,13 +30,6 @@
     (save-excursion
       (end-of-line 0)
       (open-line 1)))
-
-  (general-define-key
-   "C-h" 'evil-window-left
-   "C-j" 'evil-window-down
-   "C-k" 'evil-window-up
-   "C-l" 'evil-window-right
-   "C-a" 'beginning-of-line)
 
   (my-space-leader
     "w" 'save-buffer

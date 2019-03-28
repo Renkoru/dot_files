@@ -38,9 +38,9 @@
 ;; http://www.cyrusinnovation.com/initial-emacs-setup-for-reactreactnative/
 ;; (add-hook 'projectile-after-switch-project-hook 'mjs/setup-local-eslint)
 ;; (add-hook 'projectile-after-switch-project-hook 'lunaryorn-use-js-executables-from-node-modules)
-(add-hook 'js-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
+;; (add-hook 'js-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
 ;; Typescript integration doesn't work now
-(add-hook 'typescript-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
+;; (add-hook 'typescript-mode-hook 'lunaryorn-use-js-executables-from-node-modules)
 
 ;; Do not know what it does, really
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/lisp/lunaryorn-flycheck.el#L62
@@ -50,7 +50,8 @@
                (root (locate-dominating-file file-name "node_modules"))
                (module-directory (expand-file-name "node_modules" root)))
     (pcase-dolist (`(,checker . ,module) '((javascript-eslint . "eslint")
-                                           (javascript-jscs   . "jscs")
+                                           (javascript-jscs . "jscs")
+                                           (prettier-js-command  . "prettier")
                                            ;; Typescript integration doesn't work now
                                            (typescript-tslint . "tslint")))
       (let ((package-directory (expand-file-name module module-directory))

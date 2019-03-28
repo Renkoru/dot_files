@@ -13,5 +13,10 @@
   :general
   (yas-minor-mode-map "C-<return>" 'yas-expand))
 
+(use-package auto-yasnippet
+  :general
+  (:states 'insert "C-p" 'aya-expand))
+
+
 
 (provide 'init-yasnippet)

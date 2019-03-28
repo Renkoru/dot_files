@@ -28,6 +28,16 @@
       (message "Copied buffer file name '%s' to the clipboard." buffername))))
 
 
+(defun mr/git-get-commit-ticket-prefix ()
+  "Get ticket prefix from git branch name."
+  (interactive)
+
+  (let ((branch-items-list (split-string (magit-get-current-branch) "-")))
+    (insert
+     (string-join (-slice branch-items-list 0 2 1) "-"))
+    ))
+
+
 (defun mr-json-loads ($string &optional $from $to)
   "Remove the following letters: {a e i o u}.
 Got from somewhere on StackOverflow

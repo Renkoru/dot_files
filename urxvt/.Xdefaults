@@ -57,6 +57,8 @@ Xft.rgba: rgb
 URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex
 
 
+! URxvt*font: xft:Inconsolata:style=Regular:pixelsize=32:antialias=true:hinting=true
+! URxvt*boldFont: xft:Inconsolata:bold:pixelsize=30:antialias=true:hinting=true
 URxvt*font: xft:Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
 URxvt*boldFont: xft:Inconsolata:bold:pixelsize=14:antialias=true:hinting=true
 
@@ -91,4 +93,3 @@ URxvt.tabbed.tabbar-fg: 7
 URxvt.tabbed.tabbar-bg: 8
 URxvt.tabbed.tab-fg: 8
 URxvt.tabbed.tab-bg: 7
-

@@ -13,9 +13,9 @@
   :init
   (setq lsp-ui-flycheck-enable nil)
   (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-sideline-delay 1)
-  (setq lsp-ui-sideline-ignore-duplicate t)
-  (setq lsp-ui-sideline-show-symbol nil))
+  (setq lsp-ui-peek-enable nil)
+  (setq lsp-ui-sideline-enable nil)
+ )
 
 (use-package company-lsp
   :after (company lsp-mode)

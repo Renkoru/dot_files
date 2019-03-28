@@ -50,3 +50,6 @@
 * Powermanagment tools?
 - laptop tools?
 - lm sensors
+* Bluetooth setup
+https://wiki.archlinux.org/index.php/Bluetooth_headset
+sudo pacman -S pulseaudio-alsa pulseaudio-bluetooth bluez bluez-libs bluez-utils
