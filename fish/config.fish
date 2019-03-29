@@ -20,3 +20,5 @@ set -x WORKON_HOME $HOME/.local/share/virtualenvs
 set -x PATH "/home/mrurenko/.pyenv/bin" $PATH
 status --is-interactive; and . (pyenv init -|psub)
 # status --is-interactive; and . (pyenv virtualenv-init -|psub)
+
+set -x PATH "$HOME/.poetry/bin" $PATH
