@@ -49,6 +49,7 @@
     _L_ right _H_ left
     _K_ up _J_ down
     _c_ shift right _C_ shift left
+    _l_ toggle link display
     _m_ set tag _a_ archive _t_ todo
     "
   ("H" org-metaleft)
@@ -57,6 +58,7 @@
   ("J" org-metadown)
   ("c" org-shiftright)
   ("C" org-shiftleft)
+  ("l" org-toggle-link-display)
   ("m" org-set-tags-command :exit t)
   ("a" org-archive-subtree)
   ("t" org-todo)

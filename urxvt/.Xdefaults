@@ -1,6 +1,10 @@
 ! Urxvt -------------
 ! for clipboard working - install xsel on ubuntu
 
+! st.font: mono:pixelsize=8:antialias=true:autohint=true;
+st.font: Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
+! st.boldFont: Liberation Mono:style=Regular-8;
+
 /* Couleurs Tango */
 URxvt.foreground: #EEEEEC
 ! URxvt.foreground: #C8C8C8
@@ -56,11 +60,10 @@ Xft.rgba: rgb
 ! URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex,font-size
 URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,tabbedex
 
-
 ! URxvt*font: xft:Inconsolata:style=Regular:pixelsize=32:antialias=true:hinting=true
 ! URxvt*boldFont: xft:Inconsolata:bold:pixelsize=30:antialias=true:hinting=true
-URxvt*font: xft:Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
-URxvt*boldFont: xft:Inconsolata:bold:pixelsize=14:antialias=true:hinting=true
+! URxvt*font: xft:Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
+! URxvt*boldFont: xft:Inconsolata:bold:pixelsize=14:antialias=true:hinting=true
 
 ! URxvt.keysym.C-Up:     perl:font-size:increase
 ! URxvt.keysym.C-Down:   perl:font-size:decrease

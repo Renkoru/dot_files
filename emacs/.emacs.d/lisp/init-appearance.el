@@ -50,6 +50,8 @@
 ;; 3. base16-atelier-heath-light
 ;; 3. base16-atelier-plateau-light
 ;; 3. base16-atelier-savanna-light
+;; ?. adwaita
+;; ?. whiteboard
 
 ;; Good dark schemes:
 ;; 3. base16-nord
