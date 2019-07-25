@@ -53,3 +53,17 @@
 * Bluetooth setup
 https://wiki.archlinux.org/index.php/Bluetooth_headset
 sudo pacman -S pulseaudio-alsa pulseaudio-bluetooth bluez bluez-libs bluez-utils
+* Touchpad settings
+** Apple Magic Trackpad
+File: (do not forget to link it)
+cat /usr/share/X11/xorg.conf.d/40-libinput.conf
+
+Section "InputClass"
+        Identifier "rdashevsky work trackpad"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+        Option "Tapping" "on"
+        Option "NaturalScrolling" "true"
+        Option "AccelSpeed" "0.3"
+EndSection
