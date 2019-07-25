@@ -29,12 +29,15 @@
   "
     _g_ git-gutter:       %`git-gutter-mode
     _t_ time-machine
+    _b_ magit-blame
     "
   ("g" git-gutter-mode nil)
   ("r" git-gutter:revert-hunk "revert hunk")
   ("p" git-gutter:popup-hunk "popup hunk")
   ("N" git-gutter:next-hunk "next hunk")
   ("P" git-gutter:previous-hunk "prev hunk")
+  ("b" magit-blame "blame")
+  ("B" magit-blame-quit "exit blame")
   ("t" hydra-git-timemachine/body :exit t)
   ("q" nil "quit"))
 

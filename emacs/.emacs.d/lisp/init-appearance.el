@@ -81,6 +81,7 @@
 
 
 (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
+;; (add-to-list 'default-frame-alist '(font . "Fira Code-22"))
 
 (defun set-default-font-height ()
   (interactive)
@@ -98,7 +99,7 @@
 (use-package rainbow-mode)
 
 (setq whitespace-style '(face tabs trailing tab-mark))
-(global-whitespace-mode 1)
+;; (global-whitespace-mode 1)
 
 
 (use-package highlight-symbol

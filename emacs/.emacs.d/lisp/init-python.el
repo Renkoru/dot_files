@@ -18,7 +18,9 @@
 ;;   (setq
 ;;    pipenv-projectile-after-switch-function
 ;;    #'pipenv-projectile-after-switch-extended))
-(use-package pyvenv)
+(use-package pyvenv
+  :config
+  (setenv "WORKON_HOME" "/home/mrurenko/.cache/pypoetry/virtualenvs"))
 
 ;; (lsp-define-stdio-client lsp-python "python"
 ;;                          #'projectile-project-root

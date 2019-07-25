@@ -5,23 +5,51 @@
   :commands lsp
   :init
   (setq lsp-highlight-symbol-at-point nil)
-  (setq lsp-enable-eldoc nil))
+  (setq lsp-enable-eldoc nil)
+  (setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui (flycheck) over flymake.
+  :config
+  (add-hook 'python-mode-hook #'lsp)
+  )
 
 (use-package lsp-ui
+  :requires lsp-mode flycheck
   :after lsp-mode
   :commands lsp-ui-mode
   :init
-  (setq lsp-ui-flycheck-enable nil)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-peek-enable nil)
-  (setq lsp-ui-sideline-enable nil)
- )
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-use-childframe t
+        lsp-ui-doc-position 'top
+        lsp-ui-doc-include-signature t
+        lsp-ui-sideline-enable nil
+        lsp-ui-flycheck-enable t
+        lsp-ui-flycheck-list-position 'right
+        lsp-ui-flycheck-live-reporting t
+        lsp-ui-peek-enable t
+        lsp-ui-peek-list-width 60
+        lsp-ui-peek-peek-height 25)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package company
+  :config
+  (setq company-idle-delay 0.3)
+
+  (global-company-mode 1)
+
+  (global-set-key (kbd "C-<tab>") 'company-complete))
 
 (use-package company-lsp
+  :requires company
   :after (company lsp-mode)
   :commands company-lsp
   :config
-  (push 'company-lsp company-backends))
+  (push 'company-lsp company-backends)
+
+   ;; Disable client-side cache because the LSP server does a better job.
+  (setq company-transformers nil
+        company-lsp-async t
+        company-lsp-cache-candidates nil))
+
 
 ;; (use-package lsp-mode
 ;;   :config
