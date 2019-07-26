@@ -1,27 +1,49 @@
 * Base system
-1. yay
-2. xorg-server
-3. xorg-xinput
-4. i3          [yay -S i3-gaps-next-git]
-5. xrandr
-6. fish
-7. git
-8. ly-git      (Display manager)
-9. fzf
-10. neovim
-11. emacs
-12. feh
-12. sxiv
-13. imagemagick
-14. maim
-15. htop
-16. openssh
-17. nodejs
-18. ranger
-19. ripgrep
-20. alsa-utils
-21. pulseaudio
-22. ncpamixer
+1. xorg (do not install it all?)
+2. yay
+3. i3          [yay -S i3-gaps-next-git]
+4. fish + fisherman
+5. git
+6. ly-git      (Display manager)
+7. fzf
+8. neovim
+9. emacs
+10. feh
+11. sxiv
+12. imagemagick
+13. maim
+14. htop
+15. openssh
+16. nodejs
+17. ranger
+18. ripgrep
+19. alsa-utils
+20. pulseaudio
+21. ncpamixer
+22. thunar https://wiki.archlinux.org/index.php/thunar
+23. poetry
+24. qBittorrent
+25. zathura
+26. docker
+27. docker-compose
+28. vlc
+29. node + nvm + npm
+30. google-chrome | yay
+31. pyenv
+* Troubleshooting
+** GPU drivers | xserver fails
+Create such file
+#+NAME: /etc/modprobe.d/blacklist.conf
+#+BEGIN_SRC sh
+blacklist nouveau
+blacklist rivafb
+blacklist nvidiafb
+blacklist rivatv
+blacklist nv
+blacklist uvcvideo
+#+END_SRC
+** LVM on LUKS
+Remember about /--type luks1/ for GRUB compilance
 * Fonts
 #+NAME: Fonts
 #+BEGIN_SRC sh
@@ -45,7 +67,6 @@
 2. Slack
 
 * Packages to look at
-- https://wiki.archlinux.org/index.php/thunar
 - maybe (Track program disk usage)
 * Powermanagment tools?
 - laptop tools?
