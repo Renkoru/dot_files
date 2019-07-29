@@ -80,7 +80,8 @@ bindsym $mod+d exec rofi -show run -lines 10 -font "System San Francisco Display
 # -color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
 
 # Swap Left Control and Caps Lock
-exec --no-startup-id "~/dev_tools/dot_files/scripts/keyboard.sh"
+exec --no-startup-id "~/dot_files/scripts/keyboard.sh"
+exec --no-startup-id "xrdb merge ~/.Xdefaults"
 # Make Caps Lock a Control key
 # exec --no-startup-id setxkbmap -option ctrl:nocaps
 
@@ -214,8 +215,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+b exec "~/dev_tools/dot_files/scripts/lock.sh"
-exec xautolock -time 5 -locker "~/dev_tools/dot_files/scripts/lock.sh"
+bindsym $mod+Shift+b exec "~/dot_files/scripts/lock.sh"
+exec xautolock -time 5 -locker "~/dot_files/scripts/lock.sh"
 
 
 # resize window (you can also use the mouse for that)
@@ -275,7 +276,7 @@ bindsym $mod+BackSpace exec maim -s /home/mrurenko/pictures/screenshots/shot_$(d
 #         status_command i3status
 # #         status_command i3status | dzen2 -fg white -ta r -w 1280 -fn "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1"
 # }
-exec_always --no-startup-id "~/dev_tools/dot_files/i3/polybar/launch.sh"
+exec_always --no-startup-id "~/dot_files/i3/polybar/launch.sh"
 
 
 # bar {

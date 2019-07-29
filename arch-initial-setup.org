@@ -48,6 +48,7 @@ Remember about /--type luks1/ for GRUB compilance
 #+NAME: Fonts
 #+BEGIN_SRC sh
   yay -S ttf-yosemite-san-francisco-font-git ttf-inconsolata ttf-mononoki
+  sudo pacman -S otf-fira-code
 #+END_SRC
 * i3 WM
 1. Rofi
@@ -60,6 +61,8 @@ Remember about /--type luks1/ for GRUB compilance
   chsh -s full-path-to-shell
   # logout and login again
 #+END_SRC
+** fisher
+** edc/bass
 * Python
 1. pyenv (https://github.com/pyenv/pyenv-installer)
 * Messangers

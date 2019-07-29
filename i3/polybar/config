@@ -269,7 +269,7 @@ bar-used-empty-foreground = #444444
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlo1
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -299,7 +299,7 @@ ramp-signal-0-foreground = ${colors.aqua}
 [module/eth]
 type = internal/network
 ; interface = vboxnet0
-interface = enp5s0
+interface = enp3s0
 interval = 3.0
 
 format-connected-underline = #55aa55
