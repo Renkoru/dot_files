@@ -251,8 +251,9 @@ bindsym $mod+F10 exec amixer -D pulse sset Master 5%-
 bindsym $mod+F11 exec amixer -D pulse sset Master 5%+
 
 # display backlight (Alt + F2 or Alt + F3)
-bindsym $mod+F5 exec xbacklight -10%
-bindsym $mod+F6 exec xbacklight +10%
+# requires 'light' package installed
+bindsym $mod+F7 exec light -U 10
+bindsym $mod+F8 exec light -A 10
 
 
 # bindsym $mod+F1 exec pactl set-sink-volume 2 -5%
@@ -277,6 +278,9 @@ bindsym $mod+BackSpace exec maim -s /home/mrurenko/pictures/screenshots/shot_$(d
 # #         status_command i3status | dzen2 -fg white -ta r -w 1280 -fn "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1"
 # }
 exec_always --no-startup-id "~/dot_files/i3/polybar/launch.sh"
+
+# initialize key bindings
+exec_always --no-startup-id xbindkeys
 
 
 # bar {
