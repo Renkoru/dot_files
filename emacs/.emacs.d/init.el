@@ -19,6 +19,8 @@
 (use-package json-mode)
 (use-package writeroom-mode)
 (use-package fish-mode)
+
+;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep)
 (use-package restclient)
 (use-package rainbow-delimiters
@@ -104,7 +106,8 @@
 (use-package expand-region
   :general (my-space-leader "e" 'er/expand-region))
 
-(use-package alchemist)
+;; Elixir Tooling Integration Into Emacs
+;; (use-package alchemist)
 
 ;; Keep same configs for all team (all editors)
 (use-package editorconfig
@@ -136,6 +139,7 @@
 
 (use-package htmlize)
 (use-package helpful)
+(use-package graphql-mode)
 
 ;;--------------------
 ;; Indentation setup

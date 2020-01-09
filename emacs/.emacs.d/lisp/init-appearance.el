@@ -52,11 +52,16 @@
 ;; 3. base16-atelier-savanna-light
 ;; ?. adwaita
 ;; ?. whiteboard
+;; ?. doom-nord-light
+;; ?. doom-opera-light
+;; ?. doom-solarized-light
+;; ?. kaolin-light
 
 ;; Good dark schemes:
 ;; 3. base16-nord
 ;; 3. base16-flat
 ;; 3. base16-paraiso
+;; ?. kaolin-valley-dark
 
 ;; base16-ocean need some 'magit' changes
 ;; base16-ashes is too aggressive
@@ -67,11 +72,23 @@
 ;; - https://github.com/manuel-uberti/doneburn-theme
 ;; - https://github.com/bbatsov/zenburn-emacs
 
-(use-package base16-theme
+;; (use-package base16-theme
+;;   :after ivy
+;;   :config
+;;   (load-theme 'base16-atelier-lakeside-light t)
+;;   (set-face-attribute 'region nil :background "gold"))
+
+(use-package doom-themes
   :after ivy
   :config
-  (load-theme 'base16-atelier-lakeside-light t)
-  (set-face-attribute 'region nil :background "gold"))
+;; Global settings (defaults)
+;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nord-light t)
+  )
+  ;; (load-theme 'base16-atelier-lakeside-light t)
+  ;; (set-face-attribute 'region nil :background "gold"))
+
 
 ;; (use-package material-theme
 ;;   :init (load-theme 'material-light t))
@@ -81,7 +98,7 @@
 
 
 (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
-;; (add-to-list 'default-frame-alist '(font . "Fira Code-22"))
+;; (add-to-list 'default-frame-alist '(font . "Fira Code-24"))
 
 (defun set-default-font-height ()
   (interactive)

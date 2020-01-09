@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: codereview
+# key: cr
+# --
+# $1
+# --mrurenko `(format-time-string "%Y-%m-%d")`$0

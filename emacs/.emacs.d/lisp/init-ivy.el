@@ -70,6 +70,32 @@
   ;; (setq ivy-display-function #'ivy-posframe-display-at-point)
   (ivy-posframe-enable))
 
+(use-package ivy-rich
+  :init
+  (setq ivy-rich-display-transformers-list
+        '(ivy-switch-buffer
+          (:columns
+           ((ivy-rich-candidate (:width 60))
+            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+            (ivy-rich-switch-buffer-path
+             (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3)))))
+            )
+           :predicate
+           (lambda (cand) (get-buffer cand)))
+
+          counsel-find-file
+          (:columns
+           ((ivy-read-file-transformer)
+            (ivy-rich-counsel-find-file-truename (:face font-lock-doc-face))))
+
+          counsel-M-x
+          (:columns
+           ((counsel-M-x-transformer (:width 40))
+            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))
+          ))
+  :config
+  (ivy-rich-mode 1))
+
 
 (provide 'init-ivy)
 ;;; init-counsel.el ends here
