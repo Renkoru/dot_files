@@ -34,8 +34,8 @@
 ;; (set-face-attribute 'default nil :font "mononoki-24")
 
 ;;; Code:
-(require 'fira-code)
-(add-hook 'prog-mode-hook 'fira-code-mode)
+;; (require 'fira-code) ;; Replaced by Jira-mono?
+;; (add-hook 'prog-mode-hook 'fira-code-mode)
 
 ;; be sure that you have '~/.local/share/fonts' folder before install
 ;; after install setup fonts: M-x all-the-icons-install-fonts
@@ -97,7 +97,7 @@
 ;; (set-face-attribute 'default nil :height 230)
 
 
-(add-to-list 'default-frame-alist '(font . "Fira Code-11"))
+(add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
 ;; (add-to-list 'default-frame-alist '(font . "Fira Code-24"))
 
 (defun set-default-font-height ()

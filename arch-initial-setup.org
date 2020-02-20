@@ -1,35 +1,39 @@
 * Base system
 1. xorg (do not install it all?)
+   - xorg-xev | see what keys is pressed
 2. yay
 3. i3          [yay -S i3-gaps-next-git]
 4. fish + fisherman
-5. git
-6. ly-git      (Display manager)
-7. fzf
-8. neovim
-9. emacs
-10. feh
-11. sxiv
-12. imagemagick
-13. maim
-14. htop
-15. openssh
-16. nodejs
-17. ranger
-18. ripgrep
-19. alsa-utils
-20. pulseaudio
-21. ncpamixer
-22. thunar https://wiki.archlinux.org/index.php/thunar
-23. poetry
-24. qBittorrent
-25. zathura
-26. docker
-27. docker-compose
-28. vlc
-29. node + nvm + npm
-30. google-chrome | yay
-31. pyenv
+5. xbindkeys
+6. git
+7. ly-git      (Display manager)
+8. fzf
+9. neovim
+10. emacs
+11. feh
+12. sxiv
+13. imagemagick
+14. maim
+15. htop
+16. openssh
+17. nodejs
+18. ranger
+19. ripgrep
+20. alsa-utils
+21. pulseaudio
+22. ncpamixer
+23. thunar https://wiki.archlinux.org/index.php/thunar
+24. poetry
+25. qBittorrent
+26. zathura
+27. docker
+28. docker-compose
+29. vlc
+30. node + nvm + npm
+31. google-chrome | yay
+32. pyenv
+33. libnotify (notifications)
+33. dunst (notifications)
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file
