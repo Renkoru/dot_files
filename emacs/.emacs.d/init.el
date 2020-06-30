@@ -150,6 +150,12 @@
       c-default-style "stroustrup" ; indent style in CC mode
       css-indent-offset 2) ; indentation level in CSS mode
 
+;; UTF-8 as default encoding
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables

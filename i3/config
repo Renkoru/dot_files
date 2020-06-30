@@ -282,6 +282,10 @@ exec_always --no-startup-id "~/dot_files/i3/polybar/launch.sh"
 # initialize key bindings
 exec_always --no-startup-id xbindkeys
 
+# nvidia setup
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
+
 
 # bar {
 #     colors {

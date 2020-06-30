@@ -1,8 +1,8 @@
 ! Urxvt -------------
 ! for clipboard working - install xsel on ubuntu
 
-! st.font: mono:pixelsize=8:antialias=true:autohint=true;
-st.font: Inconsolata:style=Regular:pixelsize=15:antialias=true:hinting=true
+! st.font: mono:pixelsize=34:antialias=true:autohint=true;
+st.font: JetBrainsMono-Regular:style=Regular:pixelsize=14:antialias=true:hinting=true
 ! st.boldFont: Liberation Mono:style=Regular-8;
 
 /* Couleurs Tango */

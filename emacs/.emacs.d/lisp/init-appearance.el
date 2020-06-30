@@ -98,6 +98,7 @@
 
 
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
 ;; (add-to-list 'default-frame-alist '(font . "Fira Code-24"))
 
 (defun set-default-font-height ()

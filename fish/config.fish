@@ -18,9 +18,15 @@ set -x WORKON_HOME $HOME/.local/share/virtualenvs
 
 # After installation of Pyenv
 set -x PATH "/home/mrurenko/.pyenv/bin" $PATH
-status --is-interactive; and . (pyenv init -|psub)
+# status --is-interactive; and . (pyenv init -|psub)
 # status --is-interactive; and . (pyenv virtualenv-init -|psub)
 
 set -x PATH "$HOME/.poetry/bin" $PATH
 
 set -x PATH "$HOME/.local/bin" $PATH
+
+
+# if test "$XDG_VTNR" -le 2
+#     tbsm
+# end
+source ~/.asdf/asdf.fish

@@ -17,12 +17,8 @@
   (setq org-reveal-title-slide nil)
   )
 
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :init
-  (setq org-bullets-bullet-list
-        '("◉" "○"))
-  )
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode))
 
 (setq org-capture-templates
       '(("w" "Work Todo list item" plain
@@ -51,6 +47,7 @@
     _c_ shift right _C_ shift left
     _l_ toggle link display
     _m_ set tag _a_ archive _t_ todo
+    _n_ narrow _N_ wider
     "
   ("H" org-metaleft)
   ("L" org-metaright)
@@ -62,6 +59,8 @@
   ("m" org-set-tags-command :exit t)
   ("a" org-archive-subtree)
   ("t" org-todo)
+  ("n" org-narrow-to-subtree)
+  ("N" org-toggle-narrow-to-subtree)
   ("q" nil "quit"))
 
 
