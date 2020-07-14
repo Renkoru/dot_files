@@ -140,6 +140,11 @@
 (use-package htmlize)
 (use-package helpful)
 (use-package graphql-mode)
+;; (use-package )
+;; (use-package jenkinsfile-mode
+;;   :straight ())
+(straight-use-package
+ '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
 
 ;;--------------------
 ;; Indentation setup

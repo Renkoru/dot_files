@@ -30,6 +30,9 @@
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
+(use-package lsp-treemacs
+  :requires lsp-mode)
+
 (use-package company
   :config
   (setq company-idle-delay 0.3)

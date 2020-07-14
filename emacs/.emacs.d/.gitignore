@@ -8,3 +8,5 @@ company-statistics-cache.el
 projectile-bookmarks.eld
 recentf
 smex-items
+
+.cache
