@@ -61,7 +61,7 @@
 
 (setq browse-url-browser-function
       '(("." . browse-url-generic)))
-(setq shr-external-browser 'browse-url-generic)
+(setq browse-url-secondary-browser-function 'browse-url-generic)
 (setq browse-url-generic-program (executable-find "qutebrowser"))
 
 

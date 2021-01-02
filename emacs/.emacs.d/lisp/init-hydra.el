@@ -15,7 +15,7 @@
     ("q" nil "quit"))
 
   (defvar whitespace-mode t)
-  (defhydra hydra-toggle (:color pink :idle 0.8)
+  (defhydra hydra-toggle (:color blue :idle 0.8)
     "
     _l_ linum-mode:       %`linum-mode
     _m_ evil-mlang-mode:       %`evil-mlang-mode

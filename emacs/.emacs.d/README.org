@@ -77,6 +77,10 @@ https://github.com/raxod502/straight.el
     - Check the virtualenvs
   - [[https://github.com/sourcegraph/javascript-typescript-langserver][Javascript]]
 - [[https://github.com/skeeto/elfeed][Rss|Atom feed package]]
+- [[https://github.com/davidshepherd7/electric-operator][Auto spaces around operators +/-/...]]
+- [[https://github.com/bastibe/annotate.el][Annotations (comments) over the file]]
+- [[https://github.com/cofi/evil-numbers][Inc/Decrise numbers on the fly]]
+- [[https://github.com/skuro/plantuml-mode][UML programm diagrams]]
 
 ** Emacs things to learn
 - Hooks
