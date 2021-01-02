@@ -27,6 +27,19 @@
       (kill-new buffername)
       (message "Copied buffer file name '%s' to the clipboard." buffername))))
 
+;; (defgroup mr/commit-prefix-group () "A group for commit prefix functionality")
+
+(defvar mr/commit-pre-prefix "feat:")
+  ;; "String that would be added at first."
+  ;; :type 'string
+  ;; :group mr/commit-prefix-group)
+
+(defvar mr/commit-prefix-surrounds '("[" "] - "))
+  ;; "Surrounding characters of commit prefix."
+  ;; :type 'string
+  ;; :group mr/commit-prefix-group)
+
+(defvar mr/commit-prefix-separator " ")
 
 (defun mr/git-get-commit-ticket-prefix ()
   "Get ticket prefix from git branch name."
@@ -34,8 +47,29 @@
 
   (let ((branch-items-list (split-string (magit-get-current-branch) "-")))
     (insert
-     (string-join (-slice branch-items-list 0 2 1) "-"))
+     (string-join
+      (list
+       mr/commit-pre-prefix
+       (string-join
+        (list (nth 0 mr/commit-prefix-surrounds)
+              (string-join (-slice branch-items-list 0 2 1) "-")
+              (nth 1 mr/commit-prefix-surrounds))
+        ""
+        )
+       )
+      mr/commit-prefix-separator
+      ))
     ))
+
+
+;; (defun mr/git-get-commit-ticket-prefix ()
+;;   "Get ticket prefix from git branch name."
+;;   (interactive)
+
+;;   (let ((branch-items-list (split-string (magit-get-current-branch) "-")))
+;;     (insert
+;;      (string-join (-slice branch-items-list 0 2 1) "-"))
+;;     ))
 
 
 (defun mr-json-loads ($string &optional $from $to)
