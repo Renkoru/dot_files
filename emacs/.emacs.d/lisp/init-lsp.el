@@ -3,6 +3,7 @@
 ;;; Code:
 (use-package lsp-mode
   :commands lsp
+  :hook ((typescript-mode . lsp))
   :init
   (setq lsp-highlight-symbol-at-point nil)
   (setq lsp-enable-eldoc nil)

@@ -11,6 +11,12 @@
 ;; JS packages
 ;; use-package nodejs-repl ?
 
+(use-package jest)
+
+(use-package typescript-mode
+  :mode "\\.ts\\'")
+
+(use-package ng2-mode)
 
 (use-package js2-mode
   ;; :mode ("\\.js\\'" . js2-mode)
@@ -49,46 +55,48 @@
   )
 
 (use-package add-node-modules-path
-  :after (:any js2-mode rjsx-mode)
-  :hook (js2-mode rjsx-mode))
+  :after (:any js2-mode rjsx-mode typescript-mode)
+  :hook (js2-mode rjsx-mode typescript-mode))
 
 (use-package prettier-js
   :hook ((js2-mode . prettier-js-mode)
-         (rjsx-mode . prettier-js-mode)))
+         (rjsx-mode . prettier-js-mode)
+         (typescript-mode . prettier-js-mode)
+         (web-mode-hook . prettier-js-mode)))
 
 
 ;; ---------------------
 ;; Install node.js v0.12.0 or greater.
 ;; Make sure tsconfig.json or jsconfig.json is present in the root folder of the project.
 ;; Tide is available in melpa.You can install tide via package - install M - x package - install[ret] tide
-(use-package tide
-  :general
-  (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gd" 'tide-jump-to-definition)
-  (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gb" 'tide-jump-back)
+;; (use-package tide
+;;   :general
+;;   (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gd" 'tide-jump-to-definition)
+;;   (:states 'normal :keymaps '(js-mode-map typescript-mode-map) "gb" 'tide-jump-back)
 
-  :config
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    ;; (tide-hl-identifier-mode +1)
+;;   :config
+;;   (defun setup-tide-mode ()
+;;     (interactive)
+;;     (tide-setup)
+;;     (flycheck-mode +1)
+;;     (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;     (eldoc-mode +1)
+;;     ;; (tide-hl-identifier-mode +1)
 
-    ;; company is an optional dependency. You have to
-    ;; install it separately via package-install
-    ;; `M-x package-install [ret] company`
-    (company-mode +1))
+;;     ;; company is an optional dependency. You have to
+;;     ;; install it separately via package-install
+;;     ;; `M-x package-install [ret] company`
+;;     (company-mode +1))
 
-  ;; aligns annotation to the right hand side
-  (setq company-tooltip-align-annotations t)
+;;   ;; aligns annotation to the right hand side
+;;   (setq company-tooltip-align-annotations t)
 
-  ;; formats the buffer before saving
-  ;; (add-hook 'before-save-hook 'tide-format-before-save)
+;;   ;; formats the buffer before saving
+;;   ;; (add-hook 'before-save-hook 'tide-format-before-save)
 
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
-  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
-  (add-hook 'js2-mode-hook #'setup-tide-mode))
+;;   (add-hook 'typescript-mode-hook #'setup-tide-mode)
+;;   (add-hook 'rjsx-mode-hook #'setup-tide-mode)
+;;   (add-hook 'js2-mode-hook #'setup-tide-mode))
 
 
 ;; (add - hook 'typescript-mode-hook #'setup - tide - mode)
