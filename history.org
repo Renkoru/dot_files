@@ -1,0 +1,167 @@
+sudo pacman -Suy
+sudo pacman -S neovim
+sudo pacman -S neovim
+sudo pacman -S git base-devel
+mkdir build
+cd build
+git clone https://aur.archlinux.org/yay.git
+cd yay
+
+yay -S google-chrome
+
+git config --global user.name "Maxim Rurenko"
+git config --global user.email "mrurenko@gmail.com"
+
+ssh-keygen -o
+cat ~/.ssh/id_rsa.pub
+
+git clone git@github.com:Renkoru/dot_files.git
+
+sudo pacman -S emacs
+sudo pacman -S htop
+ln -s /home/mrurenko/dev/dot_files/emacs/.emacs.d/ ./
+ls -la
+
+yay -S i3-gaps-next-git
+sudo pacman -S fish
+sudo pacman -S fzf
+reboot
+cat /etc/shells
+
+chsh
+
+
+- cmd: sudo ln -s /usr/share/X11/xorg.conf.d/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+- cmd: sudo nvim /etc/X11/xorg.conf.d/40-libinput.conf
+- cmd: sudo pacman -S ranger
+- cmd: ln -s /home/mrurenko/dev/dot_files/fish/
+- cmd: i3-config-wizard
+- cmd: ls -la ~/dev/dot_files/i3/
+- cmd: ls -la ~/dev/dot_files/i3/polybar/
+- cmd: rm -rf i3/
+- cmd: rm -rf fish/
+- cmd: ln -s /home/mrurenko/dev/dot_files/fish/ ./
+- cmd: ln -s /home/mrurenko/dev/dot_files/i3/ ./
+  paths:
+    - /home/mrurenko/dev/dot_files/i3/
+    - ./
+- cmd: ls ./dev/dot_files/fish/
+  paths:
+    - ./dev/dot_files/fish/
+- cmd: ln -s /home/mrurenko/dev/dot_files/i3 ./
+  when: 1611783220
+  paths:
+    - /home/mrurenko/dev/dot_files/i3
+    - ./
+- cmd: ln -s /home/mrurenko/dev/dot_files/fish ./
+  when: 1611783228
+  paths:
+    - /home/mrurenko/dev/dot_files/fish
+    - ./
+- cmd: git clone git@github.com:Renkoru/st.git
+  when: 1611788192
+- cmd: sudo pacman -S rofi
+- cmd: sudo pacman -S ttf-jetbrains-mono
+- cmd: yay -S polybar
+- cmd: ./dev/dot_files/i3/polybar/launch.sh
+- cmd: ln -s /home/mrurenko/dev/dot_files/i3/polybar ./
+  when: 1611789281
+  paths:
+    - /home/mrurenko/dev/dot_files/i3/polybar
+    - ./
+- cmd: ln -s /home/mrurenko/dev/dot_files/urxvt/.Xdefaults
+  paths:
+    - /home/mrurenko/dev/dot_files/urxvt/.Xdefaults
+- cmd: git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+  when: 1611792813
+- cmd: yay -S ttf-yosemite-san-francisco-font-git ttf-inconsolata ttf-mononoki
+- cmd: asusctl anime -t true
+  when: 1611814373
+- cmd: asusctl anime leds -b 100
+  when: 1611814416
+- cmd: asusctl anime leds -b 200
+  when: 1611814439
+- cmd: asusctl anime -t off
+  when: 1611814456
+- cmd: yay -S zephyrusbling-git
+  when: 1611814876
+- cmd: zephyrusbling --text "hello"
+  when: 1611815231
+- cmd: sudo pacman -S ncpamixer
+  when: 1611816187
+- cmd: yay -s ncpamixer
+  when: 1611816194
+- cmd: systemctl start zephyrusbling --user
+  when: 1611816365
+- cmd: sudo pacman -S ttf-hack
+  when: 1611816491
+- cmd: zephyrusbling --text "Hello world" --fx translate:0,20,0:3,-25,0
+  when: 1611816531
+- cmd: zephyrusbling --text "Hello world" --fx translate:0,20,0:3,-25,0 --duration 4
+  when: 1611816559
+- cmd: tar -xzf thumbtack.pem.tar
+  when: 1611824099
+  paths:
+    - thumbtack.pem.tar
+- cmd: tar -xzf thumbtack.pem.tar.gz
+  when: 1611824126
+  paths:
+    - thumbtack.pem.tar.gz
+- cmd: yay -S  asus-nb-ctrl-git
+- cmd: yay -S slack-desktop
+- cmd: maim
+  when: 1611833279
+- cmd: sudo pacman -s maim
+  when: 1611833313
+- cmd: sudo pacman -S maim
+  when: 1611833320
+- cmd: sudo pacman -S i3lock
+  when: 1611833350
+- cmd: mkdir projects
+  when: 1611833861
+- cmd: cd projects/
+  when: 1611833862
+  paths:
+    - projects/
+- cmd: cat ~/.ssh/id_rsa.pub
+  when: 1611833911
+- cmd: git clone git@bitbucket.org:thumbtacktech/lineate-some-feed-translator.git
+  when: 1611834005
+- cmd: cd lineate-some-feed-translator/
+  when: 1611834031
+  paths:
+    - lineate-some-feed-translator/
+- cmd: lda
+  when: 1611834033
+- cmd: htop
+  when: 1611834855
+- cmd: python --version
+  when: 1611835103
+- cmd: docker --version
+  when: 1611835115
+- cmd: ~/dev/dot_files/scripts/lock.sh
+  when: 1611835221
+- cmd: docker run -d -p 80:80 docker/getting-started
+  when: 1611835301
+- cmd: groups
+  when: 1611835356
+- cmd: sudo usermod -aG docker $USER
+  when: 1611835383
+- cmd: sudo systemctl start docker
+  when: 1611835489
+- cmd: sudo systemctl enable docker
+  when: 1611835498
+- cmd: sudo systemctl status docker
+  when: 1611835534
+- cmd: sudo pacman -S ripgrep
+    - backend
+- cmd: docker-compose ps
+  when: 1611845657
+- cmd: docker-compose down
+  when: 1611847704
+- cmd: reboot
+  when: 1611850242
+- cmd: ~/dev/dot_files/scripts/keyboard.sh
+  when: 1611851419
+- cmd: ncpamixer
+  when: 1611853621

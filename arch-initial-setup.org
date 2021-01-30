@@ -3,37 +3,42 @@
    - xorg-xev | see what keys is pressed
 2. yay
 3. i3          [yay -S i3-gaps-next-git]
-4. fish + fisherman
-5. xbindkeys
-6. git
-7. ly-git      (Display manager)
-8. fzf
-9. neovim
-10. emacs
-11. feh
-12. sxiv
-13. imagemagick
-14. maim
-15. htop
-16. openssh
-17. nodejs
-18. ranger
-19. ripgrep
-20. alsa-utils
-21. pulseaudio
-22. ncpamixer
-23. thunar https://wiki.archlinux.org/index.php/thunar
-24. poetry
-25. qBittorrent
-26. zathura
-27. docker
-28. docker-compose
-29. vlc
-30. node + nvm + npm
-31. google-chrome | yay
-32. pyenv
-33. libnotify (notifications)
-33. dunst (notifications)
+   link i3 config
+4. Polybar
+   link polybar config
+5. fish + (fisher? do we really need this?)
+6. xbindkeys
+7. git
+8. ly-git      (Display manager)
+9. fzf
+10. neovim
+11. st
+    - Enable clipboard copy https://st.suckless.org/patches/clipboard/
+12. emacs
+13. feh
+14. sxiv
+15. imagemagick
+16. maim
+17. htop
+18. openssh
+19. nodejs
+20. ranger
+21. ripgrep
+22. alsa-utils
+23. pulseaudio
+24. ncpamixer
+25. thunar https://wiki.archlinux.org/index.php/thunar
+26. poetry
+27. qBittorrent
+28. zathura
+29. docker
+30. docker-compose
+31. vlc
+32. node + nvm + npm
+33. google-chrome | yay
+34. pyenv
+35. libnotify (notifications)
+36. dunst (notifications)
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file
@@ -52,11 +57,11 @@ Remember about /--type luks1/ for GRUB compilance
 #+NAME: Fonts
 #+BEGIN_SRC sh
   yay -S ttf-yosemite-san-francisco-font-git ttf-inconsolata ttf-mononoki
+  sudo pacman -S ttf-jetbrains-mono
   sudo pacman -S otf-fira-code
 #+END_SRC
 * i3 WM
 1. Rofi
-2. Polybar
 * Fish
 #+NAME: install
 #+BEGIN_SRC sh
