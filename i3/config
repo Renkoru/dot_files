@@ -82,6 +82,8 @@ bindsym $mod+d exec rofi -show run -lines 10 -font "System San Francisco Display
 # Swap Left Control and Caps Lock
 exec --no-startup-id "~/dot_files/scripts/keyboard.sh"
 exec --no-startup-id "xrdb merge ~/.Xdefaults"
+exec --no-startup-id "xfce4-power-manager"
+exec --no-startup-id "nm-applet"
 # Make Caps Lock a Control key
 # exec --no-startup-id setxkbmap -option ctrl:nocaps
 
@@ -156,6 +158,9 @@ gaps inner 3
 # gaps outer 10
 gaps outer 0
 
+# Activate smart borders (always)
+smart_borders on
+
 # disable gaps for workspase #8
 # workspace 4 gaps outer 0
 # workspace 4 gaps inner 0
@@ -163,8 +168,10 @@ gaps outer 0
 # bindsym $mod+s gaps inner current plus 5
 # bindsym $mod+Shift+s gaps inner current minus 5
 
+# gaps [inner|outer|horizontal|vertical|top|left|bottom|right] <px>
+# bindsym $mod+Shift+d gaps horizontal current set 5; gaps outer current set 0
 bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+g gaps inner current set 7; gaps outer current set 10
+bindsym $mod+Shift+g gaps inner current set 3; gaps outer current set 0
 
 # <<< i3-gaps settings
 
@@ -246,9 +253,28 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # volume control (Alt + F2 or Alt + F3)
-bindsym $mod+F9 exec amixer -D pulse sset Master toggle
-bindsym $mod+F10 exec amixer -D pulse sset Master 5%-
-bindsym $mod+F11 exec amixer -D pulse sset Master 5%+
+# Path to volume control, without trailing slash
+set $volumepath i3-volume
+
+# Signal used to update the status line
+#   i3blocks uses SIGRTMIN+10 by default
+#   i3status uses SIGUSR1 by default
+set $statussig SIGUSR1
+
+# Amount to increase/decrease volume as a percentage
+set $volumestep 5
+
+# use 'xev' to get input keycodes
+# xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+# append "-c $alsacard" without quotes to override default card
+bindsym  XF86AudioRaiseVolume exec --no-startup-id $volumepath -an -u $statussig up $volumestep
+bindsym  XF86AudioLowerVolume exec --no-startup-id $volumepath -an -u $statussig down $volumestep
+bindsym  XF86AudioMute        exec --no-startup-id $volumepath -an -u $statussig mute
+bindsym  XF86AudioPrev        exec --no-startup-id playerctl previous
+bindsym  XF86AudioPlay        exec --no-startup-id playerctl play-pause
+bindsym  XF86AudioNext        exec --no-startup-id playerctl next
+bindsym  Print                exec --no-startup-id flameshot gui
+# volume settings end
 
 # display backlight (Alt + F2 or Alt + F3)
 # requires 'light' package installed
@@ -278,6 +304,8 @@ bindsym $mod+BackSpace exec maim -s /home/mrurenko/pictures/screenshots/shot_$(d
 # #         status_command i3status | dzen2 -fg white -ta r -w 1280 -fn "-misc-fixed-medium-r-normal--13-120-75-75-C-70-iso8859-1"
 # }
 exec_always --no-startup-id "~/dot_files/i3/polybar/launch.sh"
+exec_always --no-startup-id "/usr/bin/dunst"
+
 
 # initialize key bindings
 exec_always --no-startup-id xbindkeys

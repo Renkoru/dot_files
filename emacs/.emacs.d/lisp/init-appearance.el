@@ -34,7 +34,7 @@
 ;; (set-face-attribute 'default nil :font "mononoki-24")
 
 ;;; Code:
-;; (require 'fira-code) ;; Replaced by Jira-mono?
+;; (require 'fira-code) ;; Replaced by Jetbrains mono
 ;; (add-hook 'prog-mode-hook 'fira-code-mode)
 
 ;; be sure that you have '~/.local/share/fonts' folder before install

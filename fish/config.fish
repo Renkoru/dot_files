@@ -30,3 +30,9 @@ set -x PATH "$HOME/.local/bin" $PATH
 #     tbsm
 # end
 source ~/.asdf/asdf.fish
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# copy next to
+# eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<

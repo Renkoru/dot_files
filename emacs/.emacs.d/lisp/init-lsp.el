@@ -6,6 +6,7 @@
   :hook ((typescript-mode . lsp))
   :init
   (setq lsp-highlight-symbol-at-point nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-enable-eldoc nil)
   (setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui (flycheck) over flymake.
   :config

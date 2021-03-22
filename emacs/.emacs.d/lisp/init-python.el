@@ -45,6 +45,7 @@
             'flycheck-mode
             #'lsp
             (setq tab-width 4)
+            (setq flycheck-pylintrc ".pylintrc")
             (sphinx-doc-mode t)))
 
 (use-package evil-python-movement

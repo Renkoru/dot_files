@@ -108,7 +108,6 @@
  ("tide" . "13f64933c19590ebd02a4b141bb6be88d7aaf2b0")
  ("transient" . "cbcfabeec6baaa849805c5985b1f646c9efd3e99")
  ("typescript.el" . "32146510b8ebb031e468c6c0898a9b253c73617e")
- ("undo-tree" . "d54ef13e3c69655e39f977b8bf75399a6d2b5e42")
  ("use-package" . "1d5ffb2e0d1427066ced58febbba68c1328bf001")
  ("vimish-fold" . "863bef039672693566cfcfe1d0ad236d3af48fea")
  ("visual-fill-column" . "772d4b25ba19f57409cd03524be0f5bfdc2e8da1")

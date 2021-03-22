@@ -5,7 +5,7 @@
 ;;; Notes:
 ;;  C-u [COMMAND](Ex.: M-x counsel-rg / keybinding) RET [rg args](Ex.: -t org) RET [search keyword](Ex.: tes)
 
-;; not working good for current docker-mode setup
+;; not working good for current docker-mode setup. Remove it?
 ;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 
 (use-package ivy
@@ -71,6 +71,9 @@
   (ivy-posframe-mode 1)
   )
 
+(use-package all-the-icons-ivy-rich
+  :init (all-the-icons-ivy-rich-mode 1))
+
 (use-package ivy-rich
   :init
   (setq ivy-rich-display-transformers-list
@@ -96,6 +99,9 @@
           ))
   :config
   (ivy-rich-mode 1))
+
+(use-package all-the-icons-ivy
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
 
 
 (provide 'init-ivy)

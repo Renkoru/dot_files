@@ -81,6 +81,7 @@ https://github.com/raxod502/straight.el
 - [[https://github.com/bastibe/annotate.el][Annotations (comments) over the file]]
 - [[https://github.com/cofi/evil-numbers][Inc/Decrise numbers on the fly]]
 - [[https://github.com/skuro/plantuml-mode][UML programm diagrams]]
+- https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
 
 ** Emacs things to learn
 - Hooks

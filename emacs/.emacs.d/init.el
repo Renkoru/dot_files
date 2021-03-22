@@ -66,6 +66,13 @@
 ;; (require 'init-neotree)
 (require 'init-lisp)
 
+(use-package undo-fu
+  :after evil
+  :config
+  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+
+(use-package crux)
 
 (use-package ace-window
   :general
@@ -169,18 +176,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("93268bf5365f22c685550a3cbb8c687a1211e827edc76ce7be3c4bd764054bad" "527df6ab42b54d2e5f4eec8b091bd79b2fa9a1da38f5addd297d1c91aa19b616" default)))
+   '("93268bf5365f22c685550a3cbb8c687a1211e827edc76ce7be3c4bd764054bad" "527df6ab42b54d2e5f4eec8b091bd79b2fa9a1da38f5addd297d1c91aa19b616" default))
+ ;; '(flycheck-pylintrc "pyproject.toml")
  '(git-gutter:hide-gutter t)
  '(safe-local-variable-values
-   (quote
-    ((typescript-indent-level . 2)
+   '((typescript-indent-level . 2)
      (sgml-basic-offset . 4)
-     (sgml-basic-offset . 2)))))
+     (sgml-basic-offset . 2))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-goggles-delete-face ((t (:inherit (quote smerge-refined-removed)))))
- '(evil-goggles-paste-face ((t (:inherit (quote smerge-refined-added))))))
+ '(evil-goggles-delete-face ((t (:inherit 'smerge-refined-removed))))
+ '(evil-goggles-paste-face ((t (:inherit 'smerge-refined-added)))))
