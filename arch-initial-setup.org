@@ -4,41 +4,43 @@
 2. yay
 3. i3          [yay -S i3-gaps-next-git]
    link i3 config
-4. Polybar
+4. i3-volume
+5. Polybar
    link polybar config
-5. fish + (fisher? do we really need this?)
-6. xbindkeys
-7. git
-8. ly-git      (Display manager)
-9. fzf
-10. neovim
-11. st
+6. fish + (fisher? do we really need this?)
+7. xbindkeys
+8. git
+9. ly-git      (Display manager)
+10. fzf
+11. neovim
+12. st
     - Enable clipboard copy https://st.suckless.org/patches/clipboard/
-12. emacs
-13. feh
-14. sxiv
-15. imagemagick
-16. maim
-17. htop
-18. openssh
-19. nodejs
-20. ranger
-21. ripgrep
-22. alsa-utils
-23. pulseaudio
-24. ncpamixer
-25. thunar https://wiki.archlinux.org/index.php/thunar
-26. poetry
-27. qBittorrent
-28. zathura
-29. docker
-30. docker-compose
-31. vlc
-32. node + nvm + npm
-33. google-chrome | yay
-34. pyenv
-35. libnotify (notifications)
-36. dunst (notifications)
+13. emacs
+14. feh
+15. sxiv
+16. imagemagick
+17. maim
+18. htop
+19. openssh
+20. nodejs
+21. ranger
+22. ripgrep
+23. alsa-utils
+24. pulseaudio
+25. ncpamixer
+26. thunar https://wiki.archlinux.org/index.php/thunar
+27. poetry
+28. qBittorrent
+29. zathura
+30. docker
+31. docker-compose
+32. vlc
+33. node + nvm + npm
+34. google-chrome | yay
+35. pyenv
+36. libnotify (notifications)
+37. dunst (notifications)
+38. artha (english dictionary)
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file
