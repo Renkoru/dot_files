@@ -37,24 +37,12 @@
 
 (use-package company
   :config
+  (setq lsp-completion-provider :capf)
   (setq company-idle-delay 0.3)
 
   (global-company-mode 1)
 
   (global-set-key (kbd "C-<tab>") 'company-complete))
-
-(use-package company-lsp
-  :requires company
-  :after (company lsp-mode)
-  :commands company-lsp
-  :config
-  (push 'company-lsp company-backends)
-
-   ;; Disable client-side cache because the LSP server does a better job.
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
-
 
 ;; (use-package lsp-mode
 ;;   :config

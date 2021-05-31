@@ -11,7 +11,8 @@
 ;; JS packages
 ;; use-package nodejs-repl ?
 
-(use-package jest)
+;; !! Cause some freezes in some cases: org, tramp?
+;; (use-package jest)
 
 (use-package typescript-mode
   :mode "\\.ts\\'")
@@ -23,8 +24,13 @@
   :config
   (setq js-switch-indent-offset 4)
   (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
   )
 
+(use-package js-doc
+  :straight (:host github :repo "dogayuksel/js-doc")
+)
 
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
@@ -114,12 +120,18 @@
   "JavaScript-mode-hook."
   (setq js-indent-level 2)
   (setq tab-width 2)
+  )
 
+(defun ts-custom ()
+  "Typescript-mode-hook."
+  (setq typescript-indent-level 2)
+  (setq tab-width 2)
   )
 
 (setq-default js2-global-externs '("describe" "expect" "it" "jest" ))
 
 (add-hook 'js-mode-hook 'js-custom)
+(add-hook 'typescript-mode-hook 'ts-custom)
 
 (setq js2-highlight-level 3)
 

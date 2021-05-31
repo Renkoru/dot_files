@@ -13,19 +13,13 @@
   :config
   (exec-path-from-shell-initialize))
 
+;; --------------------------------- System packages
 ;; (use-package realgud) ;; debugging, try it sometime. (Hard with docker env)
 (use-package smex) ;; ranking and remembering M-x
 (use-package vlf) ;; open big files by chunks
-(use-package json-mode)
-(use-package writeroom-mode)
-(use-package fish-mode)
 
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep)
-(use-package restclient)
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
 
 (use-package general
   :demand
@@ -34,14 +28,6 @@
   (general-create-definer my-general-g-definer :states 'normal :prefix "g")
   (general-create-definer my-space-leader :states 'normal :prefix "<SPC>"))
 
-(use-package ranger
-  :general
-  ("<f3>" 'ranger)
-  :config
-  (setq ranger-preview-file nil)
-  (setq ranger-cleanup-on-disable t))
-
-
 (use-package dumb-jump
   :general
   ("M-d" 'dumb-jump-go)
@@ -49,28 +35,34 @@
   :config
   (setq dumb-jump-selector 'ivy))
 
-(require 'init-emacs)
-(require 'init-hydra) ; should be initialized before evil
-(require 'init-org)
-(require 'init-vcs) ; should be before evil
-(require 'init-evil)
-(require 'init-evil-mlang) ; should go after evil settigns
-(require 'init-appearance)
-(require 'init-modeline)
-(require 'init-ivy)
-(require 'init-yasnippet) ; should be initialized before auto-complete
-(require 'init-custom-functions)
-(require 'init-flyspell)
-(require 'init-lsp)
-(require 'init-docker)
-;; (require 'init-neotree)
-(require 'init-lisp)
-
 (use-package undo-fu
   :after evil
   :config
   (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
   (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+
+
+;; --------------------------------- Include lisp blocks
+(require 'init-emacs)
+(require 'init-hydra) ; should be initialized before evil
+(require 'init-vcs) ; should be before evil
+(require 'init-evil)
+(require 'init-evil-mlang) ; should go after evil settigns
+(require 'init-ivy)
+(require 'init-appearance)
+(require 'init-modeline)
+(require 'init-yasnippet) ; should be initialized before auto-complete
+(require 'init-custom-functions)
+(require 'init-flyspell)
+(require 'init-lsp)
+
+(require 'init-internal-apps)
+
+;; --------------------------------- Useful stuff
+;; Keep same configs for all team (all editors)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 (use-package crux)
 
@@ -78,6 +70,7 @@
   :general
   (:keymaps 'global "M-q" 'ace-window))
 
+;; !! Cause some freezes in some cases: org, tramp?
 (use-package projectile
   :init
   (setq projectile-completion-system 'ivy)
@@ -94,64 +87,70 @@
   :init
   (beacon-mode 1)
   :config
-  (setq beacon-size 100
+  (setq beacon-size 30
         beacon-push-mark 35
         beacon-color "#ADFFB2"
         beacon-blink-when-buffer-changes t
         beacon-blink-when-point-moves t
         beacon-blink-when-window-scrolls t))
 
-(require 'init-avy)
-(require 'init-flycheck)
-(require 'init-emmet)
-(require 'init-company)
-(require 'init-web) ; should be before javascript init
-(require 'init-javascript)
-(require 'init-python)
-(require 'init-elm)
-
 (use-package expand-region
   :general (my-space-leader "e" 'er/expand-region))
 
-;; Elixir Tooling Integration Into Emacs
-;; (use-package alchemist)
+(require 'init-avy)
+(require 'init-flycheck)
+(require 'init-company)
 
-;; Keep same configs for all team (all editors)
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1))
+;; --------------------------------- File type modes
+(require 'init-org)
+(require 'init-docker)
+(require 'init-lisp)
 
+(use-package json-mode)
+(use-package fish-mode)
 (use-package markdown-mode)
 (use-package yaml-mode)
-(use-package nyan-mode)
-
 (use-package nginx-mode)
 (use-package company-nginx
   :after nginx-mode
   :config
   (add-hook 'nginx-mode-hook #'company-nginx-keywords))
 
-(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
+(require 'init-emmet)
+(require 'init-web) ; should be before javascript init
+
+;; !! Cause some freezes in some cases: org, tramp?
+(require 'init-javascript)
+
+(require 'init-python)
+;; (require 'init-elm) ; Not using it
+
+;; Elixir Tooling Integration Into Emacs
+;; (use-package alchemist)
+
+;; (use-package nyan-mode) ; Not using it?
+
+;; (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+;; (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
 
 ; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (visual-line-mode t)
-            (flyspell-mode t)))
+;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
+;; (add-hook 'markdown-mode-hook
+;;           (lambda ()
+;;             (visual-line-mode t)
+;;             (flyspell-mode t)))
 
-(setq markdown-command "pandoc --smart -f markdown -t html")
+;; (setq markdown-command "pandoc --smart -f markdown -t html")
 
-(use-package htmlize)
+;; (use-package htmlize)
 (use-package helpful)
-(use-package graphql-mode)
+;; (use-package graphql-mode)
 ;; (use-package )
 ;; (use-package jenkinsfile-mode
 ;;   :straight ())
-(straight-use-package
- '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
+;; (straight-use-package
+;;  '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
 
 ;;--------------------
 ;; Indentation setup

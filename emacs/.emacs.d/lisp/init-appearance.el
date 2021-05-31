@@ -163,6 +163,10 @@
   ("S-<f12>" 'highlight-symbol-prev)
   (my-space-leader "h" 'highlight-symbol-at-point))
 
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+
 (provide 'init-appearance)
 
 ;;; init-appearance.el ends here
