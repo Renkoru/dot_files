@@ -61,6 +61,12 @@
            "[]" 'evil-python-movement-lsb-rsb
            "][" 'evil-python-movement-lsb-rsb))
 
+
+(use-package lsp-pyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
 (provide 'init-python)
 
 ;;; init-python.el ends here

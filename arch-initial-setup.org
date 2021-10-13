@@ -27,20 +27,21 @@
 22. ripgrep
 23. alsa-utils
 24. pulseaudio
-25. ncpamixer
-26. thunar https://wiki.archlinux.org/index.php/thunar
-27. poetry
-28. qBittorrent
-29. zathura
-30. docker
-31. docker-compose
-32. vlc
-33. node + nvm + npm
-34. google-chrome | yay
-35. pyenv
-36. libnotify (notifications)
-37. dunst (notifications)
-38. artha (english dictionary)
+25. https://github.com/christophgysin/pasystray || pasystray
+26. ncpamixer
+27. thunar https://wiki.archlinux.org/index.php/thunar
+28. poetry
+29. qBittorrent
+30. zathura
+31. docker
+32. docker-compose
+33. vlc
+34. node + nvm + npm
+35. google-chrome | yay
+36. pyenv
+37. libnotify (notifications)
+38. dunst (notifications)
+39. artha (english dictionary)
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file

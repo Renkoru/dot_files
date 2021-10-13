@@ -103,9 +103,11 @@
 
 ;; --------------------------------- File type modes
 (require 'init-org)
+(require 'init-journal)
 (require 'init-docker)
 (require 'init-lisp)
 
+(use-package string-inflection) ; conversion of variable name formats
 (use-package json-mode)
 (use-package fish-mode)
 (use-package markdown-mode)

@@ -4,7 +4,11 @@
 
 (use-package org
   :ensure t
-  :pin org)
+  :pin org
+  :general
+  (:states 'normal
+           "<tab>" 'org-cycle)
+  )
 
 (setq initial-major-mode 'org-mode)
 (setq org-src-fontify-natively t)
