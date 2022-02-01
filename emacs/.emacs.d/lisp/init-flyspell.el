@@ -27,10 +27,12 @@
 
   (setq ispell-local-dictionary "en_US")
 
-  (use-package flyspell-correct-ivy)
+  ;; (use-package flyspell-correct-ivy)
   (use-package flyspell-correct
     :config
-    (setq flyspell-correct-interface 'flyspell-correct-ivy))
+    (setq flyspell-correct-interface #'flyspell-correct-dummy)
+    ;; (setq flyspell-correct-interface 'flyspell-correct-ivy)
+    )
   )
 
 ;;

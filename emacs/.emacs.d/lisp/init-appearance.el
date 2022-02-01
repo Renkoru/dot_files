@@ -39,7 +39,13 @@
 
 ;; be sure that you have '~/.local/share/fonts' folder before install
 ;; after install setup fonts: M-x all-the-icons-install-fonts
-(use-package all-the-icons :after ivy)
+(use-package all-the-icons)
+(use-package all-the-icons-completion
+  :init
+  (all-the-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
+  )
+
 
 
 ;; Good light schemes:
@@ -166,6 +172,11 @@
 (use-package rainbow-delimiters
   :config
   (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode))
+
+;; highlight parentheses that wraps the current position
+(use-package highlight-parentheses
+  :config
+  (add-hook 'prog-mode-hook #'highlight-parentheses-mode))
 
 (provide 'init-appearance)
 

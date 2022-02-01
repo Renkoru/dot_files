@@ -23,6 +23,15 @@
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
 
+(defun mr/magit-copy-current-branch ()
+  "Copy the current branch in the `kill-ring'."
+  (interactive)
+  (let ((current-branch (magit-get-current-branch)))
+    (if current-branch
+        (progn (kill-new current-branch)
+               (message "Branch name: '%s'" current-branch))
+      (user-error "There is not current branch"))))
+
 
 ;; Hydras
 (defhydra hydra-git-toggle (:color pink)

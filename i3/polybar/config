@@ -68,7 +68,8 @@ font-4 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = xkeyboard battery cpu memory temperature
 modules-center = i3
-modules-right = i3-volume wlan eth date powermenu
+; Other possible values: i3-volume
+modules-right = wlan eth date powermenu
 
 tray-position = right
 tray-padding = 2

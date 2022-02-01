@@ -61,6 +61,7 @@ bindsym $mod+Ctrl+l move right 30
 # bindsym $mod+Return exec urxvt
 bindsym $mod+Return exec st
 exec --no-startup-id feh --bg-scale ~/pictures/wallps/0000walp.png
+# setup a background image
 #Composite manager:
 exec --no-startup-id compton
 
@@ -84,6 +85,8 @@ exec --no-startup-id "~/dot_files/scripts/keyboard.sh"
 exec --no-startup-id "xrdb merge ~/.Xdefaults"
 exec --no-startup-id "xfce4-power-manager"
 exec --no-startup-id "nm-applet"
+exec --no-startup-id "pasystray"  # Audio switcher applet
+
 # Make Caps Lock a Control key
 # exec --no-startup-id setxkbmap -option ctrl:nocaps
 

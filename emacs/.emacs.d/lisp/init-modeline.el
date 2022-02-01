@@ -37,11 +37,21 @@
   )
 
 (defun mr/get-git-branch-name ()
-  (truncate-string-to-width (magit-get-current-branch) 10 0 nil ">")
-  ;; (let ((branch-name (magit-get-current-branch))
-  ;;       (max-name-length 7))
-  ;;   (substring branch-name  0 (min max-name-length (length branch-name))))
-  )
+  ;; (truncate-string-to-width (magit-get-current-branch) 10 0 nil ">")
+  (let ((branch-name (magit-get-current-branch))
+        (max-name-length 30))
+    (if branch-name
+        (s-left max-name-length branch-name)
+      nil
+      )
+    ))
+
+(defun mr/acronym (text)
+  (upcase
+   (mapconcat (lambda (x) (substring x 0 1))
+              (s-split "-" text)
+              "")
+   ))
 
 (use-package telephone-line
   :config
@@ -64,7 +74,14 @@
           (nil . (mode-line . mode-line-inactive))))
 
   (telephone-line-defsegment mr/telephone-line-projectile-project-name ()
-    (ignore-errors (format "%s" (projectile-project-name))))
+    (let ((project-name (projectile-project-name)))
+      (if (and
+           (> (string-width project-name) 10)
+           (cl-search "-" project-name))
+          (mr/acronym project-name)
+        project-name)
+      )
+    )
 
   (telephone-line-defsegment mr/telephone-line-magit-current-branch-segment ()
     (mr/get-git-branch-name))

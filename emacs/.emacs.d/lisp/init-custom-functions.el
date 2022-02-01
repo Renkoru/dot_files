@@ -41,6 +41,7 @@
 
 (defvar mr/commit-prefix-separator " ")
 
+;; TODO create a new variable to be able to remove 'feature' from this result: "feature/CAAS-2963"
 (defun mr/git-get-commit-ticket-prefix ()
   "Get ticket prefix from git branch name."
   (interactive)

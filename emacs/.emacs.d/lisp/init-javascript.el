@@ -64,11 +64,12 @@
   :after (:any js2-mode rjsx-mode typescript-mode)
   :hook (js2-mode rjsx-mode typescript-mode))
 
-(use-package prettier-js
-  :hook ((js2-mode . prettier-js-mode)
-         (rjsx-mode . prettier-js-mode)
-         (typescript-mode . prettier-js-mode)
-         (web-mode-hook . prettier-js-mode)))
+;; Is replaced by "apheleia" package
+;; (use-package prettier-js
+;;   :hook ((js2-mode . prettier-js-mode)
+;;          (rjsx-mode . prettier-js-mode)
+;;          (typescript-mode . prettier-js-mode)
+;;          (web-mode-hook . prettier-js-mode)))
 
 
 ;; ---------------------
