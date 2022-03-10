@@ -90,6 +90,21 @@ Remember about /--type luks1/ for GRUB compilance
 https://wiki.archlinux.org/index.php/Bluetooth_headset
 sudo pacman -S pulseaudio-alsa pulseaudio-bluetooth bluez bluez-libs bluez-utils
 * Touchpad settings
+** Kensington Slimblade Trackball
+File: /usr/share/X11/xorg.conf.d/41-libinput-trackball.conf
+
+#+BEGIN_SRC conf
+Section "InputClass"
+    Identifier   "Trackball"
+    MatchProduct "Kensington Slimblade Trackball"
+    MatchProduct "Trackball"
+    Driver       "libinput"
+    # Option       "ButtonMapping"      "3 0 1 4 5 6 7 8 2"
+    Option     "ScrollMethod" "button"
+    Option     "NaturalScrolling" "true"
+    # Option     "HorizontalScrolling" "false"
+EndSection
+#+END_SRC
 ** Apple Magic Trackpad
 File: (do not forget to link it)
 cat /usr/share/X11/xorg.conf.d/40-libinput.conf
