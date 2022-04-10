@@ -1,0 +1,16 @@
+Ansible plays to configure VPN
+
+* Setup SSH on VPS
+#+NAME: copy SSH key
+#+BEGIN_SRC bash
+  ssh-copy-id <USER>@<IP_ADDR>
+#+END_SRC
+
+* Simple commands
+#+BEGIN_SRC bash
+  poetry run ansible all -m ping -i inventory.ini
+  poetry run ansible-playbook -i inventory.ini --ask-vault-password --ask-become-pass vpn_setup.yaml
+#+END_SRC
+* Links
+- Vpn setup by this steps: https://dev.to/tangramvision/exploring-ansible-via-setting-up-a-wireguard-vpn-3389
+- Install on Ubuntu (friewall setup) https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04

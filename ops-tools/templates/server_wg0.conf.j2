@@ -1,0 +1,22 @@
+# {{ ansible_managed }}
+[Interface]
+Address = 10.8.0.1/24
+ListenPort = 51820
+PrivateKey = {{ server_privkey }}
+
+# TODO: move this to playbook
+# TODO: use ansible facts instead of hardcoded 'ens3' interface
+PostUp = ufw route allow in on wg0 out on ens3
+PostUp = iptables -t nat -I POSTROUTING -o ens3 -j MASQUERADE
+# PostUp = ip6tables -t nat -I POSTROUTING -o ens3 -j MASQUERADE
+PreDown = ufw route delete allow in on wg0 out on ens3
+PreDown = iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
+# PreDown = ip6tables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
+
+[Peer]
+PublicKey = {{ hostvars['localhost'].pubkey }}
+AllowedIPs = 10.8.0.2
+
+[Peer]
+PublicKey = {{ phone_key }}
+AllowedIPs = 10.8.0.3
