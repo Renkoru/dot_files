@@ -13,35 +13,36 @@
 9. ly-git      (Display manager)
 10. fzf
 11. neovim
-12. st
+12. xclip (usefull for neovim)
+13. st
     - Enable clipboard copy https://st.suckless.org/patches/clipboard/
-13. emacs
-14. feh
-15. sxiv
-16. imagemagick
-17. maim
-18. htop
-19. openssh
-20. nodejs
-21. ranger
-22. ripgrep
-23. alsa-utils
-24. pulseaudio
-25. https://github.com/christophgysin/pasystray || pasystray
-26. ncpamixer
-27. thunar https://wiki.archlinux.org/index.php/thunar
-28. poetry
-29. qBittorrent
-30. zathura
-31. docker
-32. docker-compose
-33. vlc
-34. node + nvm + npm
-35. google-chrome | yay
-36. pyenv
-37. libnotify (notifications)
-38. dunst (notifications)
-39. artha (english dictionary)
+14. emacs
+15. feh
+16. sxiv
+17. imagemagick
+18. maim
+19. htop
+20. openssh
+21. nodejs
+22. ranger
+23. ripgrep
+24. alsa-utils
+25. pulseaudio
+26. https://github.com/christophgysin/pasystray || pasystray
+27. ncpamixer
+28. thunar https://wiki.archlinux.org/index.php/thunar
+29. poetry
+30. qBittorrent
+31. zathura
+32. docker
+33. docker-compose
+34. vlc
+35. node + nvm + npm
+36. google-chrome | yay
+37. pyenv
+38. libnotify (notifications)
+39. dunst (notifications)
+40. artha (english dictionary)
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file

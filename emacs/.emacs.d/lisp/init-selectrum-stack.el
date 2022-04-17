@@ -106,7 +106,8 @@
    consult-theme
    :preview-key '(:debounce 0.2 any)
    consult-buffer consult-ripgrep consult-git-grep consult-grep
-   consult--source-file consult--source-project-file consult--source-bookmark
+   consult--source-bookmark consult--source-recent-file
+   consult--source-project-recent-file
    :preview-key (kbd "C-.")
    )
 

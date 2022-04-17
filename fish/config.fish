@@ -30,7 +30,8 @@ set -x PATH "$HOME/.local/bin" $PATH
 # if test "$XDG_VTNR" -le 2
 #     tbsm
 # end
-source ~/.asdf/asdf.fish
+source /opt/asdf-vm/asdf.fish
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
