@@ -3,9 +3,14 @@ Ansible plays to configure VPN
 * Setup SSH on VPS
 #+NAME: copy SSH key
 #+BEGIN_SRC bash
+  nvim /home/mrurenko/.ssh/known_hosts
   ssh-copy-id <USER>@<IP_ADDR>
 #+END_SRC
-
+* Local setup configurations
+#+NAME: copy SSH key
+#+BEGIN_SRC bash
+  poetry run ansible-playbook --ask-become-pass local-setup.yaml
+#+END_SRC
 * Simple commands
 #+BEGIN_SRC bash
   poetry run ansible all -m ping -i inventory.ini

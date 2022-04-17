@@ -1,0 +1,64 @@
+# If you want to configure your devices, do not copy this file.
+# Instead, use a config snippet that contains something like this:
+#
+# Section "InputClass"
+#   Identifier "something or other"
+#   MatchDriver "libinput"
+#
+#   MatchIsTouchpad "on"
+#   ... other Match directives ...
+#   Option "someoption" "value"
+# EndSection
+#
+# This applies the option any libinput device also matched by the other
+# directives. See the xorg.conf(5) man page for more info on
+# matching devices.
+
+Section "InputClass"
+        Identifier "libinput pointer catchall"
+        MatchIsPointer "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+EndSection
+
+Section "InputClass"
+        Identifier "libinput keyboard catchall"
+        MatchIsKeyboard "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+EndSection
+
+Section "InputClass"
+        Identifier "libinput touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+        Option "Tapping" "on"
+        Option "NaturalScrolling" "true"
+        Option "AccelSpeed" "0.3"
+EndSection
+
+Section "InputClass"
+        Identifier "libinput touchscreen catchall"
+        MatchIsTouchscreen "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+EndSection
+
+Section "InputClass"
+        Identifier "libinput tablet catchall"
+        MatchIsTablet "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+EndSection
+
+Section "InputClass"
+    Identifier   "Trackball"
+    MatchProduct "Kensington Slimblade Trackball"
+    MatchProduct "Trackball"
+    Driver       "libinput"
+    # Option       "ButtonMapping"      "3 0 1 4 5 6 7 8 2"
+    Option     "ScrollMethod" "button"
+    Option     "NaturalScrolling" "true"
+    # Option     "HorizontalScrolling" "false"
+EndSection

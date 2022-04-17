@@ -1,0 +1,16 @@
+---
+- name: configure inputs
+  hosts: localhost
+  connection: local
+  become: yes
+  vars:
+    # Use system python so apt package is available
+    ansible_python_interpreter: "/usr/bin/env python"
+  tasks:
+  - name: configure libunput
+    template:
+      dest: /usr/share/X11/xorg.conf.d/40-libinput.conf
+      src: 40-libinput.conf.j2
+      owner: root
+      group: root
+      mode: '0644'
