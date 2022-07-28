@@ -41,6 +41,8 @@
 
 (defvar mr/commit-prefix-separator " ")
 
+(defvar mr/commit-should-skip-branch-type t)
+
 ;; TODO create a new variable to be able to remove 'feature' from this result: "feature/CAAS-2963"
 (defun mr/git-get-commit-ticket-prefix ()
   "Get ticket prefix from git branch name."
@@ -53,7 +55,9 @@
        mr/commit-pre-prefix
        (string-join
         (list (nth 0 mr/commit-prefix-surrounds)
-              (string-join (-slice branch-items-list 0 2 1) "-")
+              (let* ((full-ticket-id (string-join (-slice branch-items-list 0 2 1) "-"))
+                     (idParts (split-string full-ticket-id "/")))
+                (if mr/commit-should-skip-branch-type (nth 1 idParts) full-ticket-id))
               (nth 1 mr/commit-prefix-surrounds))
         ""
         )
@@ -61,6 +65,7 @@
       mr/commit-prefix-separator
       ))
     ))
+
 
 
 ;; (defun mr/git-get-commit-ticket-prefix ()

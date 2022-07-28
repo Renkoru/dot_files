@@ -67,6 +67,9 @@
                           (require 'lsp-pyright)
                           (lsp))))  ; or lsp-deferred
 
+;; code formaters
+(use-package blacken)
+
 (provide 'init-python)
 
 ;;; init-python.el ends here

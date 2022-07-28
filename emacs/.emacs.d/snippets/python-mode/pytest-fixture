@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pytest fixture
+# key: tpf
+# --
+@pytest.fixture$0

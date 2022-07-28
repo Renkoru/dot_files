@@ -14,8 +14,21 @@
            "C-k" 'evil-window-up
            "C-l" 'evil-window-right
            "C-a" 'beginning-of-line)
+  (general-nmap
+    "[ SPC" 'crux-smart-open-line-above)
   :config
   (evil-mode 1)
+
+  (my-space-leader
+    "w" 'save-buffer
+    "q" 'delete-window
+    "=" 'balance-windows)
+
+  (my-crux-text-definer
+    "SPC" 'crux-smart-open-line
+    ;; "[" 'crux-smart-open-line-above
+    "p" 'crux-duplicate-current-line-or-region
+    "cp" 'crux-duplicate-and-comment-current-line-or-region)
 
   (defun insert-line-below ()
     "Insert an empty line below the current line."
@@ -30,11 +43,6 @@
     (save-excursion
       (end-of-line 0)
       (open-line 1)))
-
-  (my-space-leader
-    "w" 'save-buffer
-    "q" 'delete-window
-    "=" 'balance-windows)
 
   ;; (general-define-key :prefix "["
   ;;                     "SPC" 'insert-line-above)

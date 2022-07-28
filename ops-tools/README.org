@@ -18,4 +18,4 @@ Ansible plays to configure VPN
 #+END_SRC
 * Links
 - Vpn setup by this steps: https://dev.to/tangramvision/exploring-ansible-via-setting-up-a-wireguard-vpn-3389
-- Install on Ubuntu (friewall setup) https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04
+- Install on Ubuntu (firewall setup) https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04

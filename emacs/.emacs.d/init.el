@@ -28,6 +28,7 @@
   (general-evil-setup)
   (general-create-definer my-general-g-definer :states 'normal :prefix "g")
   (general-create-definer my-space-leader :states 'normal :prefix "<SPC>")
+  (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
   )
 
 ;; TODO: verify it is woking
@@ -177,6 +178,12 @@
 (use-package jenkinsfile-mode)
 ;; (straight-use-package
 ;;  '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
+(use-package go-mode)
+;; (add-hook 'go-mode-hook #'lsp)
+(add-hook 'go-mode-hook 'lsp-deferred)
+;; Go tools https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
+;; to check https://sandyuraz.com/blogs/go-emacs/
+;; to check https://geeksocket.in/posts/emacs-lsp-go/
 
 ;;--------------------
 ;; Indentation setup
