@@ -56,6 +56,12 @@
       state: present
       update_cache: yes
 
+  - name: install ufw package
+    apt:
+      name: ufw
+      state: present
+      update_cache: yes
+
   # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
   - name: create server wireguard config
     template:
