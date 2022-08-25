@@ -16,7 +16,8 @@ PublicKey = {{ server_pubkey }}
 Endpoint = {{ hostvars['vpn_server'].ansible_host }}:51820
 
 # 10.0.0.0/24 is the VPN subnet
-AllowedIPs = 10.8.0.0/24
+# AllowedIPs = 10.8.0.0/24
+AllowedIPs = 0.0.0.0/0, ::/0 # Forward all traffic to server
 
 # To also accept and send traffic to a VPC subnet at 10.110.0.0/20
 # AllowedIPs = 10.0.0.0/24,10.110.0.0/20
