@@ -7,6 +7,7 @@
 
 ;;
 ;; Good themes:
+;; - ayu-theme
 ;; - leuven-theme
 ;; - color-theme-sanityinc-tomorrow
 ;; - moe-theme
@@ -84,13 +85,26 @@
 ;;   (load-theme 'base16-atelier-lakeside-light t)
 ;;   (set-face-attribute 'region nil :background "gold"))
 
+;; Ayu original looks better (support more formats) then in doom package
+(use-package ayu-theme
+  :config (load-theme 'ayu-light t))
+
+;; (use-package nano-theme
+;;   :straight (nano-theme :host github :type git
+;;                     :repo "rougier/nano-theme")
+;;   :config (load-theme 'nano-light t))
+
+
+;; If you search for something new - check this https://beebom.com/best-visual-studio-code-themes/
+;; https://levelup.gitconnected.com/10-pretty-light-themes-for-vs-code-80dbf6405f39
+;; Doom-themes have a lot integrated themes check it's content first
 (use-package doom-themes
   :after ivy
   :config
 ;; Global settings (defaults)
 ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-nord-light t)
+  ;; (load-theme 'doom-ayu-light t)
   )
   ;; (load-theme 'base16-atelier-lakeside-light t)
   ;; (set-face-attribute 'region nil :background "gold"))
@@ -156,17 +170,30 @@
 ;; (global-whitespace-mode 1)
 
 
+;; save position for evil-jump before jump
+(defun mr/highlight-symbol-next ()
+  (interactive)
+  (evil--jumps-push)
+  (highlight-symbol-jump 1))
+
+;; save position for evil-jump before jump
+(defun mr/highlight-symbol-prev ()
+  (interactive)
+  (evil--jumps-push)
+  (highlight-symbol-jump -1))
+
+
 (use-package highlight-symbol
   :defer t
   :hook ((prog-mode . highlight-symbol-mode)
          (prog-mode . highlight-symbol-nav-mode))
   :init
   (setq highlight-symbol-idle-delay 1)
+
   :general
-  ("M-<f12>" 'highlight-symbol-mode) ;; highlight symbol under a crusor
-  ("C-<f12>" 'highlight-symbol)
-  ("<f12>" 'highlight-symbol-next)
-  ("S-<f12>" 'highlight-symbol-prev)
+  (general-nmap
+    "C-n" 'mr/highlight-symbol-next
+    "C-p" 'mr/highlight-symbol-prev)
   (my-space-leader "h" 'highlight-symbol-at-point))
 
 (use-package rainbow-delimiters

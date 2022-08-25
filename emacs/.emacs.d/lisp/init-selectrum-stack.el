@@ -6,7 +6,6 @@
 ;; 1. https://gitlab.com/OlMon/consult-projectile
 
 (use-package prescient)
-(use-package ivy-prescient)
 (use-package company-prescient)
 (use-package selectrum-prescient)
 
@@ -111,10 +110,11 @@
    :preview-key (kbd "C-.")
    )
 
-  ;; 2. projectile.el (projectile-project-root)
+  ;;;; 2. projectile.el (projectile-project-root)
   (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root)
+  (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
+
 
 (use-package selectrum
   :config

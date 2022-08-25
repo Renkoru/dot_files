@@ -121,7 +121,8 @@
   (use-package evil-anzu
     :config
     ;; Telephone line will handle modeline for anzu
-    (setq anzu-cons-mode-line-p nil))
+    (setq anzu-cons-mode-line-p nil)
+    (global-anzu-mode +1))
   )
 
 (use-package evil-goggles
