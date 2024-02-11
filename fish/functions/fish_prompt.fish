@@ -21,6 +21,7 @@ set fish_pager_color_secondary
 
 set fish_color_host 32cd32 --bold
 set fish_color_user 32cd32 --bold
+set fish_color_ts 4c7558 --dim --italics
 
 # Git prompt setup
 set __fish_git_prompt_char_untrackedfiles '*'
@@ -46,6 +47,10 @@ function fish_prompt --description 'Write out the prompt'
 
   function prompt_pwd
     echo $PWD | sed -e "s|^$HOME|~|"
+  end
+
+  function prompt_date
+    echo (date '+%H:%M')
   end
 
   if not set -q -g __fish_classic_git_functions_defined
@@ -111,6 +116,10 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_host (set_color $fish_color_host)
   end
 
-  echo -s "$__fish_prompt_user" "$USER" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_normal" ' ' "$__fish_prompt_cwd" (prompt_pwd) (__fish_git_prompt)
+  if not set -q __fish_prompt_ts
+    set -g __fish_prompt_ts (set_color $fish_color_ts)
+  end
+
+  echo -s "$__fish_prompt_user" "$USER" @ "$__fish_prompt_host" "$__fish_prompt_hostname" "$__fish_prompt_ts" '|' (prompt_date) '|' "$__fish_prompt_normal" "$__fish_prompt_cwd" (prompt_pwd) (__fish_git_prompt)
   echo -s "$__fish_prompt_normal" "$delim" ' '
 end

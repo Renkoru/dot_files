@@ -1,8 +1,6 @@
-abbr --add lsa ls -la
+abbr --add lsa eza -la --icons=auto
 abbr --add pupd sudo pacman -Suy
 abbr --add yupd yay -Suya
-abbr --add kbd /bin/bash /home/mrurenko/dot_files/scripts/keyboard.sh
-abbr --add amt xinput set-prop \"rdashevsky work trackpad\" 285 1 and xinput set-prop \"rdashevsky work trackpad\" 296 0.3 and libinput-gestures-setup restart
 
 
 # Docker abbrs
@@ -17,6 +15,7 @@ set -x EDITOR nvim
 set -x SSH_AUTH_SOCK "/run/user/1000/ssh-agent.socket"
 set -x WORKON_HOME $HOME/.local/share/virtualenvs
 
+
 # After installation of Pyenv
 set -x PATH "/home/mrurenko/.pyenv/bin" $PATH
 # status --is-interactive; and . (pyenv init -|psub)
@@ -26,11 +25,19 @@ set -x PATH "$HOME/.poetry/bin" $PATH
 
 set -x PATH "$HOME/.local/bin" $PATH
 
+set -x PATH "$(go env GOPATH)/bin" $PATH
+
 
 # if test "$XDG_VTNR" -le 2
 #     tbsm
 # end
 source /opt/asdf-vm/asdf.fish
+
+# should be on the end of config file
+zoxide init fish | source
+
+# failed in configuring and using direnv
+direnv hook fish | source
 
 
 # >>> conda initialize >>>
