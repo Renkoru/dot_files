@@ -60,8 +60,9 @@ bindsym $mod+Ctrl+l move right 30
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec urxvt
 bindsym $mod+Return exec st
-exec --no-startup-id feh --bg-scale ~/pictures/wallps/0000walp.png
 # setup a background image
+exec --no-startup-id feh --bg-scale ~/documents/wallpapers/beach.jpg
+
 #Composite manager:
 exec --no-startup-id compton
 
@@ -147,26 +148,47 @@ bindsym $mod+a focus parent
 #
 
 # Name the workspaces
-set $tag1 "1: "
-set $tag2 "2: "
-set $tag3 "3: "
-set $tag4 "4: "
-set $tag5 "5: misc"
-set $tag6 "6: temp"
+set $tag1 "1"
+set $tag2 "2"
+set $tag3 "3"
+set $tag4 "4"
+set $tag5 "5"
+set $tag6 "6"
+set $tag7 "7"
+set $tag8 "8"
+set $tag9 "9"
+set $tag10 "10"
 
-# >>> i3-gaps settings
-for_window [class="^.*"] border pixel 0
+# >>> i3 gaps settings
+# https://i3wm.org/docs/userguide.html#gaps
+# for_window [class="^.*"] border pixel 0
 
-gaps inner 3
+gaps outer 5
+gaps inner 30
+
+# workspace 2 gaps inner 10
+# workspace 2 gaps outer 10
+# workspace $tag4 gaps inner 0
+# workspace $tag4 gaps outer 0
 # gaps outer 10
-gaps outer 0
+
+workspace $tag1 gaps inner 0
+workspace $tag1 gaps outer 3
+
+workspace $tag2 gaps inner 0
+workspace $tag2 gaps outer 3
+smart_borders on
+default_border pixel 1
+
+workspace $tag9 gaps inner 0
+workspace $tag9 gaps outer 3
+
+# smart_gaps inverse_outer
+
+# smart_gaps on
 
 # Activate smart borders (always)
-smart_borders on
-
-# disable gaps for workspase #8
-# workspace 4 gaps outer 0
-# workspace 4 gaps inner 0
+# smart_borders on
 
 # bindsym $mod+s gaps inner current plus 5
 # bindsym $mod+Shift+s gaps inner current minus 5
@@ -185,10 +207,10 @@ bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
 bindsym $mod+5 workspace $tag5
 bindsym $mod+6 workspace $tag6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
+bindsym $mod+9 workspace $tag9
+bindsym $mod+0 workspace $tag10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
@@ -197,10 +219,10 @@ bindsym $mod+Shift+3 move container to workspace $tag3
 bindsym $mod+Shift+4 move container to workspace $tag4
 bindsym $mod+Shift+5 move container to workspace $tag5
 bindsym $mod+Shift+6 move container to workspace $tag6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+bindsym $mod+Shift+0 move container to workspace $tag10
 
 
 # Make the currently focused window a scratchpad
@@ -214,8 +236,8 @@ bindsym $mod+n workspace next
 # Application placement
 for_window [title="^Google Chrome"] move window to workspace $tag1
 for_window [title="^emacs@arch"] move window to workspace $tag2
-for_window [title="^Skype"] move window to workspace 9
-for_window [title="^Slack"] move window to workspace 9
+for_window [title="^Skype"] move window to workspace $tag9
+for_window [title="^Slack"] move window to workspace $tag9
 
 # switch between the current and the previously focused one
 bindsym $mod+b workspace back_and_forth
@@ -312,6 +334,9 @@ exec_always --no-startup-id "/usr/bin/dunst"
 
 # initialize key bindings
 exec_always --no-startup-id xbindkeys
+
+# fix chrome shadow bug for context menu box
+exec_always --no-startup-id "picom --config ~/.config/picom/picom.conf"
 
 # nvidia setup
 # xrandr --setprovideroutputsource modesetting NVIDIA-0

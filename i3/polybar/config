@@ -14,8 +14,10 @@
 background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+# foreground = #dfdfdf
+foreground = #fffff0
 foreground-alt = #555
+foreground-alt2 = #bebebe
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -29,6 +31,11 @@ deepskyblue = #00bfff
 white = #FFFFFF
 red = #A02929
 purple = #664975
+cyan1 = #98f5ff
+cyan2 = #8ee5ee
+aquamarine3 = #66cdaa
+i3icons = #fdf5e6
+temperatureNormalColor = #d2691e
 
 [bar/bar1]
 bottom = true
@@ -55,21 +62,21 @@ padding-left = 0
 padding-right = 0
 
 module-margin-left = 0
-module-margin-right = 2
+module-margin-right = 5
 
 font-0 = SSFD:pixelsize=12;1
 font-1 = SSFD:size=12;0
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
-font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
-font-4 = "Font Awesome 5 Brands:pixelsize=10;1"
+font-2 = "FontAwesome:style=Regular:pixelsize=10;1"
+font-3 = "JetBrainsMono Nerd Font:style=Regular:pixelsize=16;4"
+font-4 = "FontAwesome:pixelsize=10;1"
 ; font-0 = System San Francisco Display:pixelsize=10;1
 ; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ; font-2 = siji:pixelsize=10;1
 
-modules-left = xkeyboard battery cpu memory temperature
+modules-left = xkeyboard cpu memory temperature
 modules-center = i3
 ; Other possible values: i3-volume
-modules-right = wlan eth date powermenu
+modules-right = wlan eth date powermenu battery
 
 tray-position = right
 tray-padding = 2
@@ -87,10 +94,6 @@ tray-padding = 2
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -99,113 +102,63 @@ blacklist-0 = num lock
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
-label-layout = %layout%
-label-layout-underline = ${colors.aqua}
+label-layout = [ %layout% ]
+; label-layout-underline = ${colors.aqua}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.aqua}
 label-indicator-underline = ${colors.aqua}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+enable-scroll = false
 
-label-font = 3
+label-active-font = 3
+
+;; Icons
+ws-icon-0 = 1;󰊯
+ws-icon-1 = 2;
+ws-icon-2 = 3;󰼁
+ws-icon-3 = 4;󰇍
+ws-icon-4 = 5;󱅎
+ws-icon-5 = 6;󰇏
+ws-icon-6 = 7;󱂎
+ws-icon-7 = 8;󰲮
+ws-icon-8 = 9;󰻞
+ws-icon-9 = 10;󰿭
+
+label-mode = %icon%
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 2
+label-mode-padding = 3
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${colors.deepskyblue}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused = %icon%
+label-focused-underline = ${colors.cyan2}
+label-focused-foreground = ${colors.cyan1}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %name%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.i3icons}
+label-unfocused-padding = 3
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-padding = 3
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
@@ -217,28 +170,29 @@ format = <label> <ramp-coreload>
 ; format-prefix = " "
 ; format-prefix-font = 3
 ; format-prefix-foreground = ${colors.foreground-alt0
-format-underline = ${colors.aqua}
+; format-underline = ${colors.aqua}
 ; label = %percentage%%
 label = " "
+label-foreground = ${colors.deepskyblue}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 3
-ramp-coreload-0-foreground = ${colors.green}
+ramp-coreload-0-foreground = ${colors.deepskyblue}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 3
-ramp-coreload-1-foreground = ${colors.green}
+ramp-coreload-1-foreground = ${colors.deepskyblue}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 3
-ramp-coreload-2-foreground = ${colors.green}
+ramp-coreload-2-foreground = ${colors.deepskyblue}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 3
-ramp-coreload-3-foreground = ${colors.green}
+ramp-coreload-3-foreground = ${colors.deepskyblue}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 3
-ramp-coreload-4-foreground = ${colors.blue}
+ramp-coreload-4-foreground = ${colors.yellow}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 3
-ramp-coreload-5-foreground = ${colors.blue}
+ramp-coreload-5-foreground = ${colors.yellow}
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 3
 ramp-coreload-6-foreground = ${colors.red}
@@ -254,15 +208,16 @@ interval = 2
 format = <label> <bar-used>
 format-prefix-font = 3
 ; format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.aqua}
+; format-underline = ${colors.aqua}
 
-label = ""
+label = "󱗺"
+label-foreground = ${colors.aquamarine3}
 
 bar-used-indicator =
 bar-used-width = 10
-bar-used-foreground-0 = ${colors.green}
-bar-used-foreground-1 = ${colors.green}
-bar-used-foreground-2 = ${colors.blue}
+bar-used-foreground-0 = ${colors.aquamarine3}
+bar-used-foreground-1 = ${colors.aquamarine3}
+bar-used-foreground-2 = ${colors.yellow}
 bar-used-foreground-3 = ${colors.red}
 bar-used-fill = ▐
 bar-used-empty = ▐
@@ -377,10 +332,12 @@ full-at = 96
 
 format-font = 3
 
-format-charging = <animation-charging> <label-charging>
+; format-charging = <animation-charging> <label-charging>
+format-charging = <label-charging>
 format-charging-underline = ${colors.green}
 
-format-discharging = <ramp-capacity> <label-discharging>
+; format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <label-discharging>
 format-discharging-underline = ${colors.yellow}
 
 format-charging-padding = 1
@@ -398,32 +355,37 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 ; ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = "󰢜 "
+animation-charging-1 = "󰂇 "
+animation-charging-2 = "󰢝 "
+animation-charging-3 = "󰢞 "
+animation-charging-4 = "󰂋 "
 animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
+base-temperature = 40
 warn-temperature = 60
+interval = 5
 
 format = <ramp> <label>
-format-underline = ${colors.aqua}
+; format-underline = ${colors.aqua}
 
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${colors.alert}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
+label-foreground = ${colors.temperatureNormalColor}
 label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = "󰞴 "
+ramp-foreground = ${colors.foreground-alt2}
+ramp-1-foreground = ${colors.temperatureNormalColor}
+ramp-2-foreground = ${colors.red}
 
 [module/powermenu]
 type = custom/menu
