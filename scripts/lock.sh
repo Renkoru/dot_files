@@ -1,20 +1,15 @@
 #!/bin/bash
 
-# i3lock blurred screen inspired by /u/patopop007 and the blog post
+# swaylock blurred screen inspired by /u/patopop007 and the blog post
 # http://plankenau.com/blog/post-10/gaussianlock
 
-# Timings are on an Intel i7-2630QM @ 2.00GHz
-
 # Dependencies:
-# imagemagick
-# i3lock
-# scrot (optional but default)
+# grim
+# convert
+# swaylock
 
-IMAGE=/tmp/i3lock.png
-SCREENSHOT="maim $IMAGE" # 0.46s
-
-# Alternate screenshot method with imagemagick. NOTE: it is much slower
-# SCREENSHOT="import -window root $IMAGE" # 1.35s
+IMAGE=/tmp/lock.png
+SCREENSHOT="grim $IMAGE"
 
 # Here are some imagemagick blur types
 # Uncomment one to use, if you have multiple, the last one will be used
@@ -28,7 +23,10 @@ SCREENSHOT="maim $IMAGE" # 0.46s
 BLURTYPE="3x3"
 
 # Get the screenshot, add the blur and lock the screen with it
+# FOCUSED_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select( .focused == true) | .name')
 $SCREENSHOT
 convert $IMAGE -blur $BLURTYPE $IMAGE
-i3lock -n -t -i $IMAGE
+# echo $FOCUSED_MONITOR
+# swaylock -n -t -i $FOCUSED_MONITOR:$IMAGE -f
+swaylock -n -t -i $IMAGE -f
 rm $IMAGE

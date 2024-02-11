@@ -14,8 +14,7 @@
 10. fzf
 11. neovim
 12. xclip (usefull for neovim)
-13. st
-    - Enable clipboard copy https://st.suckless.org/patches/clipboard/
+13. alacritty
 14. emacs
 15. feh
 16. sxiv
@@ -43,6 +42,12 @@
 38. libnotify (notifications)
 39. dunst (notifications)
 40. artha (english dictionary)
+41. https://github.com/eza-community/eza
+42. zoxide
+43. https://github.com/muesli/duf
+44. https://github.com/sharkdp/bat
+45. direnv
+46. inotify-tools
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file
@@ -106,16 +111,3 @@ Section "InputClass"
     # Option     "HorizontalScrolling" "false"
 EndSection
 #+END_SRC
-** Apple Magic Trackpad
-File: (do not forget to link it)
-cat /usr/share/X11/xorg.conf.d/40-libinput.conf
-
-Section "InputClass"
-        Identifier "rdashevsky work trackpad"
-        MatchIsTouchpad "on"
-        MatchDevicePath "/dev/input/event*"
-        Driver "libinput"
-        Option "Tapping" "on"
-        Option "NaturalScrolling" "true"
-        Option "AccelSpeed" "0.3"
-EndSection

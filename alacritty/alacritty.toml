@@ -1,0 +1,36 @@
+[font]
+size = 11
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[window]
+# opacity = 0.18
+dynamic_padding = true
+
+[window.padding]
+x = 7
+y = 0
+
+[selection]
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+   { key = "k", mods = "Alt", action = "ScrollLineUp" },
+   { key = "j", mods = "Alt", action = "ScrollLineDown" }
+]

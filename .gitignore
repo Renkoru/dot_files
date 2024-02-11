@@ -14,3 +14,4 @@
 /emacs/.emacs.d/tramp
 /fish/completions/nvm.fish
 /emacs/.emacs.d/straight/modified/
+/emacs/.emacs.d/elpa/

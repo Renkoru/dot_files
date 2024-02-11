@@ -1,0 +1,240 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  min-height: 0;
+}
+
+@keyframes blink {
+  to {
+    background-color: yellow;
+    color: black;
+  }
+}
+
+window#waybar {
+  background: rgba(43, 48, 59, 0);
+  /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+  color: white;
+}
+
+.modules-left > * > * {
+  /* font-size: 1rem; */
+  /* background: rgb(241, 213, 213); */
+  background: linear-gradient(
+    180deg,
+    rgba(34, 34, 34, 0.8) 0%,
+    rgba(5, 5, 5, 0.7) 100%
+  );
+  border-radius: 5rem;
+  /* padding: 5px 15px; */
+  margin: 5px 2px;
+}
+
+.modules-right > * > * {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 34, 34, 0.8) 0%,
+    rgba(5, 5, 5, 0.7) 100%
+  );
+  border-radius: 1rem;
+  /* padding: 5px 15px; */
+  margin: 5px 2px;
+  padding: 5px 0px;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+
+tooltip label {
+  color: white;
+}
+
+/* #workspaces button {
+   padding: 0 5px;
+   background: transparent;
+   color: white;
+   border-bottom: 3px solid transparent;
+   }
+
+   #workspaces button.focused {
+   background: #64727D;
+   border-bottom: 3px solid white;
+   }
+
+   #workspaces button.active {
+   color: #26A65B;
+   } */
+
+#workspaces {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 1rem;
+  background: linear-gradient(
+    180deg,
+    rgba(85, 85, 85, 0.7) 0%,
+    rgba(60, 60, 60, 0.9) 100%
+  );
+}
+
+#workspaces button {
+  color: white;
+  border-radius: 5rem;
+  margin: 5px 0px;
+  /* padding: 10px 15px; */
+  /* padding: 10px 15px;
+     margin: 0 5px; */
+  /* background: linear-gradient( */
+  /*   180deg, */
+  /*   rgba(34, 34, 34, 0.8) 0%, */
+  /*   rgba(5, 5, 5, 0.7) 100% */
+  /* ); */
+}
+
+#workspaces button label {
+  font-size: 1.5rem;
+}
+
+#workspaces button.active {
+  background: linear-gradient(
+    180deg,
+    rgb(100, 200, 100) 0%,
+    rgb(100, 180, 100) 100%
+  );
+}
+
+#language {
+  font-size: 1.5rem;
+}
+
+#clock.day, #clock.date {
+  opacity: 0.7;
+}
+
+#clock.main {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fafad2;
+  padding: 12px 0px;
+  margin-bottom: 15px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.7),
+    rgba(34, 34, 34, 0.15)
+  );
+  border-radius: 1rem;
+}
+
+#cpu, #temperature, #network, #memory {
+  opacity: 0.5;
+}
+
+#mode, #clock, #battery {
+  padding: 0 10px;
+}
+
+#mode {
+  background: #64727D;
+  border-bottom: 3px solid white;
+}
+
+#cpu {
+  background-color: #64727D;
+}
+
+#cpu.normal {
+  opacity: 0.8;
+}
+
+#cpu.warning {
+  color: grey;
+  opacity: 1;
+  border-radius: 0.8rem;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu.critical {
+  color: red;
+  opacity: 1;
+  border-radius: 0.5rem;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#temperature.critical {
+  color: pink;
+  opacity: 1;
+}
+
+#clock {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #64727D;
+}
+
+#memory.normal {
+  opacity: 0.8;
+}
+
+#memory.warning {
+  opacity: 0.9;
+  color: yellow;
+}
+
+#memory.critical {
+  opacity: 1;
+  color: red;
+}
+
+#battery {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  /* color: red; */
+}
+
+/* #battery.charging { */
+/*   color: white; */
+/*   background-color: #ff5a00; */
+/* } */
+
+#battery.low:not(.charging) {
+  opacity: 1;
+  color: yellow;
+}
+
+#battery.normal:not(.charging) {
+  opacity: 1;
+  color: white;
+}
+
+#battery.critical:not(.charging) {
+  opacity: 1;
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.plugged {
+  opacity: 0.3;
+  color: #90ee90;
+}
