@@ -5,8 +5,8 @@ description = ""
 authors = ["Maxim Rurenko <mrurenko@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-ansible = "^5.6.0"
+python = "^3.11"
+ansible = "^8.3.0"
 
 [tool.poetry.dev-dependencies]
 

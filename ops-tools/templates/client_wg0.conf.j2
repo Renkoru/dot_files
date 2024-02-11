@@ -1,6 +1,7 @@
 [Interface]
 # The address your computer will use on the VPN
 Address = 10.8.0.2/32
+DNS = 10.8.0.1
 
 # Load your privatekey from file
 PostUp = wg set %i private-key /etc/wireguard/private.key
