@@ -11,10 +11,14 @@
 ;;; Code:
 
 
-(setq mr-get-kblayout-command "xkb-switch -p | tr -d '\n'")
-(setq mr-set-kblayout-command "xkb-switch -s")
+;; (setq mr-get-kblayout-command "xkb-switch -p | tr -d '\n'")
+(setq mr-get-kblayout-command "hyprctl devices -j | jq -r '.keyboards[] | select(.name == \"aone-varmilo-keyboard\") | .active_keymap' | head -n1 | sed -e 's/English\\ (US)/0/g' | sed -e 's/Russian/1/g'")
+
+;; (setq mr-set-kblayout-command "xkb-switch -s")
+(setq mr-set-kblayout-command "hyprctl switchxkblayout aone-varmilo-keyboard")
 ;; (setq mr-ru-lang_source "setxkbmap -layout ru,us")
-(setq mr-default-kblayout "us")
+;; (setq mr-default-kblayout "us")
+(setq mr-default-kblayout "0")
 (setq mr-current-kblayout mr-default-kblayout)
 
 (defun evil-mlang-enter-insert-handler ()
@@ -23,7 +27,8 @@
 
 (defun evil-mlang-enter-leave-handler ()
     "What we do when enter normal mod."
-  (setq mr-current-kblayout (shell-command-to-string mr-get-kblayout-command))
+    (setq mr-current-kblayout (replace-regexp-in-string "\n$" ""
+                                                        (shell-command-to-string mr-get-kblayout-command)))
   (shell-command (concat mr-set-kblayout-command " " mr-default-kblayout)))
 
 (define-minor-mode evil-mlang-mode

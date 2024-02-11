@@ -58,14 +58,9 @@
 ;; scrolling to always be a line at a time
 (setq scroll-margin 4)
 (setq hscroll-margin 0)
-(setq linum-delay t) ;; Delay updates to give Emacs a chance for other changes
 (setq scroll-conservatively 10000)
 (setq scroll-step 1) ;; keyboard scroll one line at a time
-(global-linum-mode 0)
 ;; }}
-
-;; ssh-agent socket settings
-(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
 (setq browse-url-browser-function
       '(("." . browse-url-generic)))
@@ -83,6 +78,9 @@
 ;; make return key also do indent, globally
 (electric-indent-mode 1)
 (electric-pair-mode 1)
+
+(setq warning-minimum-level :error)
+(setq browse-url-generic-program "google-chrome-stable")
 
 
 (provide 'init-emacs)

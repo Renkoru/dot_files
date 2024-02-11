@@ -18,6 +18,14 @@
 ;;   (setq
 ;;    pipenv-projectile-after-switch-function
 ;;    #'pipenv-projectile-after-switch-extended))
+
+;; Handle python environments
+;; Was not able to configure?
+;; (use-package pet
+;;   :config
+;;   (add-hook 'python-base-mode-hook 'pet-mode -10)
+;;   )
+
 (use-package pyvenv
   :config
   (setenv "WORKON_HOME" "/home/mrurenko/.cache/pypoetry/virtualenvs"))
@@ -43,7 +51,7 @@
 (add-hook 'python-mode-hook
           (lambda ()
             'flycheck-mode
-            #'lsp
+            ;; #'lsp
             (setq tab-width 4)
             (setq flycheck-pylintrc ".pylintrc")
             (sphinx-doc-mode t)))
@@ -62,10 +70,10 @@
            "][" 'evil-python-movement-lsb-rsb))
 
 
-(use-package lsp-pyright
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+;; (use-package lsp-pyright
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-pyright)
+;;                           (lsp))))  ; or lsp-deferred
 
 ;; code formaters
 (use-package blacken)

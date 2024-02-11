@@ -1,13 +1,13 @@
-;;; init-selectrum-stack.el --- Appearance settings
+;;; init-vertico-stack.el --- Appearance settings
 ;;; Commentary:
 ;;; Code:
 
 ;; TOOD packages
 ;; 1. https://gitlab.com/OlMon/consult-projectile
 
-(use-package prescient)
+;; (use-package prescient)
 ;; (use-package company-prescient)
-(use-package selectrum-prescient)
+;; (use-package selectrum-prescient)
 
 (use-package marginalia
   ;; Either bind `marginalia-cycle` globally or only in the minibuffer
@@ -20,7 +20,26 @@
 
   ;; Must be in the :init section of use-package such that the mode gets
   ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode))
+  (marginalia-mode)
+
+  :config
+  ;; Customize projectile commands when/if loaded.
+  (with-eval-after-load 'projectile
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-switch-project . file))
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-switch-open-project . file))
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-find-file . project-file))
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-recentf . project-file))
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-display-buffer . project-buffer))
+    (add-to-list 'marginalia-command-categories
+                 '(projectile-switch-to-buffer . project-buffer)))
+  )
+
+
 
 (defun mr/sudo-find-file (file)
   "Open FILE as root."
@@ -74,6 +93,8 @@
   (general-def embark-file-map
     "R" 'mr/sudo-find-file)
 
+;; projectile-find-file
+
   ;; (setq embark-prompter 'embark-completing-read-prompter)
 
   ;; Hide the mode line of the Embark live/completions buffers
@@ -121,7 +142,7 @@
    consult-buffer consult-ripgrep consult-git-grep consult-grep
    consult--source-bookmark consult--source-recent-file
    consult--source-project-recent-file
-   :preview-key (kbd "C-.")
+   :preview-key "C-."
    )
 
   ;;;; 2. projectile.el (projectile-project-root)
@@ -129,28 +150,50 @@
   (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
 
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless partial-completion basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))))
+  ;; (completion-category-overrides '((file (styles basic partial-completion))))
+  )
 
-(use-package selectrum
-  :config
-  (selectrum-mode +1)
-  (selectrum-prescient-mode +1)
-  (prescient-persist-mode +1)
-
+(use-package vertico
+  :elpaca (:files (:defaults "extensions/*"))
+  :init
+  (vertico-mode)
   :general
   (:keymaps 'global "C-c p p" 'projectile-switch-project)
-  (:keymaps 'selectrum-minibuffer-map "C-j" #'selectrum-insert-current-candidate)
-  ;; (:states 'normal
-  ;;          "gl" 'counsel-grep-or-swiper
-  ;;          "go" 'counsel-imenu)
-  ;; (my-space-leader "y" 'counsel-yank-pop)
-  ;; (:keymaps 'global "C-q" 'ivy-switch-buffer)
-  ;; (:keymaps 'global "M-x" 'counsel-M-x)
-  ;; (:keymaps 'global "M-f" 'counsel-find-file)
-  ;; (:keymaps 'global "C-c C-i" 'ivy-resume)
-
+  (:keymaps 'vertico-map "C-j" 'vertico-directory-enter)
+  :config
+  (vertico-multiform-mode)
   )
 
 
-(provide 'init-selectrum-stack)
+;; (use-package selectrum
+;;   :config
+;;   (selectrum-mode +1)
+;;   (selectrum-prescient-mode +1)
+;;   (prescient-persist-mode +1)
 
-;;; init-selectrum-stack.el ends here
+;;   :general
+;;   (:keymaps 'global "C-c p p" 'projectile-switch-project)
+;;   (:keymaps 'selectrum-minibuffer-map "C-j" #'selectrum-insert-current-candidate)
+;;   ;; (:states 'normal
+;;   ;;          "gl" 'counsel-grep-or-swiper
+;;   ;;          "go" 'counsel-imenu)
+;;   ;; (my-space-leader "y" 'counsel-yank-pop)
+;;   ;; (:keymaps 'global "C-q" 'ivy-switch-buffer)
+;;   ;; (:keymaps 'global "M-x" 'counsel-M-x)
+;;   ;; (:keymaps 'global "M-f" 'counsel-find-file)
+;;   ;; (:keymaps 'global "C-c C-i" 'ivy-resume)
+
+;;   )
+
+
+(provide 'init-vertico-stack)
+
+;;; init-vertico-stack.el ends here

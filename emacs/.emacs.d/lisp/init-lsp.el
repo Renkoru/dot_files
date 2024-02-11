@@ -3,15 +3,18 @@
 ;;; Code:
 (use-package lsp-mode
   :commands lsp
-  :hook ((typescript-mode . lsp))
   :init
   (setq lsp-highlight-symbol-at-point nil)
   (setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-enable-eldoc nil)
   (setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui (flycheck) over flymake.
+  (setq lsp-ui-sideline-diagnostics-max-lines 10)
+
   :config
-  (add-hook 'python-mode-hook #'lsp)
-  )
+  (add-hook 'python-mode-hook 'lsp)
+  (add-hook 'js-mode-hook 'lsp)
+  (add-hook 'typescript-mode-hook 'lsp)
+  (my-space-leader "cr" 'lsp-rename))
 
 (use-package lsp-ui
   :requires lsp-mode flycheck
@@ -35,14 +38,14 @@
 (use-package lsp-treemacs
   :requires lsp-mode)
 
-(use-package company
-  :config
-  (setq lsp-completion-provider :capf)
-  (setq company-idle-delay 0.3)
+;; (use-package company
+;;   :config
+;;   (setq lsp-completion-provider :capf)
+;;   (setq company-idle-delay 0.3)
 
-  (global-company-mode 1)
+;;   (global-company-mode 1)
 
-  (global-set-key (kbd "C-<tab>") 'company-complete))
+;;   (global-set-key (kbd "C-<tab>") 'company-complete))
 
 ;; (use-package lsp-mode
 ;;   :config
@@ -67,6 +70,16 @@
 ;;   (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg))
 
 ;; lsp extras
+
+
+;; (defhydra hydra-code (:color pink :idle 0.8)
+;;   "
+;;     _r_ lsp-rename:       %`lsp-rename
+;;     _l_ turbo-log-print-immediately:       %`turbo-log-print-immediately
+;;     "
+;;   ("r" lsp-rename nil)
+;;   ("l" turbo-log-print-immediately nil)
+;;   ("q" nil "quit"))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here

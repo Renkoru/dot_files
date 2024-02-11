@@ -53,7 +53,14 @@
               "")
    ))
 
+(use-package rich-minority
+  :config
+  (rich-minority-mode 1)
+  (setq rm-whitelist '(" emc" " ws" " !EML!"))
+  )
+
 (use-package telephone-line
+  :after rich-minority
   :config
 
   (defface my-red '((t (:foreground "white" :background "indian red"))) "")
@@ -109,25 +116,22 @@
 
   (telephone-line-defsegment mr/telephone-line-process-segment ()
     ;; telephone-line-process-segment; replaced by my function
-   (if mode-line-process
-       (concat "" mode-line-process)
-       ;; (concat "(wip)" mode-line-process)
-     nil))
+    (if (eq major-mode 'magit-status-mode)
+        (if mode-line-process
+            (concat "" (format "%s" mode-line-process))
+          "")
+      mode-line-process)
+   )
 
-
-  (use-package rich-minority
-    :config
-    (rich-minority-mode 1)
-    (setq rm-whitelist '(" emc" " ws" " !EML!"))
-
-    (telephone-line-defsegment mr/telephone-line-rich-minority-segment ()
-      (rm--mode-list-as-string-list))
-    )
+  (telephone-line-defsegment mr/telephone-line-rich-minority-segment ()
+    (rm--mode-list-as-string-list))
 
   (setq telephone-line-lhs
-        '((red    . (mr/telephone-line-anzu-segment
+        '((red    . (
+                     mr/telephone-line-anzu-segment
                      mr/telephone-line-buffer-status-segment
-                     mr/telephone-line-process-segment))
+                     mr/telephone-line-process-segment
+                     ))
           (green   . (mr/telephone-line-buffer-segment))
           (blue . (telephone-line-position-segment))
           ;; (evil   . (telephone-line-evil-tag-segment))

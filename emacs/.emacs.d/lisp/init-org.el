@@ -17,6 +17,7 @@
 
 ;; (use-package ox-reveal :defer t)
 (use-package ox-reveal
+  :after org
   :config
   (setq org-reveal-title-slide nil)
   )
@@ -39,9 +40,13 @@
 (setq org-log-done 'time)
 (setq org-log-done 'note)
 
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "|" "DONE(d)" "CANCELED(c)")))
+
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning) ("PROG" . "yellow")
+      '(("TODO" . org-warning) ("PROG" . "goldenrod")
         ("CANCELED" . (:foreground "blue" :weight bold))))
+
 
 
 (defhydra hydra-org (:color pink)

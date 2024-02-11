@@ -5,7 +5,6 @@
 
 (use-package hydra
   :config
-
   (defhydra hydra-resize ()
     "resize"
     ("s" shrink-window "V shrink")
@@ -23,7 +22,7 @@
     _r_ rainbow-delimiters-mode:   %`rainbow-delimiters-mode
     _s_ flyspell-mode:   %`flyspell-mode
     "
-    ("l" linum-mode nil)
+    ("l" display-line-numbers-mode nil)
     ("m" evil-mlang-mode nil)
     ("w" whitespace-mode nil)
     ("r" rainbow-delimiters-mode nil)
@@ -36,12 +35,13 @@
     ("f" flyspell-correct-word-generic "fix")
     ("q" nil "quit"))
 
-
   (my-space-leader
     "t" 'hydra-toggle/body
     "r" 'hydra-resize/body
     "cf" 'hydra-zoom/body)
 )
+
+(elpaca-wait)
 
 (provide 'init-hydra)
 ;;; init-hydra.el ends here

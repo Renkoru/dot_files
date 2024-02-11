@@ -19,9 +19,7 @@
   )
 
 ;; If you enable global minor mode
-(use-package magit
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read))
+(use-package magit)
 
 (defun mr/magit-copy-current-branch ()
   "Copy the current branch in the `kill-ring'."

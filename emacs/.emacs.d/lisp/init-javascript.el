@@ -14,23 +14,43 @@
 ;; !! Cause some freezes in some cases: org, tramp?
 ;; (use-package jest)
 
-(use-package typescript-mode
-  :mode "\\.ts\\'")
+;; Replaced by treesit
+;; (use-package typescript-mode
+;;   :hook (typescript-mode-hook . eglot-ensure)
+;;   :mode "\\.ts\\'")
 
-(use-package ng2-mode)
+;; (use-package ng2-mode
+;;   :hook (ng2-ts-mode . eglot-ensure))
 
-(use-package js2-mode
-  ;; :mode ("\\.js\\'" . js2-mode)
-  :config
-  (setq js-switch-indent-offset 4)
-  (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
-  (setq js2-mode-show-parse-errors nil)
-  (setq js2-mode-show-strict-warnings nil)
-  )
+;; Angular setup
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
 
-(use-package js-doc
-  :straight (:host github :repo "dogayuksel/js-doc")
-)
+(add-hook 'typescript-ts-mode-hook 'eglot-ensure)
+
+
+;; TODO: implement angular switch to template and spec file
+;; (defun ng-open-counterpart (type)
+;;   "Opens the corresponding template or component file to this one."
+;;   (interactive)
+;;   (find-file (ng2--counterpart-name (buffer-file-name))))
+
+;;   :hook (ng2-ts-mode . eglot-ensure))
+
+
+;; (use-package js2-mode
+;;   ;; :mode ("\\.js\\'" . js2-mode)
+;;   :hook (js-mode-hook . eglot-ensure)
+;;   :config
+;;   (setq js-switch-indent-offset 4)
+;;   (add-hook 'js2-mode-hook 'js2-imenu-extras-mode) ;; Better imenu
+;;   (setq js2-mode-show-parse-errors nil)
+;;   (setq js2-mode-show-strict-warnings nil)
+;;   )
+
+;; (use-package js-doc
+;;   :straight (:host github :repo "dogayuksel/js-doc")
+;; )
 
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
@@ -42,7 +62,7 @@
       (delete-char sgml-basic-offset))))
 
 (use-package rjsx-mode
-  :mode "\\.js\\'"
+  :mode ("\\.jsx\\'" "\\.tsx\\'")
   :config
   (add-to-list 'auto-mode-alist '("\\.react\\.js$" . rjsx-mode))
   ;; (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode))
@@ -60,9 +80,9 @@
   ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
   )
 
-(use-package add-node-modules-path
-  :after (:any js2-mode rjsx-mode typescript-mode)
-  :hook (js2-mode rjsx-mode typescript-mode))
+;; (use-package add-node-modules-path
+;;   :after (:any js2-mode rjsx-mode typescript-mode)
+;;   :hook (js2-mode rjsx-mode typescript-mode))
 
 ;; Is replaced by "apheleia" package
 ;; (use-package prettier-js
@@ -111,9 +131,9 @@
 ;; configure javascript - tide checker to run after your default javascript checker
 
 ;; Not usable for now, investigate package, maybe found some usefull things
-(use-package js2-refactor
-  :config
-  (add-hook 'js2-mode-hook #'js2-refactor-mode))
+;; (use-package js2-refactor
+;;   :config
+;;   (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
 ;; (add-hook 'js-mode-hook 'js2-minor-mode)
 
@@ -134,11 +154,11 @@
 (add-hook 'js-mode-hook 'js-custom)
 (add-hook 'typescript-mode-hook 'ts-custom)
 
-(setq js2-highlight-level 3)
+;; (setq js2-highlight-level 3)
 
 ;; (setq-default js2-strict-trailing-comma-warning nil)
 ;; '(js2-strict-trailing-comma-warning nil)
-(setq js2-strict-trailing-comma-warning nil)
+;; (setq js2-strict-trailing-comma-warning nil)
 
 (use-package vue-mode
   :mode "\\.vue\\'"
@@ -147,6 +167,21 @@
             (lambda ()
               (set-face-background 'mmm-default-submode-face nil)))
   )
+
+;; (use-package tree-sitter
+;;   :config
+;;   (global-tree-sitter-mode)
+;;   (push '(ng2-html-mode . html) tree-sitter-major-mode-language-alist)
+;;   (push '(ng2-ts-mode . typescript) tree-sitter-major-mode-language-alist)
+;;   (push '(scss-mode . css) tree-sitter-major-mode-language-alist)
+;;   (push '(scss-mode . typescript) tree-sitter-major-mode-language-alist))
+
+;; (use-package tree-sitter-langs
+;;   :ensure t
+;;   :after tree-sitter)
+
+(use-package jsdoc
+  :elpaca (:host github :repo "isamert/jsdoc.el"))
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here
