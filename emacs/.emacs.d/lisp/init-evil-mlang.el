@@ -12,10 +12,12 @@
 
 
 ;; (setq mr-get-kblayout-command "xkb-switch -p | tr -d '\n'")
-(setq mr-get-kblayout-command "hyprctl devices -j | jq -r '.keyboards[] | select(.name == \"aone-varmilo-keyboard\") | .active_keymap' | head -n1 | sed -e 's/English\\ (US)/0/g' | sed -e 's/Russian/1/g'")
+;; from command hyprctl devices -j
+(setq keyboard-device "aone-varmilo-keyboard-2")
+(setq mr-get-kblayout-command (s-replace "KEYBOARD-DEVICE" keyboard-device "hyprctl devices -j | jq -r '.keyboards[] | select(.name == \"KEYBOARD-DEVICE\") | .active_keymap' | head -n1 | sed -e 's/English\\ (US)/0/g' | sed -e 's/Russian/1/g'"))
 
 ;; (setq mr-set-kblayout-command "xkb-switch -s")
-(setq mr-set-kblayout-command "hyprctl switchxkblayout aone-varmilo-keyboard")
+(setq mr-set-kblayout-command (s-replace "KEYBOARD-DEVICE" keyboard-device "hyprctl switchxkblayout KEYBOARD-DEVICE"))
 ;; (setq mr-ru-lang_source "setxkbmap -layout ru,us")
 ;; (setq mr-default-kblayout "us")
 (setq mr-default-kblayout "0")
