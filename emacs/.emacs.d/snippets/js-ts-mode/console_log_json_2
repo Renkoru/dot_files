@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Console log Json Stringify
+# key: jcl
+# binding: direct-keybinding
+# --
+console.log('--- > $1: %s', JSON.stringify($2, null, 2));$0

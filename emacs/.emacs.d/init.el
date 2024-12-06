@@ -2,13 +2,13 @@
 ;;; Commentary:
 
 ;;; Code:
-(defvar elpaca-installer-version 0.5)
+(defvar elpaca-installer-version 0.7)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil
-                              :files (:defaults (:exclude "extensions"))
+                              :ref nil :depth 1
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
                               :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
        (build (expand-file-name "elpaca/" elpaca-builds-directory))
@@ -20,8 +20,10 @@
     (when (< emacs-major-version 28) (require 'subr-x))
     (condition-case-unless-debug err
         (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                 ((zerop (call-process "git" nil buffer t "clone"
-                                       (plist-get order :repo) repo)))
+                 ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+                                                 ,@(when-let ((depth (plist-get order :depth)))
+                                                     (list (format "--depth=%d" depth) "--no-single-branch"))
+                                                 ,(plist-get order :repo) ,repo))))
                  ((zerop (call-process "git" nil buffer t "checkout"
                                        (or (plist-get order :ref) "--"))))
                  (emacs (concat invocation-directory invocation-name))
@@ -112,20 +114,6 @@
   :config
   (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
   (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
-
-;; (use-package turbo-log
-;;   :straight (:host github :repo "artawower/turbo-log.el")
-;;   ;; :bind (("C-s-l" . turbo-log-print)
-;;   ;;        ("C-s-i" . turbo-log-print-immediately)
-;;   ;;        ("C-s-h" . turbo-log-comment-all-logs)
-;;   ;;        ("C-s-s" . turbo-log-uncomment-all-logs)
-;;   ;;        ("C-s-[" . turbo-log-paste-as-logger)
-;;   ;;        ("C-s-]" . turbo-log-paste-as-logger-immediately)
-;;   ;;        ("C-s-d" . turbo-log-delete-all-logs))
-;;   :config
-;;   (setq turbo-log-msg-format-template "\": %s\"")
-;;   ;; (setq turbo-log-allow-insert-without-tree-sitter-p t)
-;;   (my-space-leader "cl" 'turbo-log-print-immediately))
 
 ;; Not working properly. Sometimes misses the focus, sometime hides the content...
 ;; (use-package mini-frame
@@ -337,6 +325,7 @@
  '(mini-frame-show-parameters '((top . 0.3) (width . 0.6) (left . 0.6)))
  '(org-agenda-files
    '("/home/mrurenko/projects/diary/notes/2021/09.org" "/home/mrurenko/projects/diary/notes/2018/05.org"))
+ '(package-selected-packages '(eglot wgrep vlf undo-fu exec-path-from-shell))
  '(safe-local-variable-values
    '((mr/commit-prefix-surrounds "" ": ")
      (mr/commit-should-skip-branch-type)

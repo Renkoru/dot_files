@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: describe-it
+# key: dit
+# --
+describe('$1', () => {
+  it('$2', () => {
+    $0expect(true).toEqual(false);
+  });
+});

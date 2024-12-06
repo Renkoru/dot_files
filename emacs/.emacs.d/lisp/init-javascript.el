@@ -6,6 +6,7 @@
 ;; https://github.com/nicolaspetton/xref-js2
 
 ;;; Code:
+(use-package flymake-eslint)
 
 
 ;; JS packages
@@ -84,12 +85,6 @@
 ;;   :after (:any js2-mode rjsx-mode typescript-mode)
 ;;   :hook (js2-mode rjsx-mode typescript-mode))
 
-;; Is replaced by "apheleia" package
-;; (use-package prettier-js
-;;   :hook ((js2-mode . prettier-js-mode)
-;;          (rjsx-mode . prettier-js-mode)
-;;          (typescript-mode . prettier-js-mode)
-;;          (web-mode-hook . prettier-js-mode)))
 
 
 ;; ---------------------

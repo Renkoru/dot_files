@@ -10,32 +10,55 @@
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 
+;; Apply formatting for various languages
+(use-package apheleia
+  :hook (prog-mode . apheleia-mode))
+
+
+(use-package turbo-log
+  :elpaca (:host github :repo "artawower/turbo-log.el")
+  :general
+  (:states 'visual "SPC l" 'turbo-log-print-immediately)
+  :config
+  (setq turbo-log-allow-insert-without-tree-sitter-p t))
+
+(use-package emmet-mode
+  :hook (tsx-ts-mode . emmet-mode)
+  :general
+  (:states 'insert "C-j" 'emmet-expand-line)
+
+  :config
+  (add-to-list 'emmet-jsx-major-modes 'your-jsx-major-mode)
+  ;; Auto-start on any markup modes
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  ;; enable Emmet's css abbreviation.
+  (add-hook 'css-mode-hook  'emmet-mode)
+  (setq emmet-self-closing-tag-style " /"))
+
 ;; Setup TreeSitter
-(require 'treesit)
+;; (require 'treesit)
 
 ;; (setq treesit-language-source-alist
-;;       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-;;         (cmake "https://github.com/uyha/tree-sitter-cmake")
-;;         (css "https://github.com/tree-sitter/tree-sitter-css")
-;;         (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-;;         (go "https://github.com/tree-sitter/tree-sitter-go")
-;;         (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-;;         (html "https://github.com/tree-sitter/tree-sitter-html")
-;;         (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-;;         (jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc")
-;;         (json "https://github.com/tree-sitter/tree-sitter-json")
-;;         (make "https://github.com/alemuller/tree-sitter-make")
-;;         (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-;;         (python "https://github.com/tree-sitter/tree-sitter-python")
-;;         (toml "https://github.com/tree-sitter/tree-sitter-toml")
-;;         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-;;         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-;;         (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+;;    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+;;      (cmake "https://github.com/uyha/tree-sitter-cmake")
+;;      (css "https://github.com/tree-sitter/tree-sitter-css")
+;;      (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+;;      (go "https://github.com/tree-sitter/tree-sitter-go")
+;;      (html "https://github.com/tree-sitter/tree-sitter-html")
+;;      (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+;;      (json "https://github.com/tree-sitter/tree-sitter-json")
+;;      (make "https://github.com/alemuller/tree-sitter-make")
+;;      (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+;;      (python "https://github.com/tree-sitter/tree-sitter-python")
+;;      (toml "https://github.com/tree-sitter/tree-sitter-toml")
+;;      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+;;      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
-(use-package treesit-auto
-  :demand t
-  :config
-  (global-treesit-auto-mode))
+;; (use-package treesit-auto
+;;   :demand t
+;;   :config
+;;   (global-treesit-auto-mode))
 
 ;; (setq major-mode-remap-alist
 ;;       '((yaml-mode . yaml-ts-mode)
@@ -48,7 +71,7 @@
 ;;         (python-mode . python-ts-mode)))
 
 ;; learn and use text-objects with treesit
-(setq treesit-font-lock-level 4)
+;; (setq treesit-font-lock-level 4)
 ;; treesit-font-lock-feature-list is a variable defined in ‘treesit.el’.
 
 (use-package combobulate

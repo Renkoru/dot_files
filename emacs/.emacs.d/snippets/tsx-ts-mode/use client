@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: use client
+# key: uc
+# --
+"use client";$0

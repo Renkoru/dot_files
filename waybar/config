@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "right",
-  "width": 36,
+  "width": 20,
   "modules-left": ["hyprland/language", "clock#day", "clock#date"],
   "modules-center": ["clock#main", "hyprland/workspaces"],
   "modules-right": ["network", "temperature", "battery", "cpu", "memory", "tray", "wireplumber"],

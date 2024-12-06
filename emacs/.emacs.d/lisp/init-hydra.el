@@ -16,7 +16,7 @@
   (defvar whitespace-mode t)
   (defhydra hydra-toggle (:color blue :idle 0.8)
     "
-    _l_ linum-mode:       %`linum-mode
+    _l_ display-line-numbers-mode:       %`display-line-numbers-mode
     _m_ evil-mlang-mode:       %`evil-mlang-mode
     _w_ whitespace-mode:   %`whitespace-mode
     _r_ rainbow-delimiters-mode:   %`rainbow-delimiters-mode

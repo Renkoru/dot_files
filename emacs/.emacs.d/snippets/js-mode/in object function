@@ -1,8 +1,8 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: in object function
-# key: ofn
-# binding: direct-keybinding
+# -*- mode: snippet -*-
+# name: function
+# key: fun
 # --
-$1: function ($2) {
-  $0
-},
+
+function $1($2) {
+  return;
+}

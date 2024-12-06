@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: in object event function
+# key: oefn
+# binding: direct-keybinding
+# --
+$1: function (evt$2) {
+  evt.preventDefault();$0
+},

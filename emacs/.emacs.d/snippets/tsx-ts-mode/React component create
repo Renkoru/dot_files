@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: React component create 
+# key: rc
+# --
+export default function `(file-name-sans-extension (file-name-nondirectory buffer-file-name))`($1) {
+  return (
+    <div>
+      $0
+    </div>
+  );
+}

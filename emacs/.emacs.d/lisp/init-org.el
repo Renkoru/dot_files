@@ -8,6 +8,13 @@
   :general
   (:states 'normal
            "<tab>" 'org-cycle)
+
+
+  :config
+  ;; active Babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)))
   )
 
 (setq initial-major-mode 'org-mode)
@@ -53,23 +60,28 @@
   "
     _L_ right _H_ left
     _K_ up _J_ down
+    _i_ insert heading
     _c_ shift right _C_ shift left
+    _n_ next heading _p_ previous heading
     _l_ toggle link display
     _m_ set tag _a_ archive _t_ todo
-    _n_ narrow _N_ wider
+    _f_ focus (narrow) _F_  unfocus (wider)
     "
   ("H" org-metaleft)
   ("L" org-metaright)
   ("K" org-metaup)
   ("J" org-metadown)
+  ("i" org-insert-heading :exit nil)
   ("c" org-shiftright)
   ("C" org-shiftleft)
   ("l" org-toggle-link-display)
   ("m" org-set-tags-command :exit t)
   ("a" org-archive-subtree)
   ("t" org-todo)
-  ("n" org-narrow-to-subtree)
-  ("N" org-toggle-narrow-to-subtree)
+  ("n" org-next-visible-heading)
+  ("p" org-previous-visible-heading)
+  ("f" org-narrow-to-subtree)
+  ("F" org-toggle-narrow-to-subtree)
   ("q" nil "quit"))
 
 

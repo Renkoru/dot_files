@@ -1,10 +1,12 @@
 * {
+
   border: none;
   border-radius: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   min-height: 0;
 }
+
 
 @keyframes blink {
   to {
@@ -27,9 +29,10 @@ window#waybar {
     rgba(34, 34, 34, 0.8) 0%,
     rgba(5, 5, 5, 0.7) 100%
   );
-  border-radius: 5rem;
+  /* border-radius: 5rem; */
+  border-radius: 1rem 0rem 0rem 1rem;
   /* padding: 5px 15px; */
-  margin: 5px 2px;
+  margin: 3px 0px;
 }
 
 .modules-right > * > * {
@@ -38,9 +41,9 @@ window#waybar {
     rgba(34, 34, 34, 0.8) 0%,
     rgba(5, 5, 5, 0.7) 100%
   );
-  border-radius: 1rem;
+  border-radius: 1rem 0rem 0rem 1rem;
   /* padding: 5px 15px; */
-  margin: 5px 2px;
+  margin: 2px 0px;
   padding: 5px 0px;
 }
 
@@ -72,7 +75,8 @@ tooltip label {
 #workspaces {
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
+  border-radius: 1rem 0rem 0rem 1rem;
   background: linear-gradient(
     180deg,
     rgba(85, 85, 85, 0.7) 0%,
@@ -82,7 +86,7 @@ tooltip label {
 
 #workspaces button {
   color: white;
-  border-radius: 5rem;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
   margin: 5px 0px;
   /* padding: 10px 15px; */
   /* padding: 10px 15px;
@@ -99,10 +103,14 @@ tooltip label {
 }
 
 #workspaces button.active {
+  margin-left: 5px;
+  margin-right: 1px;
+  padding-left: 0px;
+  padding-right: 4px;
   background: linear-gradient(
     180deg,
-    rgb(100, 200, 100) 0%,
-    rgb(100, 180, 100) 100%
+    rgb(60, 179, 113) 0%,
+    rgb(46, 139, 87) 100%
   );
 }
 
@@ -126,7 +134,7 @@ tooltip label {
     rgba(5, 5, 5, 0.7),
     rgba(34, 34, 34, 0.15)
   );
-  border-radius: 1rem;
+  border-radius: 1rem 0rem 0rem 1rem;
 }
 
 #cpu, #temperature, #network, #memory {

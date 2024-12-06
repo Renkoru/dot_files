@@ -39,7 +39,9 @@
       version-control t)       ; use versioned backups
 
 
-(set-default 'truncate-lines t)
+(setq-default truncate-lines nil)
+(setq truncate-partial-width-windows nil)
+(setq-default word-wrap t)
 
 ; Map escape to cancel (like C-g)
 (define-key isearch-mode-map [escape] 'isearch-abort)
