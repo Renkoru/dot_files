@@ -9,13 +9,14 @@
 (setq x-select-enable-primary t)
 (setq x-select-enable-clipboard t)
 
-; 'y' instead of 'yes', 'n' instead of 'no'
+                                        ; 'y' instead of 'yes', 'n' instead of 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-; Show current pointed function arguments
+                                        ; Show current pointed function arguments
+(use-package eldoc)
 (eldoc-mode 1)
 
-; Hide elements
+                                        ; Hide elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -26,7 +27,7 @@
 ;; Automatically reload files was modified by external program
 (global-auto-revert-mode 1)
 
-; Disable backup and autosave files
+                                        ; Disable backup and autosave files
 ;; (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
@@ -43,7 +44,7 @@
 (setq truncate-partial-width-windows nil)
 (setq-default word-wrap t)
 
-; Map escape to cancel (like C-g)
+                                        ; Map escape to cancel (like C-g)
 (define-key isearch-mode-map [escape] 'isearch-abort)
 (global-set-key [escape] 'keyboard-escape-quit)
 

@@ -176,7 +176,7 @@
 ;;   :after tree-sitter)
 
 (use-package jsdoc
-  :elpaca (:host github :repo "isamert/jsdoc.el"))
+  :ensure (:host github :repo "isamert/jsdoc.el"))
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here

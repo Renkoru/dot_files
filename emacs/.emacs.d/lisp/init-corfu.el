@@ -3,8 +3,8 @@
 ;;; Code:
 
 (use-package corfu
-  :elpaca (corfu :files (:defaults "extensions/*")
-                   :includes (corfu-indexed corfu-quick))
+  :ensure (corfu :files (:defaults "extensions/*")
+                 :includes (corfu-indexed corfu-quick))
   :after evil
   ;; :hook
   ;; (lsp-completion-mode . mr/corfu-setup-lsp) ; Use corfu for lsp completion
@@ -12,18 +12,18 @@
   :general
   (:states '(insert) "M-/" 'completion-at-point)
   (:keymaps 'corfu-map
-   :states 'insert
-   "C-n" #'corfu-next
-   "C-p" #'corfu-previous
-   "<escape>" #'corfu-quit
-   "<return>" #'corfu-insert
-   "H-SPC" #'corfu-insert-separator
-   ;; "SPC" #'corfu-insert-separator ; Use when `corfu-quit-at-boundary' is non-nil
-   "M-d" #'corfu-show-documentation
-   "C-g" #'corfu-quit
-   "M-l" #'corfu-show-location
-   "M-j" #'corfu-quick-complete
-   )
+            :states 'insert
+            "C-n" #'corfu-next
+            "C-p" #'corfu-previous
+            "<escape>" #'corfu-quit
+            "<return>" #'corfu-insert
+            "H-SPC" #'corfu-insert-separator
+            ;; "SPC" #'corfu-insert-separator ; Use when `corfu-quit-at-boundary' is non-nil
+            "M-d" #'corfu-show-documentation
+            "C-g" #'corfu-quit
+            "M-l" #'corfu-show-location
+            "M-j" #'corfu-quick-complete
+            )
   :custom
   ;; Works with `indent-for-tab-command'. Make sure tab doesn't indent when you
   ;; want to perform completion

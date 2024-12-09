@@ -165,7 +165,7 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package nerd-icons-dired
-  :elpaca (nerd-icons-dired :type git :host github :repo "rainstormstudio/nerd-icons-dired")
+  :ensure (nerd-icons-dired :type git :host github :repo "rainstormstudio/nerd-icons-dired")
   :hook
   (dired-mode . nerd-icons-dired-mode)
   :custom

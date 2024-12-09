@@ -6,6 +6,7 @@
 ;;
 ;;; Code:
 
+;; system packages should be installed: enchant, pkgconf
 (use-package jinx
   :after vertico
   :hook (emacs-startup . global-jinx-mode)

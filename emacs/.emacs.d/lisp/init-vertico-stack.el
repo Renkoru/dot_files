@@ -62,7 +62,7 @@
               ("C-o" . #'embark-export)
               ("M-o" . #'embark-act))
 
-;; embark-prompter to embark-completing-read-prompter.
+  ;; embark-prompter to embark-completing-read-prompter.
 
 
   ;; :general
@@ -93,7 +93,7 @@
   (general-def embark-file-map
     "R" 'mr/sudo-find-file)
 
-;; projectile-find-file
+  ;; projectile-find-file
 
   ;; (setq embark-prompter 'embark-completing-read-prompter)
 
@@ -162,7 +162,7 @@
   )
 
 (use-package vertico
-  :elpaca (:files (:defaults "extensions/*"))
+  :ensure (:files (:defaults "extensions/*"))
   :init
   (vertico-mode)
   :general

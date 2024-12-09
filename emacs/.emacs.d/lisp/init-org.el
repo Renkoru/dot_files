@@ -3,8 +3,6 @@
 ;;; Code:
 
 (use-package org
-  :ensure t
-  :pin org
   :general
   (:states 'normal
            "<tab>" 'org-cycle)

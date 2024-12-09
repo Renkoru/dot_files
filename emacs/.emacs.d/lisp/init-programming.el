@@ -3,7 +3,10 @@
 ;;; Code:
 
 ;; Golang: 'gopls' should be installed
+
+(use-package jsonrpc)
 (use-package eglot
+  :after (eldoc jsonrpc)
   :config
   (my-space-leader "cr" 'eglot-rename))
 
@@ -16,7 +19,7 @@
 
 
 (use-package turbo-log
-  :elpaca (:host github :repo "artawower/turbo-log.el")
+  :ensure (:host github :repo "artawower/turbo-log.el")
   :general
   (:states 'visual "SPC l" 'turbo-log-print-immediately)
   :config
@@ -75,7 +78,7 @@
 ;; treesit-font-lock-feature-list is a variable defined in ‘treesit.el’.
 
 (use-package combobulate
-  :elpaca (:host github :repo "mickeynp/combobulate")
+  :ensure (:host github :repo "mickeynp/combobulate")
   :preface
   ;; You can customize Combobulate's key prefix here.
   ;; Note that you may have to restart Emacs for this to take effect!

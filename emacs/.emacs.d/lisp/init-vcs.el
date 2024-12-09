@@ -19,6 +19,8 @@
   )
 
 ;; If you enable global minor mode
+(use-package transient)
+
 (use-package magit)
 
 (defun mr/magit-copy-current-branch ()
@@ -59,8 +61,8 @@
 
 ;; Keybindings
 (my-space-leader
- "m" 'magit-status
- "g" 'hydra-git-toggle/body)
+  "m" 'magit-status
+  "g" 'hydra-git-toggle/body)
 
 
 (provide 'init-vcs)
