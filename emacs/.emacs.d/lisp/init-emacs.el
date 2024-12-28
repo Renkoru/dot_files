@@ -13,8 +13,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
                                         ; Show current pointed function arguments
-(use-package eldoc)
-(eldoc-mode 1)
+(use-package eldoc
+  :ensure nil
+  :config
+  (eldoc-mode 1)
+  (setq eldoc-idle-delay 1.5)
+  )
 
                                         ; Hide elements
 (scroll-bar-mode -1)

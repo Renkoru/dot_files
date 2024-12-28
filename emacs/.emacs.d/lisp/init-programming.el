@@ -8,7 +8,18 @@
 (use-package eglot
   :after (eldoc jsonrpc)
   :config
-  (my-space-leader "cr" 'eglot-rename))
+  (my-space-leader "cr" 'eglot-rename)
+
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              ;; Show flymake diagnostics first.
+              (setq eldoc-documentation-functions
+                    (cons #'flymake-eldoc-function
+                          (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+              ;; Show all eldoc feedback.
+              (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
+
+  )
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
@@ -23,7 +34,27 @@
   :general
   (:states 'visual "SPC l" 'turbo-log-print-immediately)
   :config
-  (setq turbo-log-allow-insert-without-tree-sitter-p t))
+  (setq turbo-log-allow-insert-without-tree-sitter-p t)
+
+  (add-to-list 'turbo-log-loggers '(jtsx-tsx-mode
+                                    (:loggers
+                                     ("console.log(%s)" "console.debug(%s)" "console.warn(%s)")
+                                     :jump-list
+                                     ((class_declaration
+                                       (:current-node-types
+                                        (property_identifier)
+                                        :destination-node-names
+                                        ("constructor")
+                                        :parent-node-types
+                                        (public_field_definition))))
+                                     :msg-format-template "'TCL: %s'" :identifier-formatter-rules
+                                     ((property_identifier
+                                       (:formatter "this.%s" :parent-node-types
+                                                   (public_field_definition))))
+                                     :identifier-node-types
+                                     ("identifier" "member_expression" "property_identifier")))
+               )
+  )
 
 (use-package emmet-mode
   :hook (tsx-ts-mode . emmet-mode)
@@ -41,22 +72,23 @@
 ;; Setup TreeSitter
 ;; (require 'treesit)
 
-;; (setq treesit-language-source-alist
-;;    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-;;      (cmake "https://github.com/uyha/tree-sitter-cmake")
-;;      (css "https://github.com/tree-sitter/tree-sitter-css")
-;;      (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-;;      (go "https://github.com/tree-sitter/tree-sitter-go")
-;;      (html "https://github.com/tree-sitter/tree-sitter-html")
-;;      (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-;;      (json "https://github.com/tree-sitter/tree-sitter-json")
-;;      (make "https://github.com/alemuller/tree-sitter-make")
-;;      (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-;;      (python "https://github.com/tree-sitter/tree-sitter-python")
-;;      (toml "https://github.com/tree-sitter/tree-sitter-toml")
-;;      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-;;      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+(setq treesit-language-source-alist
+      '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+        (cmake "https://github.com/uyha/tree-sitter-cmake")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+        (go "https://github.com/tree-sitter/tree-sitter-go")
+        (html "https://github.com/tree-sitter/tree-sitter-html")
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (json "https://github.com/tree-sitter/tree-sitter-json")
+        (make "https://github.com/alemuller/tree-sitter-make")
+        (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+        (python "https://github.com/tree-sitter/tree-sitter-python")
+        (toml "https://github.com/tree-sitter/tree-sitter-toml")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+        (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile" "main" "src")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; (use-package treesit-auto
 ;;   :demand t

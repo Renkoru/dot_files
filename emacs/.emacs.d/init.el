@@ -43,18 +43,16 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-(elpaca-wait)
-
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
 
-(setq package-enable-at-startup nil)
-(elpaca-wait)
+
 
 ;; End of Elpaca setup ---------------------------------------------------------------------------------------------
+
 (use-package general
   :demand
   :config
@@ -215,13 +213,14 @@
 
 (use-package string-inflection
   :ensure t) ; conversion of variable name formats
-(use-package json-mode
-  :config
-  (add-hook 'json-mode-hook
-            (lambda ()
-              (make-local-variable 'js-indent-level)
-              (setq js-indent-level 2)))
-  )
+;; Replaced by treesitter?
+;; (use-package json-mode
+;;   :config
+;;   (add-hook 'json-mode-hook
+;;             (lambda ()
+;;               (make-local-variable 'js-indent-level)
+;;               (setq js-indent-level 2)))
+;;   )
 (use-package fish-mode)
 (use-package markdown-mode)
 (use-package yaml-mode)
@@ -247,7 +246,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
 
-; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
+                                        ; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
 ;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
 ;; (add-hook 'markdown-mode-hook
@@ -266,11 +265,22 @@
 ;;  '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
 (use-package go-mode
   :after eglot
+  :mode (("\\.go?\\'" . go-ts-mode)
+         ;; ("\\.ts\\'" . jtsx-typescript-mode)
+         )
   :hook
   (go-ts-mode . eglot-format-buffer-on-save)
   (go-ts-mode . eglot-ensure)
+
+  :init
+  (setq-default tab-width 2)
+  (setq-default go-ts-mode-indent-offset 2)
+
   ;; :config
+
   ;; (add-hook 'go-ts-mode-hook 'eglot-ensure)
+  ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+
   )
 ;; (add-hook 'go-mode-hook #'lsp)
 ;; (add-hook 'go-mode-hook 'lsp-deferred)
@@ -326,7 +336,6 @@
  '(mini-frame-show-parameters '((top . 0.3) (width . 0.6) (left . 0.6)))
  '(org-agenda-files
    '("/home/mrurenko/projects/diary/notes/2021/09.org" "/home/mrurenko/projects/diary/notes/2018/05.org"))
- '(package-selected-packages '(eglot wgrep vlf undo-fu exec-path-from-shell))
  '(safe-local-variable-values
    '((mr/commit-prefix-surrounds "" ": ")
      (mr/commit-should-skip-branch-type)

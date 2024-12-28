@@ -5,25 +5,45 @@
 (use-package corfu
   :ensure (corfu :files (:defaults "extensions/*")
                  :includes (corfu-indexed corfu-quick))
-  :after evil
   ;; :hook
   ;; (lsp-completion-mode . mr/corfu-setup-lsp) ; Use corfu for lsp completion
   ;; (corfu-mode . corfu-indexed-mode)
-  :general
-  (:states '(insert) "M-/" 'completion-at-point)
-  (:keymaps 'corfu-map
-            :states 'insert
-            "C-n" #'corfu-next
-            "C-p" #'corfu-previous
-            "<escape>" #'corfu-quit
-            "<return>" #'corfu-insert
-            "H-SPC" #'corfu-insert-separator
-            ;; "SPC" #'corfu-insert-separator ; Use when `corfu-quit-at-boundary' is non-nil
-            "M-d" #'corfu-show-documentation
-            "C-g" #'corfu-quit
-            "M-l" #'corfu-show-location
-            "M-j" #'corfu-quick-complete
-            )
+  :bind (
+         ;; ([remap "C-n"] . corfu-next)
+         :map evil-insert-state-map
+         ("M-/" . completion-at-point)
+         :map corfu-map
+         ("C-p" . corfu-previous)
+         ("C-n" . corfu-next)
+         ;;           "C-n" #'corfu-next
+         ;;           "C-p" #'
+         ;;           "C-n" #'corfu-next
+         ;;           "C-p" #'corfu-previous
+         ;;           "<escape>" #'corfu-quit
+         ;;           "<return>" #'corfu-insert
+         ;; ("M-p" . term-send-up)
+         ;; ("M-n" . term-send-down)
+         ;; :map term-raw-map
+         ;; ("M-o" . other-window)
+         ;; ("M-p" . term-send-up)
+         ;; ("M-n" . term-send-down)
+         ;; )
+         )
+  ;; :general
+  ;; (:states '(insert) "M-/" 'completion-at-point)
+  ;; (:keymaps 'corfu-map
+  ;;           :states 'insert
+  ;;           "C-n" #'corfu-next
+  ;;           "C-p" #'corfu-previous
+  ;;           "<escape>" #'corfu-quit
+  ;;           "<return>" #'corfu-insert
+  ;;           "H-SPC" #'corfu-insert-separator
+  ;;           ;; "SPC" #'corfu-insert-separator ; Use when `corfu-quit-at-boundary' is non-nil
+  ;;           "M-d" #'corfu-show-documentation
+  ;;           "C-g" #'corfu-quit
+  ;;           "M-l" #'corfu-show-location
+  ;;           "M-j" #'corfu-quick-complete
+  ;;           )
   :custom
   ;; Works with `indent-for-tab-command'. Make sure tab doesn't indent when you
   ;; want to perform completion
@@ -66,10 +86,12 @@
   ;; overriding keybindings with `general-override-mode-map'. See
   ;; https://github.com/minad/corfu/issues/12#issuecomment-869037519
   ;; Alternatively, add advice without `general.el':
+  (evil-make-overriding-map corfu-map)
   ;; (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
   ;; (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
-  (general-add-advice '(corfu--setup corfu--teardown) :after 'evil-normalize-keymaps)
-  (evil-make-overriding-map corfu-map)
+  (advice-add 'corfu--setup :after (lambda (&rest _) (evil-normalize-keymaps)))
+  (advice-add 'corfu--teardown :after (lambda (&rest _) (evil-normalize-keymaps)))
+  ;; (general-add-advice '(corfu--setup corfu--teardown) :after 'evil-normalize-keymaps)
 
   ;; Enable Corfu more generally for every minibuffer, as long as no other
   ;; completion UI is active. If you use Mct or Vertico as your main minibuffer
