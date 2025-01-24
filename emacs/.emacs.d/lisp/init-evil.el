@@ -112,8 +112,11 @@
 
 (use-package evil-nerd-commenter
   :after evil
-  :general
-  (general-nvmap "gcc" 'evilnc-comment-or-uncomment-lines))
+  :bind (
+         :map evil-normal-state-map
+         ("gcc" . evilnc-comment-or-uncomment-lines)
+         )
+  )
 
 (use-package evil-anzu
   :after evil

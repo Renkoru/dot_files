@@ -1,15 +1,19 @@
+function fish_greeting
+    artprint --random -t "$(misfortune -s -L 3)"
+end
+
 abbr --add lsa eza -la --icons=auto
 abbr --add pupd sudo pacman -Suy
 abbr --add yupd yay -Suya
 
 
 # Docker abbrs
-abbr --add dc docker-compose
-abbr --add dcu docker-compose up -d
-abbr --add dcs docker-compose stop
-abbr --add dcd docker-compose down
-abbr --add dps docker-compose ps
-abbr --add dlog docker-compose log
+abbr --add dc docker compose
+abbr --add dcu docker compose up -d
+abbr --add dcs docker compose stop
+abbr --add dcd docker compose down
+abbr --add dps docker compose ps
+abbr --add dlog docker compose log
 
 set -x EDITOR nvim
 set -x SSH_AUTH_SOCK "/run/user/1000/ssh-agent.socket"

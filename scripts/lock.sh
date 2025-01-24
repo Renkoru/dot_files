@@ -25,7 +25,7 @@ BLURTYPE="3x3"
 # Get the screenshot, add the blur and lock the screen with it
 # FOCUSED_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select( .focused == true) | .name')
 $SCREENSHOT
-convert $IMAGE -blur $BLURTYPE $IMAGE
+magick $IMAGE -blur $BLURTYPE $IMAGE
 # echo $FOCUSED_MONITOR
 # swaylock -n -t -i $FOCUSED_MONITOR:$IMAGE -f
 swaylock -n -t -i $IMAGE -f

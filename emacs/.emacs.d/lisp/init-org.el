@@ -2,13 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package verb)
+
 (use-package org
+  :after verb
   :general
   (:states 'normal
            "<tab>" 'org-cycle)
 
 
   :config
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
   ;; active Babel languages
   (org-babel-do-load-languages
    'org-babel-load-languages

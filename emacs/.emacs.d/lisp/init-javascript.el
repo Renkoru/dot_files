@@ -38,6 +38,9 @@
          ;; ("\\.ts\\'" . jtsx-typescript-mode)
          )
   :bind (
+         :map jtsx-jsx-mode-map
+         ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
+         :map jtsx-tsx-mode-map
          ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
          )
   :commands jtsx-install-treesit-language
