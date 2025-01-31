@@ -32,7 +32,9 @@ def show_my_banner [] {
 
 show_my_banner
 
-$env.path ++= ["/opt/asdf-vm/bin"]
+$env.PATH = ($env.PATH | split row (char esep) | append "/home/mrurenko/go/bin")
+
+$env.PATH = ($env.PATH | split row (char esep) | append "/opt/asdf-vm/bin")
 let shims_dir = (
   if ( $env | get --ignore-errors ASDF_DATA_DIR | is-empty ) {
     $env.HOME | path join '.asdf'
