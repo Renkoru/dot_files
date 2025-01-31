@@ -88,6 +88,7 @@
         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile" "main" "src")
+        (nu "https://github.com/nushell/tree-sitter-nu" "main" "src")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; (use-package treesit-auto

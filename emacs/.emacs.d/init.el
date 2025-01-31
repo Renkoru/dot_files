@@ -81,11 +81,13 @@
 (setq use-package-always-ensure t)
 
 (use-package exec-path-from-shell
+  ;; :init
+  ;; (setq exec-path-from-shell-debug t)
   :config
   (exec-path-from-shell-initialize)
 
   ;; ssh-agent socket settings
-  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+  ;; (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
   )
 
 ;; --------------------------------- System packages
@@ -287,6 +289,18 @@
 ;; Go tools https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
 ;; to check https://sandyuraz.com/blogs/go-emacs/
 ;; to check https://geeksocket.in/posts/emacs-lsp-go/
+
+(use-package nushell-ts-mode
+  :mode (("\\.nu?\\'" . nushell-ts-mode))
+  :ensure (:host github :repo "herbertjones/nushell-ts-mode"))
+;; :config
+;; (require 'nushell-ts-babel)
+;; (defun hfj/nushell/mode-hook ()
+;;   (corfu-mode 1)
+;;   (highlight-parentheses-mode 1)
+;;   (electric-pair-local-mode 1)
+;;   (electric-indent-local-mode 1))
+;; (add-hook 'nushell-ts-mode-hook 'hfj/nushell/mode-hook))
 
 ;;--------------------
 ;; Indentation setup

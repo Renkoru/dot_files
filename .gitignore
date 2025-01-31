@@ -15,3 +15,7 @@
 /fish/completions/nvm.fish
 /emacs/.emacs.d/straight/modified/
 /emacs/.emacs.d/elpa/
+/emacs/.emacs.d/tree-sitter/
+/broot/launcher/
+/broot/skins/
+/nushell/history.txt

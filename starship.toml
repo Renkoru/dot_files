@@ -1,0 +1,7 @@
+format = '''$directory
+$character
+'''
+right_format = '$all'
+
+[docker_context]
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile', 'compose.yaml']
