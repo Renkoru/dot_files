@@ -225,7 +225,19 @@
 ;;   )
 (use-package fish-mode)
 (use-package markdown-mode)
-(use-package yaml-mode)
+(use-package yaml-mode
+  :mode (("\\.yaml?\\'" . yaml-mode)
+         ("\\.yml?\\'" . yaml-mode)
+         )
+  )
+(use-package yaml-pro
+  :mode (("\\.yaml?\\'" . yaml-pro-ts-mode)
+         ("\\.yml?\\'" . yaml-pro-ts-mode))
+  :after yaml-mode
+  :config
+  (eldoc-mode 1)
+  )
+
 (use-package nginx-mode)
 ;; (use-package company-nginx
 ;;   :after nginx-mode
