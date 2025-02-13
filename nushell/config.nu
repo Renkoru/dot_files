@@ -87,6 +87,32 @@ $env.config = {
             { edit: insertchar value: ' '}
         ]
       }
+      {
+         name: fuzzy_history
+         modifier: control
+         keycode: char_r
+         mode: [emacs, vi_normal, vi_insert]
+         event: [{
+           send: ExecuteHostCommand
+           cmd: "commandline edit --insert (
+             history
+               | get command
+               | reverse
+               | uniq
+               | str join (char -i 0)
+               | fzf
+                  --preview '{}'
+                  --preview-window 'right:30%'
+                  --scheme history
+                  --read0
+                  --layout reverse
+                  --height 40%
+                  --query (commandline)
+                | decode utf-8
+                | str trim
+             )"
+         }]
+      }
     ]
 
     menus: [
