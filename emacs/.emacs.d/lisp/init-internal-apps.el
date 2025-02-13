@@ -39,6 +39,7 @@
   (evil-define-key '(normal) dired-mode-map
     "h" 'dired-up-directory
     "l" 'dired-find-file
+
     ;; "j" 'dired-next-line
     ;; "k" 'dired-previous-line
     ;; (kbd "RET") 'dired-find-file
@@ -47,6 +48,11 @@
     ;; "gO" 'dired-find-file-other-window
     ;; "go" 'dired-view-file
     )
+
+  (evil-define-key '(normal) dirvish-mode-map
+    (kbd "TAB")  'dirvish-subtree-toggle
+    )
+
   ;; (add-hook '
   ;;           (lambda ()
   ;;             (evil-local-set-key 'normal
@@ -73,7 +79,6 @@
    ;; ("h"   . dirvish-history-jump) ; remapped `describe-mode'
    ("s"   . dirvish-quicksort)    ; remapped `dired-sort-toggle-or-edit'
    ("v"   . dirvish-vc-menu)      ; remapped `dired-view-file'
-   ("TAB" . dirvish-subtree-toggle)
    ("M-f" . dirvish-history-go-forward)
    ("M-b" . dirvish-history-go-backward)
    ("M-l" . dirvish-ls-switches-menu)

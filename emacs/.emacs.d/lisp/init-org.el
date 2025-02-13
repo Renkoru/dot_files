@@ -6,12 +6,9 @@
 
 (use-package org
   :after verb
-  :general
-  (:states 'normal
-           "<tab>" 'org-cycle)
-
-
   :config
+  (evil-define-key '(normal) org-mode-map
+    (kbd "TAB") 'org-cycle)
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
   ;; active Babel languages
   (org-babel-do-load-languages
