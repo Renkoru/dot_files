@@ -12,14 +12,6 @@
                                         ; 'y' instead of 'yes', 'n' instead of 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-                                        ; Show current pointed function arguments
-(use-package eldoc
-  :ensure nil
-  :config
-  (eldoc-mode 1)
-  (setq eldoc-idle-delay 1.5)
-  )
-
                                         ; Hide elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)

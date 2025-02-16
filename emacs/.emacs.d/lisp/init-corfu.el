@@ -3,6 +3,7 @@
 ;;; Code:
 
 (use-package corfu
+  :after (eldoc)
   :ensure (corfu :files (:defaults "extensions/*")
                  :includes (corfu-indexed corfu-quick))
   ;; :hook

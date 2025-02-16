@@ -4,9 +4,32 @@
 
 ;; Golang: 'gopls' should be installed
 
-(use-package jsonrpc)
+;; https://github.com/progfolio/elpaca/issues/398
+(unload-feature 'eldoc t)
+(setq custom-delayed-init-variables '())
+(defvar global-eldoc-mode nil)
+
+(elpaca eldoc
+  (require 'eldoc)
+  (global-eldoc-mode)) ;; This is usually enabled by default by Emacs
+
+
+(use-package jsonrpc
+  :ensure (:wait t)
+  :defer t
+  )
+
+                                        ; Show current pointed function arguments
+;; (use-package eldoc
+;;   :ensure (:wait t)
+;;   :config
+;;   (eldoc-mode 1)
+;;   (setq eldoc-idle-delay 1.5)
+;;   )
+
 (use-package eglot
   :after (eldoc jsonrpc)
+  :defer t
   :config
   (my-space-leader "cr" 'eglot-rename)
 
