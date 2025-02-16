@@ -29,6 +29,23 @@ app-notifications = no-clipboard-copy
 
 mouse-hide-while-typing = true
 
+# gears-and-belts.glsl
+# drunkard.glsl
+# bloom.glsl
+# bettercrt.glsl
+# glitchy.glsl                  │ file │  3.6 KiB │ 32 minutes ago │
+# glow-rgbsplit-twitchy.glsl    │ file │  5.6 KiB │ 32 minutes ago │
+# in-game-crt.glsl              │ file │  9.8 KiB │ 32 minutes ago │
+# inside-the-matrix.glsl        │ file │ 15.4 KiB │ 32 minutes ago │
+# just-snow.glsl                │ file │  1.8 KiB │ 32 minutes ago │
+# matrix-hallway.glsl           │ file │  1.2 KiB │ 32 minutes ago │
+# negative.glsl                 │ file │    219 B │ 32 minutes ago │
+# retro-terminal.glsl           │ file │  1.3 KiB │ 32 minutes ago │
+# sparks-from-fire.glsl         │ file │  6.9 KiB │ 32 minutes ago │
+# spotlight.glsl                │ file │  1.6 KiB │ 32 minutes ago │
+# tft.glsl                      │ file │    572 B │ 32 minutes ago │
+# water.glsl                    │ file │  1.0 KiB │ 32 minutes ago │
+# custom-shader = /home/mrurenko/build/ghostty-shaders/bloom.glsl
 
 window-inherit-working-directory = true
 keybind = ctrl+shift+enter=new_window
