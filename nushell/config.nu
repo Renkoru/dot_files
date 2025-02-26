@@ -156,3 +156,4 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 
 source ~/.zoxide.nu
 source ~/.cache/carapace/init.nu
+# source ~/.local/share/atuin/init.nu

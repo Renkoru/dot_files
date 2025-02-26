@@ -2,16 +2,14 @@
 ;;; Commentary:
 
 ;;; Code:
-(defvar elpaca-installer-version 0.8)
+(defvar elpaca-installer-version 0.10)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1
+                              :ref nil :depth 1 :inherit ignore
                               :files (:defaults "elpaca-test.el" (:exclude "extensions"))
                               :build (:not elpaca--activate-package)))
-(defvar elpaca-order-defaults (list :protocol 'https :inherit t :depth 1)
-  "Default order modifications.")
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
        (build (expand-file-name "elpaca/" elpaca-builds-directory))
        (order (cdr elpaca-order))
@@ -19,7 +17,7 @@
   (add-to-list 'load-path (if (file-exists-p build) build repo))
   (unless (file-exists-p repo)
     (make-directory repo t)
-    (when (< emacs-major-version 28) (require 'subr-x))
+    (when (<= emacs-major-version 28) (require 'subr-x))
     (condition-case-unless-debug err
         (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
                   ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
@@ -170,8 +168,8 @@
 (use-package crux)
 
 (use-package ace-window
-  :general
-  (:keymaps 'global "M-q" 'ace-window))
+  :bind (("M-q" . ace-window))
+  )
 
 ;; !! Cause some freezes in some cases: org, tramp?
 (use-package projectile

@@ -5,6 +5,7 @@
 (use-package verb)
 
 (use-package org
+  :ensure nil
   :after verb
   :config
   (evil-define-key '(normal) org-mode-map
