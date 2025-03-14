@@ -44,6 +44,13 @@ let shims_dir = (
 )
 $env.PATH = ( $env.PATH | split row (char esep) | where { |p| $p != $shims_dir } | prepend $shims_dir )
 
+$env.config.history = {
+  file_format: sqlite
+  max_size: 1_000_000
+  sync_on_enter: true
+  isolation: true
+}
+
 # https://github.com/nushell/nushell/issues/5597
 # https://github.com/nushell/nushell/issues/5552
 let abbreviations = {

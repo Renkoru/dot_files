@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: review-comment
-# key: rc
+# key: rev
 # --
 // $1
 // --mrurenko `(format-time-string "%Y-%m-%d")`$0

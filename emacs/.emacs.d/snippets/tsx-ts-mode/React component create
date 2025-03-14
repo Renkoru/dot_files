@@ -2,7 +2,11 @@
 # name: React component create 
 # key: rc
 # --
-export default function `(file-name-sans-extension (file-name-nondirectory buffer-file-name))`($1) {
+
+interface Props {
+}
+
+export default function `(file-name-sans-extension (file-name-nondirectory buffer-file-name))`({ $1 }: Props) {
   return (
     <div>
       $0

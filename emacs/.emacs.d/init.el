@@ -168,7 +168,17 @@
 (use-package crux)
 
 (use-package ace-window
-  :bind (("M-q" . ace-window))
+  :bind (
+         ("M-q" . ace-window)
+         :map prog-mode-map
+         ("M-q" . ace-window)
+         )
+  ;; :hook
+  ;; (prog-mode . (lambda ()
+  ;;                (global-set-key (kbd "M-q") 'ace-window)
+  ;;                ))
+  ;; :config
+  ;; (global-set-key (kbd "M-q") 'ace-window)
   )
 
 ;; !! Cause some freezes in some cases: org, tramp?

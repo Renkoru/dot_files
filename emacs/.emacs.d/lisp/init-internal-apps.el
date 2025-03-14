@@ -87,6 +87,7 @@
    ("M-s" . dirvish-setup-menu)
    ("M-e" . dirvish-emerge-menu)
    ("M-j" . dirvish-fd-jump)
+   ("M-c" . dired-create-empty-file)
    )
   )
 

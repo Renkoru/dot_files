@@ -41,16 +41,17 @@
          :map jtsx-jsx-mode-map
          ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
          ("M-5" . jtsx-jump-jsx-element-tag-dwim)
-         ("M-q" . ace-window)
+         ;; ("M-q" . ace-window)
          :map jtsx-tsx-mode-map
          ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
          ("M-5" . jtsx-jump-jsx-element-tag-dwim)
-         ("M-q" . ace-window)
+         ;; ("M-q" . ace-window)
          )
 
   :commands jtsx-install-treesit-language
   :hook ((jtsx-jsx-mode . hs-minor-mode)
          (jtsx-tsx-mode . hs-minor-mode)
+         (jtsx-tsx-mode . eglot-ensure)
          (jtsx-typescript-mode . hs-minor-mode))
   :custom
   ;; Optional customizations
@@ -91,7 +92,7 @@
 
   ;; (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
   ;; (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map)
-  (add-hook 'jtsx-tsx-mode-hook 'eglot-ensure)
+  ;; (add-hook 'jtsx-tsx-mode-hook 'eglot-ensure)
   )
 
 

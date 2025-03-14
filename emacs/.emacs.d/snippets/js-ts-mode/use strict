@@ -1,7 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: use strict
-# key: us
-# binding: direct-keybinding
-# contributor: mrurenko <mrurenko@gmail.com>
-# --
-'use strict';$0
