@@ -21,7 +21,11 @@
 ;; If you enable global minor mode
 (use-package transient)
 
-(use-package magit)
+(use-package magit
+  :bind (:map evil-normal-state-map
+              ("<leader>m" . magit-status)
+              )
+  )
 
 (defun mr/magit-copy-current-branch ()
   "Copy the current branch in the `kill-ring'."
@@ -60,9 +64,9 @@
 
 
 ;; Keybindings
-(my-space-leader
-  "m" 'magit-status
-  "g" 'hydra-git-toggle/body)
+(with-eval-after-load 'evil
+  (evil-define-key 'normal 'global (kbd "<leader>g") 'hydra-git-toggle/body)
+  )
 
 
 (provide 'init-vcs)

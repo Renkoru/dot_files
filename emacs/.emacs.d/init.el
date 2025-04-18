@@ -138,8 +138,8 @@
 (require 'init-javascript)
 (require 'init-emacs)
 (require 'init-hydra) ; should be initialized before evil
-(require 'init-vcs) ; should be before evil
 (require 'init-evil)
+(require 'init-vcs)
 (require 'init-evil-mlang) ; should go after evil settigns
 ;; (require 'init-ivy)
 ;; (require 'init-selectrum-stack)
@@ -321,6 +321,11 @@
 ;;   (electric-pair-local-mode 1)
 ;;   (electric-indent-local-mode 1))
 ;; (add-hook 'nushell-ts-mode-hook 'hfj/nushell/mode-hook))
+
+(use-package kdl-ts-mode
+  :mode (("\\.kdl?\\'" . kdl-ts-mode))
+  :ensure (:host github :repo "dataphract/kdl-ts-mode"))
+
 
 ;;--------------------
 ;; Indentation setup

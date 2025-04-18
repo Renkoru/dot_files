@@ -16,6 +16,14 @@ verbs: [
         key: ctrl-n
         internal: ":line_down"
     }
+    {
+        key: ctrl-h
+        internal: ":panel_left"
+    }
+    {
+        key: ctrl-l
+        internal: ":panel_right"
+    }
 
     # You should customize this standard opening of text files.
     # If you edit text files in your terminal (vi, emacs, helix, eg.), then

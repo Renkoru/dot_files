@@ -103,6 +103,7 @@
         (html "https://github.com/tree-sitter/tree-sitter-html")
         (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
         (json "https://github.com/tree-sitter/tree-sitter-json")
+        (hjson "https://github.com/winston0410/tree-sitter-hjson")
         (make "https://github.com/alemuller/tree-sitter-make")
         (markdown "https://github.com/ikatyang/tree-sitter-markdown")
         (python "https://github.com/tree-sitter/tree-sitter-python")
@@ -111,7 +112,65 @@
         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile" "main" "src")
         (nu "https://github.com/nushell/tree-sitter-nu" "main" "src")
-        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+        (kdl "https://github.com/tree-sitter-grammars/tree-sitter-kdl")
+        ))
+
+(use-package evil-textobj-tree-sitter
+  :demand t
+  :after evil
+  :config
+
+  (evil-define-key nil evil-outer-text-objects-map
+    "f" (evil-textobj-tree-sitter-get-textobj "function.outer")
+    "l" (evil-textobj-tree-sitter-get-textobj "loop.outer")
+    "i" (evil-textobj-tree-sitter-get-textobj "conditional.outer")
+    "c" (evil-textobj-tree-sitter-get-textobj "class.outer")
+    "b" (evil-textobj-tree-sitter-get-textobj "block.outer")
+    "a" (evil-textobj-tree-sitter-get-textobj "parameter.outer")
+    ;; The first arguemnt to `evil-textobj-tree-sitter-get-textobj' will be the capture group to use
+    ;; and the second arg will be an alist mapping major-mode to the corresponding query to use.
+    "n" (evil-textobj-tree-sitter-get-textobj "node.outer"
+          '(
+            (kdl-ts-mode . ((node) @node.outer)) ;; default modes (using tree-sitter)
+            ))
+    )
+  (evil-define-key nil evil-inner-text-objects-map
+    "f" (evil-textobj-tree-sitter-get-textobj "function.inner")
+    "l" (evil-textobj-tree-sitter-get-textobj "loop.inner")
+    "i" (evil-textobj-tree-sitter-get-textobj "conditional.inner")
+    "c" (evil-textobj-tree-sitter-get-textobj "class.inner")
+    "b" (evil-textobj-tree-sitter-get-textobj "block.inner")
+    "a" (evil-textobj-tree-sitter-get-textobj "parameter.inner")
+    "n" (evil-textobj-tree-sitter-get-textobj "node.inner"
+          '(
+            (kdl-ts-mode . ((node_children) @node.inner)) ;; default modes (using tree-sitter)
+            ))
+    )
+  )
+
+;; (use-package evil-textobj-tree-sitter
+;;   :config
+;; ;; The first arguemnt to `evil-textobj-tree-sitter-get-textobj' will be the capture group to use
+;; ;; and the second arg will be an alist mapping major-mode to the corresponding query to use.
+;; (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function"
+;;                                               '((typescript-ts-mode . [(function_declaration) @func])
+;;                                                 ;; (rust-mode . [(use_declaration) @import])
+;;                                                 )))
+;;   bind `function.outer`(entire function block) to `f` for use in things like `vaf`, `yaf`
+;;   (define-key evil-outer-text-objects-map
+;;               "f" (evil-textobj-tree-sitter-get-textobj "function.outer"))
+;;   bind `function.inner`(function block without name and args) to `f` for use in things
+;;   like `vif`, `yif`
+;;   (define-key evil-inner-text-objects-map
+;;               "f" (evil-textobj-tree-sitter-get-textobj "function.inner"))
+
+;;   You can also bind multiple items and we will match the first one we can find
+;;   (define-key evil-outer-text-objects-map
+;;               "a" (evil-textobj-tree-sitter-get-textobj ("conditional.outer" "loop.outer")))
+;;   (define-key evil-inner-text-objects-map
+;;               "c" (evil-textobj-tree-sitter-get-textobj ("conditional.inner" "loop.inner")))
+;;   )
 
 ;; (use-package treesit-auto
 ;;   :demand t
@@ -162,6 +221,27 @@
     "M-h" 'combobulate-navigate-up
     "M-l" 'combobulate-navigate-down
     )
+  :config
+  (defhydra hydra-combobulate-nav (:color pink
+                                          :body-pre (progn
+                                                      (combobulate-mode 1)
+                                                      )
+                                          )
+    "
+      combobulate naviation
+       _m_ evil-mc-mode:       %`evil-mc-mode
+      "
+    ("k" combobulate-navigate-up "up")
+    ("j" combobulate-navigate-down "down")
+    ;; ("c" evil-mc-make-cursor-here "create cursor")
+    ;; ("s" evil-mc-skip-and-goto-next-match "skip and next")
+    ;; ("S" evil-mc-skip-and-goto-prev-match "skip and prev")
+    ;; ("n" evil-mc-make-and-goto-next-match "make and next")
+    ;; ("p" evil-mc-make-and-goto-prev-match "make and prev")
+    ;; ("m" evil-mc-mode nil)
+    ("q" nil "quit"))
+
+  (my-space-leader "cc" 'hydra-mc/body)
   )
 ;; (require rx)
 ;; (straight-use-package
@@ -220,6 +300,36 @@
 ;;                                                 )))
 ;;     )
 ;;   )
+
+(use-package aider
+  ;; :straight (:host github :repo "tninja/aider.el" :files ("aider.el" "aider-core.el" "aider-file.el" "aider-code-change.el" "aider-discussion.el" "aider-prompt-mode.el"))
+  :ensure (:host github :repo "tninja/aider.el")
+  :config
+  ;; For latest claude sonnet model
+  (setq aider-args '("--model" "openrouter/deepseek/deepseek-r1-distill-qwen-32b:free"
+                     "--no-auto-commits"
+                     "--no-gitignore"
+                     ))
+  ;; (setenv "ANTHROPIC_API_KEY" anthropic-api-key)
+  ;; Or chatgpt model
+  ;; (setq aider-args '("--model" "o3-mini"))
+  ;; (setenv "OPENAI_API_KEY" <your-openai-api-key>)
+  ;; Or use your personal config file
+  ;; (setq aider-args `("--config" ,(expand-file-name "~/.aider.conf.yml")))
+  ;; ;;
+  ;; Optional: Set a key binding for the transient menu
+  (global-set-key (kbd "C-c a") 'aider-transient-menu))
+
+(use-package origami
+  :bind (:map evil-normal-state-map
+              ("<leader>cf" . hydra-fold/body)
+              )
+  :config
+  (defhydra hydra-fold (:color pink)
+    "folding"
+    ("TAB" origami-recursively-toggle-node "cycle")
+    ("q" nil "quit"))
+  )
 
 
 (provide 'init-programming)

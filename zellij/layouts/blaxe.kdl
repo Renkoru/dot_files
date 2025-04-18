@@ -1,0 +1,81 @@
+// layout {
+//     pane // panes can be bare
+//     pane command="htop" // panes can have arguments on the same line
+//     pane {
+//         // panes can have arguments inside child-braces
+//         command "exa"
+//         cwd "/"
+//     }
+//     pane command="ls" { // or a mixture of same-line and child-braces arguments
+//         cwd "/"
+//     }
+// }
+
+layout {
+  default_tab_template {
+    // the default zellij tab-bar and status bar plugins
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  tab name="auth-ui" split_direction="vertical" cwd="~/projects/auth-ui/" {
+    pane
+    pane {
+      command "npm"
+      args "run" "dev"
+    }
+  }
+
+  tab name="auth-backend" split_direction="vertical" {
+    pane cwd="~/projects/devops/tasks/auth/templates/" {
+      command "docker"
+      args "compose -f ./docker-compose-auth.yml.j2  up -d"
+    }
+    pane cwd="~/projects/auth-backend/"  {
+      command "go"
+      args "tool air"
+      start_suspended true
+    }
+  }
+
+  tab name="admin-ui" split_direction="vertical" cwd="~/projects/cloudadminui/" {
+    pane
+    pane {
+      command "npm"
+      args "run" "dev"
+      start_suspended true
+    }
+  }
+
+  // tab name="admin-ui" split_direction="vertical" cwd="~/projects/cloudadminui/" {
+  //   pane
+  //   pane {
+  //     command "npm"
+  //     args "run" "dev"
+  //     start_suspended true
+  //   }
+  // }
+
+  // tab name="admin-ui" split_direction="vertical" cwd="~/projects/cloudadminui/" {
+  //   pane
+  //   pane {
+  //     command "npm"
+  //     args "run" "dev"
+  //     start_suspended true
+  //   }
+  // }
+
+  // tab name="admin-ui" split_direction="vertical" cwd="~/projects/cloudadminui/" {
+  //   pane
+  //   pane {
+  //     command "npm"
+  //     args "run" "dev"
+  //     start_suspended true
+  //   }
+  // }
+}

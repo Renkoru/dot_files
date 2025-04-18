@@ -6,7 +6,43 @@
 ;; https://github.com/nicolaspetton/xref-js2
 
 ;;; Code:
-(use-package flymake-eslint)
+(use-package flymake-eslint
+  :config
+  ;; If Emacs is compiled with JSON support
+  (setq flymake-eslint-prefer-json-diagnostics t)
+
+  ;; https://www.rahuljuliato.com/posts/eslint-on-emacs
+  (defun lemacs/use-local-eslint ()
+    "Set project's `node_modules' binary eslint as first priority.
+If nothing is found, keep the default value flymake-eslint set or
+your override of `flymake-eslint-executable-name.'"
+    (interactive)
+    (let* ((root (locate-dominating-file (buffer-file-name) "node_modules"))
+           (eslint (and root
+                        (expand-file-name "node_modules/.bin/eslint"
+                                          root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flymake-eslint-executable-name eslint)
+        (message (format "Found local ESLINT! Setting: %s" eslint))
+        (flymake-eslint-enable))))
+
+
+  (defun lemacs/configure-eslint-with-flymake ()
+    (when (or (eq major-mode 'tsx-ts-mode)
+	      (eq major-mode 'typescript-ts-mode)
+	      (eq major-mode 'jtsx-tsx-mode)
+	      (eq major-mode 'typescriptreact-mode))
+      (lemacs/use-local-eslint)))
+
+  (add-hook 'eglot-managed-mode-hook #'lemacs/use-local-eslint)
+
+  ;; With older projects without LSP or if eglot fails
+  ;; you can call interactivelly M-x lemacs/use-local-eslint RET
+  ;; or add a hook like:
+  (add-hook 'js-ts-mode-hook #'lemacs/use-local-eslint)
+  (add-hook 'typescript-ts-mode-hook #'lemacs/use-local-eslint)
+  (add-hook 'jtsx-tsx-mode-hook #'lemacs/use-local-eslint)
+  )
 
 
 ;; JS packages

@@ -49,12 +49,14 @@ mouse-hide-while-typing = true
 
 window-inherit-working-directory = true
 keybind = ctrl+shift+enter=new_window
-keybind = alt+k=scroll_page_lines:-1
-keybind = alt+j=scroll_page_lines:1
+keybind = alt+shift+k=scroll_page_lines:-1
+keybind = alt+shift+j=scroll_page_lines:1
 keybind = alt+page_up=scroll_page_up
 keybind = alt+page_down=scroll_page_down
 keybind = ctrl+v=paste_from_clipboard
 keybind = ctrl+shift+r=reload_config
+keybind = ctrl+shift+j=write_screen_file:paste
+# keybind = ctrl+shift+j=write_scrollback_file:open
 
 # Currently working only on MacOS
 # keybind = global:cmd+shift+t=toggle_quick_terminal
