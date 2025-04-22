@@ -140,6 +140,25 @@
   :config
   (evil-exchange-install))
 
+(use-package evil-numbers
+  :bind (
+         :map evil-normal-state-map
+         ("<leader>cn" . hydra-numbers/body)
+         )
+  :ensure (:host github :repo "cofi/evil-numbers")
+  :config
+
+  (defhydra hydra-numbers (:color pink)
+    "
+      change numbers
+       _i_ increase
+       _d_ decrease
+      "
+    ("i" evil-numbers/inc-at-pt "increase")
+    ("d" evil-numbers/dec-at-pt "decrease")
+    ("q" nil "quit"))
+  )
+
 
 
 (provide 'init-evil)

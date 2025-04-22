@@ -233,18 +233,14 @@
 ;;   )
 (use-package fish-mode)
 (use-package markdown-mode)
-(use-package yaml-mode
-  :mode (("\\.yaml?\\'" . yaml-mode)
-         ("\\.yml?\\'" . yaml-mode)
-         )
-  )
+
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-ts-mode))
 (use-package yaml-pro
-  :mode (("\\.yaml?\\'" . yaml-pro-ts-mode)
+  :mode (
+         ("\\.yaml?\\'" . yaml-pro-ts-mode)
          ("\\.yml?\\'" . yaml-pro-ts-mode))
-  :after yaml-mode
-  :config
-  (eldoc-mode 1)
-  )
+  :after yaml-mode)
 
 (use-package nginx-mode)
 ;; (use-package company-nginx
