@@ -322,7 +322,7 @@
 
 (use-package origami
   :bind (:map evil-normal-state-map
-              ("<leader>cf" . hydra-fold/body)
+              ("<leader>cz" . hydra-fold/body)
               )
   :config
   (defhydra hydra-fold (:color pink)

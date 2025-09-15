@@ -34,6 +34,7 @@ https://github.com/raxod502/straight.el
 - realgud. Dubugger, try it!
 - https://github.com/Fuco1/smartparens Dealing with parens
 - which-key
+- Clever diffs https://github.com/pkryger/difftastic.el
 - Possible evil-surround package https://github.com/casouri/isolate
 - https://github.com/Alexander-Miller/treemacs replacement of NeoTree package
 - https://github.com/Wilfred/helpful show emacs helps

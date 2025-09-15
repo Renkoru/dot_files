@@ -100,13 +100,13 @@
 (use-package doom-themes
   :after ivy
   :config
-;; Global settings (defaults)
-;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; Global settings (defaults)
+  ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+  ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; (load-theme 'doom-ayu-light t)
   )
-  ;; (load-theme 'base16-atelier-lakeside-light t)
-  ;; (set-face-attribute 'region nil :background "gold"))
+;; (load-theme 'base16-atelier-lakeside-light t)
+;; (set-face-attribute 'region nil :background "gold"))
 
 
 ;; (use-package material-theme
@@ -117,8 +117,21 @@
 
 
 ;; You need to install font "sudo pacman -S ttf-jetbrains-mono-nerd"
-(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-11"))
+;; (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-10"))
+(add-to-list 'default-frame-alist '(font . "MonoLisa-10.5"))
 ;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
+
+(defhydra hydra-zoom ()
+  "zoom"
+  ("i" text-scale-increase "increase")
+  ("r" set-default-font-height "reset")
+  ("d" text-scale-decrease "decrease"))
+
+(my-space-leader "cf" 'hydra-zoom/body)
+
+(with-eval-after-load 'evil
+  (evil-define-key 'normal 'global (kbd "<leader>cf") 'hydra-zoom/body)
+  )
 
 (use-package ligature
   :config
@@ -224,13 +237,6 @@
   (interactive)
   (text-scale-adjust 0))
 
-(defhydra hydra-zoom ()
-  "zoom"
-  ("i" text-scale-increase "increase")
-  ("r" set-default-font-height "reset")
-  ("d" text-scale-decrease "decrease"))
-
-(my-space-leader "cf" 'hydra-zoom/body)
 
 
 (use-package rainbow-mode)
@@ -273,6 +279,11 @@
 (use-package highlight-parentheses
   :config
   (add-hook 'prog-mode-hook #'highlight-parentheses-mode))
+
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
 
 (provide 'init-appearance)
 

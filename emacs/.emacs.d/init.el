@@ -2,7 +2,7 @@
 ;;; Commentary:
 
 ;;; Code:
-(defvar elpaca-installer-version 0.10)
+(defvar elpaca-installer-version 0.11)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -37,7 +37,7 @@
   (unless (require 'elpaca-autoloads nil t)
     (require 'elpaca)
     (elpaca-generate-autoloads "elpaca" repo)
-    (load "./elpaca-autoloads")))
+    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
@@ -78,15 +78,19 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
-(use-package exec-path-from-shell
-  ;; :init
-  ;; (setq exec-path-from-shell-debug t)
-  :config
-  (exec-path-from-shell-initialize)
+(setenv "PATH" (concat "/home/mrurenko/.asdf/shims" path-separator (getenv "PATH")))
+(setq exec-path (append exec-path '("/home/mrurenko/.asdf/shims")))
+(setq-default eshell-path-env (getenv "PATH"))
+;; (use-package exec-path-from-shell
+;;   ;; :init
+;;   ;; (setq exec-path-from-shell-debug t)
+;;   :config
+;;   ;; (customize-set-variable 'exec-path-from-shell-shell-name "/bin/bash")
+;;   (exec-path-from-shell-initialize)
 
-  ;; ssh-agent socket settings
-  ;; (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
-  )
+;;   ;; ssh-agent socket settings
+;;   ;; (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+;;   )
 
 ;; --------------------------------- System packages
 ;; (use-package realgud) ;; debugging, try it sometime. (Hard with docker env)

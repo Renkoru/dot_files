@@ -37,9 +37,8 @@
 
   (my-space-leader
     "t" 'hydra-toggle/body
-    "r" 'hydra-resize/body
-    "cf" 'hydra-zoom/body)
-)
+    "r" 'hydra-resize/body)
+  )
 
 (elpaca-wait)
 
