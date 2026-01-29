@@ -1,0 +1,14 @@
+# Set default styles for all notifications (optional)
+font=monospace 10
+background-color=#285577FF
+text-color=#FFFFFFFF
+border-color=#4C7899FF
+progress-color=over #5588AAFF
+
+# Special style for CRITICAL notifications
+[urgency=critical]
+background-color=#5A1E1EFF
+text-color=#FFFFFFFF
+border-color=#CC0000FF
+border-size=3
+default-timeout=0
