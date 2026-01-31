@@ -41,42 +41,58 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+;; additional settings
 (elpaca elpaca-use-package
-  ;; Enable :elpaca use-package keyword.
-  (elpaca-use-package-mode)
-  ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+  ;; Enable use-package :ensure support for Elpaca.
+  (elpaca-use-package-mode))
 
-
+;; initial setup ---------------------------------------------------------------------------------------------
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; End of Elpaca setup ---------------------------------------------------------------------------------------------
 
 (use-package general
+  :ensure (:wait t)
   :demand
   :config
   (general-evil-setup)
   (general-create-definer my-general-g-definer :states 'normal :prefix "g")
   (general-create-definer my-space-leader :states 'normal :prefix "<SPC>")
-  (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
+  ; (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
   )
-(elpaca-wait)
+;
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(use-package projectile
+  :ensure (:wait t)
+  :init
+  (setq projectile-project-search-path '("~/projects/"))
+  :config
+  ;; I typically use this keymap prefix on macOS
+  ;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  ;; On Linux, however, I usually go with another one
+  ;; (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  ;; (global-set-key (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
 ;; ---------------------------------------------------------------------------------------------
 
-;; (setq
-;;  package-archives '(("melpa" . "https://melpa.org/packages/")
-;;                     ("org" . "http://orgmode.org/elpa/")
-;;                     ("gnu" . "https://elpa.gnu.org/packages/"))
-;;  )
-
-;; (require 'init-elpaca) ;; package manager
-
-;; (require 'init-straight) ;; package manager
-
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
+
+;; --------------------------------- Include lisp blocks
+(use-package crux)
+(require 'init-emacs)
+(require 'init-corfu)
+(require 'init-evil)
+(require 'init-vertico-stack)
+(require 'init-hydra)
+(require 'init-vcs)
+(require 'init-appearance)
+
+(require 'init-internal-apps)
+
+(require 'init-org)
+(require 'init-avy)
 
 (setenv "PATH" (concat "/home/mrurenko/.asdf/shims" path-separator (getenv "PATH")))
 (setq exec-path (append exec-path '("/home/mrurenko/.asdf/shims")))
@@ -139,24 +155,17 @@
 ;;   )
 
 ;; --------------------------------- Include lisp blocks
-(require 'init-javascript)
-(require 'init-emacs)
-(require 'init-hydra) ; should be initialized before evil
-(require 'init-evil)
-(require 'init-vcs)
+; (require 'init-javascript)
 (require 'init-evil-mlang) ; should go after evil settigns
 ;; (require 'init-ivy)
 ;; (require 'init-selectrum-stack)
-(require 'init-vertico-stack)
-(require 'init-appearance)
-(require 'init-modeline)
-(require 'init-yasnippet) ; should be initialized before auto-complete
-(require 'init-custom-functions)
-(require 'init-spellcheck)
+; (require 'init-modeline)
+; (require 'init-yasnippet) ; should be initialized before auto-complete
+; (require 'init-custom-functions)
+; (require 'init-spellcheck)
 ;; (require 'init-flyspell)
 ;; (require 'init-lsp)
 
-(require 'init-internal-apps)
 
 ;; --------------------------------- Useful stuff
 ;; Keep same configs for all team (all editors)
@@ -169,35 +178,13 @@
 ;; TODO check if if works
 ;; (straight-use-package '(apheleia :host github :repo "raxod502/apheleia"))
 
-(use-package crux)
 
 (use-package ace-window
-  :bind (
-         ("M-q" . ace-window)
+  :bind (("M-q" . ace-window)
          :map prog-mode-map
-         ("M-q" . ace-window)
-         )
-  ;; :hook
-  ;; (prog-mode . (lambda ()
-  ;;                (global-set-key (kbd "M-q") 'ace-window)
-  ;;                ))
-  ;; :config
-  ;; (global-set-key (kbd "M-q") 'ace-window)
-  )
+         ("M-q" . ace-window)))
 
 ;; !! Cause some freezes in some cases: org, tramp?
-(use-package projectile
-  ;; :init
-  ;; (setq projectile-completion-system 'ivy)
-  :config
-  (projectile-global-mode t)
-  ;; :custom
-  ;; (projectile-switch-project-action
-  ;;  (lambda ()
-  ;;    (if-let* ((last-buffer (second (projectile-project-buffers))))
-  ;;        (switch-to-buffer last-buffer)
-  ;;      (projectile-find-file))))
-  )
 
 (use-package beacon
   :init
@@ -213,14 +200,11 @@
 (use-package expand-region
   :general (my-space-leader "e" 'er/expand-region))
 
-(require 'init-avy)
 (require 'init-flycheck)
 ;; (require 'init-company)
-(require 'init-corfu)
 
 ;; --------------------------------- File type modes
-(require 'init-programming)
-(require 'init-org)
+; (require 'init-programming)
 (require 'init-journal)
 (require 'init-docker)
 ;; (require 'init-lisp)
@@ -253,7 +237,7 @@
 ;;   (add-hook 'nginx-mode-hook #'company-nginx-keywords))
 
 (require 'init-emmet)
-(require 'init-web) ; should be before javascript init
+;; (require 'init-web) ; should be before javascript init
 
 ;; !! Cause some freezes in some cases: org, tramp?
 
@@ -279,9 +263,7 @@
 ;; (setq markdown-command "pandoc --smart -f markdown -t html")
 
 ;; (use-package htmlize)
-(use-package helpful)
 ;; (use-package graphql-mode)
-;; (use-package )
 (use-package jenkinsfile-mode)
 ;; (straight-use-package
 ;;  '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
@@ -321,10 +303,6 @@
 ;;   (electric-pair-local-mode 1)
 ;;   (electric-indent-local-mode 1))
 ;; (add-hook 'nushell-ts-mode-hook 'hfj/nushell/mode-hook))
-
-(use-package kdl-ts-mode
-  :mode (("\\.kdl?\\'" . kdl-ts-mode))
-  :ensure (:host github :repo "dataphract/kdl-ts-mode"))
 
 
 ;;--------------------

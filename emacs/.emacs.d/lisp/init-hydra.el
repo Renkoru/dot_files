@@ -4,6 +4,11 @@
 
 
 (use-package hydra
+  :bind (:map evil-normal-state-map
+              ("<leader>t" . hydra-toggle/body)
+              ("<leader>r" . hydra-resize/body)
+              ("<leader>cf" . hydra-zoom/body)
+              )
   :config
   (defhydra hydra-resize ()
     "resize"
@@ -35,10 +40,7 @@
     ("f" flyspell-correct-word-generic "fix")
     ("q" nil "quit"))
 
-  (my-space-leader
-    "t" 'hydra-toggle/body
-    "r" 'hydra-resize/body)
-  )
+)
 
 (elpaca-wait)
 

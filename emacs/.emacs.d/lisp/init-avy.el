@@ -4,12 +4,11 @@
 
 
 (use-package avy
-  :general
-  (my-space-leader
-    "j" 'avy-goto-line-below
-    "k" 'avy-goto-line-above
-    "l" 'avy-goto-char-in-line
-    "s" 'avy-goto-char-timer)
+  :bind (:map evil-normal-state-map
+              ("<leader>j" . avy-goto-line-below)
+              ("<leader>k" . avy-goto-line-above)
+              ("<leader>l" . avy-goto-char-in-line)
+              ("<leader>s" . avy-goto-char-timer))
   :config
   ;; Bind key for isearch C-' to activate avy
   (setq avy-style 'at-full)

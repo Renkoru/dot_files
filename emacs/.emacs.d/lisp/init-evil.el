@@ -10,7 +10,7 @@
               ("C-k" . evil-window-up)
               ("C-l" . evil-window-right)
               ("C-a" . beginning-of-line)
-              ("[ SPC" . crux-smart-open-line-above)
+              ; ("[ SPC" . crux-smart-open-line-above)
 
               ("<leader>w" . save-buffer)
               ("<leader>=" . balance-windows)
@@ -22,11 +22,11 @@
 
   (evil-set-leader '(normal) (kbd "SPC"))
 
-  (my-crux-text-definer
-    "SPC" 'crux-smart-open-line
-    ;; "[" 'crux-smart-open-line-above
-    "p" 'crux-duplicate-current-line-or-region
-    "cp" 'crux-duplicate-and-comment-current-line-or-region)
+  ; (my-crux-text-definer
+  ;   "SPC" 'crux-smart-open-line
+  ;   ;; "[" 'crux-smart-open-line-above
+  ;   "p" 'crux-duplicate-current-line-or-region
+  ;   "cp" 'crux-duplicate-and-comment-current-line-or-region)
 
   (defun insert-line-below ()
     "Insert an empty line below the current line."
@@ -54,6 +54,9 @@
   (setq evil-insert-state-cursor '("#8b0000" bar))
   (setq evil-replace-state-cursor '("#8b0000" bar))
   (setq evil-operator-state-cursor '("#8b0000" hollow))
+
+  (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+
   :init
   (require 'evil)
   )
@@ -76,9 +79,9 @@
   ;; Do not use global mode, do not know how to disable default bindings
 
   ;; TODO general replace
-  (general-unbind 'normal evil-mc-key-map
-    "C-n"
-    "C-p")
+  ;; (general-unbind 'normal evil-mc-key-map
+  ;;   "C-n"
+  ;;   "C-p")
 
   (defhydra hydra-mc (:color pink
                              :body-pre (progn

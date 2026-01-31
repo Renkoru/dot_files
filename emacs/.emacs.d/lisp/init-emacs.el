@@ -44,14 +44,6 @@
 (define-key isearch-mode-map [escape] 'isearch-abort)
 (global-set-key [escape] 'keyboard-escape-quit)
 
-;; --------------------------- General mappings
-(general-def grep-mode-map
-  "C-n" 'next-error-no-select
-  "C-p" 'previous-error-no-select
-  ;; "C-n" 'next-error
-  ;; "C-p" 'previous-error
-  )
-
 
 ;; Make smooth scroll {{
 ;; scrolling to always be a line at a time

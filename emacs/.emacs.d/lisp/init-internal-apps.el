@@ -3,15 +3,6 @@
 ;;; Code:
 
 (use-package writeroom-mode)
-;; (use-package restclient)
-;; (use-package ranger
-;;   ;; :general
-;;   ;; ("<f3>" 'ranger)
-;;   :config
-;;   (setq ranger-preview-file nil)
-;;   (setq ranger-cleanup-on-disable t)
-;;   (setq ranger-show-hidden t)
-;;   )
 
 (use-package dirvish
   :after (dired evil)
@@ -90,9 +81,6 @@
    ("M-c" . dired-create-empty-file)
    )
   )
-
-
-;; (require 'init-neotree) ? need to remove it (not using)
 
 
 (provide 'init-internal-apps)

@@ -237,8 +237,6 @@
   (interactive)
   (text-scale-adjust 0))
 
-
-
 (use-package rainbow-mode)
 
 (setq whitespace-style '(face tabs trailing tab-mark))
@@ -262,14 +260,15 @@
   :defer t
   :hook ((prog-mode . highlight-symbol-mode)
          (prog-mode . highlight-symbol-nav-mode))
-  :init
-  (setq highlight-symbol-idle-delay 1)
 
-  :general
-  (general-nmap
-    "C-n" 'mr/highlight-symbol-next
-    "C-p" 'mr/highlight-symbol-prev)
-  (my-space-leader "h" 'highlight-symbol))
+  :bind (
+         :map evil-normal-state-map
+         ("C-n" . mr/highlight-symbol-next)
+         ("C-p" . mr/highlight-symbol-prev)
+         ("<leader>h" . highlight-symbol)
+         )
+  :init
+  (setq highlight-symbol-idle-delay 1))
 
 (use-package rainbow-delimiters
   :config

@@ -54,54 +54,14 @@
                (concat "/sudo:root@localhost:" file))))
 
 (use-package embark
-  ;; :bind
-  ;; (("C-." . embark-act)         ;; pick some comfortable binding
-  ;;  ("C-;" . embark-dwim)        ;; good alternative: M-.
-  ;;  ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :bind (:map minibuffer-local-map
               ("C-o" . #'embark-export)
               ("M-o" . #'embark-act))
-
-  ;; embark-prompter to embark-completing-read-prompter.
-
-
-  ;; :general
-  ;; (:states 'normal
-  ;;          "C-." 'embark-act
-  ;;          "C-;" 'embark-dwim)
-  ;; (my-space-leader
-  ;;   "y" 'consult-yank-pop
-  ;;   "f" 'consult-find
-  ;;   "a" 'consult-ripgrep)
-  ;; (:keymaps 'global "C-;" 'embark-dwim)
-  ;; (:keymaps 'minibuffer-local-map "C-." :states 'normal 'embark-dwim)
-
-  ;; :init
-
-  ;; Optionally replace the key help with a completing-read interface
-  ;; (setq prefix-help-command #'embark-prefix-help-command)
 
   :config
   (setq embark-indicators
         '(embark-minimal-indicator
           embark-highlight-indicator))
-
-  ;; If you want to add new actions to existing target
-  (general-def embark-file-maporg-mode-map
-    "r" 'dired-do-chmod)
-
-  (general-def embark-file-map
-    "R" 'mr/sudo-find-file)
-
-  ;; projectile-find-file
-
-  ;; (setq embark-prompter 'embark-completing-read-prompter)
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  ;; (add-to-list 'display-buffer-alist
-  ;;              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-  ;;                nil
-  ;;                (window-parameters (mode-line-format . none))))
   )
 
 
@@ -117,20 +77,20 @@
 
 
 (use-package consult
-  ;; Replace bindings. Lazily loaded due by `use-package'.
+  :after evil
+  :bind (
+         ("C-q" . consult-buffer)
+         ("M-f" . find-file)
+         :map evil-normal-state-map
+              ("gl" . consult-line)
+              ("go" . consult-imenu)
 
-  ;; TODO: move not consult binding out of here
-  :general
-  (:states 'normal
-           "gl" 'consult-line
-           "go" 'consult-imenu)
-  (my-space-leader
-    "y" 'consult-yank-pop
-    "f" 'projectile-find-file
-    "a" 'consult-ripgrep)
-  (:keymaps 'global "C-q" 'consult-buffer)
-  (:keymaps 'global "M-f" 'find-file)
-
+              ("<leader>y" . consult-yank-pop)
+              ("<leader>f" . projectile-find-file)
+              ("<leader>a" . consult-ripgrep)
+         :map evil-insert-state-map
+              ("C-e" . end-of-line)
+         )
   :config
   (setq consult-ripgrep-command
         "rg --smart-case --null --line-buffered --color=always --max-columns=500   --no-heading --line-number . -e ARG OPTS")
@@ -140,8 +100,8 @@
    consult-theme
    :preview-key '(:debounce 0.2 any)
    consult-buffer consult-ripgrep consult-git-grep consult-grep
-   consult--source-bookmark consult--source-recent-file
-   consult--source-project-recent-file
+   consult-source-bookmark consult-source-recent-file
+   consult-source-project-recent-file
    :preview-key "C-."
    )
 
@@ -163,35 +123,16 @@
 
 (use-package vertico
   :ensure (:files (:defaults "extensions/*"))
+  :bind (
+         ("C-c p p" . projectile-switch-project)
+         :map vertico-map
+         ("C-j" . vertico-directory-enter)
+         )
   :init
   (vertico-mode)
-  :general
-  (:keymaps 'global "C-c p p" 'projectile-switch-project)
-  (:keymaps 'vertico-map "C-j" 'vertico-directory-enter)
   :config
   (vertico-multiform-mode)
   )
-
-
-;; (use-package selectrum
-;;   :config
-;;   (selectrum-mode +1)
-;;   (selectrum-prescient-mode +1)
-;;   (prescient-persist-mode +1)
-
-;;   :general
-;;   (:keymaps 'global "C-c p p" 'projectile-switch-project)
-;;   (:keymaps 'selectrum-minibuffer-map "C-j" #'selectrum-insert-current-candidate)
-;;   ;; (:states 'normal
-;;   ;;          "gl" 'counsel-grep-or-swiper
-;;   ;;          "go" 'counsel-imenu)
-;;   ;; (my-space-leader "y" 'counsel-yank-pop)
-;;   ;; (:keymaps 'global "C-q" 'ivy-switch-buffer)
-;;   ;; (:keymaps 'global "M-x" 'counsel-M-x)
-;;   ;; (:keymaps 'global "M-f" 'counsel-find-file)
-;;   ;; (:keymaps 'global "C-c C-i" 'ivy-resume)
-
-;;   )
 
 
 (provide 'init-vertico-stack)

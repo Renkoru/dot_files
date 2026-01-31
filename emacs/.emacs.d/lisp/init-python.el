@@ -76,7 +76,7 @@
 ;;                           (lsp))))  ; or lsp-deferred
 
 ;; code formaters
-(use-package blacken)
+; (use-package blacken)
 
 (provide 'init-python)
 
