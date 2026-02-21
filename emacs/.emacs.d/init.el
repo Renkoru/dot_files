@@ -160,7 +160,7 @@
 ;; (require 'init-ivy)
 ;; (require 'init-selectrum-stack)
 ; (require 'init-modeline)
-; (require 'init-yasnippet) ; should be initialized before auto-complete
+(require 'init-yasnippet) ; should be initialized before auto-complete
 ; (require 'init-custom-functions)
 ; (require 'init-spellcheck)
 ;; (require 'init-flyspell)
@@ -303,6 +303,8 @@
 ;;   (electric-pair-local-mode 1)
 ;;   (electric-indent-local-mode 1))
 ;; (add-hook 'nushell-ts-mode-hook 'hfj/nushell/mode-hook))
+
+(use-package tintin-mode)
 
 
 ;;--------------------
