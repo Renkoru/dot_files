@@ -58,9 +58,9 @@
   (general-evil-setup)
   (general-create-definer my-general-g-definer :states 'normal :prefix "g")
   (general-create-definer my-space-leader :states 'normal :prefix "<SPC>")
-  ; (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
+                                        ; (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
   )
-;
+                                        ;
 
 (use-package projectile
   :ensure (:wait t)
@@ -94,8 +94,10 @@
 (require 'init-org)
 (require 'init-avy)
 
-(setenv "PATH" (concat "/home/mrurenko/.asdf/shims" path-separator (getenv "PATH")))
-(setq exec-path (append exec-path '("/home/mrurenko/.asdf/shims")))
+;; (setenv "PATH" (concat "/home/mrurenko/.asdf/shims" path-separator (getenv "PATH")))
+;; (setq exec-path (append exec-path '("/home/mrurenko/.asdf/shims")))
+(setenv "PATH" (concat "/home/mrurenko/.local/share/mise/shims" path-separator (getenv "PATH")))
+(setq exec-path (append exec-path '("/home/mrurenko/.local/share/mise/shims")))
 (setq-default eshell-path-env (getenv "PATH"))
 ;; (use-package exec-path-from-shell
 ;;   ;; :init
@@ -155,14 +157,14 @@
 ;;   )
 
 ;; --------------------------------- Include lisp blocks
-; (require 'init-javascript)
+(require 'init-javascript)
 (require 'init-evil-mlang) ; should go after evil settigns
 ;; (require 'init-ivy)
 ;; (require 'init-selectrum-stack)
-; (require 'init-modeline)
+                                        ; (require 'init-modeline)
 (require 'init-yasnippet) ; should be initialized before auto-complete
-; (require 'init-custom-functions)
-; (require 'init-spellcheck)
+                                        ; (require 'init-custom-functions)
+                                        ; (require 'init-spellcheck)
 ;; (require 'init-flyspell)
 ;; (require 'init-lsp)
 
@@ -204,7 +206,7 @@
 ;; (require 'init-company)
 
 ;; --------------------------------- File type modes
-; (require 'init-programming)
+(require 'init-programming)
 (require 'init-journal)
 (require 'init-docker)
 ;; (require 'init-lisp)

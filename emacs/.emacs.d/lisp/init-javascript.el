@@ -265,6 +265,22 @@ your override of `flymake-eslint-executable-name.'"
               (set-face-background 'mmm-default-submode-face nil)))
   )
 
+(use-package svelte-ts-mode
+  :mode ("\\.svelte\\'" . svelte-ts-mode)
+  :ensure (:host github :repo "leafOfTree/svelte-ts-mode")
+
+  :hook (svelte-ts-mode-hook . eglot-ensure)
+  :config
+  (with-eval-after-load 'apheleia
+    ;; Option A: Use the prettier-svelte formatter if it exists and works
+    (push '(svelte-ts-mode . prettier-svelte) apheleia-mode-alist)
+
+    ;; Option B: Use the generic prettier formatter (recommended if prettier-svelte is missing or broken)
+    ;; (push '(svelte-ts-mode . prettier) apheleia-mode-alist)
+    )
+  )
+
+
 ;; (use-package tree-sitter
 ;;   :config
 ;;   (global-tree-sitter-mode)

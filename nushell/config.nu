@@ -38,13 +38,14 @@ $env.PATH = ($env.PATH | append '/home/mrurenko/.local/bin')
 
 # $env.PATH = ($env.PATH | split row (char esep) | append "/opt/asdf-vm/bin")
 let shims_dir = (
-  if ( $env | get --ignore-errors ASDF_DATA_DIR | is-empty ) {
+  if ( $env | get --optional ASDF_DATA_DIR | is-empty ) {
     $env.HOME | path join '.asdf'
   } else {
     $env.ASDF_DATA_DIR
   } | path join 'shims'
 )
 $env.PATH = ( $env.PATH | split row (char esep) | where { |p| $p != $shims_dir } | prepend $shims_dir )
+
 
 $env.config.history = {
   file_format: sqlite
@@ -166,3 +167,5 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 source ~/.zoxide.nu
 source ~/.cache/carapace/init.nu
 # source ~/.local/share/atuin/init.nu
+
+use ($nu.default-config-dir | path join mise.nu)

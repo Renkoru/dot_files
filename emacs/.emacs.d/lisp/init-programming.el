@@ -32,6 +32,7 @@
   :config
   (my-space-leader "cr" 'eglot-rename)
 
+  (add-to-list 'eglot-server-programs '(svelte-ts-mode . ("svelteserver" "--stdio")))
   (add-hook 'eglot-managed-mode-hook
             (lambda ()
               ;; Show flymake diagnostics first.
@@ -48,7 +49,8 @@
 
 ;; Apply formatting for various languages
 (use-package apheleia
-  :hook (prog-mode . apheleia-mode))
+  :hook (prog-mode . apheleia-mode)
+  )
 
 
 (use-package turbo-log
@@ -102,6 +104,7 @@
         (go "https://github.com/tree-sitter/tree-sitter-go")
         (html "https://github.com/tree-sitter/tree-sitter-html")
         (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (svelte "https://github.com/tree-sitter-grammars/tree-sitter-svelte" "master" "src")
         (json "https://github.com/tree-sitter/tree-sitter-json")
         (hjson "https://github.com/winston0410/tree-sitter-hjson")
         (make "https://github.com/alemuller/tree-sitter-make")
