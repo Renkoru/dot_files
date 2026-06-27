@@ -26,9 +26,16 @@
 ;;   (add-hook 'python-base-mode-hook 'pet-mode -10)
 ;;   )
 
-(use-package pyvenv
-  :config
-  (setenv "WORKON_HOME" "/home/mrurenko/.cache/pypoetry/virtualenvs"))
+;; (use-package pyvenv
+;;   :config
+;;   (setenv "WORKON_HOME" "/home/mrurenko/.cache/pypoetry/virtualenvs"))
+
+(add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
+
+(add-hook 'python-ts-mode-hook #'eglot-ensure)
+
+(use-package uv-mode
+  :hook (python-ts-mode . uv-mode-auto-activate-hook))
 
 ;; (lsp-define-stdio-client lsp-python "python"
 ;;                          #'projectile-project-root
@@ -54,7 +61,10 @@
             ;; #'lsp
             (setq tab-width 4)
             (setq flycheck-pylintrc ".pylintrc")
-            (sphinx-doc-mode t)))
+            (sphinx-doc-mode t)
+            (eglot-python-preset-lsp-server . rass)
+            (eglot-python-preset-rass-tools . (ty ruff))
+            ))
 
 (use-package evil-python-movement
   :after evil
@@ -76,7 +86,7 @@
 ;;                           (lsp))))  ; or lsp-deferred
 
 ;; code formaters
-; (use-package blacken)
+                                        ; (use-package blacken)
 
 (provide 'init-python)
 

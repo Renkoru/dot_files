@@ -16,7 +16,7 @@
 #
 # You can remove these comments if you want or leave
 # them for future reference.
-use '/home/mrurenko/.config/broot/launcher/nushell/br' *
+# use '/home/mrurenko/.config/broot/launcher/nushell/br' *
 
 $env.EDITOR = 'nvim'
 $env.config.show_banner = false
@@ -37,14 +37,14 @@ $env.PATH = ($env.PATH | split row (char esep) | append "/home/mrurenko/go/bin")
 $env.PATH = ($env.PATH | append '/home/mrurenko/.local/bin')
 
 # $env.PATH = ($env.PATH | split row (char esep) | append "/opt/asdf-vm/bin")
-let shims_dir = (
-  if ( $env | get --optional ASDF_DATA_DIR | is-empty ) {
-    $env.HOME | path join '.asdf'
-  } else {
-    $env.ASDF_DATA_DIR
-  } | path join 'shims'
-)
-$env.PATH = ( $env.PATH | split row (char esep) | where { |p| $p != $shims_dir } | prepend $shims_dir )
+# let shims_dir = (
+  # if ( $env | get --ignore-errors ASDF_DATA_DIR | is-empty ) {
+    # $env.HOME | path join '.asdf'
+  # } else {
+    # $env.ASDF_DATA_DIR
+  # } | path join 'shims'
+# )
+# $env.PATH = ( $env.PATH | split row (char esep) | where { |p| $p != $shims_dir } | prepend $shims_dir )
 
 
 $env.config.history = {

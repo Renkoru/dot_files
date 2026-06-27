@@ -4,6 +4,8 @@ theme = 0x96f
 # font-family = "Anka/Coder"
 # font-family = "Hasklug Nerd Font Mono"
 font-family = "MonoLisa"
+# font-family = "MonoLisa Nerd Font Mono"
+
 
 # background = 282c34
 # background = 0e1111
@@ -16,6 +18,7 @@ font-thicken = true
 
 # cursor-color = 6b8e23
 # cursor-color = 6b8e23
+minimum-contrast = 1.1
 
 cursor-style = block
 shell-integration-features = no-cursor

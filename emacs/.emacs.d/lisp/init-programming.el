@@ -32,17 +32,27 @@
   :config
   (my-space-leader "cr" 'eglot-rename)
 
-  (add-to-list 'eglot-server-programs '(svelte-ts-mode . ("svelteserver" "--stdio")))
+  ;; Each mode needs its own add-to-list call
+  (add-to-list 'eglot-server-programs
+               '(svelte-ts-mode . ("svelteserver" "--stdio")))
+
+  ;; rass multiplexes ty (type checking) + ruff (linting/formatting)
+  (add-to-list 'eglot-server-programs
+               '((python-ts-mode python-mode) . ("rass" "--" "ty" "server" "--" "ruff" "server")))
+
+  ;; Pass per-server settings via initializationOptions
+  ;; rass strips the "rass" key before forwarding to each backend
+  (setq-default eglot-workspace-configuration
+                '(:rass (:ruff (:settings (:fixAll t
+                                                   :organizeImports t)))))
+
   (add-hook 'eglot-managed-mode-hook
             (lambda ()
-              ;; Show flymake diagnostics first.
               (setq eldoc-documentation-functions
                     (cons #'flymake-eldoc-function
                           (remove #'flymake-eldoc-function eldoc-documentation-functions)))
-              ;; Show all eldoc feedback.
-              (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
+              (setq eldoc-documentation-strategy #'eldoc-documentation-compose))))
 
-  )
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
@@ -50,8 +60,10 @@
 ;; Apply formatting for various languages
 (use-package apheleia
   :hook (prog-mode . apheleia-mode)
+  :config
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff-isort ruff))
   )
-
 
 (use-package turbo-log
   :ensure (:host github :repo "artawower/turbo-log.el")
@@ -191,7 +203,7 @@
 ;;         (python-mode . python-ts-mode)))
 
 ;; learn and use text-objects with treesit
-;; (setq treesit-font-lock-level 4)
+(setq treesit-font-lock-level 4)
 ;; treesit-font-lock-feature-list is a variable defined in ‘treesit.el’.
 
 (use-package combobulate
@@ -333,6 +345,29 @@
     ("TAB" origami-recursively-toggle-node "cycle")
     ("q" nil "quit"))
   )
+
+(use-package plantuml-mode
+  :ensure t                      ; install from MELPA if missing
+  :mode ("\\.puml\\'"            ; open .puml files in plantuml-mode
+         "\\.plantuml\\'")
+  :config
+  ;; How to run PlantUML: 'jar or 'executable
+  (setq plantuml-default-exec-mode 'jar)
+
+  ;; Path to the PlantUML jar (customise!)
+  (setq plantuml-jar-path (expand-file-name "~/.local/bin/plantuml.jar"))
+
+  ;; If you have a native executable, use these settings instead:
+  ;; (setq plantuml-default-exec-mode 'executable)
+  ;; (setq plantuml-executable-path "/usr/local/bin/plantuml") ; or wherever it is
+  ;; (setq plantuml-executable-args '("-pipe"))                ; usually needed for executables
+
+  ;; Default output format: "png", "svg" or "txt" (ASCII art)
+  (setq plantuml-output-type "svg")
+
+  ;; Optional: automatic indentation and completion
+  (add-hook 'plantuml-mode-hook #'plantuml-indent-mode))
+
 
 
 (provide 'init-programming)

@@ -51,6 +51,7 @@
 (setq hscroll-margin 0)
 (setq scroll-conservatively 10000)
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+(pixel-scroll-precision-mode 1)
 ;; }}
 
 (setq browse-url-browser-function

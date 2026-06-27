@@ -85,8 +85,14 @@
 ;;   (set-face-attribute 'region nil :background "gold"))
 
 ;; Ayu original looks better (support more formats) then in doom package
-(use-package ayu-theme
-  :config (load-theme 'ayu-light t))
+;; (use-package ayu-theme
+;;   :config (load-theme 'ayu-light t))
+(use-package catppuccin-theme
+  :init
+  (setq catppuccin-flavor 'latte)
+  :config
+  (load-theme 'catppuccin :no-confirm)
+  )
 
 ;; (use-package nano-theme
 ;;   :straight (nano-theme :host github :type git
@@ -97,14 +103,14 @@
 ;; If you search for something new - check this https://beebom.com/best-visual-studio-code-themes/
 ;; https://levelup.gitconnected.com/10-pretty-light-themes-for-vs-code-80dbf6405f39
 ;; Doom-themes have a lot integrated themes check it's content first
-(use-package doom-themes
-  :after ivy
-  :config
-  ;; Global settings (defaults)
-  ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-  ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-ayu-light t)
-  )
+;; (use-package doom-themes
+;;   :after ivy
+;;   :config
+;;   ;; Global settings (defaults)
+;;   ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+;;   ;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;;   ;; (load-theme 'doom-ayu-light t)
+;;   )
 ;; (load-theme 'base16-atelier-lakeside-light t)
 ;; (set-face-attribute 'region nil :background "gold"))
 
@@ -117,8 +123,8 @@
 
 
 ;; You need to install font "sudo pacman -S ttf-jetbrains-mono-nerd"
-;; (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-10"))
-(add-to-list 'default-frame-alist '(font . "MonoLisa-10.5"))
+;; (add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-11"))
+(add-to-list 'default-frame-alist '(font . "MonoLisa-11"))
 ;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
 
 (defhydra hydra-zoom ()

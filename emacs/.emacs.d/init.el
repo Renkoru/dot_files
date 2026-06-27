@@ -98,6 +98,7 @@
 ;; (setq exec-path (append exec-path '("/home/mrurenko/.asdf/shims")))
 (setenv "PATH" (concat "/home/mrurenko/.local/share/mise/shims" path-separator (getenv "PATH")))
 (setq exec-path (append exec-path '("/home/mrurenko/.local/share/mise/shims")))
+(setq exec-path (append exec-path '("/home/mrurenko/.local/bin")))
 (setq-default eshell-path-env (getenv "PATH"))
 ;; (use-package exec-path-from-shell
 ;;   ;; :init
@@ -156,6 +157,12 @@
 ;;     (add-to-list 'mini-frame-ignore-commands 'consult-yank-pop)
 ;;   )
 
+(use-package doom-modeline
+  :init
+  (setq nerd-icons-scale-factor 1.0)
+  (doom-modeline-mode 1)
+  )
+
 ;; --------------------------------- Include lisp blocks
 (require 'init-javascript)
 (require 'init-evil-mlang) ; should go after evil settigns
@@ -164,7 +171,7 @@
                                         ; (require 'init-modeline)
 (require 'init-yasnippet) ; should be initialized before auto-complete
                                         ; (require 'init-custom-functions)
-                                        ; (require 'init-spellcheck)
+(require 'init-spellcheck)
 ;; (require 'init-flyspell)
 ;; (require 'init-lsp)
 
@@ -352,20 +359,30 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("f0eb51d80f73b247eb03ab216f94e9f86177863fb7e48b44aacaddbfe3357cf1" "ab058aa22bdaf17b5d8a9e21632a62c8966728ae10ef8fd07e95637e9cdf7a7b" "c0a0c2f40c110b5b212eb4f2dad6ac9cac07eb70380631151fa75556b0100063" "a44e2d1636a0114c5e407a748841f6723ed442dc3a0ed086542dc71b92a87aee" "8d7b028e7b7843ae00498f68fad28f3c6258eda0650fe7e17bfb017d51d0e2a2" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" default))
+   '("aec7b55f2a13307a55517fdf08438863d694550565dee23181d2ebd973ebd6b8"
+     "7c3d62a64bafb2cc95cd2de70f7e4446de85e40098ad314ba2291fc07501b70c"
+     "b99ff6bfa13f0273ff8d0d0fd17cc44fab71dfdc293c7a8528280e690f084ef0"
+     "e184d8607cc9933f2ba8e180699365bdf8b6f311834a9e15c71947b38be0caa3"
+     "f0eb51d80f73b247eb03ab216f94e9f86177863fb7e48b44aacaddbfe3357cf1"
+     "ab058aa22bdaf17b5d8a9e21632a62c8966728ae10ef8fd07e95637e9cdf7a7b"
+     "c0a0c2f40c110b5b212eb4f2dad6ac9cac07eb70380631151fa75556b0100063"
+     "a44e2d1636a0114c5e407a748841f6723ed442dc3a0ed086542dc71b92a87aee"
+     "8d7b028e7b7843ae00498f68fad28f3c6258eda0650fe7e17bfb017d51d0e2a2"
+     "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4"
+     default))
  '(git-gutter:hide-gutter t)
+ '(lambda-line-position 'top nil nil "Customized with use-package lambda-line")
  '(mini-frame-show-parameters '((top . 0.3) (width . 0.6) (left . 0.6)))
  '(org-agenda-files
-   '("/home/mrurenko/projects/diary/notes/2021/09.org" "/home/mrurenko/projects/diary/notes/2018/05.org"))
+   '("/home/mrurenko/projects/diary/notes/2021/09.org"
+     "/home/mrurenko/projects/diary/notes/2018/05.org"))
  '(safe-local-variable-values
    '((mr/commit-prefix-surrounds "" ": ")
      (mr/commit-should-skip-branch-type)
      (mr/commit-should-skip-branch-type . "no")
      (mr/commit-prefix-separator . "")
-     (mr/commit-prefix-surrounds "" " ")
-     (mr/commit-pre-prefix . "")
-     (mr/commit-prefix-surrounds quote
-                                 ("" " ")))))
+     (mr/commit-prefix-surrounds "" " ") (mr/commit-pre-prefix . "")
+     (mr/commit-prefix-surrounds quote ("" " ")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

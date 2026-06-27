@@ -1,53 +1,53 @@
 * Base system
-1. xorg (do not install it all?)
-   - xorg-xev | see what keys is pressed
-2. yay
-3. i3          [yay -S i3-gaps-next-git]
-   link i3 config
-4. i3-volume
-5. Polybar
-   link polybar config
-6. fish + (fisher? do we really need this?)
-7. xbindkeys
-8. git
-9. ly-git      (Display manager)
-10. fzf
-11. neovim
-12. xclip (usefull for neovim)
-13. alacritty
-14. emacs
-15. feh
-16. sxiv
-17. imagemagick
-18. maim
-19. htop
-20. openssh
-21. nodejs
-22. ranger
-23. ripgrep
-24. alsa-utils
-25. pulseaudio
-26. https://github.com/christophgysin/pasystray || pasystray
-27. ncpamixer
-28. thunar https://wiki.archlinux.org/index.php/thunar
-29. poetry
-30. qBittorrent
-31. zathura
-32. docker
-33. docker-compose
-34. vlc
-35. node + nvm + npm
-36. google-chrome | yay
-37. pyenv
-38. libnotify (notifications)
-39. dunst (notifications)
-40. artha (english dictionary)
-41. https://github.com/eza-community/eza
-42. zoxide
-43. https://github.com/muesli/duf
-44. https://github.com/sharkdp/bat
-45. direnv
-46. inotify-tools
+1. xorg-xwayland
+2. paru (AUR helper)
+3. hyprland
+4. hyprlauncher
+5. git
+6. ly (display manager)
+7. pipewire pipewire-pulse pipewire-alsa wireplumber pwvucontrol
+8. brightnessctl blueman network-manager-applet
+9. inotify-tools waybar
+10. nushell starship
+11. ghostty
+12. grim slurp (for screenshots)
+13. thunar (file explorer)
+14. wl-clipboard
+15. google-chrome (paru)
+16. fzf
+17. neovim
+18. mako jq
+19. emacs-wayland
+20. feh
+21. sxiv
+22. imagemagick
+23. maim
+24. htop
+25. openssh
+26. nodejs
+27. ranger
+28. ripgrep
+29. alsa-utils
+30. pulseaudio
+31. https://github.com/christophgysin/pasystray || pasystray
+32. ncpamixer
+33. thunar https://wiki.archlinux.org/index.php/thunar
+34. poetry
+35. qBittorrent
+36. zathura
+37. docker
+38. docker-compose
+39. vlc
+40. node + nvm + npm
+41. pyenv
+42. libnotify (notifications)
+43. dunst (notifications)
+44. artha (english dictionary)
+45. https://github.com/eza-community/eza
+46. zoxide
+47. https://github.com/muesli/duf
+48. https://github.com/sharkdp/bat
+49. direnv
 * Troubleshooting
 ** GPU drivers | xserver fails
 Create such file
@@ -86,6 +86,7 @@ Remember about /--type luks1/ for GRUB compilance
 * Messangers
 1. Skype
 2. Slack
+3. telegram
 
 * Packages to look at
 - maybe (Track program disk usage)

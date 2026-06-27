@@ -1,87 +1,228 @@
-{
-  "layer": "top",
-  "position": "right",
-  "width": 20,
-  "modules-left": ["hyprland/language", "clock#day", "clock#date"],
-  "modules-center": ["clock#main", "hyprland/workspaces"],
-  "modules-right": ["network", "temperature", "battery", "cpu", "memory", "tray", "wireplumber"],
-  "battery": {
-    "format": "{capacity}\n{icon}",
-    "format-icons": ["", "", "", "", ""],
-    "states": {
-      "critical": 15,
-      "low": 40,
-      "normal": 60
+[
+  {
+    "output": "DP-1",
+    "position": "left",
+    "layer": "top",
+    "width": 20,
+    "modules-left": [
+      "hyprland/language",
+      "clock#day",
+      "clock#date"
+    ],
+    "modules-center": [
+      "clock#main",
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      "network",
+      "temperature",
+      "battery",
+      "cpu",
+      "memory",
+      "tray",
+      "wireplumber"
+    ],
+    "battery": {
+      "format": "{capacity}\n{icon}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "states": {
+        "critical": 15,
+        "low": 40,
+        "normal": 60
+      }
+    },
+    "clock#day": {
+      "format": "{:%a}",
+      "tooltip": false
+    },
+    "clock#main": {
+      "format": "{:%H\n---\n%M}"
+    },
+    "clock#date": {
+      "format": "{:%m\n ~\n%d}",
+      "tooltip": false
+    },
+    "cpu": {
+      "interval": 5,
+      "format": "{usage}%\r ",
+      "states": {
+        "normal": 15,
+        "warning": 50,
+        "critical": 90
+      }
+    },
+    "memory": {
+      "interval": 30,
+      "format": "{percentage}%\r ",
+      "states": {
+        "normal": 50,
+        "warning": 70,
+        "critical": 90
+      }
+    },
+    "temperature": {
+      "format": "{temperatureC}\r°C",
+      "critical-threshold": 80
+    },
+    "hyprland/language": {
+      "format-en": "us",
+      "format-ru": "ru"
+    },
+    "network": {
+      "interface": "wlp3s0",
+      "format": "{ifname}",
+      "format-wifi": "",
+      "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+      "format-disconnected": "X",
+      "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format-disconnected": "Disconnected",
+      "max-length": 50
+    },
+    "wireplumber": {
+      "format": "{icon} {volume}",
+      "format-muted": "󰝟",
+      "on-click": "pwvucontrol",
+      "format-icons": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "󰊯",
+        "2": "",
+        "3": "󰼁",
+        "4": "󰇍",
+        "5": "󱅎",
+        "6": "󰇏",
+        "7": "󱂎",
+        "8": "󰲮",
+        "9": "󰻞",
+        "10": "󰿭"
+      }
     }
   },
-	"clock#day": {
-		"format": "{:%a}",
-		"tooltip": false
-	},
-	"clock#main": {
-    "format": "{:%H\n---\n%M}"
-	},
-	"clock#date": {
-		"format": "{:%m\n ~\n%d}",
-		"tooltip": false
-	},
-  "cpu": {
-    "interval": 5,
-    "format": "{usage}%\r ",
-    "states": {
-      "normal": 15,
-      "warning": 50,
-      "critical": 90
-    }
-  },
-  "memory": {
-    "interval": 30,
-    "format": "{percentage}%\r ",
-    "states": {
-      "normal": 50,
-      "warning": 70,
-      "critical": 90
-    }
-  },
-  "temperature": {
-    "format": "{temperatureC}\r°C",
-    "critical-threshold": 80
-  },
-  "hyprland/language": {
-    "format-en": "us",
-    "format-ru": "ru"
-  },
-  "network": {
-    "interface": "wlp3s0",
-    "format": "{ifname}",
-    "format-wifi": "",
-    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "X",
-    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
-  },
-  "wireplumber": {
-    "format": "{icon} {volume}",
-    "format-muted": "󰝟",
-    "on-click": "pwvucontrol",
-    "format-icons": ["", "", ""]
-  },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "1": "󰊯",
-      "2": "",
-      "3": "󰼁",
-      "4": "󰇍",
-      "5": "󱅎",
-      "6": "󰇏",
-      "7": "󱂎",
-      "8": "󰲮",
-      "9": "󰻞",
-      "10": "󰿭"
+  {
+    "output": "eDP-1",
+    "layer": "top",
+    "position": "right",
+    "width": 20,
+    "modules-left": [
+      "hyprland/language",
+      "clock#day",
+      "clock#date"
+    ],
+    "modules-center": [
+      "clock#main",
+      "hyprland/workspaces"
+    ],
+    "modules-right": [
+      "network",
+      "temperature",
+      "battery",
+      "cpu",
+      "memory",
+      "tray",
+      "wireplumber"
+    ],
+    "battery": {
+      "format": "{capacity}\n{icon}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "states": {
+        "critical": 15,
+        "low": 40,
+        "normal": 60
+      }
+    },
+    "clock#day": {
+      "format": "{:%a}",
+      "tooltip": false
+    },
+    "clock#main": {
+      "format": "{:%H\n---\n%M}"
+    },
+    "clock#date": {
+      "format": "{:%m\n ~\n%d}",
+      "tooltip": false
+    },
+    "cpu": {
+      "interval": 5,
+      "format": "{usage}%\r ",
+      "states": {
+        "normal": 15,
+        "warning": 50,
+        "critical": 90
+      }
+    },
+    "memory": {
+      "interval": 30,
+      "format": "{percentage}%\r ",
+      "states": {
+        "normal": 50,
+        "warning": 70,
+        "critical": 90
+      }
+    },
+    "temperature": {
+      "format": "{temperatureC}\r°C",
+      "critical-threshold": 80
+    },
+    "hyprland/language": {
+      "format-en": "us",
+      "format-ru": "ru"
+    },
+    "network": {
+      "interface": "wlp3s0",
+      "format": "{ifname}",
+      "format-wifi": "",
+      "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+      "format-disconnected": "X",
+      "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format-disconnected": "Disconnected",
+      "max-length": 50
+    },
+    "wireplumber": {
+      "format": "{icon} {volume}",
+      "format-muted": "󰝟",
+      "on-click": "pwvucontrol",
+      "format-icons": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "󰊯",
+        "2": "",
+        "3": "󰼁",
+        "4": "󰇍",
+        "5": "󱅎",
+        "6": "󰇏",
+        "7": "󱂎",
+        "8": "󰲮",
+        "9": "󰻞",
+        "10": "󰿭"
+      }
     }
   }
-}
+]

@@ -13,9 +13,10 @@
 
 ;; (setq mr-get-kblayout-command "xkb-switch -p | tr -d '\n'")
 ;; from command hyprctl devices -j
+(setq keyboard-device "aone-varmilo-keyboard")
 ;; (setq keyboard-device "aone-varmilo-keyboard-2")
 ;; (setq keyboard-device "hid-keyboard-hid-keyboard")
-(setq keyboard-device "at-translated-set-2-keyboard")
+;; (setq keyboard-device "at-translated-set-2-keyboard")
 
 ;; (setq keyboard-device "at-translated-set-2-keyboard")
 ;; (setq keyboard-device "at-translated-set-2-keyboard")

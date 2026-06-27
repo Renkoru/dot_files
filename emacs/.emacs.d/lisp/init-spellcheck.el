@@ -2,13 +2,15 @@
 ;;; Commentary:
 ;;
 ;; Required system package:
-;; * aspell, aspell-en
+;; * aspell, aspell-en, aspell-ru
 ;;
 ;;; Code:
 
 ;; system packages should be installed: enchant, pkgconf
+(use-package compat)
 (use-package jinx
   :after vertico
+  :requires compat
   :hook (emacs-startup . global-jinx-mode)
   :custom
   (jinx-languages "en_US ru")
