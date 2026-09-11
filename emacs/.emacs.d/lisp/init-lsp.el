@@ -14,7 +14,7 @@
   (add-hook 'python-mode-hook 'lsp)
   (add-hook 'js-mode-hook 'lsp)
   (add-hook 'typescript-mode-hook 'lsp)
-  (my-space-leader "cr" 'lsp-rename))
+  (define-key my-meow-leader-map (kbd "p c r") 'lsp-rename))
 
 (use-package lsp-ui
   :requires lsp-mode flycheck

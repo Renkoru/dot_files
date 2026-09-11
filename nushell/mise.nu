@@ -5,7 +5,7 @@ def "parse vars" [] {
 def --env "update-env" [] {
   for $var in $in {
     if $var.op == "set" {
-      if ($var.name | str upcase) == 'PATH' {
+      if ($var.name | str uppercase) == 'PATH' {
         $env.PATH = ($var.value | split row (char esep))
       } else {
         load-env {($var.name): $var.value}
@@ -17,7 +17,10 @@ def --env "update-env" [] {
 }
 export-env {
   
-  '' | parse vars | update-env
+  'set,PATH,/home/mrurenko/.local/bin:/home/mrurenko/.config/carapace/bin:/home/mrurenko/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/mrurenko/go/bin:/home/mrurenko/.local/bin
+hide,MISE_SHELL,
+hide,__MISE_DIFF,
+hide,__MISE_DIFF,' | parse vars | update-env
   $env.MISE_SHELL = "nu"
   let mise_hook = {
     condition: { "MISE_SHELL" in $env }
@@ -38,21 +41,20 @@ export def --env --wrapped main [command?: string, --help, ...rest: string] {
   let commands = ["deactivate", "shell", "sh"]
 
   if ($command == null) {
-    ^"/usr/bin/mise"
+    ^"/home/mrurenko/.local/bin/mise"
   } else if ($command == "activate") {
     $env.MISE_SHELL = "nu"
   } else if ($command in $commands) {
-    ^"/usr/bin/mise" $command ...$rest
+    ^"/home/mrurenko/.local/bin/mise" $command ...$rest
     | parse vars
     | update-env
   } else {
-    ^"/usr/bin/mise" $command ...$rest
+    ^"/home/mrurenko/.local/bin/mise" $command ...$rest
   }
 }
 
 def --env mise_hook [] {
-  ^"/usr/bin/mise" hook-env -s nu
+  ^"/home/mrurenko/.local/bin/mise" hook-env -s nu
     | parse vars
     | update-env
 }
-

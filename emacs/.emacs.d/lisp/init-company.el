@@ -4,7 +4,8 @@
 
 
 (use-package company
-  :general (:states '(insert) "M-/" 'company-complete-common)
+  :bind (:map meow-insert-state-keymap
+              ("M-/" . company-complete-common))
   :config
   (global-company-mode)
 

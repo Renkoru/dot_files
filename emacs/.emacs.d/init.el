@@ -2,68 +2,87 @@
 ;;; Commentary:
 
 ;;; Code:
-(defvar elpaca-installer-version 0.11)
-(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
-(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
-(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
-(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1 :inherit ignore
-                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                              :build (:not elpaca--activate-package)))
-(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
-  (add-to-list 'load-path (if (file-exists-p build) build repo))
-  (unless (file-exists-p repo)
-    (make-directory repo t)
-    (when (<= emacs-major-version 28) (require 'subr-x))
-    (condition-case-unless-debug err
-        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-                                                  ,@(when-let* ((depth (plist-get order :depth)))
-                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
-                                                  ,(plist-get order :repo) ,repo))))
-                  ((zerop (call-process "git" nil buffer t "checkout"
-                                        (or (plist-get order :ref) "--"))))
-                  (emacs (concat invocation-directory invocation-name))
-                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-                  ((require 'elpaca))
-                  ((elpaca-generate-autoloads "elpaca" repo)))
-            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-          (error "%s" (with-current-buffer buffer (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-  (unless (require 'elpaca-autoloads nil t)
-    (require 'elpaca)
-    (elpaca-generate-autoloads "elpaca" repo)
-    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
-(add-hook 'after-init-hook #'elpaca-process-queues)
-(elpaca `(,@elpaca-order))
 
-;; additional settings
-(elpaca elpaca-use-package
-  ;; Enable use-package :ensure support for Elpaca.
-  (elpaca-use-package-mode))
+;; ── Package.el + package-vc setup ──────────────────────────────
+(require 'package)
 
-;; initial setup ---------------------------------------------------------------------------------------------
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
+
+;; Ensure compat ≥ 31 is available BEFORE package-initialize.
+;; Emacs 30 ships compat 30 as built-in, but modern packages (corfu,
+;; etc.) require ≥ 31.  Installing from git avoids an autoloads-generation
+;; bug in the GNU ELPA tar.  Must happen before package-initialize so the
+;; built-in compat doesn't shadow the new one during installation.
+(require 'package-vc nil t)
+(require 'cl-lib)
+(cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest _) t))
+          ((symbol-function 'y-or-n-p) (lambda (&rest _) t)))
+  (unless (package-installed-p 'compat '(31))
+    (package-vc-install "https://github.com/emacs-compat/compat")))
+
+(package-initialize)
+
+;; Refresh package archives on first run (idempotent)
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; ── VC (Git-sourced) packages ──────────────────────────────────
+;; Pre-install key transitive dependencies (compat ≥ 31 already installed above).
+(dolist (pkg '(s transient markdown-mode magit))
+  (unless (package-installed-p pkg)
+    (condition-case nil (package-install pkg) (error nil))))
+
+(setq package-vc-selected-packages
+      '((nushell-ts-mode :url "https://github.com/herbertjones/nushell-ts-mode")
+        (turbo-log :url "https://github.com/artawower/turbo-log.el")
+        (combobulate :url "https://github.com/mickeynp/combobulate")
+        (aider :url "https://github.com/tninja/aider.el")
+        (outline-indent :url "https://github.com/jamescherti/outline-indent.el")
+        (svelte-ts-mode :url "https://github.com/leafOfTree/svelte-ts-mode")
+        (jsdoc :url "https://github.com/isamert/jsdoc.el")
+        (nerd-icons-dired :url "https://github.com/rainstormstudio/nerd-icons-dired")))
+
+;; Install any missing VC packages (idempotent — fast on subsequent starts).
+(cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest _) t))
+          ((symbol-function 'y-or-n-p) (lambda (&rest _) t)))
+  (package-vc-install-selected-packages))
+
+;; Ensure use-package auto-installs MELPA/ELPA packages.
+;; Must require use-package explicitly, otherwise use-package-always-ensure
+;; has no effect until the first explicit :ensure triggers the autoload.
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; Add local lisp directory to load-path
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; End of Elpaca setup ---------------------------------------------------------------------------------------------
-
-(use-package general
-  :ensure (:wait t)
-  :demand
-  :config
-  (general-evil-setup)
-  (general-create-definer my-general-g-definer :states 'normal :prefix "g")
-  (general-create-definer my-space-leader :states 'normal :prefix "<SPC>")
-                                        ; (general-create-definer my-crux-text-definer :states '(normal visual) :prefix "]")
-  )
-                                        ;
+;; ── Repair function: reinstall any packages that failed ──────
+;; If a package install fails (network glitch, etc.), use-package
+;; logs "Cannot load X" and continues.  Run this to batch-repair:
+;;   M-x mr/reinstall-missing-packages
+(defun mr/reinstall-missing-packages ()
+  "Reinstall any declared packages that are missing (use after errors)."
+  (interactive)
+  (let ((missing nil))
+    (dolist (pkg package-selected-packages)
+      (unless (package-installed-p pkg)
+        (push pkg missing)))
+    (if missing
+        (progn
+          (message "Installing %d missing packages: %s"
+                   (length missing) missing)
+          (dolist (pkg (nreverse missing))
+            (condition-case err
+                (package-install pkg)
+              (error (message "Failed: %s — %s" pkg (error-message-string err))))))
+      (message "All %d declared packages are installed."
+               (length package-selected-packages)))))
+;; ── End of Package setup ──────────────────────────────────────
 
 (use-package projectile
-  :ensure (:wait t)
   :init
   (setq projectile-project-search-path '("~/projects/"))
   :config
@@ -74,22 +93,25 @@
   ;; (global-set-key (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
-;; ---------------------------------------------------------------------------------------------
-
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
-
 ;; --------------------------------- Include lisp blocks
 (use-package crux)
 (require 'init-emacs)
-(require 'init-corfu)
-(require 'init-evil)
-(require 'init-vertico-stack)
-(require 'init-hydra)
-(require 'init-vcs)
-(require 'init-appearance)
-
+;; [meow-migration] init-meow must load before packages that bind to meow keymaps
+(require 'init-meow)
+(require 'init-meow-mlang)
 (require 'init-internal-apps)
+;; (require 'init-evil)  -- commented out, migrated to meow
+(require 'init-corfu)
+(require 'init-vertico-stack)
+(require 'init-appearance)
+(require 'init-my-hydra)
+(require 'init-vcs)
+
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'magit-mode)
+              (meow-mode -1)))
+          100)
 
 (require 'init-org)
 (require 'init-avy)
@@ -100,19 +122,10 @@
 (setq exec-path (append exec-path '("/home/mrurenko/.local/share/mise/shims")))
 (setq exec-path (append exec-path '("/home/mrurenko/.local/bin")))
 (setq-default eshell-path-env (getenv "PATH"))
-;; (use-package exec-path-from-shell
-;;   ;; :init
-;;   ;; (setq exec-path-from-shell-debug t)
-;;   :config
-;;   ;; (customize-set-variable 'exec-path-from-shell-shell-name "/bin/bash")
-;;   (exec-path-from-shell-initialize)
-
-;;   ;; ssh-agent socket settings
-;;   ;; (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
-;;   )
+;; Removed: exec-path-from-shell (replaced by mise path setup below).
 
 ;; --------------------------------- System packages
-;; (use-package realgud) ;; debugging, try it sometime. (Hard with docker env)
+;; Removed: realgud (debugging, hard with docker env).
 (use-package smex) ;; ranking and remembering M-x
 (use-package vlf) ;; open big files by chunks
 (use-package s) ;; advanced strings manupulations
@@ -121,41 +134,20 @@
 ;; Note: you need manually activate evil-normal mode to make it work there
 (use-package wgrep)
 
-
-;; TODO: verify it is woking
-(use-package dumb-jump
-  :general
-  ("M-d" 'dumb-jump-go)
-  ("M-D" 'dumb-jump-back)
-  ;; :config
-  ;; (setq dumb-jump-selector 'ivy)
-  )
+;; Removed: dumb-jump config (was unstable with meow, kept for future investigation).
 
 (use-package undo-fu
-  :after evil
+  ;; [meow-migration] :after evil → :after meow, keymap changed
+  :after meow
   :config
-  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
-  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+  ;; (define-key meow-normal-state-keymap "u" 'undo-fu-only-undo)
+  (define-key meow-normal-state-keymap "\C-r" 'undo-fu-only-redo)
+  ;; Original evil bindings (commented out):
+  ;; (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  ;; (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo)
+  )
 
-;; Not working properly. Sometimes misses the focus, sometime hides the content...
-;; (use-package mini-frame
-;;   :config
-;;   (mini-frame-mode +1)
-;;   (setq mini-frame-resize t)
-;;   (setq mini-frame-show-parameters `((left . 0.6)
-;;                                      (top . 0.3)
-;;                                      (width . 0.55)
-;;                                      (height . 1)
-;;                                      (internal-border-width . 0)
-;;                                      (left-fringe . 10)
-;;                                      (right-fringe . 10)
-;;                                      ;; (font . ,(font-spec :family "SF Mono" :size 17 :weight 'medium))
-;;                                      ))
-;;     (add-to-list 'mini-frame-ignore-commands 'consult-ripgrep)
-;;     (add-to-list 'mini-frame-ignore-commands 'consult-line)
-;;     (add-to-list 'mini-frame-ignore-commands 'consult-imenu)
-;;     (add-to-list 'mini-frame-ignore-commands 'consult-yank-pop)
-;;   )
+;; Removed: mini-frame config (was unstable — missed focus, hid content).
 
 (use-package doom-modeline
   :init
@@ -165,7 +157,8 @@
 
 ;; --------------------------------- Include lisp blocks
 (require 'init-javascript)
-(require 'init-evil-mlang) ; should go after evil settigns
+;; [meow-migration] init-evil-mlang.el replaced by init-meow-mlang.el
+;; (require 'init-evil-mlang)  -- commented out, migrated to meow
 ;; (require 'init-ivy)
 ;; (require 'init-selectrum-stack)
                                         ; (require 'init-modeline)
@@ -173,8 +166,7 @@
                                         ; (require 'init-custom-functions)
 (require 'init-spellcheck)
 ;; (require 'init-flyspell)
-;; (require 'init-lsp)
-
+;; Removed: lsp-mode config (migrated to eglot).
 
 ;; --------------------------------- Useful stuff
 ;; Keep same configs for all team (all editors)
@@ -206,8 +198,7 @@
         beacon-blink-when-point-moves t
         beacon-blink-when-window-scrolls t))
 
-(use-package expand-region
-  :general (my-space-leader "e" 'er/expand-region))
+(use-package expand-region)
 
 (require 'init-flycheck)
 ;; (require 'init-company)
@@ -221,13 +212,7 @@
 (use-package string-inflection
   :ensure t) ; conversion of variable name formats
 ;; Replaced by treesitter?
-;; (use-package json-mode
-;;   :config
-;;   (add-hook 'json-mode-hook
-;;             (lambda ()
-;;               (make-local-variable 'js-indent-level)
-;;               (setq js-indent-level 2)))
-;;   )
+;; Removed: json-mode (replaced by treesitter).
 (use-package fish-mode)
 (use-package markdown-mode)
 
@@ -240,10 +225,7 @@
   :after yaml-mode)
 
 (use-package nginx-mode)
-;; (use-package company-nginx
-;;   :after nginx-mode
-;;   :config
-;;   (add-hook 'nginx-mode-hook #'company-nginx-keywords))
+;; Removed: company-nginx (company replaced by corfu).
 
 (require 'init-emmet)
 ;; (require 'init-web) ; should be before javascript init
@@ -251,31 +233,13 @@
 ;; !! Cause some freezes in some cases: org, tramp?
 
 (require 'init-python)
-;; (require 'init-elm) ; Not using it
-
-;; Elixir Tooling Integration Into Emacs
-;; (use-package alchemist)
-
-;; (use-package nyan-mode) ; Not using it?
-
-;; (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
-;; (add-to-list 'auto-mode-alist '("\\.gitconfig$" . conf-mode))
-
-                                        ; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
-;; (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-;; (add-to-list 'auto-mode-alist '("\\.mdown$" . markdown-mode))
-;; (add-hook 'markdown-mode-hook
-;;           (lambda ()
-;;             (visual-line-mode t)
-;;             (flyspell-mode t)))
-
-;; (setq markdown-command "pandoc --smart -f markdown -t html")
-
-;; (use-package htmlize)
-;; (use-package graphql-mode)
+;; Removed: init-elm (not using Elm).
+;; Removed: alchemist (Elixir — not using).
+;; Removed: nyan-mode (novelty).
+;; Removed: auto-mode-alist entries for zsh, gitconfig, markdown (unnecessary).
+;; Removed: htmlize, graphql-mode (unused).
 (use-package jenkinsfile-mode)
-;; (straight-use-package
-;;  '(jenkinsfile-mode :type git :host github :repo "john2x/jenkinsfile-mode"))
+;; Removed: old straight-use-package for jenkinsfile-mode (now on MELPA).
 (use-package go-mode
   :after eglot
   :mode (("\\.go?\\'" . go-ts-mode)
@@ -288,22 +252,12 @@
   :init
   (setq-default tab-width 2)
   (setq-default go-ts-mode-indent-offset 2)
-
-  ;; :config
-
-  ;; (add-hook 'go-ts-mode-hook 'eglot-ensure)
-  ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
-
   )
-;; (add-hook 'go-mode-hook #'lsp)
-;; (add-hook 'go-mode-hook 'lsp-deferred)
-;; Go tools https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
-;; to check https://sandyuraz.com/blogs/go-emacs/
-;; to check https://geeksocket.in/posts/emacs-lsp-go/
+;; Removed: go-mode lsp hooks (migrated to eglot).
 
 (use-package nushell-ts-mode
   :mode (("\\.nu?\\'" . nushell-ts-mode))
-  :ensure (:host github :repo "herbertjones/nushell-ts-mode"))
+  :ensure nil)
 ;; :config
 ;; (require 'nushell-ts-babel)
 ;; (defun hfj/nushell/mode-hook ()
@@ -376,6 +330,33 @@
  '(org-agenda-files
    '("/home/mrurenko/projects/diary/notes/2021/09.org"
      "/home/mrurenko/projects/diary/notes/2018/05.org"))
+ '(package-selected-packages
+   '(ace-window aider apheleia auto-yasnippet beacon better-jumper cape
+                catppuccin-theme combobulate corfu crux dirvish
+                dockerfile-mode doom-modeline embark-consult embrace
+                emmet-mode evil-nerd-commenter fish-mode flycheck
+                flymake-eslint git-gutter git-timemachine go-mode gt
+                highlight-parentheses hydra jenkinsfile-mode jinx
+                jsdoc jtsx kind-icon ligature marginalia meow
+                nerd-icons-dired nerd-icons-ibuffer nginx-mode
+                nushell-ts-mode orderless org-journal outline-indent
+                plantuml-mode projectile rainbow-delimiters
+                rainbow-mode repeat-fu rjsx-mode smex sphinx-doc
+                string-inflection svelte-ts-mode symbol-overlay
+                tintin-mode turbo-log undo-fu uv-mode vertico vlf
+                vue-mode wgrep writeroom-mode yaml-pro))
+ '(package-vc-selected-packages
+   '((svelte-ts-mode :url "https://github.com/leafOfTree/svelte-ts-mode")
+     (combobulate :url "https://github.com/mickeynp/combobulate")
+     (turbo-log :url "https://github.com/artawower/turbo-log.el")
+     (nushell-ts-mode :url
+                      "https://github.com/herbertjones/nushell-ts-mode")
+     (aider :url "https://github.com/tninja/aider.el")
+     (outline-indent :url
+                     "https://github.com/jamescherti/outline-indent.el")
+     (jsdoc :url "https://github.com/isamert/jsdoc.el")
+     (nerd-icons-dired :url
+                       "https://github.com/rainstormstudio/nerd-icons-dired")))
  '(safe-local-variable-values
    '((mr/commit-prefix-surrounds "" ": ")
      (mr/commit-should-skip-branch-type)
@@ -383,12 +364,19 @@
      (mr/commit-prefix-separator . "")
      (mr/commit-prefix-surrounds "" " ") (mr/commit-pre-prefix . "")
      (mr/commit-prefix-surrounds quote ("" " ")))))
+;; [meow-migration] evil-goggles faces commented out (meow has no equivalent)
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(evil-goggles-delete-face ((t (:inherit 'smerge-refined-removed))))
+;;  '(evil-goggles-paste-face ((t (:inherit 'smerge-refined-added)))))
+
+(put 'narrow-to-region 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-goggles-delete-face ((t (:inherit 'smerge-refined-removed))))
- '(evil-goggles-paste-face ((t (:inherit 'smerge-refined-added)))))
-
-(put 'narrow-to-region 'disabled nil)
+ )

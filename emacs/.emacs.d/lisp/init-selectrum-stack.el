@@ -68,11 +68,9 @@
           embark-highlight-indicator))
 
   ;; If you want to add new actions to existing target
-  (general-def embark-file-maporg-mode-map
-    "r" 'dired-do-chmod)
-
-  (general-def embark-file-map
-    "R" 'mr/sudo-find-file)
+  ;; [meow-migration] general-def → define-key
+  (define-key embark-file-map (kbd "r") 'dired-do-chmod)
+  (define-key embark-file-map (kbd "R") 'mr/sudo-find-file)
 
   ;; (setq embark-prompter 'embark-completing-read-prompter)
 
@@ -99,16 +97,15 @@
   ;; Replace bindings. Lazily loaded due by `use-package'.
 
   ;; TODO: move not consult binding out of here
-  :general
-  (:states 'normal
-           "gl" 'consult-line
-           "go" 'consult-imenu)
-  (my-space-leader
-    "y" 'consult-yank-pop
-    "f" 'projectile-find-file
-    "a" 'consult-ripgrep)
-  (:keymaps 'global "C-q" 'consult-buffer)
-  (:keymaps 'global "M-f" 'find-file)
+  :bind (:map meow-normal-state-keymap
+              ("g l" . consult-line)
+              ("g o" . consult-imenu)
+         ("C-q" . consult-buffer)
+         ("M-f" . find-file))
+  :config
+  (define-key my-meow-leader-map (kbd "y") 'consult-yank-pop)
+  (define-key my-meow-leader-map (kbd "f") 'projectile-find-file)
+  (define-key my-meow-leader-map (kbd "a") 'consult-ripgrep)
 
   :config
   (setq consult-ripgrep-command
@@ -136,9 +133,9 @@
   (selectrum-prescient-mode +1)
   (prescient-persist-mode +1)
 
-  :general
-  (:keymaps 'global "C-c p p" 'projectile-switch-project)
-  (:keymaps 'selectrum-minibuffer-map "C-j" #'selectrum-insert-current-candidate)
+  :bind (("C-c p p" . projectile-switch-project)
+         :map selectrum-minibuffer-map
+         ("C-j" . selectrum-insert-current-candidate))
   ;; (:states 'normal
   ;;          "gl" 'counsel-grep-or-swiper
   ;;          "go" 'counsel-imenu)

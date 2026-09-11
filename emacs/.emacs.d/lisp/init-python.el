@@ -66,18 +66,21 @@
             (eglot-python-preset-rass-tools . (ty ruff))
             ))
 
-(use-package evil-python-movement
-  :after evil
-  :general
-  (:states 'normal :keymaps 'python-mode-map
-           "[[" 'evil-python-movement-lsb-lsb
-           "]]" 'evil-python-movement-rsb-rsb
-           "[m" 'evil-python-movement-lsb-m
-           "]m" 'evil-python-movement-rsb-m
-           "[M" 'evil-python-movement-lsb-M
-           "]M" 'evil-python-movement-rsb-M
-           "[]" 'evil-python-movement-lsb-rsb
-           "][" 'evil-python-movement-lsb-rsb))
+;; [meow-migration] evil-python-movement depends on evil.
+;; Python movement keys need custom meow implementation or use combobulate.
+;; Original (commented out):
+;; (use-package evil-python-movement
+;;   :after evil
+;;   :general
+;;   (:states 'normal :keymaps 'python-mode-map
+;;            "[[" 'evil-python-movement-lsb-lsb
+;;            "]]" 'evil-python-movement-rsb-rsb
+;;            "[m" 'evil-python-movement-lsb-m
+;;            "]m" 'evil-python-movement-rsb-m
+;;            "[M" 'evil-python-movement-lsb-M
+;;            "]M" 'evil-python-movement-rsb-M
+;;            "[]" 'evil-python-movement-lsb-rsb
+;;            "][" 'evil-python-movement-lsb-rsb))
 
 
 ;; (use-package lsp-pyright

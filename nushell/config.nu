@@ -78,7 +78,7 @@ let abbreviations = {
 $env.config = {
     keybindings: [
       {
-        name: abbr_menu
+        name: abbr_menu_en
         modifier: none
         keycode: enter
         mode: [emacs, vi_normal, vi_insert]
@@ -88,7 +88,7 @@ $env.config = {
         ]
       }
       {
-        name: abbr_menu
+        name: abbr_menu_sp
         modifier: none
         keycode: space
         mode: [emacs, vi_normal, vi_insert]
@@ -159,6 +159,30 @@ def suspendme [] {
     systemctl suspend
 }
 
+$env.GITLAB_ACCESS_TOKEN = 'y7mYareBde_-Vqo4pPVA'
+# $env.UV_KEYRING_PROVIDER = 'subprocess'
+# $env.SSL_CLIENT_CERT = '(tsh apps config gitlab -f cert).full'
+
+
+def tsh-bundle-cert [app: string] {
+    tsh app login $app
+    let cert = (tsh apps config $app -f cert | str trim)
+    let key  = (tsh apps config $app -f key  | str trim)
+    open --raw $cert | append (open --raw $key) | save -f $"($cert).full"
+    print $"Wrote ($cert).full"
+}
+
+use std/config *
+
+$env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+
+$env.config.hooks.env_change.PWD ++= [{||
+  if (which direnv | is-empty) {
+    return
+  }
+  direnv export json | from json | default {} | load-env
+  $env.PATH = do (env-conversions).path.from_string $env.PATH
+}]
 
 # end of file additions
 mkdir ($nu.data-dir | path join "vendor/autoload")

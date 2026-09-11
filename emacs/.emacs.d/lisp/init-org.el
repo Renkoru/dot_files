@@ -39,7 +39,6 @@
         ))
 
 (setq org-log-done 'time)
-(setq org-log-done 'note)
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "|" "DONE(d)" "CANCELED(c)")))
@@ -48,40 +47,8 @@
       '(("TODO" . org-warning) ("PROG" . "goldenrod")
         ("CANCELED" . (:foreground "blue" :weight bold))))
 
-
-
-; (defhydra hydra-org (:color pink)
-;   "
-;     _L_ right _H_ left
-;     _K_ up _J_ down
-;     _i_ insert heading
-;     _c_ shift right _C_ shift left
-;     _n_ next heading _p_ previous heading
-;     _l_ toggle link display
-;     _m_ set tag _a_ archive _t_ todo
-;     _f_ focus (narrow) _F_  unfocus (wider)
-;     "
-;   ("H" org-metaleft)
-;   ("L" org-metaright)
-;   ("K" org-metaup)
-;   ("J" org-metadown)
-;   ("i" org-insert-heading :exit nil)
-;   ("c" org-shiftright)
-;   ("C" org-shiftleft)
-;   ("l" org-toggle-link-display)
-;   ("m" org-set-tags-command :exit t)
-;   ("a" org-archive-subtree)
-;   ("t" org-todo)
-;   ("n" org-next-visible-heading)
-;   ("p" org-previous-visible-heading)
-;   ("f" org-narrow-to-subtree)
-;   ("F" org-toggle-narrow-to-subtree)
-;   ("q" nil "quit"))
-;
-;
-; (my-space-leader
-;   "z" 'org-capture
-;   "o" 'hydra-org/body)
+;; Removed: large commented-out hydra-org block (org navigation hydra).
+;; Kept for reference in git history; uncomment if needed.
 
 (provide 'init-org)
 ;;; init-org.el ends here

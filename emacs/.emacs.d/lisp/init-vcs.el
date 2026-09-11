@@ -22,9 +22,8 @@
 (use-package transient)
 
 (use-package magit
-  :bind (:map evil-normal-state-map
-              ("<leader>m" . magit-status)
-              )
+  ;; [meow-migration] Leader binding SPC m → magit-status moved to init-meow.el
+  ;; Original :bind (:map evil-normal-state-keymap ("<leader>m" . magit-status))
   )
 
 (defun mr/magit-copy-current-branch ()
@@ -63,10 +62,12 @@
   ("q" nil "quit"))
 
 
-;; Keybindings
-(with-eval-after-load 'evil
-  (evil-define-key 'normal 'global (kbd "<leader>g") 'hydra-git-toggle/body)
-  )
+;; [meow-migration] with-eval-after-load 'evil → with-eval-after-load 'meow
+;; Keybindings moved to init-meow.el
+;; Original:
+;; (with-eval-after-load 'evil
+;;   (evil-define-key 'normal 'global (kbd "<leader>g") 'hydra-git-toggle/body)
+;;   )
 
 
 (provide 'init-vcs)

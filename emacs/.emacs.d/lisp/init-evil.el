@@ -1,5 +1,8 @@
-;;; init-evil.el --- Evil mode configuration
+;;; init-evil.el --- Evil mode configuration (DEPRECATED — migrated to init-meow.el)
 ;;; Commentary:
+;;; MIGRATED: This file has been replaced by init-meow.el as part of the
+;;; evil → meow migration.  Kept for reference only.  Not loaded anymore.
+;;; See movingToMeow.org for detailed migration notes.
 ;;; Code:
 
 

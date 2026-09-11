@@ -9,17 +9,14 @@
 ;; (require 'all-the-icons-ivy) ;; https://github.com/asok/all-the-icons-ivy
 
 (use-package ivy
-  :general
-  (:states 'normal
-           "gl" 'counsel-grep-or-swiper
-           "go" 'counsel-imenu)
-  (my-space-leader "y" 'counsel-yank-pop)
-  (:keymaps 'global "C-q" 'ivy-switch-buffer)
-  (:keymaps 'global "M-x" 'counsel-M-x)
-  (:keymaps 'global "M-f" 'counsel-find-file)
-  (:keymaps 'global "C-c C-i" 'ivy-resume)
-  (:keymaps 'global "C-c p p" 'counsel-projectile-switch-project)
-
+  :bind (:map meow-normal-state-keymap
+              ("g l" . counsel-grep-or-swiper)
+              ("g o" . counsel-imenu)
+         ("C-q" . ivy-switch-buffer)
+         ("M-x" . counsel-M-x)
+         ("M-f" . counsel-find-file)
+         ("C-c C-i" . ivy-resume)
+         ("C-c p p" . counsel-projectile-switch-project))
   :init
   (setq ivy-switch-buffer-faces-alist
         '((emacs-lisp-mode . swiper-match-face-1)
@@ -38,17 +35,16 @@
   (ivy-mode 1)
   ;; (all-the-icons-ivy-setup)
   (setq counsel-grep-base-command
-        "rg -i -M 120 --no-heading --line-number --color never '%s' %s"))
+        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  (define-key my-meow-leader-map (kbd "y") 'counsel-yank-pop))
 
 (use-package ivy-hydra)
 
 (use-package counsel-projectile
-  :general
-  (my-space-leader
-    "f" 'counsel-projectile-find-file
-    "a" 'counsel-projectile-rg)
   :config
-  (counsel-projectile-mode))
+  (counsel-projectile-mode)
+  (define-key my-meow-leader-map (kbd "f") 'counsel-projectile-find-file)
+  (define-key my-meow-leader-map (kbd "a") 'counsel-projectile-rg))
 
 (use-package ivy-posframe
   :config

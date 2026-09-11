@@ -3,15 +3,17 @@
 ;;; Code:
 
 (use-package corfu
-  :after (eldoc evil)
-  :ensure (corfu :files (:defaults "extensions/*")
-                 :includes (corfu-indexed corfu-quick))
+  ;; [meow-migration] :after evil → :after meow
+  :after (eldoc meow)
+  ;; :after (eldoc evil)  -- original
+  :ensure t
   ;; :hook
   ;; (lsp-completion-mode . mr/corfu-setup-lsp) ; Use corfu for lsp completion
   ;; (corfu-mode . corfu-indexed-mode)
   :bind (
          ;; ([remap "C-n"] . corfu-next)
-         :map evil-insert-state-map
+         ;; [meow-migration] evil-insert-state-map → meow-insert-state-keymap
+         :map meow-insert-state-keymap
          ("M-/" . completion-at-point)
          :map corfu-map
          ("C-p" . corfu-previous)
@@ -30,21 +32,6 @@
          ;; ("M-n" . term-send-down)
          ;; )
          )
-  ;; :general
-  ;; (:states '(insert) "M-/" 'completion-at-point)
-  ;; (:keymaps 'corfu-map
-  ;;           :states 'insert
-  ;;           "C-n" #'corfu-next
-  ;;           "C-p" #'corfu-previous
-  ;;           "<escape>" #'corfu-quit
-  ;;           "<return>" #'corfu-insert
-  ;;           "H-SPC" #'corfu-insert-separator
-  ;;           ;; "SPC" #'corfu-insert-separator ; Use when `corfu-quit-at-boundary' is non-nil
-  ;;           "M-d" #'corfu-show-documentation
-  ;;           "C-g" #'corfu-quit
-  ;;           "M-l" #'corfu-show-location
-  ;;           "M-j" #'corfu-quick-complete
-  ;;           )
   :custom
   ;; Works with `indent-for-tab-command'. Make sure tab doesn't indent when you
   ;; want to perform completion
@@ -82,17 +69,20 @@
   (global-corfu-mode)
   (corfu-history-mode)
   :config
-  ;; NOTE 2022-03-01: This allows for a more evil-esque way to have
-  ;; `corfu-insert-separator' work with space in insert mode without resorting to
-  ;; overriding keybindings with `general-override-mode-map'. See
-  ;; https://github.com/minad/corfu/issues/12#issuecomment-869037519
-  ;; Alternatively, add advice without `general.el':
-  (evil-make-overriding-map corfu-map)
-  ;; (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
-  ;; (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
-  (advice-add 'corfu--setup :after (lambda (&rest _) (evil-normalize-keymaps)))
-  (advice-add 'corfu--teardown :after (lambda (&rest _) (evil-normalize-keymaps)))
-  ;; (general-add-advice '(corfu--setup corfu--teardown) :after 'evil-normalize-keymaps)
+  ;; Load Corfu extensions (installed alongside the main package via
+  ;; package.el but not automatically added to load-path).
+  (add-to-list 'load-path
+               (expand-file-name "extensions"
+                                 (file-name-directory (locate-library "corfu"))))
+  (require 'corfu-indexed)
+  (require 'corfu-quick)
+
+  ;; [meow-migration] evil-make-overriding-map and advice for evil-normalize-keymaps
+  ;; are no longer needed with meow.  Meow's insert mode uses standard Emacs keymaps.
+  ;; Original evil integration (commented out):
+  ;; (evil-make-overriding-map corfu-map)
+  ;; (advice-add 'corfu--setup :after (lambda (&rest _) (evil-normalize-keymaps)))
+  ;; (advice-add 'corfu--teardown :after (lambda (&rest _) (evil-normalize-keymaps)))
 
   ;; Enable Corfu more generally for every minibuffer, as long as no other
   ;; completion UI is active. If you use Mct or Vertico as your main minibuffer

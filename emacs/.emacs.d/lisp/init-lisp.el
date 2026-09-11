@@ -3,18 +3,21 @@
 ;;; initialization of Lisp mode for Emacs
 ;;; Code:
 
+;; [meow-migration] lispyville depends on evil, commented out.
+;; lispy keybindings changed to meow-normal-state-keymap.
 (use-package lispy
-  :general
-  ;; replace a global binding with major-mode's default
-  (lispy-mode-map "M-q" nil)
-  (lispy-mode-map :states '(normal) "gcc" 'lispy-comment)
   :config
+  (define-key lispy-mode-map (kbd "M-q") nil)
+  ;; [meow-migration] :keymaps → define-key on both keymaps
+  (define-key lispy-mode-map (kbd "g c c") 'lispy-comment)
+  (define-key meow-normal-state-keymap (kbd "g c c") 'lispy-comment)
   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1))))
 
-(use-package lispyville
-  :after lispy
-  :config
-  (add-hook 'lispy-mode-hook #'lispyville-mode))
+;; [meow-migration] lispyville depends on evil, disabled
+;; (use-package lispyville
+;;   :after lispy
+;;   :config
+;;   (add-hook 'lispy-mode-hook #'lispyville-mode))
 
 ;; (use-package parinfer
 ;;   :general

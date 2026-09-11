@@ -10,12 +10,14 @@
   (setq yas/snippet-dirs
         (list (concat user-emacs-directory "snippets")))
 
-  :general
-  (yas-minor-mode-map "C-<return>" 'yas-expand))
+  :bind (:map yas-minor-mode-map
+              ("C-<return>" . yas-expand)))
 
 (use-package auto-yasnippet
-  :general
-  (:states 'insert "C-p" 'aya-expand))
+  ;; [meow-migration] :states 'insert → use meow-insert-state-keymap
+  :bind (:map meow-insert-state-keymap
+              ("C-p" . aya-expand))
+  )
 
 
 

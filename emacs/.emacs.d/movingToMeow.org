@@ -1,0 +1,235 @@
+#+TITLE: Moving from Evil to Meow — Migration Notes
+#+DATE: 2026-06-28
+
+* Why Meow?
+- Meow blends modal editing into Emacs with *minimal interference* with standard Emacs keybindings.
+- No more keybinding conflicts with packages like Magit, Org, Dired.
+- Selection-first paradigm (Kakoune/Helix style): select, then act.  More visible, fewer mistakes.
+- Lighter weight, better integrated with Emacs' built-in mechanisms.
+- Fewer packages needed (no evil-collection, evil-surround, evil-goggles, etc.)
+
+* Key Conceptual Differences: Evil vs Meow
+| Evil Concept            | Meow Equivalent                        |
+|-------------------------|----------------------------------------|
+| evil-normal-state       | meow-normal-state (NORMAL)             |
+| evil-insert-state       | meow-insert-state (INSERT)             |
+| evil-visual-state       | meow-beacon-state + meow-motion-state  |
+| evil-operator-state     | meow-motion-state (for pending ops)    |
+| evil-set-leader         | meow-leader-define-key                 |
+| evil-define-key         | meow-define-keys / define-key          |
+| Operator + Motion (dw)  | Enter motion → select → auto-apply     |
+| Text objects (iw, aw)   | Expand/shrink selection + motion mode  |
+| evil-normal-state-map   | meow-normal-state-keymap               |
+| evil-insert-state-map   | meow-insert-state-keymap               |
+| evil-surround           | embrace / meow built-in                |
+| evil-visualstar         | meow-search (* and #)                  |
+| evil-mc (multi-cursor)  | meow-visit / multiple-cursors          |
+| evil-matchit            | meow-block (%)                         |
+| evil-nerd-commenter     | SAME PACKAGE — rebind key              |
+| evil-numbers            | SAME PACKAGE — rebind key              |
+| evil-python-movement    | REBIND to meow normal map              |
+| evil-goggles            | DROPPED — meow has no equivalent       |
+| evil-exchange           | meow-swap-grab                         |
+| evil-anzu               | DROPPED — meow has own search UI       |
+
+* Meow State Machine (Simplified)
+  INSERT ←→ NORMAL ←→ MOTION
+            ↕
+          KEYPAD (for leader-based operations)
+            ↕
+          BEACON (visual/selection mode)
+
+  Pressing SPC (leader) in NORMAL enters KEYPAD/LEADER mode.
+  In MOTION mode, cursor movement expands/shrinks the selection.
+  Operations (kill, change, copy) are applied to the selected region.
+
+* Migration Checklist
+
+** DONE Change init.el core
+   - [X] Comment out general-evil-setup
+   - [X] Change my-space-leader definer to use meow-normal-state-keymap
+   - [X] Change my-general-g-definer definer to use meow-normal-state-keymap
+   - [X] Comment out (require 'init-evil) → add (require 'init-meow)
+   - [X] Comment out (require 'init-evil-mlang) → add (require 'init-meow-mlang)
+   - [X] Change undo-fu keybindings to meow-normal-state-keymap
+   - [X] Comment out evil-goggles custom-set-faces
+
+** DONE Create init-meow.el
+   - Meow package installation and configuration
+   - QWERTY keypad layout (vim-like hjkl)
+   - Window navigation (C-h/j/k/l → windmove-like)
+   - Cursor shape settings for different modes
+   - All leader-key bindings (consolidated from other files):
+     - SPC w → save-buffer
+     - SPC = → balance-windows
+     - SPC f → projectile-find-file
+     - SPC y → consult-yank-pop
+     - SPC a → consult-ripgrep
+     - SPC m → magit-status
+     - SPC g → hydra-git-toggle/body
+     - SPC h → highlight-symbol
+     - SPC t → hydra-toggle/body
+     - SPC r → hydra-resize/body
+     - SPC cf → hydra-zoom/body
+     - SPC cn → hydra-numbers/body
+     - SPC cc → hydra-mc/body
+     - SPC cz → hydra-fold/body
+     - SPC j → avy-goto-line-below
+     - SPC k → avy-goto-line-above
+     - SPC l → avy-goto-char-in-line
+     - SPC s → avy-goto-char-timer
+     - SPC e → er/expand-region
+     - SPC l (turbo-log) → handled in init-programming
+   - Evil package replacements:
+     - embrace (surround replacement)
+     - meow-block for % (matchit replacement)
+     - evil-nerd-commenter rebind (gcc)
+     - evil-numbers rebind
+     - Origami folding hydra
+   - Text objects: commented out evil-textobj-tree-sitter (use combobulate instead)
+
+** DONE Create init-meow-mlang.el
+   - Keyboard layout switching for meow
+   - Uses meow-insert-enter-hook and meow-insert-exit-hook
+   - Same logic as evil-mlang but with meow hooks
+
+** Modified files with evil → meow changes
+*** init-avy.el
+    - Comment out evil-normal-state-map bindings → bind in meow-normal-state-keymap
+    - Comment out evil-forward-word-begin → use forward-word
+
+*** init-hydra.el
+    - Comment out evil-normal-state-map bindings → bind in meow-normal-state-keymap
+    - Change evil-mlang-mode toggle → meow-mlang-mode
+
+*** init-programming.el
+    - Comment out evil-textobj-tree-sitter use-package
+    - Comment out evil-normal-state-map for origami
+    - Change general-nmap → general-define-key with meow keymap
+    - Comment out evil-* text object key bindings
+
+*** init-internal-apps.el
+    - Comment out evil-define-key for dired/dirvish
+    - Use define-key directly on dired-mode-map and dirvish-mode-map
+
+*** init-vcs.el
+    - Change evil-normal-state-map → meow-normal-state-keymap for magit
+    - Change with-eval-after-load 'evil → with-eval-after-load 'meow
+    - Change evil-define-key → define-key on meow-normal-state-keymap
+
+*** init-vertico-stack.el
+    - Change :after evil → :after meow for consult
+    - Change evil-normal-state-map → meow-normal-state-keymap
+    - Change evil-insert-state-map → meow-insert-state-keymap
+
+*** init-corfu.el
+    - Change :after (eldoc evil) → :after (eldoc meow)
+    - Change evil-insert-state-map → meow-insert-state-keymap
+    - Comment out evil-make-overriding-map corfu-map
+    - Comment out advice-add for evil-normalize-keymaps
+
+*** init-appearance.el
+    - Change with-eval-after-load 'evil → with-eval-after-load 'meow
+    - Change evil-define-key → define-key on meow-normal-state-keymap
+    - Change evil-normal-state-map → meow-normal-state-keymap
+    - Change evil--jumps-push → push-mark
+
+*** init-python.el
+    - Comment out evil-python-movement use-package
+    - (Python movement keys [[ ]], [m ], etc. need custom meow implementation)
+
+*** init-javascript.el
+    - Comment out [remap evilnc-comment-or-uncomment-lines] → rebind jtsx-comment-dwim directly
+
+*** init-neotree.el
+    - Change evil-next-line → next-line
+    - Change evil-previous-line → previous-line
+    - Change evil-forward-word-begin → forward-word
+    - Change evil-normal-state-local-map → meow-normal-state-keymap (via mode hook)
+
+*** init-modeline.el
+    - Comment out telephone-line evil face references
+    - Keep modal face but remove evil-specific segments
+
+*** init-org.el
+    - Already commented out evil references — no changes needed
+
+* Things You'll Need to Re-learn
+1. **Selection-first paradigm**:
+   Instead of =d w= (delete word), you press =SPC w= or enter motion
+   mode and select first, then the operation applies automatically.
+   In practice:
+   - =d= in normal enters MOTION state. Move cursor to expand selection. Selection is auto-killed.
+   - =c= in normal enters MOTION state. Move cursor to select. Region is killed, then INSERT mode.
+   - =y= in normal enters MOTION state. Move cursor to select. Region is yanked.
+   - =v= enters BEACON mode (visual). Same expand/shrink with cursor.
+
+2. **Text objects are different**:
+   - Evil: =v a f= selects "a function"
+   - Meow: Use expand (=meow-expand=) and shrink (=meow-shrink=) to select by semantic units.
+   - Alternatively, use =combobulate= for structured navigation.
+
+3. **No evil-surround**: Use =embrace= package or meow's built-in =meow-save= for similar operations.
+   - =embrace= works with =embrace-add= / =embrace-change= / =embrace-delete=
+   - Or use =smartparens= for auto-pairing and wrapping.
+
+4. **No evil-mc (multiple cursors)**: Instead, use:
+   - =meow-visit=: search for pattern, then edit all matches simultaneously
+   - Or =multiple-cursors= package (if really needed)
+
+5. **Search**: Meow uses =/= and =?= for search (same keys!). =*= and =#= work for word under cursor.
+
+6. **No evil-exchange**: Use =meow-swap-grab= to swap two regions.
+
+7. **Window navigation**: =C-h/j/k/l= still work as before (bound in meow config).
+
+* SPC Leader Key Map (Complete)
+| Key     | Command                       | Description              |
+|---------|-------------------------------|--------------------------|
+| SPC w   | save-buffer                   | Save file                |
+| SPC =   | balance-windows               | Balance windows          |
+| SPC f   | projectile-find-file          | Find file in project     |
+| SPC a   | consult-ripgrep               | Grep in project          |
+| SPC y   | consult-yank-pop              | Yank from kill ring      |
+| SPC m   | magit-status                  | Open Magit               |
+| SPC g   | hydra-git-toggle/body         | Git toggles hydra        |
+| SPC h   | highlight-symbol              | Highlight symbol         |
+| SPC t   | hydra-toggle/body             | Toggle settings hydra    |
+| SPC r   | hydra-resize/body             | Resize windows hydra     |
+| SPC cf  | hydra-zoom/body               | Font zoom hydra          |
+| SPC cn  | hydra-numbers/body            | Number change hydra      |
+| SPC cc  | hydra-mc/body                 | Multi-cursor hydra       |
+| SPC cz  | hydra-fold/body               | Code folding hydra       |
+| SPC j   | avy-goto-line-below           | Avy jump below           |
+| SPC k   | avy-goto-line-above           | Avy jump above           |
+| SPC l   | avy-goto-char-in-line         | Avy char in line         |
+| SPC s   | avy-goto-char-timer           | Avy char timer           |
+| SPC e   | er/expand-region              | Expand region            |
+
+* Unresolved / Needs Attention
+1. **evil-textobj-tree-sitter** — tree-sitter text objects.  Use
+   =combobulate= for navigation instead, or write custom meow expand
+   functions.
+2. **evil-python-movement** — Python [[ ]], [m ] movement keys.  Need
+   custom implementation or use combobulate in python-ts-mode.
+3. **evil-mc (multiple cursors)** — The hydra-mc uses evil-mc
+   functions.  Need to replace with meow-visit or multiple-cursors
+   package.
+4. **evil-goggles** — Visual feedback for operations.  Meow doesn't
+   have this; purely cosmetic.
+5. **telephone-line evil segment** — Modeline shows evil state.
+   Configure telephone-line for meow state indicator or use a simpler
+   modeline segment.
+
+* Tips for Smooth Transition
+1. Keep this org file open during the transition.
+2. The keybindings you use daily (SPC f, SPC a, SPC m, etc.) should work identically.
+3. For basic editing: meow's QWERTY mode gives you hjkl, w/b/e, x, d, c, y, v, etc.
+4. If something's missing, check this file first, then =SPC h f= (describe-function) to find meow equivalents.
+5. Meow has a built-in cheatsheet: =M-x meow-cheatsheet=.
+
+* Original Evil Config (for reference)
+The original evil config is preserved in:
+- =lisp/init-evil.el= (commented out)
+- =lisp/init-evil-mlang.el= (commented out)
+All evil-specific code in other files is commented with =;; [meow-migration]= prefix.

@@ -1,5 +1,8 @@
-;;; init-evil-mlang.el --- Evil multiple language support
+;;; init-evil-mlang.el --- Evil multiple language support (DEPRECATED — migrated to init-meow-mlang.el)
 ;;; Commentary:
+;;; MIGRATED: This file has been replaced by init-meow-mlang.el as part of the
+;;; evil → meow migration.  Kept for reference only.  Not loaded anymore.
+;;; See movingToMeow.org for detailed migration notes.
 
 ;; >>> Source https://gist.github.com/ghost355/a967417bb7e826e833d4
 ;; Adapted to my system setup

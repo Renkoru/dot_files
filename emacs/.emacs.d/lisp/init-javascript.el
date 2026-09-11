@@ -75,11 +75,15 @@ your override of `flymake-eslint-executable-name.'"
          )
   :bind (
          :map jtsx-jsx-mode-map
-         ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
+         ;; [meow-migration] [remap evilnc-comment-or-uncomment-lines] → direct keybinding
+         ;; Original: ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
+         ;; The remap approach doesn't work without evil.  jtsx-comment-dwim is
+         ;; bound directly via the mode's keymap or we use a custom key.
+         ;; Keeping the original for reference; jtsx-comment-dwim is still callable.
          ("M-5" . jtsx-jump-jsx-element-tag-dwim)
          ;; ("M-q" . ace-window)
          :map jtsx-tsx-mode-map
-         ([remap evilnc-comment-or-uncomment-lines] . jtsx-comment-dwim)
+         ;; [meow-migration] see note above
          ("M-5" . jtsx-jump-jsx-element-tag-dwim)
          ;; ("M-q" . ace-window)
          )
@@ -267,7 +271,7 @@ your override of `flymake-eslint-executable-name.'"
 
 (use-package svelte-ts-mode
   :mode ("\\.svelte\\'" . svelte-ts-mode)
-  :ensure (:host github :repo "leafOfTree/svelte-ts-mode")
+  :ensure nil
 
   :hook (svelte-ts-mode-hook . eglot-ensure)
   :config
@@ -294,7 +298,7 @@ your override of `flymake-eslint-executable-name.'"
 ;;   :after tree-sitter)
 
 (use-package jsdoc
-  :ensure (:host github :repo "isamert/jsdoc.el"))
+  :ensure nil)
 
 (provide 'init-javascript)
 ;;; init-javascript.el ends here

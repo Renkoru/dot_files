@@ -5,9 +5,9 @@
 ;; Disable splash screen
 (setq inhibit-startup-message t)
 
-;; Enable X11 Copy & Paste to/from Emacs. Primary
-(setq x-select-enable-primary t)
-(setq x-select-enable-clipboard t)
+;; Enable X11 Copy & Paste to/from Emacs.
+;; Replaces obsolete x-select-enable-primary / x-select-enable-clipboard (Emacs 29+).
+(setq select-active-regions 'only)
 
                                         ; 'y' instead of 'yes', 'n' instead of 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -54,10 +54,9 @@
 (pixel-scroll-precision-mode 1)
 ;; }}
 
-(setq browse-url-browser-function
-      '(("." . browse-url-generic)))
+(setq browse-url-browser-function #'browse-url-generic)
 (setq browse-url-secondary-browser-function 'browse-url-generic)
-(setq browse-url-generic-program (executable-find "qutebrowser"))
+(setq browse-url-generic-program "google-chrome-stable")
 
 
 ;; Customize ediff --------------------- <
@@ -71,8 +70,8 @@
 (electric-indent-mode 1)
 (electric-pair-mode 1)
 
+;; Suppress warnings for a quieter startup (comment out to debug issues).
 (setq warning-minimum-level :error)
-(setq browse-url-generic-program "google-chrome-stable")
 
 
 (provide 'init-emacs)

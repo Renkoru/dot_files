@@ -30,7 +30,7 @@
   :after (eldoc jsonrpc)
   :defer t
   :config
-  (my-space-leader "cr" 'eglot-rename)
+  (define-key my-meow-leader-map (kbd "p c r") 'eglot-rename)
 
   ;; Each mode needs its own add-to-list call
   (add-to-list 'eglot-server-programs
@@ -66,9 +66,9 @@
   )
 
 (use-package turbo-log
-  :ensure (:host github :repo "artawower/turbo-log.el")
-  :general
-  (:states 'visual "SPC l" 'turbo-log-print-immediately)
+  :ensure nil
+  :bind (:map meow-beacon-state-keymap
+              ("SPC l" . turbo-log-print-immediately))
   :config
   (setq turbo-log-allow-insert-without-tree-sitter-p t)
 
@@ -94,8 +94,8 @@
 
 (use-package emmet-mode
   :hook (tsx-ts-mode . emmet-mode)
-  :general
-  (:states 'insert "C-j" 'emmet-expand-line)
+  :bind (:map meow-insert-state-keymap
+              ("C-j" . emmet-expand-line))
 
   :config
   (add-to-list 'emmet-jsx-major-modes 'your-jsx-major-mode)
@@ -131,38 +131,34 @@
         (kdl "https://github.com/tree-sitter-grammars/tree-sitter-kdl")
         ))
 
-(use-package evil-textobj-tree-sitter
-  :demand t
-  :after evil
-  :config
-
-  (evil-define-key nil evil-outer-text-objects-map
-    "f" (evil-textobj-tree-sitter-get-textobj "function.outer")
-    "l" (evil-textobj-tree-sitter-get-textobj "loop.outer")
-    "i" (evil-textobj-tree-sitter-get-textobj "conditional.outer")
-    "c" (evil-textobj-tree-sitter-get-textobj "class.outer")
-    "b" (evil-textobj-tree-sitter-get-textobj "block.outer")
-    "a" (evil-textobj-tree-sitter-get-textobj "parameter.outer")
-    ;; The first arguemnt to `evil-textobj-tree-sitter-get-textobj' will be the capture group to use
-    ;; and the second arg will be an alist mapping major-mode to the corresponding query to use.
-    "n" (evil-textobj-tree-sitter-get-textobj "node.outer"
-          '(
-            (kdl-ts-mode . ((node) @node.outer)) ;; default modes (using tree-sitter)
-            ))
-    )
-  (evil-define-key nil evil-inner-text-objects-map
-    "f" (evil-textobj-tree-sitter-get-textobj "function.inner")
-    "l" (evil-textobj-tree-sitter-get-textobj "loop.inner")
-    "i" (evil-textobj-tree-sitter-get-textobj "conditional.inner")
-    "c" (evil-textobj-tree-sitter-get-textobj "class.inner")
-    "b" (evil-textobj-tree-sitter-get-textobj "block.inner")
-    "a" (evil-textobj-tree-sitter-get-textobj "parameter.inner")
-    "n" (evil-textobj-tree-sitter-get-textobj "node.inner"
-          '(
-            (kdl-ts-mode . ((node_children) @node.inner)) ;; default modes (using tree-sitter)
-            ))
-    )
-  )
+;; [meow-migration] evil-textobj-tree-sitter depends on evil.
+;; Use combobulate for tree-sitter navigation instead.
+;; Original evil-textobj-tree-sitter config (commented out):
+;; (use-package evil-textobj-tree-sitter
+;;   :demand t
+;;   :after evil
+;;   :config
+;;   (evil-define-key nil evil-outer-text-objects-map
+;;     "f" (evil-textobj-tree-sitter-get-textobj "function.outer")
+;;     "l" (evil-textobj-tree-sitter-get-textobj "loop.outer")
+;;     "i" (evil-textobj-tree-sitter-get-textobj "conditional.outer")
+;;     "c" (evil-textobj-tree-sitter-get-textobj "class.outer")
+;;     "b" (evil-textobj-tree-sitter-get-textobj "block.outer")
+;;     "a" (evil-textobj-tree-sitter-get-textobj "parameter.outer")
+;;     "n" (evil-textobj-tree-sitter-get-textobj "node.outer"
+;;           '(
+;;             (kdl-ts-mode . ((node) @node.outer)))))
+;;   (evil-define-key nil evil-inner-text-objects-map
+;;     "f" (evil-textobj-tree-sitter-get-textobj "function.inner")
+;;     "l" (evil-textobj-tree-sitter-get-textobj "loop.inner")
+;;     "i" (evil-textobj-tree-sitter-get-textobj "conditional.inner")
+;;     "c" (evil-textobj-tree-sitter-get-textobj "class.inner")
+;;     "b" (evil-textobj-tree-sitter-get-textobj "block.inner")
+;;     "a" (evil-textobj-tree-sitter-get-textobj "parameter.inner")
+;;     "n" (evil-textobj-tree-sitter-get-textobj "node.inner"
+;;           '(
+;;             (kdl-ts-mode . ((node_children) @node.inner)))))
+;;   )
 
 ;; (use-package evil-textobj-tree-sitter
 ;;   :config
@@ -207,7 +203,7 @@
 ;; treesit-font-lock-feature-list is a variable defined in ‘treesit.el’.
 
 (use-package combobulate
-  :ensure (:host github :repo "mickeynp/combobulate")
+  :ensure t
   :preface
   ;; You can customize Combobulate's key prefix here.
   ;; Note that you may have to restart Emacs for this to take effect!
@@ -229,13 +225,12 @@
   ;; code.
 
   ;; :load-path ("../elpaca/repos/combobulate/")
-  :general
-  (general-nmap
-    "M-k" 'combobulate-drag-up
-    "M-j" 'combobulate-drag-down
-    "M-h" 'combobulate-navigate-up
-    "M-l" 'combobulate-navigate-down
-    )
+  ;; [meow-migration] general-define-key → use-package :bind
+  :bind (:map meow-normal-state-keymap
+              ("M-k" . combobulate-drag-up)
+              ("M-j" . combobulate-drag-down)
+              ("M-h" . combobulate-navigate-up)
+              ("M-l" . combobulate-navigate-down))
   :config
   (defhydra hydra-combobulate-nav (:color pink
                                           :body-pre (progn
@@ -244,7 +239,7 @@
                                           )
     "
       combobulate naviation
-       _m_ evil-mc-mode:       %`evil-mc-mode
+       ;; [meow-migration] evil-mc-mode removed
       "
     ("k" combobulate-navigate-up "up")
     ("j" combobulate-navigate-down "down")
@@ -256,7 +251,8 @@
     ;; ("m" evil-mc-mode nil)
     ("q" nil "quit"))
 
-  (my-space-leader "cc" 'hydra-mc/body)
+  ;; [meow-migration] leader binding handled by meow-normal-state-keymap prefix
+  ;; (my-space-leader "cc" 'hydra-mc/body)  -- original, now in init-meow.el
   )
 ;; (require rx)
 ;; (straight-use-package
@@ -317,8 +313,7 @@
 ;;   )
 
 (use-package aider
-  ;; :straight (:host github :repo "tninja/aider.el" :files ("aider.el" "aider-core.el" "aider-file.el" "aider-code-change.el" "aider-discussion.el" "aider-prompt-mode.el"))
-  :ensure (:host github :repo "tninja/aider.el")
+  :ensure t
   :config
   ;; For latest claude sonnet model
   (setq aider-args '("--model" "openrouter/deepseek/deepseek-r1-distill-qwen-32b:free"
@@ -335,16 +330,29 @@
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c a") 'aider-transient-menu))
 
-(use-package origami
-  :bind (:map evil-normal-state-map
-              ("<leader>cz" . hydra-fold/body)
-              )
-  :config
-  (defhydra hydra-fold (:color pink)
-    "folding"
-    ("TAB" origami-recursively-toggle-node "cycle")
-    ("q" nil "quit"))
-  )
+;; (use-package origami
+;;   :config
+;;   (defhydra hydra-fold (:color pink)
+;;     "folding"
+;;     ("TAB" origami-recursively-toggle-node "cycle")
+;;     ("q" nil "quit"))
+;;   )
+
+(use-package outline-indent
+  :ensure nil
+  :commands (outline-indent-minor-mode outline-indent-insert-heading)
+  :hook ((python-mode . outline-indent-minor-mode)
+         (python-ts-mode . outline-indent-minor-mode)
+         (yaml-mode . outline-indent-minor-mode)
+         (yaml-ts-mode . outline-indent-minor-mode))
+  :custom
+  (outline-indent-ellipsis " ▼"))
+
+;; (defhydra hydra-fold (:color pink)
+;;   "folding"
+;;   ("TAB" origami-recursively-toggle-node "cycle")
+;;   ("q" nil "quit"))
+;; )
 
 (use-package plantuml-mode
   :ensure t                      ; install from MELPA if missing

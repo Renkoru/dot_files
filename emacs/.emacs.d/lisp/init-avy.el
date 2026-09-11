@@ -4,11 +4,8 @@
 
 
 (use-package avy
-  :bind (:map evil-normal-state-map
-              ("<leader>j" . avy-goto-line-below)
-              ("<leader>k" . avy-goto-line-above)
-              ("<leader>l" . avy-goto-char-in-line)
-              ("<leader>s" . avy-goto-char-timer))
+  ;; [meow-migration] Leader bindings moved to init-meow.el
+  ;; Original :bind (:map evil-normal-state-map ...) commented out:
   :config
   ;; Bind key for isearch C-' to activate avy
   (setq avy-style 'at-full)
@@ -19,7 +16,9 @@
     (save-excursion
       (let (str)
         (goto-char pt)
-        (evil-forward-word-begin)
+        ;; [meow-migration] evil-forward-word-begin → forward-word
+        (forward-word 1)
+        ;; (evil-forward-word-begin) -- original
         (setq str (buffer-substring pt (point)))
         (kill-new str)
         (message "Copied: %s" str)))

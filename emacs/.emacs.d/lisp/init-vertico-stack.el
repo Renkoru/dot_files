@@ -77,18 +77,16 @@
 
 
 (use-package consult
-  :after evil
+  ;; [meow-migration] :after evil → :after meow, keymaps changed
+  :after meow
   :bind (
          ("C-q" . consult-buffer)
          ("M-f" . find-file)
-         :map evil-normal-state-map
+         :map meow-normal-state-keymap
               ("gl" . consult-line)
               ("go" . consult-imenu)
-
-              ("<leader>y" . consult-yank-pop)
-              ("<leader>f" . projectile-find-file)
-              ("<leader>a" . consult-ripgrep)
-         :map evil-insert-state-map
+              ;; Leader bindings SPC y, SPC f, SPC a moved to init-meow.el
+         :map meow-insert-state-keymap
               ("C-e" . end-of-line)
          )
   :config
@@ -122,7 +120,7 @@
   )
 
 (use-package vertico
-  :ensure (:files (:defaults "extensions/*"))
+  :ensure t
   :bind (
          ("C-c p p" . projectile-switch-project)
          :map vertico-map
@@ -131,6 +129,11 @@
   :init
   (vertico-mode)
   :config
+  ;; Load vertico extensions directory (not auto-added to load-path
+  ;; by package.el, unlike Elpaca's :files directive).
+  (add-to-list 'load-path
+               (expand-file-name "extensions"
+                                 (file-name-directory (locate-library "vertico"))))
   (vertico-multiform-mode)
   )
 

@@ -127,17 +127,10 @@
 (add-to-list 'default-frame-alist '(font . "MonoLisa-11"))
 ;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-14"))
 
-(defhydra hydra-zoom ()
-  "zoom"
-  ("i" text-scale-increase "increase")
-  ("r" set-default-font-height "reset")
-  ("d" text-scale-decrease "decrease"))
-
-(my-space-leader "cf" 'hydra-zoom/body)
-
-(with-eval-after-load 'evil
-  (evil-define-key 'normal 'global (kbd "<leader>cf") 'hydra-zoom/body)
-  )
+;; [meow-migration] moved to init-meow.el
+;; (with-eval-after-load 'evil
+;;   (evil-define-key 'normal 'global (kbd "<leader>cf") 'hydra-zoom/body)
+;;   )
 
 (use-package ligature
   :config
@@ -184,7 +177,7 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (use-package nerd-icons-dired
-  :ensure (nerd-icons-dired :type git :host github :repo "rainstormstudio/nerd-icons-dired")
+  :ensure nil
   :hook
   (dired-mode . nerd-icons-dired-mode)
   :custom
@@ -249,32 +242,46 @@
 ;; (global-whitespace-mode 1)
 
 
-;; save position for evil-jump before jump
-(defun mr/highlight-symbol-next ()
-  (interactive)
-  (evil--jumps-push)
-  (highlight-symbol-jump 1))
+;; [disabled] These functions depend on the highlight-symbol package
+;; which is currently disabled in favor of symbol-overlay.
+;;
+;; ;; save position before jump
+;; (defun mr/highlight-symbol-next ()
+;;   (interactive)
+;;   (push-mark (point) t)
+;;   (highlight-symbol-jump 1))
+;;
+;; ;; save position before jump
+;; (defun mr/highlight-symbol-prev ()
+;;   (interactive)
+;;   (push-mark (point) t)
+;;   (highlight-symbol-jump -1))
 
-;; save position for evil-jump before jump
-(defun mr/highlight-symbol-prev ()
-  (interactive)
-  (evil--jumps-push)
-  (highlight-symbol-jump -1))
 
+;; (use-package highlight-symbol
+;;   :defer t
+;;   :hook ((prog-mode . highlight-symbol-mode)
+;;          (prog-mode . highlight-symbol-nav-mode))
 
-(use-package highlight-symbol
-  :defer t
-  :hook ((prog-mode . highlight-symbol-mode)
-         (prog-mode . highlight-symbol-nav-mode))
-
-  :bind (
-         :map evil-normal-state-map
-         ("C-n" . mr/highlight-symbol-next)
-         ("C-p" . mr/highlight-symbol-prev)
-         ("<leader>h" . highlight-symbol)
-         )
+;;   ;; [meow-migration] keybindings handled in init-meow.el
+;;   ;; :bind (
+;;   ;;        :map evil-normal-state-map
+;;   ;;        ("C-n" . mr/highlight-symbol-next)
+;;   ;;        ("C-p" . mr/highlight-symbol-prev)
+;;   ;;        ("<leader>h" . highlight-symbol)
+;;   ;;        )
+;;   :init
+;;   (setq highlight-symbol-idle-delay 1))
+(use-package symbol-overlay
   :init
-  (setq highlight-symbol-idle-delay 1))
+  (let ((map (make-sparse-keymap)))
+    ;; (define-key map (kbd "key1") 'command-1)
+    ;; (define-key map (kbd "key2") 'command-2)
+    (setq symbol-overlay-map map))
+  (setq symbol-overlay-idle-time 1.3)
+  :config
+  (symbol-overlay-mode)
+  )
 
 (use-package rainbow-delimiters
   :config

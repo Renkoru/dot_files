@@ -20,8 +20,12 @@
 zoxide init nushell | save -f ~/.zoxide.nu
 
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+$env.PI_ACP_ENABLE_EMBEDDED_CONTEXT = true
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
+# Add mise to PATH so it can be found during shell init
+$env.PATH = ($env.PATH | prepend ($env.HOME | path join ".local" "bin"))
 let mise_path = $nu.default-config-dir | path join mise.nu
-^mise activate nu | save $mise_path --force
+# temporarty fix mise config with new nushell changes of "uppercase"
+^mise activate nu | str replace --all "upcase" "uppercase" | save $mise_path --force

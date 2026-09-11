@@ -74,7 +74,8 @@
           (green . (my-green . mode-line-inactive))
           (grey . (my-grey . mode-line-inactive))
           (blue . (my-blue . my-blue))
-          (evil . telephone-line-modal-face)
+          ;; [meow-migration] evil face entry removed; use modal instead
+          ;; (evil . telephone-line-modal-face)  -- original
           (modal . telephone-line-modal-face)
           (ryo . telephone-line-ryo-modal-face)
           (accent . (telephone-line-accent-active . telephone-line-accent-inactive))
@@ -134,7 +135,8 @@
                      ))
           (green   . (mr/telephone-line-buffer-segment))
           (blue . (telephone-line-position-segment))
-          ;; (evil   . (telephone-line-evil-tag-segment))
+          ;; [meow-migration] evil tag segment removed
+          ;; (evil   . (telephone-line-evil-tag-segment))  -- original, already commented
           (blue    . (mr/telephone-line-flycheck-segment))
           ))
 
@@ -150,9 +152,10 @@
         telephone-line-primary-right-separator 'telephone-line-cubed-right
         telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
 
-  (setq
-   ;; telephone-line-height 24
-   telephone-line-evil-use-short-tag t)
+  ;; [meow-migration] telephone-line-evil-use-short-tag removed (evil-specific)
+  ;; (setq
+  ;;  ;; telephone-line-height 24
+  ;;  telephone-line-evil-use-short-tag t)  -- original
 
   (telephone-line-mode t))
 

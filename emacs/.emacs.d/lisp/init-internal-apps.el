@@ -5,8 +5,10 @@
 (use-package writeroom-mode)
 
 (use-package dirvish
-  :after (dired evil)
-  :init
+  ;; [meow-migration] :after evil → :after meow
+  :after (dired meow)
+  ;; :after (dired evil)  -- original
+  :config
   (dirvish-override-dired-mode)
   ;; :custom
   ;; (dirvish-quick-access-entries ; It's a custom option, `setq' won't work
@@ -26,23 +28,14 @@
   (setq dired-listing-switches
         "-l --almost-all --human-readable --group-directories-first --no-group")
 
-  ;; https://github.com/emacs-evil/evil-collection/blob/master/modes/dired/evil-collection-dired.el#L41
-  (evil-define-key '(normal) dired-mode-map
-    "h" 'dired-up-directory
-    "l" 'dired-find-file
-
-    ;; "j" 'dired-next-line
-    ;; "k" 'dired-previous-line
-    ;; (kbd "RET") 'dired-find-file
-    ;; (kbd "S-<return>") 'dired-find-file-other-window
-    ;; (kbd "M-RET") 'dired-display-file
-    ;; "gO" 'dired-find-file-other-window
-    ;; "go" 'dired-view-file
-    )
-
-  (evil-define-key '(normal) dirvish-mode-map
-    (kbd "TAB")  'dirvish-subtree-toggle
-    )
+  ;; [meow-migration] evil-define-key → define-key on dired/dirvish mode maps
+  ;; Dired keybindings moved to init-meow.el via with-eval-after-load
+  ;; Original evil-define-key:
+  ;; (evil-define-key '(normal) dired-mode-map
+  ;;   "h" 'dired-up-directory
+  ;;   "l" 'dired-find-file)
+  ;; (evil-define-key '(normal) dirvish-mode-map
+  ;;   (kbd "TAB")  'dirvish-subtree-toggle)
 
   ;; (add-hook '
   ;;           (lambda ()
@@ -80,6 +73,17 @@
    ("M-j" . dirvish-fd-jump)
    ("M-c" . dired-create-empty-file)
    )
+  )
+
+
+(use-package gt
+  :config
+  (setq gt-langs '(en ru))
+  (setq gt-default-translator (gt-translator
+                               :engines (gt-google-engine)
+                               ;; :render  (gt-buffer-render)
+                               :render (gt-overlay-render)
+                               ))
   )
 
 
